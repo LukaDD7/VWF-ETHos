@@ -1,0 +1,41 @@
+VWF Type-2 变异优先运行列表
+============================================================
+
+【第一优先级 - WT】
+VWF_WT
+
+【第二优先级 - Type-2 Pathogenic】
+VWF_C788Y | type2N | Pathogenic
+VWF_C849F | type2N | Pathogenic
+VWF_R854Q | type2N | Pathogenic
+VWF_R1308L | type2B | Pathogenic
+VWF_F1369I | type2M | Pathogenic
+VWF_E1359K | type2M | Pathogenic
+VWF_C1190Y | type2A | Pathogenic
+VWF_Y1146C | type2A | Pathogenic
+VWF_R1374C | type2M | Pathogenic
+VWF_G1417W | type2M | Pathogenic
+VWF_A1437T | type2M | Pathogenic
+VWF_G1324S | type2M | Pathogenic
+VWF_R1306L | type2B | Pathogenic
+VWF_R1306Q | type2B | Pathogenic
+VWF_R816W | type2N | Pathogenic
+VWF_R816Q | type2N | Pathogenic
+VWF_I1628T | type2A | Pathogenic
+VWF_R1597W | type2A | Pathogenic
+VWF_L536P | type2A | Pathogenic
+VWF_T791M | type2N | Pathogenic
+VWF_R1341Q | type2B | Pathogenic
+VWF_P1337L | type2B | Pathogenic
+VWF_L1503Q | type2A | Pathogenic
+VWF_R854W | type2N | Pathogenic
+VWF_D879N | type2N | Pathogenic
+VWF_R1374H | type2M | Pathogenic
+VWF_I1425F | type2M | Pathogenic
+
+【第三优先级 - Type-2 Likely Pathogenic】
+
+【第四优先级 - Type-2 VUS】
+
+【第五优先级 - 其他变异】
+... 798 个其他变异

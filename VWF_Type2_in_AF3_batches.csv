@@ -1,0 +1,73 @@
+"Transcript
+Consequence",Unnamed: 1,"Protein
+Consequence",Unnamed: 3,Unnamed: 4,Unnamed: 5,rsIDs,Unnamed: 7,Unnamed: 8,Unnamed: 9,Type of variant,Unnamed: 11,"Allele
+Frequency",Unnamed: 13,"       Clinical
+classification",Unnamed: 15,Unnamed: 16,CLINVAR,ACGM,AA_Change
+c.7393G>A,,p.Val2465Met,,,,rs375655409,,,,missense,,6.19545e-05,6.19545e-05,type2A,,,Likely pathogenic,Uncertain signifi-cance,V2465M
+c.5347T>G,,p.Ser1783Ala,,,,rs267607353,,,,missense,,4.39854e-05,4.39854e-05,type2M,,,Uncertain signifi-cance,Uncertain signifi-cance,S1783A
+c.5235G>T,,p.Trp1745Cys,,,,rs267607352,,,,missense,,6.19509e-07,6.19509e-07,type2M,,,Likely pathogenic,Likely pathogenic,W1745C
+c.5192C>T,,p.Ser1731Leu,,,,rs764077750,,,,missense,,6.19543e-06,6.19543e-06,type2M,,,Uncertain signifi-cance,Uncertain signifi-cance,S1731L
+c.5014G>A,,p.Gly1672Arg,,,,rs61750598,,,,missense,,0.000187935,0.000187935,type2A,,,Uncertain signifi-cance,Uncertain signifi-cance,G1672R
+c.4969C>A,,p.Leu1657Ile,,,,rs61750592,,,,missense,,6.19882e-07,6.19882e-07,type2A,,,not provided,Likely pathogenic,L1657I
+c.4888G>A,,p.Val1630Met,,,,,,,,missense,,6.19599e-07,6.19599e-07,type2A,,,not provided,Likely pathogenic,V1630M
+c.4883T>C,,p.Ile1628Thr,,,,rs61750584,,,,missense,,1.85891e-06,1.85891e-06,type2A,,,Pathogenic,Pathogenic,I1628T
+c.4841A>G,,p.Asp1614Gly,,,,rs61750582,,,,missense,,1.23924e-06,1.23924e-06,type2A,,,Uncertain signifi-cance,Likely pathogenic,D1614G
+c.4840G>A,,p.Asp1614Asn,,,,rs1478977315,,,,missense,,1.23913e-06,1.23913e-06,type2A,,,Uncertain signifi-cance,Likely pathogenic,D1614N
+c.4789C>T,,p.Arg1597Trp,,,,rs61750117,,,,missense,,6.19568e-07,6.19568e-07,type2A,,,Pathogenic,Pathogenic,R1597W
+c.4717G>A,,p.Gly1573Ser,,,,rs267607349,,,,missense,,1.11552e-05,1.11552e-05,type2A,,,Likely pathogenic,Likely pathogenic,G1573S
+c.4508T>A,,p.Leu1503Gln,,,,rs61750097,,,,missense,,6.21394e-07,6.21394e-07,type2A,,,Likely pathogenic,Pathogenic,L1503Q
+c.4492G>A,,p.Asp1498Asn,,,,rs1009808532,,,,missense,,1.17731e-05,1.17731e-05,type2A,,,Uncertain signifi-cance,Uncertain signifi-cance,D1498N
+c.4382C>T,,p.Ala1461Val,,,,rs61750089,,,,missense,,6.19623e-07,6.19623e-07,type2B,,,Pathogenic,Likely pathogenic,A1461V
+c.4378C>T,,p.Leu1460Phe,,,,rs61750088,,,,missense,,7.31132e-05,7.31132e-05,type2B,,,Likely pathogenic,Uncertain signifi-cance,L1460F
+c.4309G>A,,p.Ala1437Thr,,,,rs61750084,,,,missense,,3.71802e-06,3.71802e-06,type2M,,,Likely pathogenic,Pathogenic,A1437T
+c.4273A>T,,p.Ile1425Phe,,,,rs61750083,,,,missense,,6.19626e-07,6.19626e-07,type2M,,,Likely pathogenic,Pathogenic,I1425F
+c.4255C>A,,p.His1419Asn,,,,rs375498783,,,,missense,,3.71797e-05,3.71797e-05,type2A,,,Uncertain signifi-cance,Uncertain signifi-cance,H1419N
+c.4249G>T,,p.Gly1417Trp,,,,rs2136412846,,,,missense,,6.19593e-07,6.19593e-07,type2M,,,Likely pathogenic,Pathogenic,G1417W
+c.4205A>C,,p.Gln1402Pro,,,,,,,,missense,,6.19611e-07,6.19611e-07,type2M,,,Likely pathogenic,Likely pathogenic,Q1402P
+c.4195C>T,,p.Arg1399Cys,,,,rs61750077,,,,missense,,5.14322e-05,5.14322e-05,type2M,,,Likely pathogenic,Likely pathogenic,R1399C
+c.4183C>T,,p.Arg1395Trp,,,,rs751394243,,,,missense,,1.23932e-05,1.23932e-05,type2M,,,Uncertain signifi-cance,Uncertain signifi-cance,R1395W
+c.4121G>A,,p.Arg1374His,,,,rs61750072,,,,missense,,1.23925e-06,1.23925e-06,type2M,,,Pathogenic,Pathogenic,R1374H
+c.4120C>T,,p.Arg1374Cys,,,,rs61750071,,,,missense,,3.09829e-06,3.09829e-06,type2M,,,Pathogenic,Pathogenic,R1374C
+c.4105T>A,,p.Phe1369Ile,,,,rs61750069,,,,missense,,6.19684e-06,6.19684e-06,type2M,,,"Pathogenic/Likely
+pathogenic",Pathogenic,F1369I
+c.4079T>C,,p.Val1360Ala,,,,rs267607338,,,,missense,,1.1156e-05,1.1156e-05,type2M,,,Uncertain signifi-cance,Uncertain signifi-cance,V1360A
+c.4075G>A,,p.Glu1359Lys,,,,rs61749407,,,,missense,,4.95721e-06,4.95721e-06,type2M,,,Pathogenic,Pathogenic,E1359K
+c.4022G>A,,p.Arg1341Gln,,,,rs61749403,,,,missense,,1.2392e-06,1.2392e-06,type2B,,,Pathogenic,Pathogenic,R1341Q
+c.4010C>T,,p.Pro1337Leu,,,,rs61749400,,,,missense,,4.95684e-06,4.95684e-06,type2B,,,"Pathogenic/Likely
+pathogenic",Pathogenic,P1337L
+c.4001G>A,,p.Arg1334Gln,,,,rs775812331,,,,missense,,6.19642e-06,6.19642e-06,type2M,,,Uncertain signifi-cance,Uncertain signifi-cance,R1334Q
+c.4000C>T,,p.Arg1334Trp,,,,rs746810319,,,,missense,,2.41665e-05,2.41665e-05,type2M,,,Uncertain signifi-cance,Uncertain signifi-cance,R1334W
+c.3974C>T,,p.Ser1325Phe,,,,rs538488005,,,,missense,,6.1961e-07,6.1961e-07,type2M,,,Likely pathogenic,Likely pathogenic,S1325F
+c.3970G>A,,p.Gly1324Ser,,,,rs61749398,,,,missense,,4.33773e-06,4.33773e-06,type2M,,,Pathogenic,Pathogenic,G1324S
+c.3923G>T,,p.Arg1308Leu,,,,rs61749388,,,,missense,,6.196e-07,6.196e-07,type2B,,,Likely pathogenic,Pathogenic,R1308L
+c.3923G>A,,p.Arg1308His,,,,rs61749388,,,,missense,,1.67292e-05,1.67292e-05,type2A,,,Uncertain signifi-cance,Uncertain signifi-cance,R1308H
+c.3917G>T,,p.Arg1306Leu,,,,rs61749385,,,,missense,,6.19596e-07,6.19596e-07,type2B,,,Pathogenic,Pathogenic,R1306L
+c.3917G>A,,p.Arg1306Gln,,,,rs61749385,,,,missense,,1.23928e-06,1.23928e-06,type2B,,,Pathogenic,Pathogenic,R1306Q
+c.3569G>A,,p.Cys1190Tyr,,,,rs1591865026,,,,missense,,6.19497e-07,6.19497e-07,type2A,,,"Conflicting classi-
+fications of path-
+ogenicity",Pathogenic,C1190Y
+c.3437A>G,,p.Tyr1146Cys,,,,rs267607326,,,,missense,,1.83987e-06,1.83987e-06,type2A,,,Pathogenic,Pathogenic,Y1146C
+c.3320A>G,,p.Tyr1107Cys,,,,rs267607319,,,,missense,,6.19645e-07,6.19645e-07,type2A,,,Uncertain signifi-cance,Likely pathogenic,Y1107C
+c.3159G>T,,p.Gln1053His,,,,rs61748496,,,,missense,,7.58653e-06,7.58653e-06,type2N,,,Likely pathogenic,Uncertain signifi-cance,Q1053H
+c.2926C>T,,p.Arg976Cys,,,,rs764251476,,,,missense,,5.45265e-05,5.45265e-05,type2A,,,Uncertain signifi-cance,Uncertain signifi-cance,R976C
+c.2635G>A,,p.Asp879Asn,,,,rs61748485,,,,missense,,9.91307e-06,9.91307e-06,type2N,,,Pathogenic,Pathogenic,D879N
+c.2561G>A,,p.Arg854Gln,,,,rs41276738,,,,missense,,0.004955972,0.004955972,type2N,,,Pathogenic,Pathogenic,R854Q
+c.2560C>T,,p.Arg854Trp,,,,rs61748482,,,,missense,,1.54887e-05,1.54887e-05,type2N,,,Likely pathogenic,Pathogenic,R854W
+c.2546G>T,,p.Cys849Phe,,,,rs772796741,,,,missense,,3.09761e-06,3.09761e-06,type2N,,,Likely pathogenic,Pathogenic,C849F
+c.2447G>A,,p.Arg816Gln,,,,rs62643634,,,,missense,,1.30113e-05,1.30113e-05,type2N,,,Likely pathogenic,Pathogenic,R816Q
+c.2446C>T,,p.Arg816Trp,,,,rs121964894,,,,missense,,1.98274e-05,1.98274e-05,type2N,,,Pathogenic,Pathogenic,R816W
+c.2435C>T,,p.Pro812Leu,,,,rs62643631,,,,missense,,4.58561e-05,4.58561e-05,type2N,,,Uncertain signifi-cance,Uncertain signifi-cance,P812L
+c.2396G>A,,p.Cys799Tyr,,,,rs954273691,,,,missense,,1.85863e-06,1.85863e-06,type2N,,,Uncertain signifi-cance,Likely pathogenic,C799Y
+c.2384A>G,,p.Tyr795Cys,,,,rs61748478,,,,missense,,1.23901e-06,1.23901e-06,type2N,,,Pathogenic,Likely pathogenic,Y795C
+c.2372C>T,,p.Thr791Met,,,,rs61748477,,,,missense,,1.79674e-05,1.79674e-05,type2N,,,Pathogenic,Pathogenic,T791M
+c.2363G>A,,p.Cys788Tyr,,,,rs61748476,,,,missense,,6.19514e-07,6.19514e-07,type2N,,,Pathogenic,Pathogenic,C788Y
+c.2344C>T,,p.Arg782Trp,,,,rs61748471,,,,missense,,3.40753e-05,3.40753e-05,type2N,,,Uncertain signifi-cance,Uncertain signifi-cance,R782W
+c.2279G>A,,p.Arg760His,,,,rs61748467,,,,missense,,1.61102e-05,1.61102e-05,type2A,,,Pathogenic,Uncertain signifi-cance,R760H
+c.2278C>T,,p.Arg760Cys,,,,rs61748466,,,,missense,,6.19559e-06,6.19559e-06,type2N,,,"Conflicting classi-
+fications of path-
+ogenicity",Uncertain signifi-cance,R760C
+c.1648G>A,,p.Gly550Arg,,,,rs61754011,,,,missense,,6.19698e-07,6.19698e-07,type2A,,,Pathogenic,Likely pathogenic,G550R
+c.1607T>C,,p.Leu536Pro,,,,rs1591890769,,,,missense,,3.71841e-06,3.71841e-06,type2A,,,Likely pathogenic,Pathogenic,L536P
+c.605G>C,,p.Arg202Pro,,,,rs369737556,,,,missense,,5.57637e-06,5.57637e-06,type2A,,,not provided,Uncertain signifi-cance,R202P
+c.605G>A,,p.Arg202Gln,,,,rs369737556,,,,missense,,1.05332e-05,1.05332e-05,type2A,,,Uncertain signifi-cance,Uncertain signifi-cance,R202Q
+c.250C>T,,p.Leu84Phe,,,,rs372664002,,,,missense,,0.000104711,0.000104711,type2A,,,Uncertain signifi-cance,Uncertain signifi-cance,L84F

@@ -1,0 +1,21 @@
+# AlphaGenome VWF Variant Analysis Pipeline
+# 依赖文件
+
+# 核心数据处理
+pandas>=2.0.0
+numpy>=1.24.0
+openpyxl>=3.0.0  # 用于读取 Excel 文件
+
+# 坐标转换（可选，如果数据已经是 hg38 可不安装）
+# pyliftover>=0.4.1
+
+# AlphaGenome - 从源码安装
+# cd /path/to/alphagenome/alphagenome
+# pip install .
+
+# 可视化和分析
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# 其他工具
+tqdm>=4.65.0  # 进度条
