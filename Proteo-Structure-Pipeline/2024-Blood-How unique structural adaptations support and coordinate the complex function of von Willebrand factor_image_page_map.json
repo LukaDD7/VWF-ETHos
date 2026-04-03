@@ -1,0 +1,66 @@
+{
+  "images": [
+    {
+      "image_name": "908737b1bce10195ad0426ad6d30b8aa244979f114505e03a9eb67ded739f95d.jpg",
+      "image_path": "/media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/Proteo-Structure-Pipeline/images/908737b1bce10195ad0426ad6d30b8aa244979f114505e03a9eb67ded739f95d.jpg",
+      "relative_path": "images/908737b1bce10195ad0426ad6d30b8aa244979f114505e03a9eb67ded739f95d.jpg",
+      "page_num": 2,
+      "alt_text": "",
+      "inferred": false,
+      "note": ""
+    },
+    {
+      "image_name": "02d21cdbb09784f9b2b4d8435c61ea3fa861a6b306f63826e384404daa7b05b6.jpg",
+      "image_path": "/media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/Proteo-Structure-Pipeline/images/02d21cdbb09784f9b2b4d8435c61ea3fa861a6b306f63826e384404daa7b05b6.jpg",
+      "relative_path": "images/02d21cdbb09784f9b2b4d8435c61ea3fa861a6b306f63826e384404daa7b05b6.jpg",
+      "page_num": 3,
+      "alt_text": "",
+      "inferred": false,
+      "note": ""
+    },
+    {
+      "image_name": "2b7a270e343f9a8381556c213bc8ae073d7fecc17370ba669956093e4a5c821e.jpg",
+      "image_path": "/media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/Proteo-Structure-Pipeline/images/2b7a270e343f9a8381556c213bc8ae073d7fecc17370ba669956093e4a5c821e.jpg",
+      "relative_path": "images/2b7a270e343f9a8381556c213bc8ae073d7fecc17370ba669956093e4a5c821e.jpg",
+      "page_num": 4,
+      "alt_text": "",
+      "inferred": false,
+      "note": ""
+    },
+    {
+      "image_name": "a475d459875b279ef4bf1c8a73e64f7ca76999b054822d05a8832a1d2284c13c.jpg",
+      "image_path": "/media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/Proteo-Structure-Pipeline/images/a475d459875b279ef4bf1c8a73e64f7ca76999b054822d05a8832a1d2284c13c.jpg",
+      "relative_path": "images/a475d459875b279ef4bf1c8a73e64f7ca76999b054822d05a8832a1d2284c13c.jpg",
+      "page_num": 5,
+      "alt_text": "",
+      "inferred": false,
+      "note": ""
+    },
+    {
+      "image_name": "d72ee497ded7689598732968070a94c579867fa3941597e7907617cd873e1608.jpg",
+      "image_path": "/media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/Proteo-Structure-Pipeline/images/d72ee497ded7689598732968070a94c579867fa3941597e7907617cd873e1608.jpg",
+      "relative_path": "images/d72ee497ded7689598732968070a94c579867fa3941597e7907617cd873e1608.jpg",
+      "page_num": 7,
+      "alt_text": "",
+      "inferred": false,
+      "note": ""
+    },
+    {
+      "image_name": "dc9f3d60cd1b3152c5aa6c4cd72a6aee15c7a96d999f8c0b8ea1848f8aa7e057.jpg",
+      "image_path": "/media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/Proteo-Structure-Pipeline/images/dc9f3d60cd1b3152c5aa6c4cd72a6aee15c7a96d999f8c0b8ea1848f8aa7e057.jpg",
+      "relative_path": "images/dc9f3d60cd1b3152c5aa6c4cd72a6aee15c7a96d999f8c0b8ea1848f8aa7e057.jpg",
+      "page_num": 8,
+      "alt_text": "",
+      "inferred": false,
+      "note": ""
+    }
+  ],
+  "total_images": 6,
+  "exact_count": 6,
+  "inferred_count": 0,
+  "page_range": {
+    "start": 2,
+    "end": 8
+  },
+  "note": "页码提取：6张精准，0张推断"
+}

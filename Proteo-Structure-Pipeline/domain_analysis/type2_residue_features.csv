@@ -1,0 +1,11 @@
+variant_id,position,ref_aa,alt_aa,domain,relative_position_in_domain,is_in_aim,aim_component,aim_disruption_score,is_gpib_interface,gpib_site,gpib_key_residue,gpib_interaction_type,is_scissile_bond,is_exosite_1,is_exosite_2,is_exosite_3,is_group1_2a,is_group2_2a,is_calcium_coordinating,is_collagen_binding,is_fviii_binding,is_rgd_motif,is_multimerization_residue,is_vwd_hotspot,vwd_hotspot_type,known_vwd_mutation,mutation_size_delta,mutation_charge_change,mutation_hydrophobicity_delta,mutation_aromatic_change,literature_pmids,af3_available
+A1437T,1437,A,T,A1,0.751131221719457,False,,0.0,False,,False,,False,False,False,False,False,False,False,False,False,False,False,False,,,27.5,0,-2.5,0,[],False
+A1461V,1461,A,V,A1,0.8597285067873304,True,C_terminal_strand,0.0,False,,False,,False,False,False,False,False,False,False,False,False,False,False,False,,,51.400000000000006,0,2.4000000000000004,0,['33888542'],False
+C1091R,1091,C,R,D3,0.6130790190735694,False,,0.0,False,,False,,False,False,False,False,False,False,False,False,False,False,False,False,,,64.9,1,-7.0,0,[],False
+C1190Y,1190,C,Y,D3,0.8828337874659401,False,,0.0,False,,False,,False,False,False,False,False,False,False,False,False,False,False,False,,,85.1,0,-3.8,1,[],False
+C788Y,788,C,Y,D_prime,0.2376237623762376,False,,0.0,False,,False,,False,False,False,False,False,False,False,False,False,False,False,False,,,85.1,0,-3.8,1,[],False
+C799F,799,C,F,D_prime,0.3465346534653465,False,,0.0,False,,False,,False,False,False,False,False,False,False,False,False,False,False,False,,,81.4,0,0.2999999999999998,1,[],False
+C849F,849,C,F,D_prime,0.8415841584158416,False,,0.0,False,,False,,False,False,False,False,False,False,False,False,False,False,False,False,,,81.4,0,0.2999999999999998,1,[],False
+C858S,858,C,S,D_prime,0.9306930693069307,False,,0.0,False,,False,,False,False,False,False,False,False,False,False,False,False,False,False,,,-19.5,0,-3.3,0,[],False
+D1195Y,1195,D,Y,D3,0.896457765667575,False,,0.0,False,,False,,False,False,False,False,False,False,False,False,False,False,False,False,,,82.5,1,2.2,1,[],False
+D1498N,1498,D,N,A2,0.02617801047120419,False,,0.0,False,,False,,False,False,False,False,False,False,True,False,False,False,False,False,,,3.0,1,0.0,0,[],False

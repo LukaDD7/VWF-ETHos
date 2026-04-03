@@ -46,7 +46,7 @@ VWF_DOMAIN_ARCHITECTURE = {
     "D4": (1875, 2255),         # Part of C-terminal assembly
     "C1": (2256, 2324),         # VWC domain
     "C2": (2325, 2392),         # VWC domain
-    "C3": (2393, 2460),         # VWC domain
+    "C3": (2393, 2496),         # VWC domain (extended to cover gap)
     "C4": (2497, 2577),         # VWC domain, contains RGD motif for αIIbβ3 binding
     "C5": (2578, 2658),         # VWC domain
     "C6": (2659, 2722),         # VWC domain
@@ -97,6 +97,42 @@ FUNCTIONAL_REGIONS = {
         "domain": "A3",
         "residues": [(1684, 1873)],
         "critical_interface": [(1700, 1850)],    # β3-sheet, α2-helix, α3-helix
+        "associated_type": "2M",
+        "mechanism": "Reduced collagen binding -> impaired platelet adhesion"
+    },
+
+    # D1-D2 propeptide - Type 2A/IIC mechanism (multimerization defect)
+    "Propeptide_multimerization": {
+        "domain": "propeptide_D1_D2",
+        "residues": [(23, 763)],  # Full propeptide
+        "critical_residues": [(23, 200)],  # D1 domain critical for multimerization
+        "associated_type": "2A",
+        "mechanism": "Defective multimerization -> loss of HMW multimers (Type 2A/IIC)"
+    },
+
+    # D4 domain - Type 2A mechanism (multimerization/secretion defect)
+    "D4_multimerization": {
+        "domain": "D4",
+        "residues": [(1875, 2255)],
+        "description": "D4 domain involved in subunit dimerization and secretion",
+        "associated_type": "2A",
+        "mechanism": "Impaired multimerization or secretion -> loss of HMW multimers"
+    },
+
+    # C-terminal cystine knot - essential for dimerization
+    "Cystine_knot_dimerization": {
+        "domain": "CK",
+        "residues": [(2723, 2813)],
+        "description": "Cystine knot domain essential for VWF dimerization",
+        "associated_type": "2A",
+        "mechanism": "Disrupted dimerization -> severe multimerization defect"
+    },
+
+    # C1-C2 domains - collagen binding
+    "CT_collagen_binding": {
+        "domain": "C1_C2",
+        "residues": [(2256, 2392)],
+        "description": "C1-C2 domains contribute to collagen IV binding",
         "associated_type": "2M",
         "mechanism": "Reduced collagen binding -> impaired platelet adhesion"
     },
@@ -388,6 +424,31 @@ class VWFType2Classifier:
         if domain in ["D_prime", "D3"]:
             subtype_scores["2N"] += features.get("fviii_binding_impact", 0) * 2.0
 
+        # D1-D2 propeptide - Type 2A/IIC (multimerization defect)
+        if domain in ["propeptide_D1", "propeptide_D2"]:
+            subtype_scores["2A"] += 2.0
+            # Higher confidence for D1 (critical for multimerization)
+            if domain == "propeptide_D1":
+                subtype_scores["2A"] += 0.5
+
+        # D4 domain - Type 2A (multimerization/secretion defect)
+        if domain == "D4":
+            subtype_scores["2A"] += 1.5
+            if features.get("plddt_instability", 0) > 0.5:
+                subtype_scores["2A"] += 0.5
+
+        # C-terminal domains - depend on specific subdomain
+        if domain in ["C1", "C2"]:
+            # C1-C2 may affect collagen binding (Type 2M) or multimerization (Type 2A)
+            subtype_scores["2M"] += 0.8
+            subtype_scores["2A"] += 0.5
+        elif domain in ["C3", "C4", "C5", "C6"]:
+            # C3-C6 primarily affect multimerization
+            subtype_scores["2A"] += 1.0
+        elif domain == "CK":
+            # CK domain is essential for dimerization - severe Type 2A
+            subtype_scores["2A"] += 2.5
+
         # Structural instability bonus
         if features.get("plddt_instability", 0) > 0.5:
             # Instability in A2 suggests 2A
@@ -396,6 +457,9 @@ class VWFType2Classifier:
             # Instability in D'D3 suggests 2N
             if domain in ["D_prime", "D3"]:
                 subtype_scores["2N"] += 0.5
+            # Instability in D4, D1-D2, or CT suggests 2A
+            if domain in ["D4", "propeptide_D1", "propeptide_D2", "CK"]:
+                subtype_scores["2A"] += 0.3
 
         if not subtype_scores:
             return "unclassified", 0.0

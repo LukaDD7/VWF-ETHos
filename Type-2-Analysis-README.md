@@ -20,21 +20,21 @@
 ## 一、项目概述
 
 ### 1.1 项目目标
-建立基于AlphaFold3结构的**VWF Type-2血管性血友病(VWD)分型诊断系统**，实现：
-- 快速预测新发VWF变异的Type-2亚型
-- 解释变异的分子致病机制
-- 辅助临床诊断决策
+建立**机制优先、可解释的 VWF Type-2 分诊支持系统**，实现：
+- 从 DNA / 蛋白变异线索推断可能的分子机制
+- 输出 Type-2A / 2B / 2M / 2N / uncertain 的倾向概率
+- 给出机制解释与下一步推荐验证实验
 
 ### 1.2 核心技术栈
-- **结构预测**: AlphaFold3 (AF3)
-- **特征提取**: PAE (Predicted Aligned Error) 矩阵分析
-- **机器学习**: Gradient Boosting Classifier
-- **生物学注释**: UniProt P04275
+- **规则引擎**: mechanism-first rule-based triage
+- **生物医学先验**: VWF 功能域、亚型机制、遗传模式
+- **辅助结构证据**: PAE / 局部结构扰动
+- **辅助调控证据**: AlphaGenome splice / regulatory score
 
-### 1.3 性能指标
-- 总体准确率: **79.7%** (5折交叉验证)
-- 预测速度: **< 1秒/变异**
-- 可解释性: 位置特征50.1% + 功能域特征41.5%
+### 1.3 当前实现定位
+- 当前脚本 `vwf_type2_analysis.py` 是**可解释分诊工具**，不是终诊模型
+- 输出强调：机制分数、亚型倾向、实验建议
+- AlphaFold3 / AlphaGenome 信号当前作为**辅助证据**，不是唯一判定依据
 
 ---
 

@@ -210,15 +210,28 @@ def load_completed_variants_from_checkpoint(checkpoint_path: Path) -> Set[str]:
 
 
 def append_result_to_csv(result: GodModeResult, csv_path: Path):
-    """追加单条记录到 CSV（实时保存）"""
+    """追加单条记录到 CSV（实时保存）
+
+    注意：错误信息会被截断和清理，避免破坏CSV格式
+    """
+    # 清理错误信息：只保留第一行，去除特殊字符
+    error_msg = result.error_message
+    if error_msg:
+        # 只保留第一行
+        error_msg = str(error_msg).split('\n')[0]
+        # 限制长度
+        error_msg = error_msg[:100]
+        # 移除CSV分隔符
+        error_msg = error_msg.replace(',', ';')
+
     record = {
         'Chromosome': result.chromosome,
         'Position': result.position,
         'Ref': result.ref,
         'Alt': result.alt,
         # 全组织数据（作为参考，与内皮细胞结果区分）
-        'RNA_Delta_AllTissues': result.rna_delta,
-        'Splice_Delta_AllTissues': result.splice_delta,
+        'RNA_Delta_HUVEC': result.rna_delta,
+        'Splice_Delta_HUVEC': result.splice_delta,
         # 补充的5种模态（07e核心输出）
         'ATAC_Max_Delta': result.atac_max_delta,
         'ATAC_Track_Idx': result.atac_track_idx,
@@ -232,7 +245,7 @@ def append_result_to_csv(result: GodModeResult, csv_path: Path):
         'Contact_Track_Idx': result.contact_track_idx,
         # 数据来源标记
         'Data_Source': result.source,
-        'God_Mode_Status': result.status
+        'God_Mode_Status': result.status if result.status in ['Success', 'Failed', 'Pending'] else 'Failed'
     }
 
     df = pd.DataFrame([record])
@@ -521,7 +534,7 @@ def main():
     # 3. 初始化 AlphaGenome 客户端
     logger.info("🔌 连接 AlphaGenome God Mode...")
     try:
-        model = dna_client.create(API_KEY, address='10.5.36.27:7897', timeout=30)
+        model = dna_client.create(API_KEY)  # 使用默认连接，通过环境变量配置代理
         logger.info("✅ AlphaGenome API 连接成功!")
     except Exception as e:
         logger.error(f"❌ API 连接失败: {e}")
