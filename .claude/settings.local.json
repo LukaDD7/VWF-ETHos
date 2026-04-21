@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/*.csv)",
+      "Bash(grep -r phase4 /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/ --include=*.py --include=*.md)",
+      "Bash(chmod:*)",
+      "Bash(python3 phase4_domain_feature_extraction.py --summary)"
+    ]
+  }
+}
