@@ -201,6 +201,58 @@ class StructuralExpert:
                 return True
         return False
 
+    def compute_allosteric_risk(self, variant_data: Dict) -> float:
+        """
+        Compute allosteric risk score (0-1) for A1 domain mutations.
+
+        Type 2B variants don't always occur in the AIM region - they can be on the
+        back side of A1 domain, forcing AIM exposure through conformational changes.
+
+        Logic:
+        - If mutation is at A1 edge (outside central AIM region)
+        - And PAE shows interface perturbation
+        - And mutation causes local structural instability
+        → High allosteric risk (2B mechanism)
+
+        Returns:
+            allosteric_risk: float 0-1 (higher = more likely allosteric 2B)
+        """
+        position = variant_data.get('protein_pos', 0)
+        domain = variant_data.get('domain', '')
+        pae = variant_data.get('af3_pae_interface', np.nan)
+        plddt = variant_data.get('af3_plddt_mean', np.nan)
+
+        if domain != 'A1':
+            return 0.0
+
+        # AIM regions
+        aim_n_range = (1238, 1268)
+        aim_c_range = (1460, 1472)
+
+        # Check if mutation is at A1 edge (outside AIM but still in A1)
+        is_at_edge = (
+            (aim_n_range[1] < position < 1300) or  # After N-terminal AIM, before center
+            (1450 < position < aim_c_range[0])      # Between central region and C-terminal AIM
+        )
+
+        if not is_at_edge:
+            return 0.0
+
+        # Compute allosteric risk score
+        allosteric_score = 0.0
+
+        if not np.isnan(pae) and pae > 0.15:
+            # PAE perturbation suggests conformational change
+            allosteric_score += min(0.6, pae * 2)
+
+        if not np.isnan(plddt) and 70 < plddt < 85:
+            # Mild local instability (pLDDT 70-85) suggests allosteric effect
+            # Too stable (pLDDT > 85) or too unstable (pLDDT < 70) doesn't suggest allosteric
+            instability = (85 - plddt) / 15
+            allosteric_score += instability * 0.4
+
+        return min(1.0, allosteric_score)
+
 
 # ============================================================================
 # EXPERT 2: TRANSCRIPTOMIC EXPERT
@@ -299,6 +351,32 @@ class ClinicalGeneticistAgent:
     def __init__(self, structural_expert: StructuralExpert, transcriptomic_expert: TranscriptomicExpert):
         self.structural_expert = structural_expert
         self.transcriptomic_expert = transcriptomic_expert
+
+    @staticmethod
+    def _is_2b_associated_position(position: int) -> bool:
+        """
+        Check if position falls within exclusively Type 2B-associated positions.
+
+        Based on literature: 2B mutations cluster in A1 domain AIM regions.
+        CRITICAL LIMITATION: Same position can be 2B OR 2M depending on AA substitution!
+        (e.g., P1266L=2B, P1266Q=2M; R1308L=2B, R1308H=2A)
+
+        This heuristic is ONLY for use as a fallback when NO structural data is available,
+        and should be very conservative to avoid false positives.
+
+        Only positions with STRICT 2B-only literature evidence are included.
+        """
+        # AIM regions - but note that P1266Q from same position is 2M!
+        # Only include positions with consistent 2B evidence
+        if 1238 <= position <= 1268:
+            # P1266 is borderline (P1266L=2B, P1266Q=2M), so exclude it
+            if position == 1266:
+                return False
+            return True
+        if 1460 <= position <= 1472:
+            return True
+
+        return False
 
     def fuse(self, variant_data: Dict, expert_scores: ExpertScores) -> MultiLabelClassificationResult:
         """
@@ -463,15 +541,15 @@ class ClinicalGeneticistAgent:
             reasoning_steps.append("RULE6: A1 domain pleiotropy resolution")
 
             # A1 domain: 2B (GPIb gain-of-function) or 2M (collagen binding)
-            # 2B requires AIM (autoinhibitory module) disruption: positions 1238-1268 or 1460-1472
-            # OR high structural damage at the GPIb binding interface
+            # Key insight: 2B is "micro-perturbation leads to conformational opening",
+            #            2M is "collapse leads to function loss"
 
             # Check if position is in AIM regions (strong 2B signal)
             is_aim_n = 1238 <= position <= 1268
             is_aim_c = 1460 <= position <= 1472
 
             if is_aim_n or is_aim_c:
-                # Strong 2B signal - AIM disruption
+                # 1. Strong signal: AIM region → 2B
                 main_subtype = '2B'
                 confidence = 0.85
                 if is_aim_n:
@@ -479,28 +557,60 @@ class ClinicalGeneticistAgent:
                 else:
                     reasoning_steps.append(f"RULE6b: A1 C-terminal AIM region ({1460}-{1472}), pos={position} → 2B (AIM disruption)")
 
-            elif expert_scores.interface_perturbation > 0.3:
-                # Interface perturbation suggests 2B (GPIb binding issue)
+            # 2. Interface analysis: PAE perturbation with mild-moderate structural damage → 2B (GOF)
+            #    "micro-adjustment leads to conformational opening"
+            #    Also consider allosteric effects from edge mutations
+            allosteric_risk = self.structural_expert.compute_allosteric_risk(variant_data)
+
+            if (0.15 < expert_scores.interface_perturbation < 0.6 and
+                  expert_scores.structural_damage_score < 0.5):
+                # Classic 2B conformation: interface perturbed but structure not collapsed
                 main_subtype = '2B'
                 confidence = 0.75
-                reasoning_steps.append(f"RULE6c: A1 + interface perturbation={expert_scores.interface_perturbation:.2f} → 2B")
-            elif expert_scores.structural_damage_score > 0.6:
-                # High structural damage (pLDDT < 72) could indicate 2B mechanism
+                reasoning_steps.append(
+                    f"RULE6c: A1 + interface perturbation={expert_scores.interface_perturbation:.2f} "
+                    f"+ mild damage ({expert_scores.structural_damage_score:.2f}) → 2B (GOF, conformational opening)")
+
+            # 2b. Allosteric effect detected → 2B (edge mutation causing long-range conformational change)
+            elif allosteric_risk > 0.4:
                 main_subtype = '2B'
-                confidence = 0.65
-                reasoning_steps.append(f"RULE6d: A1 + high structural damage ({expert_scores.structural_damage_score:.2f}) → 2B")
-            else:
-                # Default to 2M (collagen binding defect)
+                confidence = 0.7
+                reasoning_steps.append(
+                    f"RULE6c2: A1 + allosteric risk={allosteric_risk:.2f} → 2B (allosteric effect)")
+
+            # 3. Severe structural damage → 2M (LOF)
+            elif expert_scores.structural_damage_score > 0.6:
                 main_subtype = '2M'
-                confidence = 0.65
-                reasoning_steps.append(f"RULE6e: A1 + normal interface → 2M (collagen binding defect)")
+                confidence = 0.75
+                reasoning_steps.append(
+                    f"RULE6d: A1 + high structural damage ({expert_scores.structural_damage_score:.2f}) → 2M (LOF, collapse)")
+
+            # 4. Default fallback - but handle NaN in PAE gracefully
+            else:
+                # If we have PAE data (even small values), still consider 2B possibility
+                if not np.isnan(expert_scores.interface_perturbation) and expert_scores.interface_perturbation > 0.1:
+                    main_subtype = '2B'
+                    confidence = 0.6
+                    reasoning_steps.append(
+                        f"RULE6e: A1 + marginal PAE signal ({expert_scores.interface_perturbation:.2f}) → 2B (marginal)")
+                # 4b. Position-based heuristic fallback for A1 variants without PAE data
+                # If no AF3 structure but position is in known 2B-associated positions, lean toward 2B
+                elif self._is_2b_associated_position(position):
+                    main_subtype = '2B'
+                    confidence = 0.55
+                    reasoning_steps.append(
+                        f"RULE6e2: A1 + position={position} in known 2B range (no PAE data) → 2B (position heuristic)")
+                else:
+                    main_subtype = '2M'
+                    confidence = 0.6
+                    reasoning_steps.append("RULE6f: A1 + low damage/no PAE → 2M (default)")
 
             return MultiLabelClassificationResult(
                 main_subtype=main_subtype,
                 alternatives=['2M'] if main_subtype == '2B' else ['2B'],
                 confidence=confidence,
                 reasoning="; ".join(reasoning_steps),
-                domain_pleiotropy="A1域可致2B(GPIb-GOF)或2M(胶原结合)，AIM区域/界面扰动区分之",
+                domain_pleiotropy="A1域可致2B(GPIb-GOF)或2M(胶原结合)，微扰+轻损→2B，重损→2M",
                 expert_scores=expert_scores
             )
 

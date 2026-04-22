@@ -6,7 +6,35 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 VWF (von Willebrand Factor) variant analysis pipeline using AlphaGenome API for predicting variant effects on RNA expression and splicing.
 
-## Pipeline Workflow
+## Architecture (2026-04-21)
+
+### Current Architecture: Alphagenome-DFR-Phase3
+
+Reference: `Alphagenome-DFR-Phase3.md`
+
+**Phase 1 (COMPLETED)**: Data Integration
+- `merge_alpha_features.py` - Creates `VWF_Alpha_Matrix.parquet`
+- AG matching: 67% via cDNA position extraction from consequence strings
+
+**Phase 2 (COMPLETED)**: AgenticVWFClassifier
+- `agentic_vwf_classifier.py` - 3 Expert Agent architecture
+- Expert 1: StructuralExpert (AF3 pLDDT/PAE)
+- Expert 2: TranscriptomicExpert (AG RNA/splice delta)
+- Expert 3: ClinicalGeneticistAgent (Logical Fusion)
+
+**Phase 2 Validation Results**:
+| Known ↓ / Predicted → | 2A | 2B | 2M | 2N | uncertain |
+|---|---|---|---|---|---|
+| **2A** (43) | 26 | 0 | 4 | 2 | 11 |
+| **2B** (12) | 0 | 2 | 8 | 0 | 2 |
+| **2M** (25) | 0 | 0 | 24 | 0 | 1 |
+| **2N** (20) | 7 | 0 | 0 | 13 | 0 |
+
+**Remaining Tasks** (per user instructions):
+- Task 2: Upgrade Expert 1 for Type 2B (AF3 interface PAE analysis)
+- Task 3: Execute validation on 59 AF3 variants
+
+## Pipeline Workflow (Legacy)
 
 Run the 4-step pipeline sequentially:
 
@@ -24,22 +52,20 @@ python 03_run_alphagenome_inference.py
 python 04_analyze_and_visualize.py
 ```
 
-## Script Responsibilities
+## Key Files
 
-| Script | Input | Output |
-|--------|-------|--------|
-| `01_filter_target_vus.py` | Clinvar_HGMD_merge_annotated.xlsx | 01_filtered_targets.csv |
-| `02_preprocess_and_liftover.py` | 01_filtered_targets.csv | 02_ready_for_inference.csv |
-| `03_run_alphagenome_inference.py` | 02_ready_for_inference.csv | 03_inference_results.pkl, 03_inference_results.csv |
-| `04_analyze_and_visualize.py` | 03_inference_results.pkl/csv | figures/*.png, 04_analysis_summary.csv |
+| File | Purpose |
+|------|---------|
+| `VWF_Alpha_Matrix.parquet` | Unified feature matrix (100 variants) |
+| `VWF_Alpha_Matrix_classified.parquet` | Classification results |
+| `merge_alpha_features.py` | Phase 1 data integration |
+| `agentic_vwf_classifier.py` | Phase 2 classifier |
 
 ## Configuration Notes
 
 - **Script 03**: `API_KEY` 已配置，`MAX_VARIANTS = None` (处理全部变异)
 - **Script 03**: `ONTOLOGY_TERMS = ['CL:0000115']` (内皮细胞，VWF 的表达细胞)
-  - 注意：`UBERON:0002363`（血管内皮）无 RNA-seq tracks，已改用 CL:0000115
 - **Script 04**: `TOP_N_VARIANTS = 20`，可视化 Delta Score 最高的 20 个变异
-- **Script 04**: 4 面板临床级可视化（RNA-seq REF/ALT 叠加 + 差值，Splice Sites 4 条链 + 差值）
 
 ## Key Parameters
 

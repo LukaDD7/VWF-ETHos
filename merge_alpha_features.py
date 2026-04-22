@@ -335,7 +335,7 @@ def merge_alpha_features():
     print("\n[Step 5] Merging AF3 structural features...")
 
     af3_merged = merged.merge(
-        af3_df[['protein_pos', 'ref_aa', 'alt_aa', 'af3_has_structure', 'af3_plddt_mean', 'af3_plddt_min']],
+        af3_df[['protein_pos', 'ref_aa', 'alt_aa', 'af3_has_structure', 'af3_plddt_mean', 'af3_plddt_min', 'af3_pae_interface']],
         on=['protein_pos', 'ref_aa', 'alt_aa'],
         how='left'
     )
@@ -363,7 +363,7 @@ def merge_alpha_features():
         'domain', 'type2_subtype', 'type2_label',
         'ag_rna_delta', 'ag_splice_delta', 'ag_delta_score',
         'is_rna_drop', 'is_splice_override', 'is_d4_domain',
-        'af3_has_structure', 'af3_plddt_mean', 'af3_plddt_min'
+        'af3_has_structure', 'af3_plddt_mean', 'af3_plddt_min', 'af3_pae_interface'
     ]].copy()
 
     # ========================================================================

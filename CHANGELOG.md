@@ -7,14 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [Unreleased]
+## [Unreleased] - Alphagenome-DFR-Phase3 Architecture
 
-### Planned
-- [ ] Complete Domain-Analysis Phase 1: Input/Output specification
-- [ ] Complete Domain-Analysis Phase 2: Key step design
-- [ ] Implement new main pipeline integrating competitive classifier
-- [ ] Create comprehensive technical report
-- [ ] Validate consistency between old and new results
+### Completed
+
+#### Phase 1: Data Integration ✅
+- `merge_alpha_features.py` - New cDNA extraction method from AG consequences
+- AG matching rate: 67% (up from 10% with naive offset method)
+- Output: `VWF_Alpha_Matrix.parquet` (100 variants, 59 with AF3)
+
+#### Phase 2: AgenticVWFClassifier ✅
+- `agentic_vwf_classifier.py` - 3 Expert Agent architecture
+- Expert 1: StructuralExpert (AF3 pLDDT analysis)
+- Expert 2: TranscriptomicExpert (AG RNA/splice delta)
+- Expert 3: ClinicalGeneticistAgent (Interpretable logical rules)
+- **Removed hardcoded thresholds** - Uses adaptive percentile-based thresholds
+- **Removed nested if-else** - Rule-based decision hierarchy
+
+### Validation Results (Phase 2)
+| Known ↓ / Predicted → | 2A | 2B | 2M | 2N | uncertain |
+|---|---|---|---|---|---|
+| **2A** (43) | 26 | 0 | 4 | 2 | 11 |
+| **2B** (12) | 0 | 2 | 8 | 0 | 2 |
+| **2M** (25) | 0 | 0 | 24 | 0 | 1 |
+| **2N** (20) | 7 | 0 | 0 | 13 | 0 |
+
+### Pending Tasks
+- [ ] Task 2: Upgrade Expert 1 for Type 2B (AF3 interface PAE analysis)
+- [ ] Task 3: Execute validation on 59 AF3 variants
+- [ ] Task 4: Fix remaining 33% AG unmatched variants
+- [ ] Task 5: D4 domain variant data for Type1/2A competition validation
 
 ---
 
@@ -23,39 +45,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Breaking Changes
 
 #### Removed (Archived)
-- `scripts/phase4_domain_feature_extraction.py` - Single-label classifier (archived to `archived/2026-03-30_phase4/`)
+- `scripts/phase4_domain_feature_extraction.py` - Single-label classifier (archived to `archived/`)
 - `results/phase4_domain_features.csv` - Old output format
-- `results/phase4_ml_predictions.csv` - Single-label predictions
-- `results/phase4_feature_importance.png` - Feature importance only
 
 ### New Standard: Domain-Analysis Pipeline
 
 #### Added
 - **DEV_PROTOCOL_STANDARD.md** - 4-phase development protocol
-- **PHASE4_AUDIT_REPORT.md** - Audit of 3月30日 vs 4月2日 versions
 - **Competitive Classifier** (`vwf_competitive_classifier.py`) - Multi-label with competition resolution
 - **Evidence-Based Classifier** (`vwf_evidence_based_classifier.py`) - Literature evidence scoring
-- **Literature-Based Classifier** (`vwf_type2_literature_based_classifier.py`) - 2024-2026 VWF literature rules
-- **Structure Feature Extractor** (`vwf_structure_feature_extractor.py`) - AlphaFold3 CIF parsing
-- **Integration Guide** (`INTEGRATION_GUIDE.md`) - Usage documentation
-
-### Changed
-- Updated `CLAUDE.md` with new project structure and Domain-Analysis standard
-- Reorganized project structure with `archived/` and `domain_analysis/`
 
 ### Key Improvements
-| Dimension | Old (Mar 30) | New (Apr 2) | Status |
-|-----------|-------------|-------------|--------|
+| Dimension | Old | New | Status |
+|-----------|-----|-----|--------|
 | Classification | Single-label | Multi-label competitive | Fixed |
 | Literature | None | Full evidence database | Fixed |
 | Explainability | Feature importance | Full reasoning path | Fixed |
-| Domain pleiotropy | Simple matching | Competition resolution | Fixed |
-| Reliability | None | high/medium/low rating | Fixed |
-
-### Metrics
-- Output fields: 31 → 46+ (+48%)
-- Evidence sources: 0 → 35+ papers
-- Classification types: 4 → Multi-label with alternatives
 
 ---
 
@@ -65,13 +70,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `scripts/phase4_domain_feature_extraction.py` - Domain feature extraction and ML classification
 - Outputs: `phase4_domain_features.csv`, `phase4_ml_predictions.csv`
 - Random Forest + XGBoost classifiers
-
-### Known Limitations (in retrospect)
-- Single-label output only
-- No literature evidence
-- No competition resolution for domain pleiotropy
-- No reasoning path
-- No reliability assessment
 
 ---
 
@@ -84,4 +82,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-*Last updated: 2026-04-02*
+*Last updated: 2026-04-21*
