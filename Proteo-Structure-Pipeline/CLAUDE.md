@@ -151,6 +151,113 @@ AlphaFold3 results require manual intervention:
 | `--zip-chunk-size` | 10 | Tasks per ZIP (match daily quota) |
 | `--splice-threshold` | 0.3 | Splice disruption cutoff |
 
+---
+
+## Table Format Standardization
+
+### Standard Input Format (table_normalizer.py)
+
+**目的**: 统一处理各种格式的 VWF 变异表格，自动检测格式并转换为标准输入格式。
+
+**标准列**:
+| 列名 | 类型 | 必需 | 说明 |
+|------|------|------|------|
+| `AA_Position` | int | ✓ | 氨基酸位置 (1-2813) |
+| `WT_AA_1` | str | ✓ | 野生型氨基酸 (1-letter, 如 'R') |
+| `Mut_AA_1` | str | ✓ | 突变型氨基酸 (1-letter, 如 'W') |
+| `Domain` | str | | 功能域 (如 'A1', 'D3') |
+| `Original` | str | | 原始格式 (如 'Arg1341Trp') |
+
+**支持的输入格式**:
+1. **3-letter格式**: `"Tyr1258Cys"`, `"Pro1266Gln"`
+2. **1-letter格式**: `"Y1258C"`, `"P1266Q"`
+3. **分列格式**: `Position` + `WT_AA` + `Mut_AA`
+
+**使用示例**:
+```bash
+cd src
+conda activate alphafold
+
+# 标准化表格并保存
+python table_normalizer.py /path/to/2B_variants.xlsx \
+    --output ../data/normalized_2B.csv
+
+# 同时生成 AF3 JSON
+python table_normalizer.py /path/to/2B_variants.xlsx \
+    --af3-json ../data/af3_batch_2B.json \
+    --wt-fasta ../structures/wt/VWF_P04275_WT.fasta \
+    --exclude L1460F A1461V
+```
+
+**Python API**:
+```python
+from table_normalizer import TableNormalizer
+
+# 标准化
+normalizer = TableNormalizer("2B_variants.xlsx")
+df = normalizer.normalize()
+normalizer.validate()  # 检查错误
+normalizer.save_csv("output.csv")
+
+# 转换为 AF3 JSON
+jobs = normalizer.to_af3_json(
+    wt_fasta="VWF_P04275_WT.fasta",
+    output_path="af3_batch.json",
+    exclude_existing=["L1460F", "A1461V"]
+)
+```
+
+---
+
+## AlphaFold3 JSON Format
+
+### AF3 Server Input Format
+
+AlphaFold3 Server 接受 **JSON 数组格式**的批量上传文件:
+
+```json
+[
+  {
+    "name": "VWF_WT",
+    "sequences": [
+      {
+        "proteinChain": {
+          "sequence": "MIPARFAGVLLALALILPGTLCAEG...",
+          "count": 1
+        }
+      }
+    ]
+  },
+  {
+    "name": "VWF_Y1258C",
+    "sequences": [
+      {
+        "proteinChain": {
+          "sequence": "MIPARF...Y...C...",
+          "count": 1
+        }
+      }
+    ]
+  }
+]
+```
+
+**关键要点**:
+- 最外层是 **JSON 数组** (不是单个对象)
+- 每个任务对象包含 `name` 和 `sequences`
+- `proteinChain` 包含 `sequence` (突变后序列) 和 `count`
+- 每文件最多 100 个任务 (Server 限制)
+
+**从标准化表格生成 AF3 JSON**:
+```bash
+python table_normalizer.py input.xlsx \
+    --af3-json output.json \
+    --wt-fasta VWF_WT.fasta \
+    --exclude L1460F A1461V
+```
+
+---
+
 ## Output Statistics
 
 - Input variants: ~2,431 (from Excel)
