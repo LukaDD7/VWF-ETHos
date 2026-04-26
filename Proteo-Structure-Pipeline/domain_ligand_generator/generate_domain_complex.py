@@ -21,9 +21,21 @@ def generate_boltz2_batch(mutations_df, wt_seq, batch_size=20):
         mut_aa = row['Mut_AA']
         domain_start = int(row['Domain_Start'])
         domain_end = int(row['Domain_End'])
+        # Extract newly placed variables
         ligand_name = row.get('Ligand_Name', '')
         ligand_seq = row.get('Ligand_Seq', '')
+        n_chains = row.get('Ligand_NChains', 0)
         
+        # Validation bounds
+        if pd.isna(n_chains): n_chains = 0
+        n_chains = int(n_chains)
+        
+        # Bypass monomers if we are strictly producing Boltz-2 complex batches
+        # Wait, if `n_chains` == 0, it is a FoldX/Stability type, we can still generate the monomer JSON for Boltz-2 if we want, or we can skip. The user said type 2A and type 1 should bypass.
+        if n_chains == 0:
+            print(f"Skipping {variant_id} for Boltz2 complex generation (marked for FoldX stability analysis).")
+            continue
+
         # Validation
         if len(wt_seq) < pos:
             print(f"Warning: Pos {pos} out of bounds for {variant_id}. Skipping.")
@@ -50,26 +62,28 @@ def generate_boltz2_batch(mutations_df, wt_seq, batch_size=20):
         
         # Add primary domain
         sequences.append({
-            "chain_name": "A",
             "protein": {
+                "id": "A",
                 "sequence": sliced_domain,
-                "description": f"VWF Domain {domain_start}-{domain_end} mutant {variant_id}"
             }
         })
         
-        # Add ligand if present and valid
-        if pd.notna(ligand_seq) and str(ligand_seq).strip():
+        # Add ligand chains if present (B, C, D...)
+        current_chain_idx = ord('B')
+        for _ in range(n_chains):
+            chain_id = chr(current_chain_idx)
             sequences.append({
-                "chain_name": "B",
                 "protein": {
+                    "id": chain_id,
                     "sequence": str(ligand_seq).strip(),
-                    "description": str(ligand_name) if pd.notna(ligand_name) else "Ligand"
                 }
             })
+            current_chain_idx += 1
             
         job = {
             "name": variant_id,
-            "sequences": sequences
+            "sequences": sequences,
+            "properties": [{"affinity": {"binder": "A"}}]
         }
         
         current_jobs.append(job)
@@ -134,7 +148,12 @@ def generate_af3_web_batch(mutations_df, wt_seq, batch_size=20):
             
         job = {
             "name": variant_id,
-            "sequences": sequences
+            "sequences": sequences,
+            "properties": [
+                {
+                    "affinity": { "binder": "A" }
+                }
+            ]
         }
         
         current_jobs.append(job)
