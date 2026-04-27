@@ -22,9 +22,12 @@
 #         confidence_model_0.json
 #         affinity_model_0.json    (Boltz-2 v2+)
 #       .done                      ← job 级完成标记
-#     _tmp_single_jobs/            ← 临时单 job JSON
+#     _tmp_single_jobs/            ← 临时单 job YAML（Boltz 标准格式）
 #     run_log.txt
 #     progress.json
+#
+# 注意：Boltz CLI 只接受 .yaml 或 .fasta，不接受 JSON。
+#       run_boltz2.sh 在展开阶段自动将 batch JSON → Boltz YAML。
 # ==============================================================================
 
 # 不用 set -e：单个 job 失败不终止整个流程
@@ -106,44 +109,64 @@ fi
 
 mkdir -p "$OUTPUT_DIR" "$TEMP_DIR"
 
-# ---- Step 1: 展开 batch JSON → 单 job JSON（幂等）--------------------------
-log "Expanding batches → single-job JSONs in $TEMP_DIR ..."
+# ---- Step 1: 展开 batch JSON → 单 job YAML（Boltz 标准格式，幂等）----------
+log "Expanding batches → single-job YAMLs in $TEMP_DIR ..."
 
 python3 - "$INPUT_DIR" "$TEMP_DIR" <<'PYEOF'
 import json, os, glob, sys
 inp, tmp = sys.argv[1], sys.argv[2]
+
+def job_to_yaml(job):
+    """将 job dict 转换为 Boltz CLI 接受的 YAML 字符串。"""
+    lines = ['version: 1', 'sequences:']
+    for seq in job.get('sequences', []):
+        p = seq.get('protein', {})
+        lines.append('  - protein:')
+        lines.append(f'      id: {p["id"]}')
+        lines.append(f'      sequence: {p["sequence"]}')
+    # affinity property
+    for prop in job.get('properties', []):
+        if 'affinity' in prop:
+            lines.append('properties:')
+            lines.append('  affinity:')
+            lines.append(f'    binder: {prop["affinity"]["binder"]}')
+            break
+    return '\n'.join(lines) + '\n'
+
 written = 0
 for bf in sorted(glob.glob(os.path.join(inp, 'batch_*.json'))):
     data = json.load(open(bf))
-    bn   = os.path.splitext(os.path.basename(bf))[0]
     for job in data.get('jobs', []):
-        jname  = job['name']
-        jpath  = os.path.join(tmp, jname + '.json')
+        jname = job['name']
+        jpath = os.path.join(tmp, jname + '.yaml')   # ← YAML 格式
         if not os.path.exists(jpath):
-            json.dump({"name": bn, "jobs": [job]}, open(jpath,'w'), indent=2)
+            with open(jpath, 'w') as f:
+                f.write(job_to_yaml(job))
             written += 1
-total = len(glob.glob(os.path.join(tmp, '*.json')))
-print(f"  Expanded {written} new  |  Total single-job files: {total}")
+
+total = len(glob.glob(os.path.join(tmp, '*.yaml')))
+print(f"  Expanded {written} new  |  Total single-job YAML files: {total}")
 PYEOF
 
 # ---- Step 2: 统计未完成 job --------------------------------------------------
-ALL_JOB_JSONS=( "$TEMP_DIR"/*.json )
-TOTAL_JOBS=${#ALL_JOB_JSONS[@]}
-TODO_JSONS=()
+ALL_JOB_YAMLS=( "$TEMP_DIR"/*.yaml )
+TOTAL_JOBS=${#ALL_JOB_YAMLS[@]}
+TODO_YAMLS=()
 
-for jj in "${ALL_JOB_JSONS[@]}"; do
-    JN=$(python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['jobs'][0]['name'])" "$jj" 2>/dev/null)
+for jy in "${ALL_JOB_YAMLS[@]}"; do
+    # job 名 = YAML 文件名（不含扩展名）
+    JN=$(basename "$jy" .yaml)
     [ -z "$JN" ] && continue
     if [ ! -f "$OUTPUT_DIR/$JN/.done" ]; then
-        TODO_JSONS+=("$jj")
+        TODO_YAMLS+=("$jy")
     fi
 done
 
-DONE_COUNT=$((TOTAL_JOBS - ${#TODO_JSONS[@]}))
-log "Total: $TOTAL_JOBS  |  Done: $DONE_COUNT  |  Remaining: ${#TODO_JSONS[@]}"
+DONE_COUNT=$((TOTAL_JOBS - ${#TODO_YAMLS[@]}))
+log "Total: $TOTAL_JOBS  |  Done: $DONE_COUNT  |  Remaining: ${#TODO_YAMLS[@]}"
 echo ""
 
-if [ ${#TODO_JSONS[@]} -eq 0 ]; then
+if [ ${#TODO_YAMLS[@]} -eq 0 ]; then
     log "All jobs completed. Nothing to do."
     write_progress "$TOTAL_JOBS" "$TOTAL_JOBS" "COMPLETE"
     exit 0
@@ -156,11 +179,8 @@ log "Starting prediction loop..."
 CURRENT=0
 FAILED=0
 
-for JOB_JSON in "${TODO_JSONS[@]}"; do
-    JOB_NAME=$(python3 -c "
-import json, sys
-print(json.load(open(sys.argv[1]))['jobs'][0]['name'])
-" "$JOB_JSON" 2>/dev/null)
+for JOB_YAML in "${TODO_YAMLS[@]}"; do
+    JOB_NAME=$(basename "$JOB_YAML" .yaml)
     [ -z "$JOB_NAME" ] && continue
 
     JOB_DIR="$OUTPUT_DIR/$JOB_NAME"
@@ -175,13 +195,13 @@ print(json.load(open(sys.argv[1]))['jobs'][0]['name'])
 
     mkdir -p "$JOB_DIR"
 
-    # 清理上次崩溃留下的脏文件（不删 predictions/ 子目录，只删未完成的输出）
+    # 清理上次崩溃留下的脏文件
     rm -f "$JOB_DIR/predictions/"*.cif \
           "$JOB_DIR/predictions/"confidence_*.json \
           "$JOB_DIR/predictions/"affinity_*.json 2>/dev/null || true
 
-    # ---- Boltz-2 执行 -------------------------------------------------------
-    boltz predict "$JOB_JSON" \
+    # ---- Boltz-2 执行（传入标准 YAML，不再是 JSON）--------------------------
+    boltz predict "$JOB_YAML" \
         --out_dir "$JOB_DIR" \
         --accelerator gpu \
         --devices $N_GPUS \
@@ -194,13 +214,11 @@ print(json.load(open(sys.argv[1]))['jobs'][0]['name'])
     EXIT_CODE=$?
 
     if [ $EXIT_CODE -eq 0 ]; then
-        # ---- 写 job 级 .done 标记 -------------------------------------------
         date '+%Y-%m-%d %H:%M:%S' > "$DONE_MARKER"
         log "  [OK] → $JOB_DIR"
     else
         FAILED=$((FAILED + 1))
         log "  [FAIL] exit=$EXIT_CODE  retry: rm -rf $JOB_DIR && ./run_boltz2.sh"
-        # 继续下一个 job，不中断
     fi
 done
 
