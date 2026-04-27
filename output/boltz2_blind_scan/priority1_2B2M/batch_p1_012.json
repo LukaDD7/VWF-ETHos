@@ -1,0 +1,1073 @@
+{
+  "name": "batch_p1_012",
+  "jobs": [
+    {
+      "name": "VWF_V1454I_vs_Heparan_Sulfate_mimic",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIISYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "ARKKAAKA"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_A2361P_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "CVCDPVSCDLPPVPHCERGLQPTLTNPGECRPNFTCPCRKEECKRVSPPSCPPHRLPTLRKTQCCDEY"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_A2361T_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "CVCDPVSCDLPPVPHCERGLQPTLTNPGECRPNFTCTCRKEECKRVSPPSCPPHRLPTLRKTQCCDEY"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_T2303P_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "QCIGEDGVQHQFLEAWVPDHQPCQICTCLSGRKVNCTTQPCPTAKAPPCGLCEVARLRQNADQCCPEYE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_C2325S_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SVCDPVSCDLPPVPHCERGLQPTLTNPGECRPNFTCACRKEECKRVSPPSCPPHRLPTLRKTQCCDEY"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R1837W_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDRYDAAQLWILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_V1820M_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRMTVFPIGIGDRYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_P1824R_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFRIGIGDRYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_P1824H_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFHIGIGDRYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_I1825T_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPTGIGDRYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R1830P_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDPYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R1830H_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDHYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_F1867S_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDRYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSSLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_D1845N_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDRYDAAQLRILAGPAGNSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_P1842S_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDRYDAAQLRILAGSAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_P1858S_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDRYDAAQLRILAGPAGDSNVVKLQRIEDLSTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_D1832N_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDRYNAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_S1866F_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDRYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNFFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_A1840S_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDRYDAAQLRILSGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_G1841V_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDRYDAAQLRILAVPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_I2258V_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "QCVGEDGVQHQFLEAWVPDHQPCQICTCLSGRKVNCTTQPCPTAKAPTCGLCEVARLRQNADQCCPEYE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R2384Q_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "CVCDPVSCDLPPVPHCERGLQPTLTNPGECRPNFTCACRKEECKRVSPPSCPPHRLPTLQKTQCCDEY"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R2384L_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "CVCDPVSCDLPPVPHCERGLQPTLTNPGECRPNFTCACRKEECKRVSPPSCPPHRLPTLLKTQCCDEY"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_P2372S_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "CVCDPVSCDLPPVPHCERGLQPTLTNPGECRPNFTCACRKEECKRVSSPSCPPHRLPTLRKTQCCDEY"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_P2377L_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "CVCDPVSCDLPPVPHCERGLQPTLTNPGECRPNFTCACRKEECKRVSPPSCPLHRLPTLRKTQCCDEY"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_T2382I_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "CVCDPVSCDLPPVPHCERGLQPTLTNPGECRPNFTCACRKEECKRVSPPSCPPHRLPILRKTQCCDEY"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_Q2256H_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "HCIGEDGVQHQFLEAWVPDHQPCQICTCLSGRKVNCTTQPCPTAKAPTCGLCEVARLRQNADQCCPEYE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_E2322V_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "QCIGEDGVQHQFLEAWVPDHQPCQICTCLSGRKVNCTTQPCPTAKAPTCGLCEVARLRQNADQCCPVYE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_Y2392C_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "CVCDPVSCDLPPVPHCERGLQPTLTNPGECRPNFTCACRKEECKRVSPPSCPPHRLPTLRKTQCCDEC"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_Q2318R_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "QCIGEDGVQHQFLEAWVPDHQPCQICTCLSGRKVNCTTQPCPTAKAPTCGLCEVARLRQNADRCCPEYE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    }
+  ]
+}

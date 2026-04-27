@@ -1,0 +1,737 @@
+{
+  "name": "batch_p1_011",
+  "jobs": [
+    {
+      "name": "VWF_N1818S_vs_Collagen_I_THP",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSSRVTVFPIGIGDRYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_V1439M_vs_GPIb_alpha",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFMLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "MPLLLLLLLLPSPLHPHPICEVSKVASHLEVNCDKRNLTALPPDLPKDTTILHLSENLLYTFSLATLMPYTRLTQLNLDRCELTKLQVDGTLPVLGTLDLSHNQLQSLPLLGQTLPALTVLDVSFNRLTSLPLGALRGLGELQELYLKGNELKTLPPGLLTPTPKLEKLSLANNNLTELPAGLLNGLENLDTLLLQENSLYTIPKGFFGSHLLPFAFLHGNPWLCNCEILYFRRWLQDNAENVYVWKQGVDVKAMTSNVASVQCDNSDKFPVYKYPGKGCPTLGDEGDTDLYD"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_V1439M_vs_Heparan_Sulfate_mimic",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFMLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "ARKKAAKA"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R1426P_vs_GPIb_alpha",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIPLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "MPLLLLLLLLPSPLHPHPICEVSKVASHLEVNCDKRNLTALPPDLPKDTTILHLSENLLYTFSLATLMPYTRLTQLNLDRCELTKLQVDGTLPVLGTLDLSHNQLQSLPLLGQTLPALTVLDVSFNRLTSLPLGALRGLGELQELYLKGNELKTLPPGLLTPTPKLEKLSLANNNLTELPAGLLNGLENLDTLLLQENSLYTIPKGFFGSHLLPFAFLHGNPWLCNCEILYFRRWLQDNAENVYVWKQGVDVKAMTSNVASVQCDNSDKFPVYKYPGKGCPTLGDEGDTDLYD"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R1426P_vs_Heparan_Sulfate_mimic",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIPLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "ARKKAAKA"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_S1356F_vs_GPIb_alpha",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVAFTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "MPLLLLLLLLPSPLHPHPICEVSKVASHLEVNCDKRNLTALPPDLPKDTTILHLSENLLYTFSLATLMPYTRLTQLNLDRCELTKLQVDGTLPVLGTLDLSHNQLQSLPLLGQTLPALTVLDVSFNRLTSLPLGALRGLGELQELYLKGNELKTLPPGLLTPTPKLEKLSLANNNLTELPAGLLNGLENLDTLLLQENSLYTIPKGFFGSHLLPFAFLHGNPWLCNCEILYFRRWLQDNAENVYVWKQGVDVKAMTSNVASVQCDNSDKFPVYKYPGKGCPTLGDEGDTDLYD"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_S1356F_vs_Heparan_Sulfate_mimic",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVAFTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "ARKKAAKA"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R1395W_vs_GPIb_alpha",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSWNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "MPLLLLLLLLPSPLHPHPICEVSKVASHLEVNCDKRNLTALPPDLPKDTTILHLSENLLYTFSLATLMPYTRLTQLNLDRCELTKLQVDGTLPVLGTLDLSHNQLQSLPLLGQTLPALTVLDVSFNRLTSLPLGALRGLGELQELYLKGNELKTLPPGLLTPTPKLEKLSLANNNLTELPAGLLNGLENLDTLLLQENSLYTIPKGFFGSHLLPFAFLHGNPWLCNCEILYFRRWLQDNAENVYVWKQGVDVKAMTSNVASVQCDNSDKFPVYKYPGKGCPTLGDEGDTDLYD"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R1395W_vs_Heparan_Sulfate_mimic",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSWNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "ARKKAAKA"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_S1387I_vs_GPIb_alpha",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMAIQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "MPLLLLLLLLPSPLHPHPICEVSKVASHLEVNCDKRNLTALPPDLPKDTTILHLSENLLYTFSLATLMPYTRLTQLNLDRCELTKLQVDGTLPVLGTLDLSHNQLQSLPLLGQTLPALTVLDVSFNRLTSLPLGALRGLGELQELYLKGNELKTLPPGLLTPTPKLEKLSLANNNLTELPAGLLNGLENLDTLLLQENSLYTIPKGFFGSHLLPFAFLHGNPWLCNCEILYFRRWLQDNAENVYVWKQGVDVKAMTSNVASVQCDNSDKFPVYKYPGKGCPTLGDEGDTDLYD"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_S1387I_vs_Heparan_Sulfate_mimic",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMAIQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "ARKKAAKA"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_L1384P_vs_GPIb_alpha",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLPMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "MPLLLLLLLLPSPLHPHPICEVSKVASHLEVNCDKRNLTALPPDLPKDTTILHLSENLLYTFSLATLMPYTRLTQLNLDRCELTKLQVDGTLPVLGTLDLSHNQLQSLPLLGQTLPALTVLDVSFNRLTSLPLGALRGLGELQELYLKGNELKTLPPGLLTPTPKLEKLSLANNNLTELPAGLLNGLENLDTLLLQENSLYTIPKGFFGSHLLPFAFLHGNPWLCNCEILYFRRWLQDNAENVYVWKQGVDVKAMTSNVASVQCDNSDKFPVYKYPGKGCPTLGDEGDTDLYD"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_L1384P_vs_Heparan_Sulfate_mimic",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLPMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "ARKKAAKA"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_A1377V_vs_GPIb_alpha",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEVSRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "MPLLLLLLLLPSPLHPHPICEVSKVASHLEVNCDKRNLTALPPDLPKDTTILHLSENLLYTFSLATLMPYTRLTQLNLDRCELTKLQVDGTLPVLGTLDLSHNQLQSLPLLGQTLPALTVLDVSFNRLTSLPLGALRGLGELQELYLKGNELKTLPPGLLTPTPKLEKLSLANNNLTELPAGLLNGLENLDTLLLQENSLYTIPKGFFGSHLLPFAFLHGNPWLCNCEILYFRRWLQDNAENVYVWKQGVDVKAMTSNVASVQCDNSDKFPVYKYPGKGCPTLGDEGDTDLYD"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_A1377V_vs_Heparan_Sulfate_mimic",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEVSRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "ARKKAAKA"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R1374L_vs_GPIb_alpha",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDLPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "MPLLLLLLLLPSPLHPHPICEVSKVASHLEVNCDKRNLTALPPDLPKDTTILHLSENLLYTFSLATLMPYTRLTQLNLDRCELTKLQVDGTLPVLGTLDLSHNQLQSLPLLGQTLPALTVLDVSFNRLTSLPLGALRGLGELQELYLKGNELKTLPPGLLTPTPKLEKLSLANNNLTELPAGLLNGLENLDTLLLQENSLYTIPKGFFGSHLLPFAFLHGNPWLCNCEILYFRRWLQDNAENVYVWKQGVDVKAMTSNVASVQCDNSDKFPVYKYPGKGCPTLGDEGDTDLYD"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R1374L_vs_Heparan_Sulfate_mimic",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDLPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "ARKKAAKA"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R1374H_vs_GPIb_alpha",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDHPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "MPLLLLLLLLPSPLHPHPICEVSKVASHLEVNCDKRNLTALPPDLPKDTTILHLSENLLYTFSLATLMPYTRLTQLNLDRCELTKLQVDGTLPVLGTLDLSHNQLQSLPLLGQTLPALTVLDVSFNRLTSLPLGALRGLGELQELYLKGNELKTLPPGLLTPTPKLEKLSLANNNLTELPAGLLNGLENLDTLLLQENSLYTIPKGFFGSHLLPFAFLHGNPWLCNCEILYFRRWLQDNAENVYVWKQGVDVKAMTSNVASVQCDNSDKFPVYKYPGKGCPTLGDEGDTDLYD"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R1374H_vs_Heparan_Sulfate_mimic",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDHPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "ARKKAAKA"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R1426H_vs_GPIb_alpha",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIHLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "MPLLLLLLLLPSPLHPHPICEVSKVASHLEVNCDKRNLTALPPDLPKDTTILHLSENLLYTFSLATLMPYTRLTQLNLDRCELTKLQVDGTLPVLGTLDLSHNQLQSLPLLGQTLPALTVLDVSFNRLTSLPLGALRGLGELQELYLKGNELKTLPPGLLTPTPKLEKLSLANNNLTELPAGLLNGLENLDTLLLQENSLYTIPKGFFGSHLLPFAFLHGNPWLCNCEILYFRRWLQDNAENVYVWKQGVDVKAMTSNVASVQCDNSDKFPVYKYPGKGCPTLGDEGDTDLYD"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R1426H_vs_Heparan_Sulfate_mimic",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIHLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "ARKKAAKA"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R1426S_vs_GPIb_alpha",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQISLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "MPLLLLLLLLPSPLHPHPICEVSKVASHLEVNCDKRNLTALPPDLPKDTTILHLSENLLYTFSLATLMPYTRLTQLNLDRCELTKLQVDGTLPVLGTLDLSHNQLQSLPLLGQTLPALTVLDVSFNRLTSLPLGALRGLGELQELYLKGNELKTLPPGLLTPTPKLEKLSLANNNLTELPAGLLNGLENLDTLLLQENSLYTIPKGFFGSHLLPFAFLHGNPWLCNCEILYFRRWLQDNAENVYVWKQGVDVKAMTSNVASVQCDNSDKFPVYKYPGKGCPTLGDEGDTDLYD"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R1426S_vs_Heparan_Sulfate_mimic",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQISLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "ARKKAAKA"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_I1425F_vs_GPIb_alpha",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQFRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "MPLLLLLLLLPSPLHPHPICEVSKVASHLEVNCDKRNLTALPPDLPKDTTILHLSENLLYTFSLATLMPYTRLTQLNLDRCELTKLQVDGTLPVLGTLDLSHNQLQSLPLLGQTLPALTVLDVSFNRLTSLPLGALRGLGELQELYLKGNELKTLPPGLLTPTPKLEKLSLANNNLTELPAGLLNGLENLDTLLLQENSLYTIPKGFFGSHLLPFAFLHGNPWLCNCEILYFRRWLQDNAENVYVWKQGVDVKAMTSNVASVQCDNSDKFPVYKYPGKGCPTLGDEGDTDLYD"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_I1425F_vs_Heparan_Sulfate_mimic",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQFRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "ARKKAAKA"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_A1420T_vs_GPIb_alpha",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHTNLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "MPLLLLLLLLPSPLHPHPICEVSKVASHLEVNCDKRNLTALPPDLPKDTTILHLSENLLYTFSLATLMPYTRLTQLNLDRCELTKLQVDGTLPVLGTLDLSHNQLQSLPLLGQTLPALTVLDVSFNRLTSLPLGALRGLGELQELYLKGNELKTLPPGLLTPTPKLEKLSLANNNLTELPAGLLNGLENLDTLLLQENSLYTIPKGFFGSHLLPFAFLHGNPWLCNCEILYFRRWLQDNAENVYVWKQGVDVKAMTSNVASVQCDNSDKFPVYKYPGKGCPTLGDEGDTDLYD"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_A1420T_vs_Heparan_Sulfate_mimic",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHTNLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "ARKKAAKA"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_H1419Q_vs_GPIb_alpha",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPQANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "MPLLLLLLLLPSPLHPHPICEVSKVASHLEVNCDKRNLTALPPDLPKDTTILHLSENLLYTFSLATLMPYTRLTQLNLDRCELTKLQVDGTLPVLGTLDLSHNQLQSLPLLGQTLPALTVLDVSFNRLTSLPLGALRGLGELQELYLKGNELKTLPPGLLTPTPKLEKLSLANNNLTELPAGLLNGLENLDTLLLQENSLYTIPKGFFGSHLLPFAFLHGNPWLCNCEILYFRRWLQDNAENVYVWKQGVDVKAMTSNVASVQCDNSDKFPVYKYPGKGCPTLGDEGDTDLYD"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_H1419Q_vs_Heparan_Sulfate_mimic",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPQANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "ARKKAAKA"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_V1454I_vs_GPIb_alpha",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIISYLCDLAPEAPPPTLPPDMAQVTVG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "MPLLLLLLLLPSPLHPHPICEVSKVASHLEVNCDKRNLTALPPDLPKDTTILHLSENLLYTFSLATLMPYTRLTQLNLDRCELTKLQVDGTLPVLGTLDLSHNQLQSLPLLGQTLPALTVLDVSFNRLTSLPLGALRGLGELQELYLKGNELKTLPPGLLTPTPKLEKLSLANNNLTELPAGLLNGLENLDTLLLQENSLYTIPKGFFGSHLLPFAFLHGNPWLCNCEILYFRRWLQDNAENVYVWKQGVDVKAMTSNVASVQCDNSDKFPVYKYPGKGCPTLGDEGDTDLYD"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    }
+  ]
+}

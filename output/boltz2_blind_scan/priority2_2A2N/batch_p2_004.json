@@ -1,0 +1,725 @@
+{
+  "name": "batch_p2_004",
+  "jobs": [
+    {
+      "name": "VWF_C1190F_vs_FVIII_LightChain",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "TCSTIGMAHYLTFDGLKYLFPGECQYVLVQDYCGSNPGTFRILVGNKGCSHPSVKCKKRVTILVEGGEIELFDGEVNVKRPMKDETHFEVVESGRYIILLLGKALSVVWDRHLSISVVLKQTYQEKVCGLCGNFDGIQNNDLTSSNLQVEEDPVDFGNSWKVSSQCADTRKVPLDSSPATCHNNIMKQTMVDSSCRILTSDVFQDCNKLVDPEPYLDVCIYDTCSCESIGDCACFCDTIAAYAHVCAQHGKVVTWRTATLCPQSCEERNLRENGYECEWRYNSCAPACQVTCQHPEPLACPVQCVEGCHAHCPPGKILDELLQTFVDPEDCPVCEVAGRRFASGKKVTLNPSDPEHCQICHCDVVNLT"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "IHKDISEITQGPKPIMIVGTTEDMLVNIFAIFKGDKTLQEMLTLYQSTLSLHKIDIELAMDRMKNLENLHKNNLEKIQNLREQYEMLRQKDLENLYQRFMTKAIHAQSFQGQEVTEDLNKRLNLLEQQLLKEQSLQTPESVMIQEQFNEIRQDLKQLSSCLKK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_C1173R_vs_FVIII_LightChain",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "TCSTIGMAHYLTFDGLKYLFPGECQYVLVQDYCGSNPGTFRILVGNKGCSHPSVKCKKRVTILVEGGEIELFDGEVNVKRPMKDETHFEVVESGRYIILLLGKALSVVWDRHLSISVVLKQTYQEKVCGLCGNFDGIQNNDLTSSNLQVEEDPVDFGNSWKVSSQCADTRKVPLDSSPATCHNNIMKQTMVDSSCRILTSDVFQDCNKLVDPEPYLDVCIYDTCSCESIGDCACFCDTIAAYAHVCAQHGKVVTWRTATLCPQSCEERNLRENGYECEWRYNSCAPACQVTCQHPEPLACPVQCVEGRHAHCPPGKILDELLQTCVDPEDCPVCEVAGRRFASGKKVTLNPSDPEHCQICHCDVVNLT"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "IHKDISEITQGPKPIMIVGTTEDMLVNIFAIFKGDKTLQEMLTLYQSTLSLHKIDIELAMDRMKNLENLHKNNLEKIQNLREQYEMLRQKDLENLYQRFMTKAIHAQSFQGQEVTEDLNKRLNLLEQQLLKEQSLQTPESVMIQEQFNEIRQDLKQLSSCLKK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_P1151S_vs_FVIII_LightChain",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "TCSTIGMAHYLTFDGLKYLFPGECQYVLVQDYCGSNPGTFRILVGNKGCSHPSVKCKKRVTILVEGGEIELFDGEVNVKRPMKDETHFEVVESGRYIILLLGKALSVVWDRHLSISVVLKQTYQEKVCGLCGNFDGIQNNDLTSSNLQVEEDPVDFGNSWKVSSQCADTRKVPLDSSPATCHNNIMKQTMVDSSCRILTSDVFQDCNKLVDPEPYLDVCIYDTCSCESIGDCACFCDTIAAYAHVCAQHGKVVTWRTATLCPQSCEERNLRENGYECEWRYNSCASACQVTCQHPEPLACPVQCVEGCHAHCPPGKILDELLQTCVDPEDCPVCEVAGRRFASGKKVTLNPSDPEHCQICHCDVVNLT"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "IHKDISEITQGPKPIMIVGTTEDMLVNIFAIFKGDKTLQEMLTLYQSTLSLHKIDIELAMDRMKNLENLHKNNLEKIQNLREQYEMLRQKDLENLYQRFMTKAIHAQSFQGQEVTEDLNKRLNLLEQQLLKEQSLQTPESVMIQEQFNEIRQDLKQLSSCLKK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_D1184N_vs_FVIII_LightChain",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "TCSTIGMAHYLTFDGLKYLFPGECQYVLVQDYCGSNPGTFRILVGNKGCSHPSVKCKKRVTILVEGGEIELFDGEVNVKRPMKDETHFEVVESGRYIILLLGKALSVVWDRHLSISVVLKQTYQEKVCGLCGNFDGIQNNDLTSSNLQVEEDPVDFGNSWKVSSQCADTRKVPLDSSPATCHNNIMKQTMVDSSCRILTSDVFQDCNKLVDPEPYLDVCIYDTCSCESIGDCACFCDTIAAYAHVCAQHGKVVTWRTATLCPQSCEERNLRENGYECEWRYNSCAPACQVTCQHPEPLACPVQCVEGCHAHCPPGKILNELLQTCVDPEDCPVCEVAGRRFASGKKVTLNPSDPEHCQICHCDVVNLT"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "IHKDISEITQGPKPIMIVGTTEDMLVNIFAIFKGDKTLQEMLTLYQSTLSLHKIDIELAMDRMKNLENLHKNNLEKIQNLREQYEMLRQKDLENLYQRFMTKAIHAQSFQGQEVTEDLNKRLNLLEQQLLKEQSLQTPESVMIQEQFNEIRQDLKQLSSCLKK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_C1670S_vs_ADAMTS13_Spacer",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDILQRVREIRYQGGNRTNTGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGVGPNANVQELERIGWPNAPILIQDFETLPREAPDLVLQRCSSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_E1638K_vs_ADAMTS13_Spacer",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDILQRVREIRYQGGNRTNTGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGVGPNANVQKLERIGWPNAPILIQDFETLPREAPDLVLQRCCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R816W_vs_FVIII_LightChain",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SLSCRPPMVKLVCPADNLRAEGLECTKTCQNYDLECMSMGCVSGCLCPPGMVWHENRCVALERCPCFHQGKEYAPGETVKIGCNTCVCQDRKWNCTDHVCDA"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "IHKDISEITQGPKPIMIVGTTEDMLVNIFAIFKGDKTLQEMLTLYQSTLSLHKIDIELAMDRMKNLENLHKNNLEKIQNLREQYEMLRQKDLENLYQRFMTKAIHAQSFQGQEVTEDLNKRLNLLEQQLLKEQSLQTPESVMIQEQFNEIRQDLKQLSSCLKK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R816Q_vs_FVIII_LightChain",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SLSCRPPMVKLVCPADNLRAEGLECTKTCQNYDLECMSMGCVSGCLCPPGMVQHENRCVALERCPCFHQGKEYAPGETVKIGCNTCVCQDRKWNCTDHVCDA"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "IHKDISEITQGPKPIMIVGTTEDMLVNIFAIFKGDKTLQEMLTLYQSTLSLHKIDIELAMDRMKNLENLHKNNLEKIQNLREQYEMLRQKDLENLYQRFMTKAIHAQSFQGQEVTEDLNKRLNLLEQQLLKEQSLQTPESVMIQEQFNEIRQDLKQLSSCLKK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R826K_vs_FVIII_LightChain",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SLSCRPPMVKLVCPADNLRAEGLECTKTCQNYDLECMSMGCVSGCLCPPGMVRHENRCVALEKCPCFHQGKEYAPGETVKIGCNTCVCQDRKWNCTDHVCDA"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "IHKDISEITQGPKPIMIVGTTEDMLVNIFAIFKGDKTLQEMLTLYQSTLSLHKIDIELAMDRMKNLENLHKNNLEKIQNLREQYEMLRQKDLENLYQRFMTKAIHAQSFQGQEVTEDLNKRLNLLEQQLLKEQSLQTPESVMIQEQFNEIRQDLKQLSSCLKK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_G813D_vs_FVIII_LightChain",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SLSCRPPMVKLVCPADNLRAEGLECTKTCQNYDLECMSMGCVSGCLCPPDMVRHENRCVALERCPCFHQGKEYAPGETVKIGCNTCVCQDRKWNCTDHVCDA"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "IHKDISEITQGPKPIMIVGTTEDMLVNIFAIFKGDKTLQEMLTLYQSTLSLHKIDIELAMDRMKNLENLHKNNLEKIQNLREQYEMLRQKDLENLYQRFMTKAIHAQSFQGQEVTEDLNKRLNLLEQQLLKEQSLQTPESVMIQEQFNEIRQDLKQLSSCLKK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_I1628T_vs_ADAMTS13_Spacer",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDILQRVREIRYQGGNRTNTGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPTGVGPNANVQELERIGWPNAPILIQDFETLPREAPDLVLQRCCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_G1629R_vs_ADAMTS13_Spacer",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDILQRVREIRYQGGNRTNTGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIRVGPNANVQELERIGWPNAPILIQDFETLPREAPDLVLQRCCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_E1638Q_vs_ADAMTS13_Spacer",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDILQRVREIRYQGGNRTNTGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGVGPNANVQQLERIGWPNAPILIQDFETLPREAPDLVLQRCCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R1641K_vs_ADAMTS13_Spacer",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDILQRVREIRYQGGNRTNTGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGVGPNANVQELEKIGWPNAPILIQDFETLPREAPDLVLQRCCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_V1630M_vs_ADAMTS13_Spacer",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDILQRVREIRYQGGNRTNTGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGMGPNANVQELERIGWPNAPILIQDFETLPREAPDLVLQRCCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_G1631S_vs_ADAMTS13_Spacer",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDILQRVREIRYQGGNRTNTGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGVSPNANVQELERIGWPNAPILIQDFETLPREAPDLVLQRCCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_P1632S_vs_ADAMTS13_Spacer",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDILQRVREIRYQGGNRTNTGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGVGSNANVQELERIGWPNAPILIQDFETLPREAPDLVLQRCCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_C767R_vs_FVIII_LightChain",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SLSRRPPMVKLVCPADNLRAEGLECTKTCQNYDLECMSMGCVSGCLCPPGMVRHENRCVALERCPCFHQGKEYAPGETVKIGCNTCVCQDRKWNCTDHVCDA"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "IHKDISEITQGPKPIMIVGTTEDMLVNIFAIFKGDKTLQEMLTLYQSTLSLHKIDIELAMDRMKNLENLHKNNLEKIQNLREQYEMLRQKDLENLYQRFMTKAIHAQSFQGQEVTEDLNKRLNLLEQQLLKEQSLQTPESVMIQEQFNEIRQDLKQLSSCLKK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_D1560E_vs_ADAMTS13_Spacer",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGEILQRVREIRYQGGNRTNTGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGVGPNANVQELERIGWPNAPILIQDFETLPREAPDLVLQRCCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_L1562P_vs_ADAMTS13_Spacer",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDIPQRVREIRYQGGNRTNTGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGVGPNANVQELERIGWPNAPILIQDFETLPREAPDLVLQRCCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R1569C_vs_ADAMTS13_Spacer",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDILQRVREICYQGGNRTNTGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGVGPNANVQELERIGWPNAPILIQDFETLPREAPDLVLQRCCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_L876F_vs_FVIII_LightChain",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "TCSTIGMAHYFTFDGLKYLFPGECQYVLVQDYCGSNPGTFRILVGNKGCSHPSVKCKKRVTILVEGGEIELFDGEVNVKRPMKDETHFEVVESGRYIILLLGKALSVVWDRHLSISVVLKQTYQEKVCGLCGNFDGIQNNDLTSSNLQVEEDPVDFGNSWKVSSQCADTRKVPLDSSPATCHNNIMKQTMVDSSCRILTSDVFQDCNKLVDPEPYLDVCIYDTCSCESIGDCACFCDTIAAYAHVCAQHGKVVTWRTATLCPQSCEERNLRENGYECEWRYNSCAPACQVTCQHPEPLACPVQCVEGCHAHCPPGKILDELLQTCVDPEDCPVCEVAGRRFASGKKVTLNPSDPEHCQICHCDVVNLT"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "IHKDISEITQGPKPIMIVGTTEDMLVNIFAIFKGDKTLQEMLTLYQSTLSLHKIDIELAMDRMKNLENLHKNNLEKIQNLREQYEMLRQKDLENLYQRFMTKAIHAQSFQGQEVTEDLNKRLNLLEQQLLKEQSLQTPESVMIQEQFNEIRQDLKQLSSCLKK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R1597W_vs_ADAMTS13_Spacer",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDILQRVREIRYQGGNRTNTGLALRYLSDHSFLVSQGDWEQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGVGPNANVQELERIGWPNAPILIQDFETLPREAPDLVLQRCCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R1569H_vs_ADAMTS13_Spacer",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDILQRVREIHYQGGNRTNTGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGVGPNANVQELERIGWPNAPILIQDFETLPREAPDLVLQRCCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_N1574Y_vs_ADAMTS13_Spacer",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDILQRVREIRYQGGYRTNTGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGVGPNANVQELERIGWPNAPILIQDFETLPREAPDLVLQRCCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R1575K_vs_ADAMTS13_Spacer",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDILQRVREIRYQGGNKTNTGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGVGPNANVQELERIGWPNAPILIQDFETLPREAPDLVLQRCCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_T1576N_vs_ADAMTS13_Spacer",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDILQRVREIRYQGGNRNNTGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGVGPNANVQELERIGWPNAPILIQDFETLPREAPDLVLQRCCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_T1578N_vs_ADAMTS13_Spacer",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDILQRVREIRYQGGNRTNNGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGVGPNANVQELERIGWPNAPILIQDFETLPREAPDLVLQRCCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_T1578I_vs_ADAMTS13_Spacer",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDILQRVREIRYQGGNRTNIGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGVGPNANVQELERIGWPNAPILIQDFETLPREAPDLVLQRCCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_E1549K_vs_ADAMTS13_Spacer",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVKYPFSEAQSKGDILQRVREIRYQGGNRTNTGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGVGPNANVQELERIGWPNAPILIQDFETLPREAPDLVLQRCCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    }
+  ]
+}

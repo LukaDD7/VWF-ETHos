@@ -1,0 +1,725 @@
+{
+  "name": "batch_p2_009",
+  "jobs": [
+    {
+      "name": "VWF_P1127S_vs_FVIII_LightChain",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "TCSTIGMAHYLTFDGLKYLFPGECQYVLVQDYCGSNPGTFRILVGNKGCSHPSVKCKKRVTILVEGGEIELFDGEVNVKRPMKDETHFEVVESGRYIILLLGKALSVVWDRHLSISVVLKQTYQEKVCGLCGNFDGIQNNDLTSSNLQVEEDPVDFGNSWKVSSQCADTRKVPLDSSPATCHNNIMKQTMVDSSCRILTSDVFQDCNKLVDPEPYLDVCIYDTCSCESIGDCACFCDTIAAYAHVCAQHGKVVTWRTATLCSQSCEERNLRENGYECEWRYNSCAPACQVTCQHPEPLACPVQCVEGCHAHCPPGKILDELLQTCVDPEDCPVCEVAGRRFASGKKVTLNPSDPEHCQICHCDVVNLT"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "IHKDISEITQGPKPIMIVGTTEDMLVNIFAIFKGDKTLQEMLTLYQSTLSLHKIDIELAMDRMKNLENLHKNNLEKIQNLREQYEMLRQKDLENLYQRFMTKAIHAQSFQGQEVTEDLNKRLNLLEQQLLKEQSLQTPESVMIQEQFNEIRQDLKQLSSCLKK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R2507G_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPGGDSQSSWKSVGSQWASPENPCLINECVRVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R2507W_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPWGDSQSSWKSVGSQWASPENPCLINECVRVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_N2531S_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGDSQSSWKSVGSQWASPENPCLISECVRVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_V2501M_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEMVTGSPRGDSQSSWKSVGSQWASPENPCLINECVRVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_G2518S_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGDSQSSWKSVSSQWASPENPCLINECVRVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_E2539V_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGDSQSSWKSVGSQWASPENPCLINECVRVKEVVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R2535P_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGDSQSSWKSVGSQWASPENPCLINECVPVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R2535Q_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGDSQSSWKSVGSQWASPENPCLINECVQVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_W2514R_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGDSQSSRKSVGSQWASPENPCLINECVRVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_C2533W_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGDSQSSWKSVGSQWASPENPCLINEWVRVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_P2527S_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGDSQSSWKSVGSQWASPENSCLINECVRVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_G2560S_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGDSQSSWKSVGSQWASPENPCLINECVRVKEEVFIQQRNVSCPQLEVPVCPSSFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_P2550R_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGDSQSSWKSVGSQWASPENPCLINECVRVKEEVFIQQRNVSCRQLEVPVCPSGFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R2575H_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGDSQSSWKSVGSQWASPENPCLINECVRVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCHCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_P2550L_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGDSQSSWKSVGSQWASPENPCLINECVRVKEEVFIQQRNVSCLQLEVPVCPSGFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_C2571Y_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGDSQSSWKSVGSQWASPENPCLINECVRVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACYPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R2575L_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGDSQSSWKSVGSQWASPENPCLINECVRVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCLCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_S2497P_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "PACEVVTGSPRGDSQSSWKSVGSQWASPENPCLINECVRVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_P2527H_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGDSQSSWKSVGSQWASPENHCLINECVRVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_I2542K_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGDSQSSWKSVGSQWASPENPCLINECVRVKEEVFKQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_A2569E_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGDSQSSWKSVGSQWASPENPCLINECVRVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSECCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_A2522V_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGDSQSSWKSVGSQWVSPENPCLINECVRVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_D2509N_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGNSQSSWKSVGSQWASPENPCLINECVRVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_G2518A_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGDSQSSWKSVASQWASPENPCLINECVRVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_V2547I_vs_Integrin_alphaIIb_beta3",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SACEVVTGSPRGDSQSSWKSVGSQWASPENPCLINECVRVKEEVFIQQRNISCPQLEVPVCPSGFQLSCKTSACCPSCRCE"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_S764R_vs_FVIII_LightChain",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "RLSCRPPMVKLVCPADNLRAEGLECTKTCQNYDLECMSMGCVSGCLCPPGMVRHENRCVALERCPCFHQGKEYAPGETVKIGCNTCVCQDRKWNCTDHVCDA"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "IHKDISEITQGPKPIMIVGTTEDMLVNIFAIFKGDKTLQEMLTLYQSTLSLHKIDIELAMDRMKNLENLHKNNLEKIQNLREQYEMLRQKDLENLYQRFMTKAIHAQSFQGQEVTEDLNKRLNLLEQQLLKEQSLQTPESVMIQEQFNEIRQDLKQLSSCLKK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_R768W_vs_FVIII_LightChain",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SLSCWPPMVKLVCPADNLRAEGLECTKTCQNYDLECMSMGCVSGCLCPPGMVRHENRCVALERCPCFHQGKEYAPGETVKIGCNTCVCQDRKWNCTDHVCDA"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "IHKDISEITQGPKPIMIVGTTEDMLVNIFAIFKGDKTLQEMLTLYQSTLSLHKIDIELAMDRMKNLENLHKNNLEKIQNLREQYEMLRQKDLENLYQRFMTKAIHAQSFQGQEVTEDLNKRLNLLEQQLLKEQSLQTPESVMIQEQFNEIRQDLKQLSSCLKK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_M771I_vs_FVIII_LightChain",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SLSCRPPIVKLVCPADNLRAEGLECTKTCQNYDLECMSMGCVSGCLCPPGMVRHENRCVALERCPCFHQGKEYAPGETVKIGCNTCVCQDRKWNCTDHVCDA"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "IHKDISEITQGPKPIMIVGTTEDMLVNIFAIFKGDKTLQEMLTLYQSTLSLHKIDIELAMDRMKNLENLHKNNLEKIQNLREQYEMLRQKDLENLYQRFMTKAIHAQSFQGQEVTEDLNKRLNLLEQQLLKEQSLQTPESVMIQEQFNEIRQDLKQLSSCLKK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_N780K_vs_FVIII_LightChain",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "SLSCRPPMVKLVCPADKLRAEGLECTKTCQNYDLECMSMGCVSGCLCPPGMVRHENRCVALERCPCFHQGKEYAPGETVKIGCNTCVCQDRKWNCTDHVCDA"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "IHKDISEITQGPKPIMIVGTTEDMLVNIFAIFKGDKTLQEMLTLYQSTLSLHKIDIELAMDRMKNLENLHKNNLEKIQNLREQYEMLRQKDLENLYQRFMTKAIHAQSFQGQEVTEDLNKRLNLLEQQLLKEQSLQTPESVMIQEQFNEIRQDLKQLSSCLKK"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "affinity": {
+            "binder": "A"
+          }
+        }
+      ]
+    }
+  ]
+}
