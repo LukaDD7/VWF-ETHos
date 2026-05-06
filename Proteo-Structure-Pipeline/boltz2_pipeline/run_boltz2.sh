@@ -117,20 +117,44 @@ import json, os, glob, sys
 inp, tmp = sys.argv[1], sys.argv[2]
 
 def job_to_yaml(job):
-    """将 job dict 转换为 Boltz CLI 接受的 YAML 字符串。"""
+    """将 job dict 转换为 Boltz CLI 接受的 YAML 字符串。
+
+    重要：Boltz-2 的 affinity head 只支持 small molecule (<50 atoms) ligand。
+    所有 protein-protein/protein-peptide 任务必须 NOT 写 properties.affinity，
+    否则 Boltz-2 会拒绝运行或产出无意义数值。蛋白-蛋白结合质量改用 iPTM 评估。
+    详见: docs/DIAGNOSTIC_AGENT_V3_DESIGN.md  & Boltz-2 FAQ
+    """
     lines = ['version: 1', 'sequences:']
+    has_small_molecule_binder = False
+    binder_id = None
+
     for seq in job.get('sequences', []):
-        p = seq.get('protein', {})
-        lines.append('  - protein:')
-        lines.append(f'      id: {p["id"]}')
-        lines.append(f'      sequence: {p["sequence"]}')
-    # affinity property
-    for prop in job.get('properties', []):
-        if 'affinity' in prop:
-            lines.append('properties:')
-            lines.append('  affinity:')
-            lines.append(f'    binder: {prop["affinity"]["binder"]}')
-            break
+        if 'protein' in seq:
+            p = seq['protein']
+            lines.append('  - protein:')
+            lines.append(f'      id: {p["id"]}')
+            lines.append(f'      sequence: {p["sequence"]}')
+        elif 'ligand' in seq:
+            lg = seq['ligand']
+            lines.append('  - ligand:')
+            lines.append(f'      id: {lg["id"]}')
+            if 'smiles' in lg:
+                lines.append(f'      smiles: \'{lg["smiles"]}\'')
+                has_small_molecule_binder = True
+                binder_id = lg["id"]
+            elif 'ccd' in lg:
+                lines.append(f'      ccd: {lg["ccd"]}')
+                has_small_molecule_binder = True
+                binder_id = lg["id"]
+
+    # 仅当存在真正的 small molecule ligand 时才写 affinity
+    if has_small_molecule_binder:
+        for prop in job.get('properties', []):
+            if 'affinity' in prop:
+                lines.append('properties:')
+                lines.append('  - affinity:')
+                lines.append(f'      binder: {prop["affinity"]["binder"]}')
+                break
     return '\n'.join(lines) + '\n'
 
 written = 0
