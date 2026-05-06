@@ -341,7 +341,7 @@ def main():
     parser.add_argument("--variants", default="../../data/processed/master_type1_type2.csv")
     parser.add_argument("--pdb", default="../../structures/1M10.pdb")
     parser.add_argument("--foldx-bin",
-        default="/inspire/hdd/global_user/mengweicheng-240108120092/lzy/tools/foldx")
+        default="/inspire/hdd/global_user/mengweicheng-240108120092/lzy/tools/foldx/foldx_20270131")
     parser.add_argument("--output", default="../../output/foldx_a1_gpiba.csv")
     parser.add_argument("--work-dir", default=None,
         help="FoldX工作目录 (默认: output/foldx_workdir_a1)")

@@ -98,15 +98,15 @@ VWF_F1369I                    1369    606 type2M     QA543R,FA606I;  ← 已知2
 **服务器执行**：
 
 ```bash
-# 1. 确认 FoldX 路径（注意具体二进制名可能不同）
+# 1. 确认 FoldX 路径（二进制: foldx_20270131）
 ls /inspire/hdd/global_user/mengweicheng-240108120092/lzy/tools/foldx/
-# 找到类似 foldx、foldx5、foldx_20251231 的可执行文件
+# 应该看到: foldx_20270131  rotabase.txt  molecules/
 
 # 2. 运行（16核，预计 20-40 分钟）
 python3 scripts/pipeline/foldx_a1_gpiba_runner.py \
     --variants data/processed/master_type1_type2.csv \
     --pdb structures/1M10.pdb \
-    --foldx-bin /inspire/hdd/global_user/mengweicheng-240108120092/lzy/tools/foldx/<binary_name> \
+    --foldx-bin /inspire/hdd/global_user/mengweicheng-240108120092/lzy/tools/foldx/foldx_20270131 \
     --output output/foldx_a1_gpiba.csv \
     --workers 16
 
@@ -122,7 +122,7 @@ python3 scripts/pipeline/foldx_a1_gpiba_runner.py [参数...]
 |---|---|---|
 | `--variants` | `../../data/processed/master_type1_type2.csv` | 变异表 |
 | `--pdb` | `../../structures/1M10.pdb` | 模板 PDB |
-| `--foldx-bin` | 服务器路径 | FoldX 可执行文件完整路径 |
+| `--foldx-bin` | `.../tools/foldx/foldx_20270131` | FoldX 可执行文件完整路径 |
 | `--output` | `../../output/foldx_a1_gpiba.csv` | 输出 CSV |
 | `--work-dir` | `output/foldx_workdir_a1/` | FoldX 中间文件目录 |
 | `--workers` | `8` | 并行进程数（建议设为 CPU 核数） |
