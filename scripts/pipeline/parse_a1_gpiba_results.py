@@ -90,13 +90,22 @@ def parse_confidence_json(json_path: Path) -> Optional[float]:
 def get_best_iptm(job_dir: Path) -> tuple[Optional[float], int]:
     """
     从 job_dir/predictions/ 中的所有 confidence_model_*.json 提取最佳 iPTM。
-    返回 (best_iptm, n_samples_found)
+
+    Boltz-2 输出结构（boltz2_a1_gpiba_results）:
+      boltz_results_VWF_WT_vs_GPIb_alpha/
+        predictions/
+          VWF_WT_vs_GPIb_alpha/         ← 子目录，boltz 自动创建
+            confidence_VWF_WT_vs_GPIb_alpha_model_0.json
+            ...
+          VWF_R1306W_vs_GPIb_alpha/
+            ...
     """
     pred_dir = job_dir / "predictions"
     if not pred_dir.exists():
         return None, 0
 
-    conf_files = sorted(pred_dir.glob("confidence_model_*.json"))
+    # 查找所有子目录中的 confidence 文件
+    conf_files = sorted(pred_dir.glob("*/confidence_*.json"))
     if not conf_files:
         return None, 0
 
@@ -118,23 +127,36 @@ def scan_results(results_dir: Path) -> list[dict]:
     返回记录列表，每个记录包含 job_name, iptm_best, n_samples。
     """
     records = []
+    # 处理两种目录结构：
+    # 1. boltz_results_VWF_xxx_vs_GPIb_alpha/  (当前 run_a1_gpiba_boltz2.sh 输出)
+    # 2. VWF_xxx_vs_GPIb_alpha/               (旧结构，无 boltz_results_ 前缀)
     job_dirs = sorted(
         [d for d in results_dir.iterdir()
          if d.is_dir() and not d.name.startswith("_")]
     )
 
     for job_dir in job_dirs:
-        job_name = job_dir.name
+        # 去掉 boltz_results_ 前缀得到标准化 job 名
+        raw_name = job_dir.name
+        if raw_name.startswith("boltz_results_"):
+            job_name = raw_name[len("boltz_results_"):]
+        else:
+            job_name = raw_name
+
+        # .done 标记可能在标准化位置或原始位置
         done_marker = job_dir / ".done"
         is_done = done_marker.exists()
+        # 如果没有 .done 但有 prediction 结果，也视为完成
+        has_predictions = (job_dir / "predictions").exists()
 
         best_iptm, n_samples = get_best_iptm(job_dir)
 
         records.append({
             "job_name":  job_name,
+            "raw_name":  raw_name,
             "iptm_best": best_iptm,
             "n_samples": n_samples,
-            "is_done":   is_done,
+            "is_done":   is_done or (has_predictions and n_samples > 0),
         })
 
     return records

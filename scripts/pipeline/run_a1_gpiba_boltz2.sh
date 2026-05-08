@@ -11,6 +11,13 @@
 #
 # 断点续跑：每个 job 完成后立即写 .done 时间戳文件，重启自动跳过。
 #
+# Triton JIT 缓存：首次运行需等待 kernel 编译（~5-10min/job）。编译产物缓存在
+#   ~/.cache/triton/，复制到 GPU 实例可复用，省去重复编译时间。
+#
+# 环境依赖：
+#   conda activate boltz2
+#   gcc（系统级安装，boltz2 环境内可用 which gcc 确认）
+#
 # 用法：
 #   chmod +x run_a1_gpiba_boltz2.sh
 #   ./run_a1_gpiba_boltz2.sh                    # 默认 4 GPU
@@ -20,7 +27,7 @@
 #
 # 输出结构（每个 job）：
 #   output/boltz2_a1_gpiba_results/
-#     VWF_R1306W_vs_GPIb_alpha/
+#     boltz_results_VWF_R1306W_vs_GPIb_alpha/
 #       predictions/
 #         model_0.cif
 #         confidence_model_0.json   ← 包含 iPTM
@@ -30,6 +37,8 @@
 # ==============================================================================
 
 set -u
+
+export CC=$(which gcc)
 
 # ---------- 默认参数 -----------------------------------------------------------
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -144,7 +153,7 @@ TOTAL_JOBS=${#ALL_YAMLS[@]}
 
 for YAML in "${ALL_YAMLS[@]}"; do
     JNAME=$(basename "$YAML" .yaml)
-    DONE_MARKER="${OUTPUT_DIR}/${JNAME}/.done"
+    DONE_MARKER="${OUTPUT_DIR}/boltz_results_${JNAME}/.done"
     if [ ! -f "$DONE_MARKER" ]; then
         TODO_YAMLS+=("$YAML")
     fi
@@ -202,7 +211,7 @@ run_worker() {
         [ -z "$YAML_PATH" ] && continue
 
         JNAME=$(basename "$YAML_PATH" .yaml)
-        DONE_MARKER="${OUT_BASE}/${JNAME}/.done"
+        DONE_MARKER="${OUT_BASE}/boltz_results_${JNAME}/.done"
 
         # 再次检查（防止并发重复）
         if [ -f "$DONE_MARKER" ]; then
@@ -213,9 +222,9 @@ run_worker() {
         echo "[GPU ${GPU_ID}] $(date '+%H:%M:%S') START: $JNAME" >> "$WORKER_LOG"
 
         # 清理上次可能的脏文件
-        rm -f "${OUT_BASE}/${JNAME}/predictions/"*.cif \
-              "${OUT_BASE}/${JNAME}/predictions/"confidence_*.json \
-              "${OUT_BASE}/${JNAME}/predictions/"affinity_*.json 2>/dev/null || true
+        rm -f "${OUT_BASE}/boltz_results_${JNAME}/predictions/"*.cif \
+              "${OUT_BASE}/boltz_results_${JNAME}/predictions/"confidence_*.json \
+              "${OUT_BASE}/boltz_results_${JNAME}/predictions/"affinity_*.json 2>/dev/null || true
 
         # 构造 boltz 命令
         # 注意：--out_dir 设为 OUT_BASE，boltz 会自动创建 JNAME/ 子目录
@@ -225,12 +234,13 @@ run_worker() {
             MSA_FLAG="--use_msa_server"
         fi
 
-        CUDA_VISIBLE_DEVICES=$GPU_ID boltz predict "$YAML_PATH" \
+        CUDA_VISIBLE_DEVICES=$GPU_ID CC=$(which gcc) boltz predict "$YAML_PATH" \
             --out_dir "$OUT_BASE" \
             --accelerator gpu \
             --devices 1 \
             --recycling_steps "$RECYCLING" \
             --diffusion_samples "$SAMPLES" \
+            --num_workers 0 \
             --override \
             $MSA_FLAG \
             >> "$WORKER_LOG" 2>&1

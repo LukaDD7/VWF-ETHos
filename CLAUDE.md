@@ -86,6 +86,67 @@ conda activate alphagenome
 # pyliftover 已通过 conda 安装，chain 文件：hg19ToHg38.over.chain.gz (本地)
 ```
 
+## Boltz-2 GPU Pipeline (A1 + GPIbα Complex Prediction)
+
+Reference: `scripts/pipeline/run_a1_gpiba_boltz2.sh`
+
+### Environment Setup
+
+```bash
+conda activate boltz2
+# gcc MUST be available (system-level install, not conda)
+which gcc  # should return /usr/bin/gcc
+```
+
+### Running
+
+```bash
+# Clean core files before first run
+rm -f core.*
+
+# Run on GPU instance (4 GPUs)
+bash scripts/pipeline/run_a1_gpiba_boltz2.sh --gpus 4
+
+# Or with 8 GPUs
+bash scripts/pipeline/run_a1_gpiba_boltz2.sh --gpus 8
+
+# Preflight check only
+bash scripts/pipeline/run_a1_gpiba_boltz2.sh --gpus 4 --preflight
+```
+
+### Triton JIT Compilation Cache
+
+Triton (used by Boltz-2 for GPU kernel generation) performs JIT compilation at runtime.
+**On first run on a new GPU instance, expect ~5-10 min delay per job** while Triton compiles kernels.
+To eliminate this delay on subsequent runs, Boltz-2 caches compiled kernels in `~/.cache/triton/`.
+Copy this cache directory to the same location on another GPU instance to reuse compiled kernels.
+
+### Key Parameters
+
+- **74 YAML inputs** in `output/boltz2_a1_gpiba/`
+- **4 GPU workers** in parallel (1 job/GPU at a time)
+- **diffusion_samples=5** (each job generates 5 structural samples)
+- **recycling_steps=3**
+- **~15-25GB GPU memory per job**
+- **Output**: `output/boltz2_a1_gpiba_results/` with `.done` markers
+
+### Troubleshooting
+
+| Error | Cause | Fix |
+|-------|-------|-----|
+| `No supported gpu backend found` | `num_workers > 0` triggers DataLoader multiprocessing on CPU-only env | Use `--num_workers 0` |
+| `Failed to find C compiler` | Triton JIT needs gcc, `CC` env var not set | `export CC=$(which gcc)` in script |
+| `OSError: [Errno 28] No space left on device` | `/dev/shm` is only 64MB; DataLoader uses it for IPC | `--num_workers 0` avoids this |
+| `core.*` files generated | Process crashed (usually /dev/shm overflow) | `rm -f core.*`; fix root cause |
+| GPU util only 4% | Normal for diffusion sampling (sequential steps) | Not a problem, diffusion is inherently serial |
+| GPU util 0% after launch | JIT compilation happening (CPU-bound) | Wait, first run is slow |
+
+### Execution History (2026-05-07)
+
+- **Boltz-2 pipeline added**: `run_a1_gpiba_boltz2.sh`, `parse_a1_gpiba_results.py`
+- **74 VWF A1 domain variants** × GPIbα complex prediction planned
+- **Issues fixed during setup**: `/dev/shm` 64MB limit, missing gcc, `num_workers` crash, `CC` env not propagated
+
 ## Execution History (2026-03-10)
 
 - **Script 01**: 过滤出 1198 个变异 (VUS + Pathogenic/Likely_pathogenic 阳性对照)
