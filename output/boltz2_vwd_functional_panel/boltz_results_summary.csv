@@ -1,0 +1,990 @@
+job_name,variant_id,domain,assay_key,clinical_axis,n_samples,avg_iptm,best_iptm
+VWF_A1105D__dprime_d3_fviii_binding,VWF_A1105D,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12211,0.15419
+VWF_A1250G__a1_aim_autoinhibition_context,VWF_A1250G,A1_N_flank,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_A1298V__a1_aim_autoinhibition_context,VWF_A1298V,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_A1298V__a1_gpiba_forced_binding,VWF_A1298V,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.32847,0.53288
+VWF_A1298V__a1_heparan_sulfate_binding,VWF_A1298V,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.55508,0.78208
+VWF_A1350V__a1_aim_autoinhibition_context,VWF_A1350V,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_A1350V__a1_gpiba_forced_binding,VWF_A1350V,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.32127,0.56061
+VWF_A1350V__a1_heparan_sulfate_binding,VWF_A1350V,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.49451,0.73032
+VWF_A1355D__a1_aim_autoinhibition_context,VWF_A1355D,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_A1355D__a1_gpiba_forced_binding,VWF_A1355D,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.28372,0.48868
+VWF_A1355D__a1_heparan_sulfate_binding,VWF_A1355D,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.58655,0.80188
+VWF_A1377V__a1_aim_autoinhibition_context,VWF_A1377V,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_A1377V__a1_gpiba_forced_binding,VWF_A1377V,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.24718,0.38662
+VWF_A1377V__a1_heparan_sulfate_binding,VWF_A1377V,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.59387,0.84183
+VWF_A138D__d1d2_propeptide_context,VWF_A138D,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_A1437T__a1_aim_autoinhibition_context,VWF_A1437T,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_A1437T__a1_gpiba_forced_binding,VWF_A1437T,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.39165,0.55441
+VWF_A1437T__a1_heparan_sulfate_binding,VWF_A1437T,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.41936,0.65283
+VWF_A1461D__a1_aim_autoinhibition_context,VWF_A1461D,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_A1461D__a1_gpiba_forced_binding,VWF_A1461D,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.36685,0.57909
+VWF_A1461D__a1_heparan_sulfate_binding,VWF_A1461D,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.48055,0.76388
+VWF_A1461V__a1_aim_autoinhibition_context,VWF_A1461V,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_A1461V__a1_gpiba_forced_binding,VWF_A1461V,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.47446,0.71499
+VWF_A1461V__a1_heparan_sulfate_binding,VWF_A1461V,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.39536,0.68455
+VWF_A1500E__a2_adamts13_folded_complex,VWF_A1500E,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.17461,0.58707
+VWF_A1500E__a2_folded_stability,VWF_A1500E,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_A1500T__a2_adamts13_folded_complex,VWF_A1500T,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.19615,0.37884
+VWF_A1500T__a2_folded_stability,VWF_A1500T,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_A1500V__a2_adamts13_folded_complex,VWF_A1500V,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.12806,0.23788
+VWF_A1500V__a2_folded_stability,VWF_A1500V,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_A1647D__a2_adamts13_folded_complex,VWF_A1647D,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.14637,0.2413
+VWF_A1647D__a2_folded_stability,VWF_A1647D,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_A1647D__vwf73_adamts13_substrate,VWF_A1647D,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.20894,0.56096
+VWF_A1714T__a3_collagen_binding,VWF_A1714T,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.47556,0.57762
+VWF_A1716P__a3_collagen_binding,VWF_A1716P,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.4549,0.51359
+VWF_A1795V__a3_collagen_binding,VWF_A1795V,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.49693,0.61038
+VWF_A2178S__d4_assembly_context,VWF_A2178S,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_A2414T__c_domain_assembly_context,VWF_A2414T,C3,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_A2758V__ck_dimerization_context,VWF_A2758V,CK,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_A2801D__ck_dimerization_context,VWF_A2801D,CK,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_A290E__d1d2_propeptide_context,VWF_A290E,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_A290V__d1d2_propeptide_context,VWF_A290V,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_A309S__d1d2_propeptide_context,VWF_A309S,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_A488G__d1d2_propeptide_context,VWF_A488G,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_A542G__d1d2_propeptide_context,VWF_A542G,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_A585T__d1d2_propeptide_context,VWF_A585T,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_A594G__d1d2_propeptide_context,VWF_A594G,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_A631V__d1d2_propeptide_context,VWF_A631V,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_A641V__d1d2_propeptide_context,VWF_A641V,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_A778T__dprime_d3_fviii_binding,VWF_A778T,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12106,0.13083
+VWF_A837D__dprime_d3_fviii_binding,VWF_A837D,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12379,0.1802
+VWF_C1060R__dprime_d3_fviii_binding,VWF_C1060R,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12957,0.20075
+VWF_C1060Y__dprime_d3_fviii_binding,VWF_C1060Y,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.13626,0.25208
+VWF_C1071F__dprime_d3_fviii_binding,VWF_C1071F,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11892,0.14329
+VWF_C1091R__dprime_d3_fviii_binding,VWF_C1091R,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12809,0.21982
+VWF_C1099P__dprime_d3_fviii_binding,VWF_C1099P,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12388,0.16078
+VWF_C1101R__dprime_d3_fviii_binding,VWF_C1101R,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12041,0.14658
+VWF_C1111Y__dprime_d3_fviii_binding,VWF_C1111Y,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12959,0.19041
+VWF_C1126F__dprime_d3_fviii_binding,VWF_C1126F,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.13499,0.24409
+VWF_C1130F__dprime_d3_fviii_binding,VWF_C1130F,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11275,0.12397
+VWF_C1130G__dprime_d3_fviii_binding,VWF_C1130G,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12062,0.13293
+VWF_C1130R__dprime_d3_fviii_binding,VWF_C1130R,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11057,0.15144
+VWF_C1130W__dprime_d3_fviii_binding,VWF_C1130W,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11632,0.12818
+VWF_C1130Y__dprime_d3_fviii_binding,VWF_C1130Y,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.13047,0.16986
+VWF_C1149R__dprime_d3_fviii_binding,VWF_C1149R,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.13837,0.17926
+VWF_C1149Y__dprime_d3_fviii_binding,VWF_C1149Y,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12351,0.15965
+VWF_C1153Y__dprime_d3_fviii_binding,VWF_C1153Y,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11979,0.1594
+VWF_C1157F__dprime_d3_fviii_binding,VWF_C1157F,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12715,0.15003
+VWF_C1165F__dprime_d3_fviii_binding,VWF_C1165F,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12683,0.15112
+VWF_C1165R__dprime_d3_fviii_binding,VWF_C1165R,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12205,0.14052
+VWF_C1169R__dprime_d3_fviii_binding,VWF_C1169R,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11928,0.1408
+VWF_C1169W__dprime_d3_fviii_binding,VWF_C1169W,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12037,0.13563
+VWF_C1173F__dprime_d3_fviii_binding,VWF_C1173F,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11398,0.1466
+VWF_C1173R__dprime_d3_fviii_binding,VWF_C1173R,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11971,0.13611
+VWF_C1190R__dprime_d3_fviii_binding,VWF_C1190R,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12013,0.13466
+VWF_C1190S__dprime_d3_fviii_binding,VWF_C1190S,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.1179,0.13392
+VWF_C1190Y__dprime_d3_fviii_binding,VWF_C1190Y,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12691,0.16595
+VWF_C1225G__dprime_d3_fviii_binding,VWF_C1225G,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12276,0.14613
+VWF_C1227R__dprime_d3_fviii_binding,VWF_C1227R,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11622,0.14264
+VWF_C1234W__a1_aim_autoinhibition_context,VWF_C1234W,A1_N_flank,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_C1234Y__a1_aim_autoinhibition_context,VWF_C1234Y,A1_N_flank,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_C1272F__a1_aim_autoinhibition_context,VWF_C1272F,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_C1272F__a1_gpiba_forced_binding,VWF_C1272F,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.37657,0.4861
+VWF_C1272F__a1_heparan_sulfate_binding,VWF_C1272F,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.53865,0.77956
+VWF_C1272G__a1_aim_autoinhibition_context,VWF_C1272G,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_C1272G__a1_gpiba_forced_binding,VWF_C1272G,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.38035,0.66171
+VWF_C1272G__a1_heparan_sulfate_binding,VWF_C1272G,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.55944,0.73713
+VWF_C1272R__a1_aim_autoinhibition_context,VWF_C1272R,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_C1272R__a1_gpiba_forced_binding,VWF_C1272R,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.39445,0.57643
+VWF_C1272R__a1_heparan_sulfate_binding,VWF_C1272R,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.54419,0.77945
+VWF_C1272S__a1_aim_autoinhibition_context,VWF_C1272S,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_C1272S__a1_gpiba_forced_binding,VWF_C1272S,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.36271,0.62406
+VWF_C1272S__a1_heparan_sulfate_binding,VWF_C1272S,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.56186,0.8758
+VWF_C1272Y__a1_aim_autoinhibition_context,VWF_C1272Y,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_C1272Y__a1_gpiba_forced_binding,VWF_C1272Y,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.22494,0.28988
+VWF_C1272Y__a1_heparan_sulfate_binding,VWF_C1272Y,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.53952,0.88093
+VWF_C1458Y__a1_aim_autoinhibition_context,VWF_C1458Y,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_C1458Y__a1_gpiba_forced_binding,VWF_C1458Y,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.29117,0.35498
+VWF_C1458Y__a1_heparan_sulfate_binding,VWF_C1458Y,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.61965,0.80133
+VWF_C1879F__d4_assembly_context,VWF_C1879F,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_C2085Y__d4_assembly_context,VWF_C2085Y,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_C2150W__d4_assembly_context,VWF_C2150W,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_C2150Y__d4_assembly_context,VWF_C2150Y,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_C2174G__d4_assembly_context,VWF_C2174G,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_C2184F__d4_assembly_context,VWF_C2184F,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_C2184S__d4_assembly_context,VWF_C2184S,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_C2184Y__d4_assembly_context,VWF_C2184Y,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_C2190W__d4_assembly_context,VWF_C2190W,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_C2190Y__d4_assembly_context,VWF_C2190Y,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_C2212R__d4_assembly_context,VWF_C2212R,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_C2212Y__d4_assembly_context,VWF_C2212Y,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_C2237F__d4_assembly_context,VWF_C2237F,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_C2237R__d4_assembly_context,VWF_C2237R,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_C2248Y__d4_assembly_context,VWF_C2248Y,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_C2254Y__d4_assembly_context,VWF_C2254Y,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_C2257S__c1_collagen_binding,VWF_C2257S,C1,c1_collagen_binding,collagen binding accessory C-domain axis,8,0.59549,0.7287
+VWF_C2257S__c_domain_assembly_context,VWF_C2257S,C1,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_C2283R__c1_collagen_binding,VWF_C2283R,C1,c1_collagen_binding,collagen binding accessory C-domain axis,8,0.51367,0.57821
+VWF_C2283R__c_domain_assembly_context,VWF_C2283R,C1,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_C2304Y__c1_collagen_binding,VWF_C2304Y,C1,c1_collagen_binding,collagen binding accessory C-domain axis,8,0.541,0.65975
+VWF_C2304Y__c_domain_assembly_context,VWF_C2304Y,C1,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_C2325S__c2_collagen_binding,VWF_C2325S,C2,c2_collagen_binding,collagen binding accessory C-domain axis,8,0.53971,0.6118
+VWF_C2325S__c_domain_assembly_context,VWF_C2325S,C2,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_C2327W__c2_collagen_binding,VWF_C2327W,C2,c2_collagen_binding,collagen binding accessory C-domain axis,8,0.55701,0.61135
+VWF_C2327W__c_domain_assembly_context,VWF_C2327W,C2,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_C2327Y__c2_collagen_binding,VWF_C2327Y,C2,c2_collagen_binding,collagen binding accessory C-domain axis,8,0.54557,0.64875
+VWF_C2327Y__c_domain_assembly_context,VWF_C2327Y,C2,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_C2362F__c2_collagen_binding,VWF_C2362F,C2,c2_collagen_binding,collagen binding accessory C-domain axis,8,0.56054,0.62991
+VWF_C2362F__c_domain_assembly_context,VWF_C2362F,C2,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_C2394W__c_domain_assembly_context,VWF_C2394W,C3,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_C2448Y__c_domain_assembly_context,VWF_C2448Y,C3,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_C2451Y__c_domain_assembly_context,VWF_C2451Y,C3,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_C2468R__c_domain_assembly_context,VWF_C2468R,C3,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_C2477S__c_domain_assembly_context,VWF_C2477S,C3,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_C2477Y__c_domain_assembly_context,VWF_C2477Y,C3,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_C2619Y__c_domain_assembly_context,VWF_C2619Y,C5,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_C2671G__c_domain_assembly_context,VWF_C2671G,C6,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_C2671Y__c_domain_assembly_context,VWF_C2671Y,C6,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_C2676F__c_domain_assembly_context,VWF_C2676F,C6,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_C2676Y__c_domain_assembly_context,VWF_C2676Y,C6,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_C2693Y__c_domain_assembly_context,VWF_C2693Y,C6,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_C2739Y__ck_dimerization_context,VWF_C2739Y,CK,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_C2754W__ck_dimerization_context,VWF_C2754W,CK,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_C275R__d1d2_propeptide_context,VWF_C275R,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_C275S__d1d2_propeptide_context,VWF_C275S,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_C2771R__ck_dimerization_context,VWF_C2771R,CK,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_C2771S__ck_dimerization_context,VWF_C2771S,CK,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_C2771Y__ck_dimerization_context,VWF_C2771Y,CK,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_C2773R__ck_dimerization_context,VWF_C2773R,CK,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_C2773S__ck_dimerization_context,VWF_C2773S,CK,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_C2804Y__ck_dimerization_context,VWF_C2804Y,CK,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_C325F__d1d2_propeptide_context,VWF_C325F,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_C35R__d1d2_propeptide_context,VWF_C35R,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_C370Y__d1d2_propeptide_context,VWF_C370Y,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_C379G__d1d2_propeptide_context,VWF_C379G,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_C410S__d1d2_propeptide_context,VWF_C410S,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_C521S__d1d2_propeptide_context,VWF_C521S,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_C570S__d1d2_propeptide_context,VWF_C570S,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_C584F__d1d2_propeptide_context,VWF_C584F,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_C623T__d1d2_propeptide_context,VWF_C623T,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_C623W__d1d2_propeptide_context,VWF_C623W,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_C633R__d1d2_propeptide_context,VWF_C633R,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_C788R__dprime_d3_fviii_binding,VWF_C788R,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11865,0.13378
+VWF_C788Y__dprime_d3_fviii_binding,VWF_C788Y,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.14551,0.18399
+VWF_C827Y__dprime_d3_fviii_binding,VWF_C827Y,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12045,0.15269
+VWF_C849S__dprime_d3_fviii_binding,VWF_C849S,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.1261,0.20204
+VWF_C858W__dprime_d3_fviii_binding,VWF_C858W,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11307,0.1364
+VWF_C996E__dprime_d3_fviii_binding,VWF_C996E,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11113,0.1294
+VWF_D1195Y__dprime_d3_fviii_binding,VWF_D1195Y,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12348,0.1546
+VWF_D1249V__a1_aim_autoinhibition_context,VWF_D1249V,A1_N_flank,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_D1302G__a1_aim_autoinhibition_context,VWF_D1302G,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_D1302G__a1_gpiba_forced_binding,VWF_D1302G,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.24072,0.32776
+VWF_D1302G__a1_heparan_sulfate_binding,VWF_D1302G,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.65026,0.91341
+VWF_D1373Y__a1_aim_autoinhibition_context,VWF_D1373Y,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_D1373Y__a1_gpiba_forced_binding,VWF_D1373Y,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.29014,0.47887
+VWF_D1373Y__a1_heparan_sulfate_binding,VWF_D1373Y,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.53863,0.83652
+VWF_D141G__d1d2_propeptide_context,VWF_D141G,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_D141N__d1d2_propeptide_context,VWF_D141N,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_D141Y__d1d2_propeptide_context,VWF_D141Y,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_D1472H__a1_aim_autoinhibition_context,VWF_D1472H,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_D1472H__a1_gpiba_forced_binding,VWF_D1472H,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.3288,0.53128
+VWF_D1472H__a1_heparan_sulfate_binding,VWF_D1472H,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.64566,0.87086
+VWF_D1472N__a1_aim_autoinhibition_context,VWF_D1472N,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_D1472N__a1_gpiba_forced_binding,VWF_D1472N,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.30649,0.55366
+VWF_D1472N__a1_heparan_sulfate_binding,VWF_D1472N,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.61586,0.8746
+VWF_D1472Y__a1_aim_autoinhibition_context,VWF_D1472Y,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_D1472Y__a1_gpiba_forced_binding,VWF_D1472Y,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.33927,0.47373
+VWF_D1472Y__a1_heparan_sulfate_binding,VWF_D1472Y,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.34917,0.4556
+VWF_D1513N__a2_adamts13_folded_complex,VWF_D1513N,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.14389,0.21903
+VWF_D1513N__a2_folded_stability,VWF_D1513N,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_D172N__d1d2_propeptide_context,VWF_D172N,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_D1845N__a3_collagen_binding,VWF_D1845N,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.46226,0.51902
+VWF_D1891E__d4_assembly_context,VWF_D1891E,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_D2135N__d4_assembly_context,VWF_D2135N,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_D47H__d1d2_propeptide_context,VWF_D47H,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_D879N__dprime_d3_fviii_binding,VWF_D879N,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11509,0.15568
+VWF_E1161K__dprime_d3_fviii_binding,VWF_E1161K,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11628,0.14222
+VWF_E1171Q__dprime_d3_fviii_binding,VWF_E1171Q,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11683,0.13872
+VWF_E1290K__a1_aim_autoinhibition_context,VWF_E1290K,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_E1290K__a1_gpiba_forced_binding,VWF_E1290K,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.24842,0.44853
+VWF_E1290K__a1_heparan_sulfate_binding,VWF_E1290K,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.4443,0.69619
+VWF_E1290L__a1_aim_autoinhibition_context,VWF_E1290L,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_E1290L__a1_gpiba_forced_binding,VWF_E1290L,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.27422,0.383
+VWF_E1290L__a1_heparan_sulfate_binding,VWF_E1290L,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.38235,0.70078
+VWF_E1359K__a1_aim_autoinhibition_context,VWF_E1359K,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_E1359K__a1_gpiba_forced_binding,VWF_E1359K,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.26479,0.32125
+VWF_E1359K__a1_heparan_sulfate_binding,VWF_E1359K,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.59887,0.77398
+VWF_E1389K__a1_aim_autoinhibition_context,VWF_E1389K,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_E1389K__a1_gpiba_forced_binding,VWF_E1389K,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.33719,0.65352
+VWF_E1389K__a1_heparan_sulfate_binding,VWF_E1389K,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.55409,0.79368
+VWF_E1447Q__a1_aim_autoinhibition_context,VWF_E1447Q,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_E1447Q__a1_gpiba_forced_binding,VWF_E1447Q,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.32916,0.48912
+VWF_E1447Q__a1_heparan_sulfate_binding,VWF_E1447Q,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.54149,0.77663
+VWF_E1638K__a2_adamts13_folded_complex,VWF_E1638K,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.14822,0.23342
+VWF_E1638K__a2_folded_stability,VWF_E1638K,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_E1638K__vwf73_adamts13_substrate,VWF_E1638K,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.2066,0.56892
+VWF_E1673K__a3_collagen_binding,VWF_E1673K,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.46764,0.54423
+VWF_E1938D__d4_assembly_context,VWF_E1938D,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_E216K__d1d2_propeptide_context,VWF_E216K,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_E2233K__d4_assembly_context,VWF_E2233K,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_E2233V__d4_assembly_context,VWF_E2233V,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_E2322V__c1_collagen_binding,VWF_E2322V,C1,c1_collagen_binding,collagen binding accessory C-domain axis,8,0.5457,0.66273
+VWF_E2322V__c_domain_assembly_context,VWF_E2322V,C1,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_E2353D__c2_collagen_binding,VWF_E2353D,C2,c2_collagen_binding,collagen binding accessory C-domain axis,8,0.55358,0.61641
+VWF_E2353D__c_domain_assembly_context,VWF_E2353D,C2,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_E2366D__c2_collagen_binding,VWF_E2366D,C2,c2_collagen_binding,collagen binding accessory C-domain axis,8,0.54552,0.63822
+VWF_E2366D__c_domain_assembly_context,VWF_E2366D,C2,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_E787K__dprime_d3_fviii_binding,VWF_E787K,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.13437,0.16135
+VWF_F1021C__dprime_d3_fviii_binding,VWF_F1021C,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.13156,0.1839
+VWF_F1369I__a1_aim_autoinhibition_context,VWF_F1369I,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_F1369I__a1_gpiba_forced_binding,VWF_F1369I,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.35242,0.47044
+VWF_F1369I__a1_heparan_sulfate_binding,VWF_F1369I,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.39093,0.57831
+VWF_F1514C__a2_adamts13_folded_complex,VWF_F1514C,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.13183,0.19927
+VWF_F1514C__a2_folded_stability,VWF_F1514C,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_F1520L__a2_adamts13_folded_complex,VWF_F1520L,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.14813,0.22861
+VWF_F1520L__a2_folded_stability,VWF_F1520L,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_F1654L__a2_adamts13_folded_complex,VWF_F1654L,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.17062,0.28859
+VWF_F1654L__a2_folded_stability,VWF_F1654L,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_F1654L__vwf73_adamts13_substrate,VWF_F1654L,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.19521,0.63948
+VWF_F2561Y__c4_integrin_binding,VWF_F2561Y,C4,c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,8,0.53538,0.75104
+VWF_F2561Y__c_domain_assembly_context,VWF_F2561Y,C4,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_G1172C__dprime_d3_fviii_binding,VWF_G1172C,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.1165,0.14236
+VWF_G1172V__dprime_d3_fviii_binding,VWF_G1172V,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11463,0.12055
+VWF_G1180R__dprime_d3_fviii_binding,VWF_G1180R,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12477,0.18745
+VWF_G131S__d1d2_propeptide_context,VWF_G131S,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_G1324A__a1_aim_autoinhibition_context,VWF_G1324A,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_G1324A__a1_gpiba_forced_binding,VWF_G1324A,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.33216,0.50659
+VWF_G1324A__a1_heparan_sulfate_binding,VWF_G1324A,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.46377,0.60366
+VWF_G1324R__a1_aim_autoinhibition_context,VWF_G1324R,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_G1324R__a1_gpiba_forced_binding,VWF_G1324R,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.31701,0.55999
+VWF_G1324R__a1_heparan_sulfate_binding,VWF_G1324R,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.36114,0.61827
+VWF_G1324S__a1_aim_autoinhibition_context,VWF_G1324S,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_G1324S__a1_gpiba_forced_binding,VWF_G1324S,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.33886,0.46322
+VWF_G1324S__a1_heparan_sulfate_binding,VWF_G1324S,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.65218,0.85065
+VWF_G1415D__a1_aim_autoinhibition_context,VWF_G1415D,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_G1415D__a1_gpiba_forced_binding,VWF_G1415D,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.3952,0.60582
+VWF_G1415D__a1_heparan_sulfate_binding,VWF_G1415D,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.62988,0.85402
+VWF_G1505E__a2_adamts13_folded_complex,VWF_G1505E,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.17374,0.38833
+VWF_G1505E__a2_folded_stability,VWF_G1505E,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_G1505R__a2_adamts13_folded_complex,VWF_G1505R,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.16044,0.25252
+VWF_G1505R__a2_folded_stability,VWF_G1505R,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_G1579R__a2_adamts13_folded_complex,VWF_G1579R,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.22733,0.37746
+VWF_G1579R__a2_folded_stability,VWF_G1579R,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_G1609R__a2_adamts13_folded_complex,VWF_G1609R,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.15375,0.26231
+VWF_G1609R__a2_folded_stability,VWF_G1609R,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_G1609R__vwf73_adamts13_substrate,VWF_G1609R,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.16371,0.29494
+VWF_G160R__d1d2_propeptide_context,VWF_G160R,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_G160W__d1d2_propeptide_context,VWF_G160W,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_G1629E__a2_adamts13_folded_complex,VWF_G1629E,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.1309,0.20618
+VWF_G1629E__a2_folded_stability,VWF_G1629E,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_G1629E__vwf73_adamts13_substrate,VWF_G1629E,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.13786,0.33585
+VWF_G1629R__a2_adamts13_folded_complex,VWF_G1629R,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.19057,0.26817
+VWF_G1629R__a2_folded_stability,VWF_G1629R,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_G1629R__vwf73_adamts13_substrate,VWF_G1629R,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.14367,0.4345
+VWF_G1631D__a2_adamts13_folded_complex,VWF_G1631D,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.22223,0.46112
+VWF_G1631D__a2_folded_stability,VWF_G1631D,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_G1631D__vwf73_adamts13_substrate,VWF_G1631D,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.1448,0.1951
+VWF_G1643S__a2_adamts13_folded_complex,VWF_G1643S,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.20367,0.35718
+VWF_G1643S__a2_folded_stability,VWF_G1643S,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_G1643S__vwf73_adamts13_substrate,VWF_G1643S,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.16901,0.36398
+VWF_G1672R__a2_adamts13_folded_complex,VWF_G1672R,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.13148,0.21118
+VWF_G1672R__a2_folded_stability,VWF_G1672R,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_G1922E__d4_assembly_context,VWF_G1922E,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_G2441C__c_domain_assembly_context,VWF_G2441C,C3,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_G2518S__c4_integrin_binding,VWF_G2518S,C4,c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,8,0.39558,0.6838
+VWF_G2518S__c_domain_assembly_context,VWF_G2518S,C4,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_G2560V__c4_integrin_binding,VWF_G2560V,C4,c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,8,0.51163,0.82034
+VWF_G2560V__c_domain_assembly_context,VWF_G2560V,C4,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_G2705R__c_domain_assembly_context,VWF_G2705R,C6,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_G39R__d1d2_propeptide_context,VWF_G39R,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_G495R__d1d2_propeptide_context,VWF_G495R,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_G550R__d1d2_propeptide_context,VWF_G550R,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_G624S__d1d2_propeptide_context,VWF_G624S,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_G785E__dprime_d3_fviii_binding,VWF_G785E,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.14851,0.28674
+VWF_G79V__d1d2_propeptide_context,VWF_G79V,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_G899S__dprime_d3_fviii_binding,VWF_G899S,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.1283,0.17685
+VWF_G967D__dprime_d3_fviii_binding,VWF_G967D,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11794,0.1238
+VWF_H1268D__a1_aim_autoinhibition_context,VWF_H1268D,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_H1268D__a1_gpiba_forced_binding,VWF_H1268D,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.38435,0.6286
+VWF_H1268D__a1_heparan_sulfate_binding,VWF_H1268D,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.50241,0.64765
+VWF_H1268N__a1_aim_autoinhibition_context,VWF_H1268N,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_H1268N__a1_gpiba_forced_binding,VWF_H1268N,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.42137,0.60342
+VWF_H1268N__a1_heparan_sulfate_binding,VWF_H1268N,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.57533,0.85274
+VWF_H1268Q__a1_aim_autoinhibition_context,VWF_H1268Q,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_H1268Q__a1_gpiba_forced_binding,VWF_H1268Q,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.35022,0.53202
+VWF_H1268Q__a1_heparan_sulfate_binding,VWF_H1268Q,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.62173,0.84207
+VWF_H1322P__a1_aim_autoinhibition_context,VWF_H1322P,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_H1322P__a1_gpiba_forced_binding,VWF_H1322P,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.31544,0.44842
+VWF_H1322P__a1_heparan_sulfate_binding,VWF_H1322P,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.46595,0.74017
+VWF_H1900P__d4_assembly_context,VWF_H1900P,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_H2151Y__d4_assembly_context,VWF_H2151Y,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_H2486R__c_domain_assembly_context,VWF_H2486R,C3,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_H2699R__c_domain_assembly_context,VWF_H2699R,C6,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_H484N__d1d2_propeptide_context,VWF_H484N,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_H484R__d1d2_propeptide_context,VWF_H484R,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_H596N__d1d2_propeptide_context,VWF_H596N,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_H817Q__dprime_d3_fviii_binding,VWF_H817Q,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11443,0.12424
+VWF_I1094T__dprime_d3_fviii_binding,VWF_I1094T,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12509,0.15624
+VWF_I1309V__a1_aim_autoinhibition_context,VWF_I1309V,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_I1309V__a1_gpiba_forced_binding,VWF_I1309V,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.38268,0.53175
+VWF_I1309V__a1_heparan_sulfate_binding,VWF_I1309V,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.61019,0.87614
+VWF_I1372S__a1_aim_autoinhibition_context,VWF_I1372S,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_I1372S__a1_gpiba_forced_binding,VWF_I1372S,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.26891,0.50187
+VWF_I1372S__a1_heparan_sulfate_binding,VWF_I1372S,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.34242,0.46624
+VWF_I1380V__a1_aim_autoinhibition_context,VWF_I1380V,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_I1380V__a1_gpiba_forced_binding,VWF_I1380V,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.35652,0.55092
+VWF_I1380V__a1_heparan_sulfate_binding,VWF_I1380V,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.64796,0.8023
+VWF_I1416N__a1_aim_autoinhibition_context,VWF_I1416N,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_I1416N__a1_gpiba_forced_binding,VWF_I1416N,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.27454,0.41586
+VWF_I1416N__a1_heparan_sulfate_binding,VWF_I1416N,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.45504,0.8526
+VWF_I1509V__a2_adamts13_folded_complex,VWF_I1509V,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.15192,0.25924
+VWF_I1509V__a2_folded_stability,VWF_I1509V,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_I1525S__a2_adamts13_folded_complex,VWF_I1525S,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.12265,0.16199
+VWF_I1525S__a2_folded_stability,VWF_I1525S,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_I1568N__a2_adamts13_folded_complex,VWF_I1568N,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.13933,0.24307
+VWF_I1568N__a2_folded_stability,VWF_I1568N,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_I1628N__a2_adamts13_folded_complex,VWF_I1628N,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.19489,0.34075
+VWF_I1628N__a2_folded_stability,VWF_I1628N,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_I1628N__vwf73_adamts13_substrate,VWF_I1628N,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.20409,0.43603
+VWF_I1628T__a2_adamts13_folded_complex,VWF_I1628T,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.16593,0.24008
+VWF_I1628T__a2_folded_stability,VWF_I1628T,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_I1628T__vwf73_adamts13_substrate,VWF_I1628T,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.14903,0.35713
+VWF_I1649N__a2_adamts13_folded_complex,VWF_I1649N,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.2187,0.57929
+VWF_I1649N__a2_folded_stability,VWF_I1649N,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_I1649N__vwf73_adamts13_substrate,VWF_I1649N,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.13088,0.28714
+VWF_I1741T__a3_collagen_binding,VWF_I1741T,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.53223,0.60489
+VWF_I1825V__a3_collagen_binding,VWF_I1825V,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.48629,0.65127
+VWF_I2126T__d4_assembly_context,VWF_I2126T,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_I2126V__d4_assembly_context,VWF_I2126V,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_I2258V__c1_collagen_binding,VWF_I2258V,C1,c1_collagen_binding,collagen binding accessory C-domain axis,8,0.55348,0.68926
+VWF_I2258V__c_domain_assembly_context,VWF_I2258V,C1,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_I2542V__c4_integrin_binding,VWF_I2542V,C4,c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,8,0.41929,0.75202
+VWF_I2542V__c_domain_assembly_context,VWF_I2542V,C4,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_K1362T__a1_aim_autoinhibition_context,VWF_K1362T,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_K1362T__a1_gpiba_forced_binding,VWF_K1362T,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.45025,0.64597
+VWF_K1362T__a1_heparan_sulfate_binding,VWF_K1362T,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.71531,0.8732
+VWF_K1518E__a2_adamts13_folded_complex,VWF_K1518E,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.22186,0.57515
+VWF_K1518E__a2_folded_stability,VWF_K1518E,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_K157E__d1d2_propeptide_context,VWF_K157E,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_K1887N__d4_assembly_context,VWF_K1887N,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_L120V__d1d2_propeptide_context,VWF_L120V,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_L1276P__a1_aim_autoinhibition_context,VWF_L1276P,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_L1276P__a1_gpiba_forced_binding,VWF_L1276P,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.34014,0.46978
+VWF_L1276P__a1_heparan_sulfate_binding,VWF_L1276P,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.61312,0.81375
+VWF_L1276R__a1_aim_autoinhibition_context,VWF_L1276R,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_L1276R__a1_gpiba_forced_binding,VWF_L1276R,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.26584,0.36037
+VWF_L1276R__a1_heparan_sulfate_binding,VWF_L1276R,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.57973,0.80778
+VWF_L1278P__a1_aim_autoinhibition_context,VWF_L1278P,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_L1278P__a1_gpiba_forced_binding,VWF_L1278P,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.25926,0.40191
+VWF_L1278P__a1_heparan_sulfate_binding,VWF_L1278P,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.43534,0.79127
+VWF_L1278R__a1_aim_autoinhibition_context,VWF_L1278R,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_L1278R__a1_gpiba_forced_binding,VWF_L1278R,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.265,0.4172
+VWF_L1278R__a1_heparan_sulfate_binding,VWF_L1278R,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.45654,0.71445
+VWF_L1282R__a1_aim_autoinhibition_context,VWF_L1282R,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_L1282R__a1_gpiba_forced_binding,VWF_L1282R,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.25678,0.34973
+VWF_L1282R__a1_heparan_sulfate_binding,VWF_L1282R,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.36634,0.65567
+VWF_L1288R__a1_aim_autoinhibition_context,VWF_L1288R,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_L1288R__a1_gpiba_forced_binding,VWF_L1288R,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.31083,0.51509
+VWF_L1288R__a1_heparan_sulfate_binding,VWF_L1288R,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.37067,0.55975
+VWF_L1288V__a1_aim_autoinhibition_context,VWF_L1288V,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_L1288V__a1_gpiba_forced_binding,VWF_L1288V,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.36223,0.66429
+VWF_L1288V__a1_heparan_sulfate_binding,VWF_L1288V,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.59871,0.88397
+VWF_L1296P__a1_aim_autoinhibition_context,VWF_L1296P,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_L1296P__a1_gpiba_forced_binding,VWF_L1296P,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.24695,0.38936
+VWF_L1296P__a1_heparan_sulfate_binding,VWF_L1296P,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.40866,0.7359
+VWF_L129M__d1d2_propeptide_context,VWF_L129M,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_L1307P__a1_aim_autoinhibition_context,VWF_L1307P,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_L1307P__a1_gpiba_forced_binding,VWF_L1307P,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.30674,0.38524
+VWF_L1307P__a1_heparan_sulfate_binding,VWF_L1307P,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.42933,0.69225
+VWF_L1340P__a1_aim_autoinhibition_context,VWF_L1340P,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_L1340P__a1_gpiba_forced_binding,VWF_L1340P,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.32314,0.77289
+VWF_L1340P__a1_heparan_sulfate_binding,VWF_L1340P,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.64633,0.87039
+VWF_L1361S__a1_aim_autoinhibition_context,VWF_L1361S,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_L1361S__a1_gpiba_forced_binding,VWF_L1361S,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.34437,0.55268
+VWF_L1361S__a1_heparan_sulfate_binding,VWF_L1361S,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.37632,0.77113
+VWF_L1361W__a1_aim_autoinhibition_context,VWF_L1361W,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_L1361W__a1_gpiba_forced_binding,VWF_L1361W,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.46899,0.75317
+VWF_L1361W__a1_heparan_sulfate_binding,VWF_L1361W,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.54758,0.70987
+VWF_L1365R__a1_aim_autoinhibition_context,VWF_L1365R,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_L1365R__a1_gpiba_forced_binding,VWF_L1365R,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.25854,0.42681
+VWF_L1365R__a1_heparan_sulfate_binding,VWF_L1365R,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.33376,0.57765
+VWF_L1382P__a1_aim_autoinhibition_context,VWF_L1382P,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_L1382P__a1_gpiba_forced_binding,VWF_L1382P,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.32128,0.49865
+VWF_L1382P__a1_heparan_sulfate_binding,VWF_L1382P,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.41038,0.64169
+VWF_L1383R__a1_aim_autoinhibition_context,VWF_L1383R,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_L1383R__a1_gpiba_forced_binding,VWF_L1383R,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.32057,0.75839
+VWF_L1383R__a1_heparan_sulfate_binding,VWF_L1383R,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.59357,0.75129
+VWF_L1446P__a1_aim_autoinhibition_context,VWF_L1446P,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_L1446P__a1_gpiba_forced_binding,VWF_L1446P,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.35038,0.65195
+VWF_L1446P__a1_heparan_sulfate_binding,VWF_L1446P,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.33314,0.43466
+VWF_L1460F__a1_aim_autoinhibition_context,VWF_L1460F,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_L1460F__a1_gpiba_forced_binding,VWF_L1460F,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.29541,0.39486
+VWF_L1460F__a1_heparan_sulfate_binding,VWF_L1460F,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.58499,0.79215
+VWF_L1460P__a1_aim_autoinhibition_context,VWF_L1460P,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_L1460P__a1_gpiba_forced_binding,VWF_L1460P,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.48285,0.67205
+VWF_L1460P__a1_heparan_sulfate_binding,VWF_L1460P,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.60296,0.93744
+VWF_L1460V__a1_aim_autoinhibition_context,VWF_L1460V,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_L1460V__a1_gpiba_forced_binding,VWF_L1460V,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.33322,0.56641
+VWF_L1460V__a1_heparan_sulfate_binding,VWF_L1460V,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.49863,0.70889
+VWF_L1503P__a2_adamts13_folded_complex,VWF_L1503P,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.16064,0.27597
+VWF_L1503P__a2_folded_stability,VWF_L1503P,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_L1503Q__a2_adamts13_folded_complex,VWF_L1503Q,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.18193,0.25983
+VWF_L1503Q__a2_folded_stability,VWF_L1503Q,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_L1503R__a2_adamts13_folded_complex,VWF_L1503R,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.14788,0.25213
+VWF_L1503R__a2_folded_stability,VWF_L1503R,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_L150E__d1d2_propeptide_context,VWF_L150E,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_L1540P__a2_adamts13_folded_complex,VWF_L1540P,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.16649,0.3245
+VWF_L1540P__a2_folded_stability,VWF_L1540P,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_L1562P__a2_adamts13_folded_complex,VWF_L1562P,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.12186,0.23308
+VWF_L1562P__a2_folded_stability,VWF_L1562P,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_L1580P__a2_adamts13_folded_complex,VWF_L1580P,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.22018,0.37233
+VWF_L1580P__a2_folded_stability,VWF_L1580P,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_L1582P__a2_adamts13_folded_complex,VWF_L1582P,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.21906,0.53553
+VWF_L1582P__a2_folded_stability,VWF_L1582P,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_L1603P__a2_adamts13_folded_complex,VWF_L1603P,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.21052,0.3544
+VWF_L1603P__a2_folded_stability,VWF_L1603P,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_L1603P__vwf73_adamts13_substrate,VWF_L1603P,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.17015,0.41295
+VWF_L1639P__a2_adamts13_folded_complex,VWF_L1639P,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.20556,0.57766
+VWF_L1639P__a2_folded_stability,VWF_L1639P,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_L1639P__vwf73_adamts13_substrate,VWF_L1639P,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.18836,0.32583
+VWF_L1657H__a2_adamts13_folded_complex,VWF_L1657H,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.20147,0.36726
+VWF_L1657H__a2_folded_stability,VWF_L1657H,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_L1657H__vwf73_adamts13_substrate,VWF_L1657H,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.22279,0.53428
+VWF_L1657I__a2_adamts13_folded_complex,VWF_L1657I,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.20506,0.31769
+VWF_L1657I__a2_folded_stability,VWF_L1657I,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_L1657I__vwf73_adamts13_substrate,VWF_L1657I,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.09795,0.17362
+VWF_L1774S__a3_collagen_binding,VWF_L1774S,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.45411,0.57005
+VWF_L1923P__d4_assembly_context,VWF_L1923P,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_L2142F__d4_assembly_context,VWF_L2142F,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_L2207P__d4_assembly_context,VWF_L2207P,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_L2380F__c2_collagen_binding,VWF_L2380F,C2,c2_collagen_binding,collagen binding accessory C-domain axis,8,0.61855,0.73817
+VWF_L2380F__c_domain_assembly_context,VWF_L2380F,C2,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_L2407P__c_domain_assembly_context,VWF_L2407P,C3,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_L2786P__ck_dimerization_context,VWF_L2786P,CK,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_L60P__d1d2_propeptide_context,VWF_L60P,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_L809P__dprime_d3_fviii_binding,VWF_L809P,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.13081,0.17891
+VWF_L84F__d1d2_propeptide_context,VWF_L84F,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_M1303M__a1_aim_autoinhibition_context,VWF_M1303M,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_M1303M__a1_gpiba_forced_binding,VWF_M1303M,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.36591,0.45262
+VWF_M1303M__a1_heparan_sulfate_binding,VWF_M1303M,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.49667,0.80318
+VWF_M1304R__a1_aim_autoinhibition_context,VWF_M1304R,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_M1304R__a1_gpiba_forced_binding,VWF_M1304R,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.2401,0.3185
+VWF_M1304R__a1_heparan_sulfate_binding,VWF_M1304R,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.34991,0.50654
+VWF_M1304V__a1_aim_autoinhibition_context,VWF_M1304V,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_M1304V__a1_gpiba_forced_binding,VWF_M1304V,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.31159,0.50318
+VWF_M1304V__a1_heparan_sulfate_binding,VWF_M1304V,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.68059,0.90706
+VWF_M1495L__a2_adamts13_folded_complex,VWF_M1495L,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.19443,0.30005
+VWF_M1495L__a2_folded_stability,VWF_M1495L,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_M1528V__a2_adamts13_folded_complex,VWF_M1528V,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.15857,0.23746
+VWF_M1528V__a2_folded_stability,VWF_M1528V,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_M1880I__d4_assembly_context,VWF_M1880I,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_M2038V__d4_assembly_context,VWF_M2038V,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_M2583L__c_domain_assembly_context,VWF_M2583L,C5,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_M2606V__c_domain_assembly_context,VWF_M2606V,C5,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_M2759T__ck_dimerization_context,VWF_M2759T,CK,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_M2759V__ck_dimerization_context,VWF_M2759V,CK,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_M2782T__ck_dimerization_context,VWF_M2782T,CK,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_M576I__d1d2_propeptide_context,VWF_M576I,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_M736I__d1d2_propeptide_context,VWF_M736I,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_M736T__d1d2_propeptide_context,VWF_M736T,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_M740I__d1d2_propeptide_context,VWF_M740I,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_M771I__dprime_d3_fviii_binding,VWF_M771I,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11658,0.13845
+VWF_M800V__dprime_d3_fviii_binding,VWF_M800V,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12073,0.17549
+VWF_M814I__dprime_d3_fviii_binding,VWF_M814I,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12971,0.17385
+VWF_M947V__dprime_d3_fviii_binding,VWF_M947V,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.13175,0.20942
+VWF_N1138N__dprime_d3_fviii_binding,VWF_N1138N,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12189,0.15602
+VWF_N1231H__dprime_d3_fviii_binding,VWF_N1231H,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12537,0.16048
+VWF_N1231S__dprime_d3_fviii_binding,VWF_N1231S,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.13805,0.22679
+VWF_N1231T__dprime_d3_fviii_binding,VWF_N1231T,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.1221,0.17346
+VWF_N1421K__a1_aim_autoinhibition_context,VWF_N1421K,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_N1421K__a1_gpiba_forced_binding,VWF_N1421K,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.48127,0.65024
+VWF_N1421K__a1_heparan_sulfate_binding,VWF_N1421K,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.50081,0.82103
+VWF_N1435S__a1_aim_autoinhibition_context,VWF_N1435S,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_N1435S__a1_gpiba_forced_binding,VWF_N1435S,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.30362,0.47214
+VWF_N1435S__a1_heparan_sulfate_binding,VWF_N1435S,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.58046,0.86028
+VWF_N1635I__a2_adamts13_folded_complex,VWF_N1635I,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.13792,0.22878
+VWF_N1635I__a2_folded_stability,VWF_N1635I,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_N1635I__vwf73_adamts13_substrate,VWF_N1635I,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.13093,0.21818
+VWF_N1635T__a2_adamts13_folded_complex,VWF_N1635T,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.17036,0.26277
+VWF_N1635T__a2_folded_stability,VWF_N1635T,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_N1635T__vwf73_adamts13_substrate,VWF_N1635T,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.12418,0.25035
+VWF_N166I__d1d2_propeptide_context,VWF_N166I,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_N1722D__a3_collagen_binding,VWF_N1722D,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.4872,0.62707
+VWF_N1818S__a3_collagen_binding,VWF_N1818S,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.52226,0.67319
+VWF_N2053S__d4_assembly_context,VWF_N2053S,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_N2531S__c4_integrin_binding,VWF_N2531S,C4,c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,8,0.2822,0.5683
+VWF_N2531S__c_domain_assembly_context,VWF_N2531S,C4,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_N2546Y__c4_integrin_binding,VWF_N2546Y,C4,c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,8,0.51269,0.73604
+VWF_N2546Y__c_domain_assembly_context,VWF_N2546Y,C4,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_N2679D__c_domain_assembly_context,VWF_N2679D,C6,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_N2679S__c_domain_assembly_context,VWF_N2679S,C6,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_N318K__d1d2_propeptide_context,VWF_N318K,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_N318S__d1d2_propeptide_context,VWF_N318S,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_N528S__d1d2_propeptide_context,VWF_N528S,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_N780K__dprime_d3_fviii_binding,VWF_N780K,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12549,0.20036
+VWF_N99S__d1d2_propeptide_context,VWF_N99S,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_P1162L__dprime_d3_fviii_binding,VWF_P1162L,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12117,0.13678
+VWF_P1240L__a1_aim_autoinhibition_context,VWF_P1240L,A1_N_flank,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_P1266L__a1_aim_autoinhibition_context,VWF_P1266L,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_P1266L__a1_gpiba_forced_binding,VWF_P1266L,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.27423,0.56391
+VWF_P1266L__a1_heparan_sulfate_binding,VWF_P1266L,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.44785,0.69434
+VWF_P1266Q__a1_aim_autoinhibition_context,VWF_P1266Q,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_P1266Q__a1_gpiba_forced_binding,VWF_P1266Q,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.24299,0.30028
+VWF_P1266Q__a1_heparan_sulfate_binding,VWF_P1266Q,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.65629,0.83859
+VWF_P1337L__a1_aim_autoinhibition_context,VWF_P1337L,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_P1337L__a1_gpiba_forced_binding,VWF_P1337L,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.43179,0.64976
+VWF_P1337L__a1_heparan_sulfate_binding,VWF_P1337L,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.30522,0.60676
+VWF_P1413L__a1_aim_autoinhibition_context,VWF_P1413L,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_P1413L__a1_gpiba_forced_binding,VWF_P1413L,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.41223,0.52254
+VWF_P1413L__a1_heparan_sulfate_binding,VWF_P1413L,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.4126,0.73383
+VWF_P1627H__a2_adamts13_folded_complex,VWF_P1627H,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.13826,0.1824
+VWF_P1627H__a2_folded_stability,VWF_P1627H,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_P1627H__vwf73_adamts13_substrate,VWF_P1627H,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.18115,0.32969
+VWF_P1648S__a2_adamts13_folded_complex,VWF_P1648S,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.17994,0.24664
+VWF_P1648S__a2_folded_stability,VWF_P1648S,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_P1648S__vwf73_adamts13_substrate,VWF_P1648S,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.19924,0.54251
+VWF_P1684R__a3_collagen_binding,VWF_P1684R,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.46673,0.53351
+VWF_P1725S__a3_collagen_binding,VWF_P1725S,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.48811,0.58659
+VWF_P1749L__a3_collagen_binding,VWF_P1749L,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.55864,0.72674
+VWF_P1824H__a3_collagen_binding,VWF_P1824H,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.51099,0.66197
+VWF_P1928R__d4_assembly_context,VWF_P1928R,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_P1933L__d4_assembly_context,VWF_P1933L,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_P2063S__d4_assembly_context,VWF_P2063S,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_P2145A__d4_assembly_context,VWF_P2145A,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_P2145S__d4_assembly_context,VWF_P2145S,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_P2297L__c1_collagen_binding,VWF_P2297L,C1,c1_collagen_binding,collagen binding accessory C-domain axis,8,0.52917,0.67691
+VWF_P2297L__c_domain_assembly_context,VWF_P2297L,C1,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_P2336L__c2_collagen_binding,VWF_P2336L,C2,c2_collagen_binding,collagen binding accessory C-domain axis,8,0.54193,0.6797
+VWF_P2336L__c_domain_assembly_context,VWF_P2336L,C2,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_P2626T__c_domain_assembly_context,VWF_P2626T,C5,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_P266A__d1d2_propeptide_context,VWF_P266A,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_P2722A__c_domain_assembly_context,VWF_P2722A,C6,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_P2776L__ck_dimerization_context,VWF_P2776L,CK,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_P538L__d1d2_propeptide_context,VWF_P538L,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_P664L__d1d2_propeptide_context,VWF_P664L,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_P691T__d1d2_propeptide_context,VWF_P691T,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_P812L__dprime_d3_fviii_binding,VWF_P812L,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11222,0.12559
+VWF_Q1030R__dprime_d3_fviii_binding,VWF_Q1030R,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.13721,0.19369
+VWF_Q1053H__dprime_d3_fviii_binding,VWF_Q1053H,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12761,0.15986
+VWF_Q1402P__a1_aim_autoinhibition_context,VWF_Q1402P,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_Q1402P__a1_gpiba_forced_binding,VWF_Q1402P,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.33317,0.50788
+VWF_Q1402P__a1_heparan_sulfate_binding,VWF_Q1402P,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.51426,0.75371
+VWF_Q1526H__a2_adamts13_folded_complex,VWF_Q1526H,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.10282,0.1356
+VWF_Q1526H__a2_folded_stability,VWF_Q1526H,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_Q1526R__a2_adamts13_folded_complex,VWF_Q1526R,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.12784,0.19371
+VWF_Q1526R__a2_folded_stability,VWF_Q1526R,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_Q1556R__a2_adamts13_folded_complex,VWF_Q1556R,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.14967,0.27581
+VWF_Q1556R__a2_folded_stability,VWF_Q1556R,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_Q1762R__a3_collagen_binding,VWF_Q1762R,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.50533,0.6589
+VWF_Q1931H__d4_assembly_context,VWF_Q1931H,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_Q1964K__d4_assembly_context,VWF_Q1964K,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_Q2467P__c_domain_assembly_context,VWF_Q2467P,C3,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_Q2520P__c4_integrin_binding,VWF_Q2520P,C4,c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,8,0.3132,0.69223
+VWF_Q2520P__c_domain_assembly_context,VWF_Q2520P,C4,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_Q499H__d1d2_propeptide_context,VWF_Q499H,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_Q560R__d1d2_propeptide_context,VWF_Q560R,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_Q66K__d1d2_propeptide_context,VWF_Q66K,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_R1035G__dprime_d3_fviii_binding,VWF_R1035G,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.13551,0.23088
+VWF_R1121M__dprime_d3_fviii_binding,VWF_R1121M,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12024,0.15929
+VWF_R1136Q__dprime_d3_fviii_binding,VWF_R1136Q,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11206,0.12461
+VWF_R1145C__dprime_d3_fviii_binding,VWF_R1145C,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.1139,0.12116
+VWF_R1205C__dprime_d3_fviii_binding,VWF_R1205C,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11991,0.13866
+VWF_R1205H__dprime_d3_fviii_binding,VWF_R1205H,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11521,0.13719
+VWF_R1205L__dprime_d3_fviii_binding,VWF_R1205L,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12256,0.16967
+VWF_R1205S__dprime_d3_fviii_binding,VWF_R1205S,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12686,0.16314
+VWF_R1306E__a1_aim_autoinhibition_context,VWF_R1306E,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1306E__a1_gpiba_forced_binding,VWF_R1306E,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.30599,0.43272
+VWF_R1306E__a1_heparan_sulfate_binding,VWF_R1306E,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.35225,0.54915
+VWF_R1306L__a1_aim_autoinhibition_context,VWF_R1306L,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1306L__a1_gpiba_forced_binding,VWF_R1306L,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.28237,0.37597
+VWF_R1306L__a1_heparan_sulfate_binding,VWF_R1306L,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.61713,0.80133
+VWF_R1306P__a1_aim_autoinhibition_context,VWF_R1306P,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1306P__a1_gpiba_forced_binding,VWF_R1306P,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.30159,0.48076
+VWF_R1306P__a1_heparan_sulfate_binding,VWF_R1306P,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.58237,0.7196
+VWF_R1306Q__a1_aim_autoinhibition_context,VWF_R1306Q,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1306Q__a1_gpiba_forced_binding,VWF_R1306Q,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.32686,0.52529
+VWF_R1306Q__a1_heparan_sulfate_binding,VWF_R1306Q,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.43519,0.52689
+VWF_R1306W__a1_aim_autoinhibition_context,VWF_R1306W,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1306W__a1_gpiba_forced_binding,VWF_R1306W,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.3221,0.45795
+VWF_R1306W__a1_heparan_sulfate_binding,VWF_R1306W,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.50469,0.67554
+VWF_R1308C__a1_aim_autoinhibition_context,VWF_R1308C,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1308C__a1_gpiba_forced_binding,VWF_R1308C,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.298,0.41216
+VWF_R1308C__a1_heparan_sulfate_binding,VWF_R1308C,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.63294,0.88046
+VWF_R1308L__a1_aim_autoinhibition_context,VWF_R1308L,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1308L__a1_gpiba_forced_binding,VWF_R1308L,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.35887,0.49038
+VWF_R1308L__a1_heparan_sulfate_binding,VWF_R1308L,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.55209,0.77656
+VWF_R1308P__a1_aim_autoinhibition_context,VWF_R1308P,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1308P__a1_gpiba_forced_binding,VWF_R1308P,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.25533,0.53503
+VWF_R1308P__a1_heparan_sulfate_binding,VWF_R1308P,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.57261,0.84138
+VWF_R1308S__a1_aim_autoinhibition_context,VWF_R1308S,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1308S__a1_gpiba_forced_binding,VWF_R1308S,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.39516,0.58215
+VWF_R1308S__a1_heparan_sulfate_binding,VWF_R1308S,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.59125,0.79145
+VWF_R1315C__a1_aim_autoinhibition_context,VWF_R1315C,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1315C__a1_gpiba_forced_binding,VWF_R1315C,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.28616,0.4531
+VWF_R1315C__a1_heparan_sulfate_binding,VWF_R1315C,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.54249,0.82112
+VWF_R1315G__a1_aim_autoinhibition_context,VWF_R1315G,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1315G__a1_gpiba_forced_binding,VWF_R1315G,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.36718,0.48149
+VWF_R1315G__a1_heparan_sulfate_binding,VWF_R1315G,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.55032,0.80449
+VWF_R1315H__a1_aim_autoinhibition_context,VWF_R1315H,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1315H__a1_gpiba_forced_binding,VWF_R1315H,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.458,0.7744
+VWF_R1315H__a1_heparan_sulfate_binding,VWF_R1315H,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.25743,0.41485
+VWF_R1315L__a1_aim_autoinhibition_context,VWF_R1315L,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1315L__a1_gpiba_forced_binding,VWF_R1315L,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.26092,0.35717
+VWF_R1315L__a1_heparan_sulfate_binding,VWF_R1315L,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.35738,0.4595
+VWF_R1315P__a1_aim_autoinhibition_context,VWF_R1315P,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1315P__a1_gpiba_forced_binding,VWF_R1315P,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.45664,0.60175
+VWF_R1315P__a1_heparan_sulfate_binding,VWF_R1315P,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.52351,0.78144
+VWF_R1341E__a1_aim_autoinhibition_context,VWF_R1341E,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1341E__a1_gpiba_forced_binding,VWF_R1341E,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.24968,0.32744
+VWF_R1341E__a1_heparan_sulfate_binding,VWF_R1341E,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.65946,0.89034
+VWF_R1341L__a1_aim_autoinhibition_context,VWF_R1341L,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1341L__a1_gpiba_forced_binding,VWF_R1341L,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.23162,0.30562
+VWF_R1341L__a1_heparan_sulfate_binding,VWF_R1341L,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.52692,0.70636
+VWF_R1341Q__a1_aim_autoinhibition_context,VWF_R1341Q,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1341Q__a1_gpiba_forced_binding,VWF_R1341Q,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.38024,0.52512
+VWF_R1341Q__a1_heparan_sulfate_binding,VWF_R1341Q,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.38379,0.51185
+VWF_R1341W__a1_aim_autoinhibition_context,VWF_R1341W,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1341W__a1_gpiba_forced_binding,VWF_R1341W,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.22488,0.2744
+VWF_R1341W__a1_heparan_sulfate_binding,VWF_R1341W,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.57365,0.9044
+VWF_R1342C__a1_aim_autoinhibition_context,VWF_R1342C,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1342C__a1_gpiba_forced_binding,VWF_R1342C,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.27565,0.62706
+VWF_R1342C__a1_heparan_sulfate_binding,VWF_R1342C,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.45524,0.76281
+VWF_R1374C__a1_aim_autoinhibition_context,VWF_R1374C,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1374C__a1_gpiba_forced_binding,VWF_R1374C,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.3241,0.55776
+VWF_R1374C__a1_heparan_sulfate_binding,VWF_R1374C,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.54601,0.77333
+VWF_R1374H__a1_aim_autoinhibition_context,VWF_R1374H,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1374H__a1_gpiba_forced_binding,VWF_R1374H,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.24873,0.34631
+VWF_R1374H__a1_heparan_sulfate_binding,VWF_R1374H,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.54082,0.65674
+VWF_R1374L__a1_aim_autoinhibition_context,VWF_R1374L,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1374L__a1_gpiba_forced_binding,VWF_R1374L,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.28687,0.55134
+VWF_R1374L__a1_heparan_sulfate_binding,VWF_R1374L,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.38178,0.65269
+VWF_R1374S__a1_aim_autoinhibition_context,VWF_R1374S,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1374S__a1_gpiba_forced_binding,VWF_R1374S,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.39812,0.62478
+VWF_R1374S__a1_heparan_sulfate_binding,VWF_R1374S,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.48437,0.60021
+VWF_R1379C__a1_aim_autoinhibition_context,VWF_R1379C,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1379C__a1_gpiba_forced_binding,VWF_R1379C,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.32658,0.56384
+VWF_R1379C__a1_heparan_sulfate_binding,VWF_R1379C,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.51497,0.81674
+VWF_R1399C__a1_aim_autoinhibition_context,VWF_R1399C,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1399C__a1_gpiba_forced_binding,VWF_R1399C,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.45088,0.68039
+VWF_R1399C__a1_heparan_sulfate_binding,VWF_R1399C,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.45537,0.89143
+VWF_R1399H__a1_aim_autoinhibition_context,VWF_R1399H,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1399H__a1_gpiba_forced_binding,VWF_R1399H,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.39581,0.59425
+VWF_R1399H__a1_heparan_sulfate_binding,VWF_R1399H,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.53602,0.70506
+VWF_R1492S__a1_aim_autoinhibition_context,VWF_R1492S,A2,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_R1492S__a2_adamts13_folded_complex,VWF_R1492S,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.16461,0.33228
+VWF_R1492S__a2_folded_stability,VWF_R1492S,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_R1527Q__a2_adamts13_folded_complex,VWF_R1527Q,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.19234,0.47239
+VWF_R1527Q__a2_folded_stability,VWF_R1527Q,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_R1564P__a2_adamts13_folded_complex,VWF_R1564P,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.12343,0.20425
+VWF_R1564P__a2_folded_stability,VWF_R1564P,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_R1564W__a2_adamts13_folded_complex,VWF_R1564W,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.168,0.31628
+VWF_R1564W__a2_folded_stability,VWF_R1564W,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_R1583Q__a2_adamts13_folded_complex,VWF_R1583Q,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.19391,0.39554
+VWF_R1583Q__a2_folded_stability,VWF_R1583Q,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_R1583W__a2_adamts13_folded_complex,VWF_R1583W,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.22592,0.49749
+VWF_R1583W__a2_folded_stability,VWF_R1583W,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_R1597G__a2_adamts13_folded_complex,VWF_R1597G,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.1863,0.32834
+VWF_R1597G__a2_folded_stability,VWF_R1597G,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_R1597G__vwf73_adamts13_substrate,VWF_R1597G,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.0921,0.13934
+VWF_R1597L__a2_adamts13_folded_complex,VWF_R1597L,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.15822,0.4356
+VWF_R1597L__a2_folded_stability,VWF_R1597L,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_R1597L__vwf73_adamts13_substrate,VWF_R1597L,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.22176,0.44096
+VWF_R1597P__a2_adamts13_folded_complex,VWF_R1597P,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.13825,0.28388
+VWF_R1597P__a2_folded_stability,VWF_R1597P,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_R1597P__vwf73_adamts13_substrate,VWF_R1597P,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.09732,0.13401
+VWF_R1597Q__a2_adamts13_folded_complex,VWF_R1597Q,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.16148,0.29861
+VWF_R1597Q__a2_folded_stability,VWF_R1597Q,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_R1597Q__vwf73_adamts13_substrate,VWF_R1597Q,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.10942,0.21576
+VWF_R1597W__a2_adamts13_folded_complex,VWF_R1597W,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.17784,0.4528
+VWF_R1597W__a2_folded_stability,VWF_R1597W,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_R1597W__vwf73_adamts13_substrate,VWF_R1597W,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.24536,0.40652
+VWF_R1641K__a2_adamts13_folded_complex,VWF_R1641K,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.20679,0.28485
+VWF_R1641K__a2_folded_stability,VWF_R1641K,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_R1641K__vwf73_adamts13_substrate,VWF_R1641K,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.10187,0.1492
+VWF_R1668S__a2_adamts13_folded_complex,VWF_R1668S,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.1476,0.40622
+VWF_R1668S__a2_folded_stability,VWF_R1668S,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_R1668S__vwf73_adamts13_substrate,VWF_R1668S,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.09639,0.15075
+VWF_R1726H__a3_collagen_binding,VWF_R1726H,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.47766,0.56262
+VWF_R1763Q__a3_collagen_binding,VWF_R1763Q,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.49044,0.5628
+VWF_R1779L__a3_collagen_binding,VWF_R1779L,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.56803,0.64341
+VWF_R1837W__a3_collagen_binding,VWF_R1837W,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.47953,0.56859
+VWF_R1921W__d4_assembly_context,VWF_R1921W,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_R1998K__d4_assembly_context,VWF_R1998K,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_R2118Q__d4_assembly_context,VWF_R2118Q,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_R2118W__d4_assembly_context,VWF_R2118W,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_R2185Q__d4_assembly_context,VWF_R2185Q,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_R2218Q__d4_assembly_context,VWF_R2218Q,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_R2287Q__c1_collagen_binding,VWF_R2287Q,C1,c1_collagen_binding,collagen binding accessory C-domain axis,8,0.51865,0.57331
+VWF_R2287Q__c_domain_assembly_context,VWF_R2287Q,C1,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_R2287W__c1_collagen_binding,VWF_R2287W,C1,c1_collagen_binding,collagen binding accessory C-domain axis,8,0.51117,0.55524
+VWF_R2287W__c_domain_assembly_context,VWF_R2287W,C1,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_R2311H__c1_collagen_binding,VWF_R2311H,C1,c1_collagen_binding,collagen binding accessory C-domain axis,8,0.51808,0.59414
+VWF_R2311H__c_domain_assembly_context,VWF_R2311H,C1,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_R2313C__c1_collagen_binding,VWF_R2313C,C1,c1_collagen_binding,collagen binding accessory C-domain axis,8,0.53773,0.65268
+VWF_R2313C__c_domain_assembly_context,VWF_R2313C,C1,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_R2313H__c1_collagen_binding,VWF_R2313H,C1,c1_collagen_binding,collagen binding accessory C-domain axis,8,0.54895,0.63833
+VWF_R2313H__c_domain_assembly_context,VWF_R2313H,C1,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_R2342C__c2_collagen_binding,VWF_R2342C,C2,c2_collagen_binding,collagen binding accessory C-domain axis,8,0.56004,0.70649
+VWF_R2342C__c_domain_assembly_context,VWF_R2342C,C2,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_R2342H__c2_collagen_binding,VWF_R2342H,C2,c2_collagen_binding,collagen binding accessory C-domain axis,8,0.58173,0.67956
+VWF_R2342H__c_domain_assembly_context,VWF_R2342H,C2,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_R2384Q__c2_collagen_binding,VWF_R2384Q,C2,c2_collagen_binding,collagen binding accessory C-domain axis,8,0.55654,0.694
+VWF_R2384Q__c_domain_assembly_context,VWF_R2384Q,C2,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_R2384W__c2_collagen_binding,VWF_R2384W,C2,c2_collagen_binding,collagen binding accessory C-domain axis,8,0.59332,0.70567
+VWF_R2384W__c_domain_assembly_context,VWF_R2384W,C2,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_R2434Q__c_domain_assembly_context,VWF_R2434Q,C3,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_R2464C__c_domain_assembly_context,VWF_R2464C,C3,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_R2478Q__c_domain_assembly_context,VWF_R2478Q,C3,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_R2507W__c4_integrin_binding,VWF_R2507W,C4,c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,8,0.34785,0.64288
+VWF_R2507W__c_domain_assembly_context,VWF_R2507W,C4,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_R2535P__c4_integrin_binding,VWF_R2535P,C4,c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,8,0.13531,0.17626
+VWF_R2535P__c_domain_assembly_context,VWF_R2535P,C4,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_R2535Q__c4_integrin_binding,VWF_R2535Q,C4,c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,8,0.47063,0.77412
+VWF_R2535Q__c_domain_assembly_context,VWF_R2535Q,C4,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_R2575H__c4_integrin_binding,VWF_R2575H,C4,c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,8,0.45867,0.72844
+VWF_R2575H__c_domain_assembly_context,VWF_R2575H,C4,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_R2663C__c_domain_assembly_context,VWF_R2663C,C6,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_R2663P__c_domain_assembly_context,VWF_R2663P,C6,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_R273W__d1d2_propeptide_context,VWF_R273W,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_R2778Q__ck_dimerization_context,VWF_R2778Q,CK,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_R27H__d1d2_propeptide_context,VWF_R27H,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_R324Q__d1d2_propeptide_context,VWF_R324Q,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_R34G__d1d2_propeptide_context,VWF_R34G,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_R402K__d1d2_propeptide_context,VWF_R402K,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_R436C__d1d2_propeptide_context,VWF_R436C,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_R447W__d1d2_propeptide_context,VWF_R447W,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_R491H__d1d2_propeptide_context,VWF_R491H,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_R507G__d1d2_propeptide_context,VWF_R507G,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_R606Q__d1d2_propeptide_context,VWF_R606Q,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_R698K__d1d2_propeptide_context,VWF_R698K,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_R698S__d1d2_propeptide_context,VWF_R698S,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_R760C__d1d2_propeptide_context,VWF_R760C,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_R763G__d1d2_propeptide_context,VWF_R763G,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_R763M__d1d2_propeptide_context,VWF_R763M,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_R763S__d1d2_propeptide_context,VWF_R763S,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_R768Q__dprime_d3_fviii_binding,VWF_R768Q,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12251,0.14796
+VWF_R782Q__dprime_d3_fviii_binding,VWF_R782Q,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11388,0.12643
+VWF_R816Q__dprime_d3_fviii_binding,VWF_R816Q,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11282,0.14273
+VWF_R816W__dprime_d3_fviii_binding,VWF_R816W,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.1359,0.2041
+VWF_R81E__d1d2_propeptide_context,VWF_R81E,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_R854E__dprime_d3_fviii_binding,VWF_R854E,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11906,0.15392
+VWF_R854Q__dprime_d3_fviii_binding,VWF_R854Q,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12234,0.15966
+VWF_R854W__dprime_d3_fviii_binding,VWF_R854W,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12542,0.19214
+VWF_R924Q__dprime_d3_fviii_binding,VWF_R924Q,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12695,0.17531
+VWF_R924W__dprime_d3_fviii_binding,VWF_R924W,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11082,0.13318
+VWF_R976C__dprime_d3_fviii_binding,VWF_R976C,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11514,0.12983
+VWF_R976H__dprime_d3_fviii_binding,VWF_R976H,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12929,0.19056
+VWF_S1263L__a1_aim_autoinhibition_context,VWF_S1263L,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_S1263L__a1_gpiba_forced_binding,VWF_S1263L,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.30655,0.41363
+VWF_S1263L__a1_heparan_sulfate_binding,VWF_S1263L,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.49522,0.76384
+VWF_S1285F__a1_aim_autoinhibition_context,VWF_S1285F,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_S1285F__a1_gpiba_forced_binding,VWF_S1285F,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.28459,0.43466
+VWF_S1285F__a1_heparan_sulfate_binding,VWF_S1285F,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.36232,0.67933
+VWF_S1285P__a1_aim_autoinhibition_context,VWF_S1285P,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_S1285P__a1_gpiba_forced_binding,VWF_S1285P,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.36034,0.49025
+VWF_S1285P__a1_heparan_sulfate_binding,VWF_S1285P,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.35155,0.72313
+VWF_S1310F__a1_aim_autoinhibition_context,VWF_S1310F,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_S1310F__a1_gpiba_forced_binding,VWF_S1310F,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.23298,0.35434
+VWF_S1310F__a1_heparan_sulfate_binding,VWF_S1310F,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.51739,0.68192
+VWF_S1310P__a1_aim_autoinhibition_context,VWF_S1310P,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_S1310P__a1_gpiba_forced_binding,VWF_S1310P,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.28424,0.47955
+VWF_S1310P__a1_heparan_sulfate_binding,VWF_S1310P,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.44861,0.58526
+VWF_S1358N__a1_aim_autoinhibition_context,VWF_S1358N,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_S1358N__a1_gpiba_forced_binding,VWF_S1358N,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.31382,0.5535
+VWF_S1358N__a1_heparan_sulfate_binding,VWF_S1358N,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.28912,0.55986
+VWF_S1378F__a1_aim_autoinhibition_context,VWF_S1378F,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_S1378F__a1_gpiba_forced_binding,VWF_S1378F,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.24155,0.3229
+VWF_S1378F__a1_heparan_sulfate_binding,VWF_S1378F,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.45981,0.75461
+VWF_S1387I__a1_aim_autoinhibition_context,VWF_S1387I,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_S1387I__a1_gpiba_forced_binding,VWF_S1387I,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.32684,0.53587
+VWF_S1387I__a1_heparan_sulfate_binding,VWF_S1387I,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.49718,0.73849
+VWF_S1387R__a1_aim_autoinhibition_context,VWF_S1387R,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_S1387R__a1_gpiba_forced_binding,VWF_S1387R,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.2354,0.3144
+VWF_S1387R__a1_heparan_sulfate_binding,VWF_S1387R,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.47452,0.86264
+VWF_S1394F__a1_aim_autoinhibition_context,VWF_S1394F,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_S1394F__a1_gpiba_forced_binding,VWF_S1394F,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.29741,0.47515
+VWF_S1394F__a1_heparan_sulfate_binding,VWF_S1394F,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.42937,0.79605
+VWF_S1486L__a1_aim_autoinhibition_context,VWF_S1486L,A2,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_S1486L__a2_adamts13_folded_complex,VWF_S1486L,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.1445,0.24026
+VWF_S1486L__a2_folded_stability,VWF_S1486L,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_S1506L__a2_adamts13_folded_complex,VWF_S1506L,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.13207,0.18504
+VWF_S1506L__a2_folded_stability,VWF_S1506L,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_S1543F__a2_adamts13_folded_complex,VWF_S1543F,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.11692,0.15124
+VWF_S1543F__a2_folded_stability,VWF_S1543F,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_S1613P__a2_adamts13_folded_complex,VWF_S1613P,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.1616,0.25741
+VWF_S1613P__a2_folded_stability,VWF_S1613P,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_S1613P__vwf73_adamts13_substrate,VWF_S1613P,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.09343,0.19064
+VWF_S2010N__d4_assembly_context,VWF_S2010N,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_S2018G__d4_assembly_context,VWF_S2018G,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_S2136T__d4_assembly_context,VWF_S2136T,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_S2179F__d4_assembly_context,VWF_S2179F,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_S2479L__c_domain_assembly_context,VWF_S2479L,C3,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_S2479P__c_domain_assembly_context,VWF_S2479P,C3,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_S2573R__c4_integrin_binding,VWF_S2573R,C4,c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,5,0.46529,0.80638
+VWF_S2573R__c_domain_assembly_context,VWF_S2573R,C4,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_S2775C__ck_dimerization_context,VWF_S2775C,CK,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_S49R__d1d2_propeptide_context,VWF_S49R,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_T1122M__dprime_d3_fviii_binding,VWF_T1122M,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.13092,0.16051
+VWF_T1156M__dprime_d3_fviii_binding,VWF_T1156M,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12082,0.147
+VWF_T1381A__a1_aim_autoinhibition_context,VWF_T1381A,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_T1381A__a1_gpiba_forced_binding,VWF_T1381A,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.29583,0.38664
+VWF_T1381A__a1_heparan_sulfate_binding,VWF_T1381A,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.63343,0.87882
+VWF_T1576P__a2_adamts13_folded_complex,VWF_T1576P,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.14748,0.26596
+VWF_T1576P__a2_folded_stability,VWF_T1576P,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_T1608P__a2_adamts13_folded_complex,VWF_T1608P,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.1855,0.28689
+VWF_T1608P__a2_folded_stability,VWF_T1608P,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_T1608P__vwf73_adamts13_substrate,VWF_T1608P,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.1821,0.4642
+VWF_T1801M__a3_collagen_binding,VWF_T1801M,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.48263,0.54179
+VWF_T1951A__d4_assembly_context,VWF_T1951A,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_T2081M__d4_assembly_context,VWF_T2081M,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_T2104I__d4_assembly_context,VWF_T2104I,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_T2282I__c1_collagen_binding,VWF_T2282I,C1,c1_collagen_binding,collagen binding accessory C-domain axis,8,0.56021,0.65829
+VWF_T2282I__c_domain_assembly_context,VWF_T2282I,C1,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_T2303M__c1_collagen_binding,VWF_T2303M,C1,c1_collagen_binding,collagen binding accessory C-domain axis,8,0.5345,0.68908
+VWF_T2303M__c_domain_assembly_context,VWF_T2303M,C1,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_T2413S__c_domain_assembly_context,VWF_T2413S,C3,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_T2647M__c_domain_assembly_context,VWF_T2647M,C5,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_T2666M__c_domain_assembly_context,VWF_T2666M,C6,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_T26S__d1d2_propeptide_context,VWF_T26S,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_T2789N__ck_dimerization_context,VWF_T2789N,CK,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_T2789S__ck_dimerization_context,VWF_T2789S,CK,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_T32A__d1d2_propeptide_context,VWF_T32A,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_T346I__d1d2_propeptide_context,VWF_T346I,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_T487M__d1d2_propeptide_context,VWF_T487M,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_T588P__d1d2_propeptide_context,VWF_T588P,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_T789A__dprime_d3_fviii_binding,VWF_T789A,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12522,0.18513
+VWF_T789P__dprime_d3_fviii_binding,VWF_T789P,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12492,0.16293
+VWF_T791M__dprime_d3_fviii_binding,VWF_T791M,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11742,0.13758
+VWF_V102M__d1d2_propeptide_context,VWF_V102M,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_V1191I__dprime_d3_fviii_binding,VWF_V1191I,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11161,0.12697
+VWF_V1229G__dprime_d3_fviii_binding,VWF_V1229G,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12825,0.21574
+VWF_V1229I__dprime_d3_fviii_binding,VWF_V1229I,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12782,0.15858
+VWF_V1279F__a1_aim_autoinhibition_context,VWF_V1279F,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_V1279F__a1_gpiba_forced_binding,VWF_V1279F,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.27678,0.42139
+VWF_V1279F__a1_heparan_sulfate_binding,VWF_V1279F,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.43785,0.65291
+VWF_V1279I__a1_aim_autoinhibition_context,VWF_V1279I,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_V1279I__a1_gpiba_forced_binding,VWF_V1279I,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.24285,0.34968
+VWF_V1279I__a1_heparan_sulfate_binding,VWF_V1279I,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.35282,0.61151
+VWF_V1314D__a1_aim_autoinhibition_context,VWF_V1314D,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_V1314D__a1_gpiba_forced_binding,VWF_V1314D,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.35037,0.79639
+VWF_V1314D__a1_heparan_sulfate_binding,VWF_V1314D,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.53466,0.75872
+VWF_V1314F__a1_aim_autoinhibition_context,VWF_V1314F,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_V1314F__a1_gpiba_forced_binding,VWF_V1314F,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.30323,0.57222
+VWF_V1314F__a1_heparan_sulfate_binding,VWF_V1314F,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.47603,0.78071
+VWF_V1314L__a1_aim_autoinhibition_context,VWF_V1314L,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_V1314L__a1_gpiba_forced_binding,VWF_V1314L,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.30599,0.4192
+VWF_V1314L__a1_heparan_sulfate_binding,VWF_V1314L,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.53336,0.76196
+VWF_V1314M__a1_aim_autoinhibition_context,VWF_V1314M,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_V1314M__a1_gpiba_forced_binding,VWF_V1314M,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.28046,0.43379
+VWF_V1314M__a1_heparan_sulfate_binding,VWF_V1314M,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.4453,0.6949
+VWF_V1316M__a1_aim_autoinhibition_context,VWF_V1316M,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_V1316M__a1_gpiba_forced_binding,VWF_V1316M,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.26591,0.58012
+VWF_V1316M__a1_heparan_sulfate_binding,VWF_V1316M,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.49099,0.79046
+VWF_V1360A__a1_aim_autoinhibition_context,VWF_V1360A,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_V1360A__a1_gpiba_forced_binding,VWF_V1360A,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.37359,0.68185
+VWF_V1360A__a1_heparan_sulfate_binding,VWF_V1360A,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.41686,0.72211
+VWF_V137L__d1d2_propeptide_context,VWF_V137L,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_V1401I__a1_aim_autoinhibition_context,VWF_V1401I,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_V1401I__a1_gpiba_forced_binding,VWF_V1401I,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.30696,0.452
+VWF_V1401I__a1_heparan_sulfate_binding,VWF_V1401I,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.40931,0.68711
+VWF_V1439M__a1_aim_autoinhibition_context,VWF_V1439M,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_V1439M__a1_gpiba_forced_binding,VWF_V1439M,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.39151,0.72689
+VWF_V1439M__a1_heparan_sulfate_binding,VWF_V1439M,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.52134,0.75891
+VWF_V1454I__a1_aim_autoinhibition_context,VWF_V1454I,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_V1454I__a1_gpiba_forced_binding,VWF_V1454I,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.32262,0.48393
+VWF_V1454I__a1_heparan_sulfate_binding,VWF_V1454I,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.57427,0.66333
+VWF_V1485I__a1_aim_autoinhibition_context,VWF_V1485I,A2,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_V1485I__a2_adamts13_folded_complex,VWF_V1485I,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.1397,0.24798
+VWF_V1485I__a2_folded_stability,VWF_V1485I,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_V1499E__a2_adamts13_folded_complex,VWF_V1499E,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.18974,0.3272
+VWF_V1499E__a2_folded_stability,VWF_V1499E,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_V1524G__a2_adamts13_folded_complex,VWF_V1524G,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.13377,0.18098
+VWF_V1524G__a2_folded_stability,VWF_V1524G,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_V1537G__a2_adamts13_folded_complex,VWF_V1537G,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.14797,0.19856
+VWF_V1537G__a2_folded_stability,VWF_V1537G,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_V1539E__a2_adamts13_folded_complex,VWF_V1539E,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.12985,0.15472
+VWF_V1539E__a2_folded_stability,VWF_V1539E,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_V1565L__a2_adamts13_folded_complex,VWF_V1565L,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.13192,0.17634
+VWF_V1565L__a2_folded_stability,VWF_V1565L,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_V1604F__a2_adamts13_folded_complex,VWF_V1604F,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.18073,0.25563
+VWF_V1604F__a2_folded_stability,VWF_V1604F,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_V1604F__vwf73_adamts13_substrate,VWF_V1604F,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.16214,0.21074
+VWF_V1607D__a2_adamts13_folded_complex,VWF_V1607D,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.16207,0.35979
+VWF_V1607D__a2_folded_stability,VWF_V1607D,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_V1607D__vwf73_adamts13_substrate,VWF_V1607D,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,5,0.14743,0.20683
+VWF_V1625G__a2_adamts13_folded_complex,VWF_V1625G,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.18452,0.45136
+VWF_V1625G__a2_folded_stability,VWF_V1625G,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_V1625G__vwf73_adamts13_substrate,VWF_V1625G,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.23251,0.43416
+VWF_V1630E__a2_adamts13_folded_complex,VWF_V1630E,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.19289,0.40632
+VWF_V1630E__a2_folded_stability,VWF_V1630E,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_V1630E__vwf73_adamts13_substrate,VWF_V1630E,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.13367,0.26793
+VWF_V1630M__a2_adamts13_folded_complex,VWF_V1630M,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.19115,0.38643
+VWF_V1630M__a2_folded_stability,VWF_V1630M,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_V1630M__vwf73_adamts13_substrate,VWF_V1630M,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.16695,0.28728
+VWF_V1636M__a2_adamts13_folded_complex,VWF_V1636M,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.1729,0.2388
+VWF_V1636M__a2_folded_stability,VWF_V1636M,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_V1636M__vwf73_adamts13_substrate,VWF_V1636M,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.24809,0.54301
+VWF_V1665E__a2_adamts13_folded_complex,VWF_V1665E,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.16403,0.33007
+VWF_V1665E__a2_folded_stability,VWF_V1665E,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_V1665E__vwf73_adamts13_substrate,VWF_V1665E,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.19794,0.35677
+VWF_V1665G__a2_adamts13_folded_complex,VWF_V1665G,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.27491,0.53845
+VWF_V1665G__a2_folded_stability,VWF_V1665G,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_V1665G__vwf73_adamts13_substrate,VWF_V1665G,A2,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.21501,0.44159
+VWF_V1760I__a3_collagen_binding,VWF_V1760I,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.57498,0.77713
+VWF_V1803I__a3_collagen_binding,VWF_V1803I,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.48696,0.54458
+VWF_V1822G__a3_collagen_binding,VWF_V1822G,A3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.44462,0.58176
+VWF_V1934G__d4_assembly_context,VWF_V1934G,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,5,0.0,0.0
+VWF_V2014I__d4_assembly_context,VWF_V2014I,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_V2042I__d4_assembly_context,VWF_V2042I,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_V2141I__d4_assembly_context,VWF_V2141I,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_V2153F__d4_assembly_context,VWF_V2153F,D4,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_V2547I__c4_integrin_binding,VWF_V2547I,C4,c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,8,0.34343,0.65912
+VWF_V2547I__c_domain_assembly_context,VWF_V2547I,C4,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_V2609G__c_domain_assembly_context,VWF_V2609G,C5,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_V2793A__ck_dimerization_context,VWF_V2793A,CK,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_V294A__d1d2_propeptide_context,VWF_V294A,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_V351M__d1d2_propeptide_context,VWF_V351M,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_V444I__d1d2_propeptide_context,VWF_V444I,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_V471I__d1d2_propeptide_context,VWF_V471I,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_V955L__dprime_d3_fviii_binding,VWF_V955L,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.1195,0.15389
+VWF_V956A__dprime_d3_fviii_binding,VWF_V956A,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12031,0.13495
+VWF_W1120S__dprime_d3_fviii_binding,VWF_W1120S,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12426,0.13459
+VWF_W1144G__dprime_d3_fviii_binding,VWF_W1144G,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12859,0.15458
+VWF_W1313C__a1_aim_autoinhibition_context,VWF_W1313C,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_W1313C__a1_gpiba_forced_binding,VWF_W1313C,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.39831,0.61474
+VWF_W1313C__a1_heparan_sulfate_binding,VWF_W1313C,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.30567,0.47562
+VWF_W191R__d1d2_propeptide_context,VWF_W191R,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_W2271G__c1_collagen_binding,VWF_W2271G,C1,c1_collagen_binding,collagen binding accessory C-domain axis,8,0.53636,0.56954
+VWF_W2271G__c_domain_assembly_context,VWF_W2271G,C1,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_W377C__d1d2_propeptide_context,VWF_W377C,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_W553R__d1d2_propeptide_context,VWF_W553R,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_WT__a1_aim_autoinhibition_context,VWF_WT,,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_WT__a1_gpiba_forced_binding,VWF_WT,,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.29334,0.62947
+VWF_WT__a1_heparan_sulfate_binding,VWF_WT,,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.43148,0.59659
+VWF_WT__a2_adamts13_folded_complex,VWF_WT,,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.25552,0.47974
+VWF_WT__a2_folded_stability,VWF_WT,,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_WT__a3_collagen_binding,VWF_WT,,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,8,0.4885,0.65204
+VWF_WT__c1_collagen_binding,VWF_WT,,c1_collagen_binding,collagen binding accessory C-domain axis,8,0.53432,0.57561
+VWF_WT__c2_collagen_binding,VWF_WT,,c2_collagen_binding,collagen binding accessory C-domain axis,8,0.51114,0.57288
+VWF_WT__c4_integrin_binding,VWF_WT,,c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,8,0.5825,0.84209
+VWF_WT__c_domain_assembly_context,VWF_WT,,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",8,0.0,0.0
+VWF_WT__ck_dimerization_context,VWF_WT,,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,8,0.0,0.0
+VWF_WT__d1d2_propeptide_context,VWF_WT,,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_WT__d4_assembly_context,VWF_WT,,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,8,0.0,0.0
+VWF_WT__dprime_d3_fviii_binding,VWF_WT,,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12029,0.14405
+VWF_WT__vwf73_adamts13_substrate,VWF_WT,,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,8,0.10765,0.15732
+VWF_Y1107C__dprime_d3_fviii_binding,VWF_Y1107C,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11126,0.11755
+VWF_Y1146C__dprime_d3_fviii_binding,VWF_Y1146C,D3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.12761,0.18993
+VWF_Y1258C__a1_aim_autoinhibition_context,VWF_Y1258C,A1_N_flank,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_Y1321C__a1_aim_autoinhibition_context,VWF_Y1321C,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_Y1321C__a1_gpiba_forced_binding,VWF_Y1321C,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.37176,0.60287
+VWF_Y1321C__a1_heparan_sulfate_binding,VWF_Y1321C,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.44254,0.69765
+VWF_Y1321W__a1_aim_autoinhibition_context,VWF_Y1321W,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_Y1321W__a1_gpiba_forced_binding,VWF_Y1321W,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.26839,0.39121
+VWF_Y1321W__a1_heparan_sulfate_binding,VWF_Y1321W,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.52193,0.72283
+VWF_Y1349C__a1_aim_autoinhibition_context,VWF_Y1349C,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_Y1349C__a1_gpiba_forced_binding,VWF_Y1349C,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.19606,0.23486
+VWF_Y1349C__a1_heparan_sulfate_binding,VWF_Y1349C,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.38504,0.74654
+VWF_Y1363C__a1_aim_autoinhibition_context,VWF_Y1363C,A1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,8,0.0,0.0
+VWF_Y1363C__a1_gpiba_forced_binding,VWF_Y1363C,A1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,8,0.41414,0.68117
+VWF_Y1363C__a1_heparan_sulfate_binding,VWF_Y1363C,A1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,8,0.31607,0.56554
+VWF_Y1542C__a2_adamts13_folded_complex,VWF_Y1542C,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.09313,0.1016
+VWF_Y1542C__a2_folded_stability,VWF_Y1542C,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_Y1584C__a2_adamts13_folded_complex,VWF_Y1584C,A2,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,8,0.16637,0.29844
+VWF_Y1584C__a2_folded_stability,VWF_Y1584C,A2,a2_folded_stability,A2 fold stability / Type 2A axis,8,0.0,0.0
+VWF_Y301C__d1d2_propeptide_context,VWF_Y301C,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_Y674H__d1d2_propeptide_context,VWF_Y674H,D2,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
+VWF_Y795C__dprime_d3_fviii_binding,VWF_Y795C,D_prime,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,8,0.11917,0.1477
+VWF_Y87S__d1d2_propeptide_context,VWF_Y87S,D1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",8,0.0,0.0
