@@ -1,0 +1,30 @@
+version: 1
+sequences:
+  - protein:
+      id: A
+      sequence: QCIGEDGVQHQFLEAWVPDHQPCQICTCLSGRKVNCTTQPCPTAKAPTCGLCEVARLRQNADQCCPVYE
+      msa: empty
+  - protein:
+      id: B
+      sequence: GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP
+      msa: empty
+  - protein:
+      id: C
+      sequence: GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP
+      msa: empty
+  - protein:
+      id: D
+      sequence: GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP
+      msa: empty
+# job: VWF_E2322V__c1_collagen_binding
+# variant_id: VWF_E2322V
+# aa_change: E2322V
+# source_labels: Negative_GeneBe
+# assay_key: c1_collagen_binding
+# clinical_axis: collagen binding accessory C-domain axis
+# construct_role: C1 domain plus collagen triple-helix peptide
+# vwf_range: 2256-2324
+# ligand_keys: Collagen_I_THP
+# expected_signal: loss_of_collagen_binding_supports_qualitative_platelet_adhesion_defect
+# interpretability: exploratory
+# notes: 

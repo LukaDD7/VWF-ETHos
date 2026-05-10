@@ -1,0 +1,22 @@
+version: 1
+sequences:
+  - protein:
+      id: A
+      sequence: EDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDLPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG
+      msa: empty
+  - protein:
+      id: B
+      sequence: ARKKAAKA
+      msa: empty
+# job: VWF_R1374L__a1_heparan_sulfate_binding
+# variant_id: VWF_R1374L
+# aa_change: R1374L
+# source_labels: Type2M
+# assay_key: a1_heparan_sulfate_binding
+# clinical_axis: A1 heparan-sulfate / charge-modulation axis
+# construct_role: A1 domain plus heparan-sulfate mimetic peptide
+# vwf_range: 1260-1479
+# ligand_keys: Heparan_Sulfate_mimic
+# expected_signal: modulatory_evidence_for_A1_surface_charge
+# interpretability: exploratory
+# notes: 

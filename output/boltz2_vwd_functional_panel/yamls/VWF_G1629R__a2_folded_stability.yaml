@@ -1,0 +1,18 @@
+version: 1
+sequences:
+  - protein:
+      id: A
+      sequence: PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDILQRVREIRYQGGNRTNTGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIRVGPNANVQELERIGWPNAPILIQDFETLPREAPDLVLQRCCSG
+      msa: empty
+# job: VWF_G1629R__a2_folded_stability
+# variant_id: VWF_G1629R
+# aa_change: G1629R
+# source_labels: Type2A
+# assay_key: a2_folded_stability
+# clinical_axis: A2 fold stability / Type 2A axis
+# construct_role: folded A2 monomer
+# vwf_range: 1480-1672
+# ligand_keys: 
+# expected_signal: destabilized_A2_can_support_2A_multimer_loss
+# interpretability: medium
+# notes: 

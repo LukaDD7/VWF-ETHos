@@ -1,0 +1,22 @@
+version: 1
+sequences:
+  - protein:
+      id: A
+      sequence: DREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGVGPNATVQELERIGWPNAPILIQDFETLPREAPDLVLQR
+      msa: empty
+  - protein:
+      id: B
+      sequence: QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK
+      msa: empty
+# job: VWF_N1635T__vwf73_adamts13_substrate
+# variant_id: VWF_N1635T
+# aa_change: N1635T
+# source_labels: Type1
+# assay_key: vwf73_adamts13_substrate
+# clinical_axis: unfolded A2 cleavage-substrate / Type 2A axis
+# construct_role: VWF73 substrate peptide plus ADAMTS13 spacer-domain fragment
+# vwf_range: 1596-1668
+# ligand_keys: ADAMTS13_Spacer
+# expected_signal: altered_substrate_recognition_near_Y1605_M1606
+# interpretability: medium
+# notes: Peptide-level proxy for the exposed cleavage substrate, not folded A2 mechanics.

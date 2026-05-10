@@ -1,0 +1,22 @@
+version: 1
+sequences:
+  - protein:
+      id: A
+      sequence: SACEVVTGSPRGDSQSSWKSVGSQWASPENPCLINECVRVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCHCE
+      msa: empty
+  - protein:
+      id: B
+      sequence: CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM
+      msa: empty
+# job: VWF_R2575H__c4_integrin_binding
+# variant_id: VWF_R2575H
+# aa_change: R2575H
+# source_labels: Negative_GeneBe
+# assay_key: c4_integrin_binding
+# clinical_axis: platelet integrin alphaIIb beta3 / C4 RGD axis
+# construct_role: C4 domain plus integrin beta3 headpiece proxy
+# vwf_range: 2497-2577
+# ligand_keys: Integrin_alphaIIb_beta3
+# expected_signal: altered_RGD_axis_supports_platelet_aggregation_defect
+# interpretability: exploratory
+# notes: 

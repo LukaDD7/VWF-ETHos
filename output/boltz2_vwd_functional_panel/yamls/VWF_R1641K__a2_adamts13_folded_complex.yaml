@@ -1,0 +1,22 @@
+version: 1
+sequences:
+  - protein:
+      id: A
+      sequence: PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDILQRVREIRYQGGNRTNTGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGVGPNANVQELEKIGWPNAPILIQDFETLPREAPDLVLQRCCSG
+      msa: empty
+  - protein:
+      id: B
+      sequence: QEAGSVFQNKTEVQYLIQNMTKELTELRSKVTRAEFLNQLAREKMLQAFEKDIKASKEELRELVQKRGDLAQQAGELKAIYQTMKEGQEEDLEAQLQAMQQAHFQVAKEELQKLDEFMKQLQDKFTELDQMSKLAK
+      msa: empty
+# job: VWF_R1641K__a2_adamts13_folded_complex
+# variant_id: VWF_R1641K
+# aa_change: R1641K
+# source_labels: Negative_GeneBe
+# assay_key: a2_adamts13_folded_complex
+# clinical_axis: A2 ADAMTS13 docking / Type 2A axis
+# construct_role: folded A2 plus ADAMTS13 spacer-domain fragment
+# vwf_range: 1480-1672
+# ligand_keys: ADAMTS13_Spacer
+# expected_signal: altered_ADAMTS13_docking_is_supportive_not_decisive
+# interpretability: exploratory
+# notes: ADAMTS13 cleavage is exposure-dependent; folded docking alone is not the full biology.

@@ -1,0 +1,22 @@
+version: 1
+sequences:
+  - protein:
+      id: A
+      sequence: EDISEPPLHDFYCSRLLDLIFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVG
+      msa: empty
+  - protein:
+      id: B
+      sequence: MPLLLLLLLLPSPLHPHPICEVSKVASHLEVNCDKRNLTALPPDLPKDTTILHLSENLLYTFSLATLMPYTRLTQLNLDRCELTKLQVDGTLPVLGTLDLSHNQLQSLPLLGQTLPALTVLDVSFNRLTSLPLGALRGLGELQELYLKGNELKTLPPGLLTPTPKLEKLSLANNNLTELPAGLLNGLENLDTLLLQENSLYTIPKGFFGSHLLPFAFLHGNPWLCNCEILYFRRWLQDNAENVYVWKQGVDVKAMTSNVASVQCDNSDKFPVYKYPGKGCPTLGDEGDTDLYD
+      msa: empty
+# job: VWF_V1279I__a1_gpiba_forced_binding
+# variant_id: VWF_V1279I
+# aa_change: V1279I
+# source_labels: Negative_GeneBe|Type2M|Type3
+# assay_key: a1_gpiba_forced_binding
+# clinical_axis: platelet GPIb alpha binding / Type 2B and 2M-A1 axis
+# construct_role: A1 domain plus GPIb alpha extracellular fragment
+# vwf_range: 1260-1479
+# ligand_keys: GPIb_alpha
+# expected_signal: stronger_binding_can_support_2B; weaker_binding_can_support_2M_A1
+# interpretability: medium
+# notes: Forced complex; it does not test low-shear A1 opening.

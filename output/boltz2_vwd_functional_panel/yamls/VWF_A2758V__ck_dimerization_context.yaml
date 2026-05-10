@@ -1,0 +1,18 @@
+version: 1
+sequences:
+  - protein:
+      id: A
+      sequence: ECNDITARLQYVKVGSCKSEVEVDIHYCQGKCASKVMYSIDINDVQDQCSCCSPTRTEPMQVALHCTNGSVVYHEVLNAMECKCSPRKCSK
+      msa: empty
+# job: VWF_A2758V__ck_dimerization_context
+# variant_id: VWF_A2758V
+# aa_change: A2758V
+# source_labels: Negative_ClinVar|Negative_GeneBe
+# assay_key: ck_dimerization_context
+# clinical_axis: C-terminal dimerization / Type 1 and 3 axis
+# construct_role: CK domain monomeric context
+# vwf_range: 2723-2813
+# ligand_keys: 
+# expected_signal: local_destabilization_can_support_dimerization_or_secretion_defect
+# interpretability: medium
+# notes: 

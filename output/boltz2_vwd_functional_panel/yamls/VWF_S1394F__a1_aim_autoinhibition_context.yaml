@@ -1,0 +1,18 @@
+version: 1
+sequences:
+  - protein:
+      id: A
+      sequence: CEACQEPGGLVVPPTDAPVSPTTLYVEDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMFRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVGPGLLGVSTLGPKRN
+      msa: empty
+# job: VWF_S1394F__a1_aim_autoinhibition_context
+# variant_id: VWF_S1394F
+# aa_change: S1394F
+# source_labels: Type2M
+# assay_key: a1_aim_autoinhibition_context
+# clinical_axis: A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis
+# construct_role: AIM-flanked A1 monomeric construct
+# vwf_range: 1234-1493
+# ligand_keys: 
+# expected_signal: changed_AIM_A1_contacts_or_exposed_GPIb_surface
+# interpretability: exploratory
+# notes: This is a static proxy for AIM/open-closed behavior; it cannot simulate shear or conformational ensemble populations by itself.

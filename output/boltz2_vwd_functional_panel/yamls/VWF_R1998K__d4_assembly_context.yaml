@@ -1,0 +1,18 @@
+version: 1
+sequences:
+  - protein:
+      id: A
+      sequence: FVRICMDEDGNEKRPGDVWTLPDQCHTVTCQPDGQTLLKSHRVNCDRGLRPSCPNSQSPVKVEETCGCRWTCPCVCTGSSTRHIVTFDGQNFKLTGSCSYVLFQNKEQDLEVILHNGACSPGAKQGCMKSIEVKHSALSVELHSDMEVTVNGRLVSVPYVGGNMEVNVYGAIMHEVRFNHLGHIFTFTPQNNEFQLQLSPKTFASKTYGLCGICDENGANDFMLRDGTVTTDWKTLVQEWTVQRPGQTCQPILEEQCLVPDSSHCQVLLLPLFAECHKVLAPATFYAICQQDSCHQEQVCEVIASYAHLCRTNGVCVDWRTPDFCAMSCPPSLVYNHCEHGCPRHCDGNVSSCGDHPSEGCFCPPDKVMLEGSCVPEEACT
+      msa: empty
+# job: VWF_R1998K__d4_assembly_context
+# variant_id: VWF_R1998K
+# aa_change: R1998K
+# source_labels: Negative_GeneBe
+# assay_key: d4_assembly_context
+# clinical_axis: secretion and multimer assembly / quantitative VWD axis
+# construct_role: D4 monomeric context
+# vwf_range: 1875-2255
+# ligand_keys: 
+# expected_signal: local_destabilization_can_support_quantitative_defect
+# interpretability: medium
+# notes: 
