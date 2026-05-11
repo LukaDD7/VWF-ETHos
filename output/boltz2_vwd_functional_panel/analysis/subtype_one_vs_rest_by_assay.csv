@@ -1,0 +1,91 @@
+target_label,assay_key,clinical_axis,primary_metric,n_target,n_rest,target_mean_delta,rest_mean_delta,target_minus_rest_delta,cohen_d_target_vs_rest
+Type1,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,ptm_or_plddt,18,108,0.0482705555555555,0.06937870370370366,-0.021108148148148168,-0.43939164797378666
+Type1,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,iptm,18,99,0.049552222222222234,0.028680303030303046,0.020871919191919188,0.3309975207972319
+Type1,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,iptm,18,99,0.040176111111111135,0.0709078787878788,-0.030731767676767663,-0.3042728072297331
+Type1,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,iptm,7,72,-0.0906,-0.08746138888888888,-0.00313861111111112,-0.09335649994858407
+Type1,a2_folded_stability,A2 fold stability / Type 2A axis,ptm_or_plddt,7,72,-0.02388428571428573,-0.020320833333333357,-0.003563452380952372,-0.04148944831082764
+Type1,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,iptm,7,16,0.009665714285714343,0.004429375000000005,0.005236339285714338,0.14362088950831844
+Type1,c1_collagen_binding,collagen binding accessory C-domain axis,iptm,7,7,0.0057114285714285565,0.003385714285714243,0.0023257142857143137,0.10092168545090982
+Type1,c2_collagen_binding,collagen binding accessory C-domain axis,iptm,2,10,0.04191499999999995,0.05365299999999991,-0.011737999999999957,-0.4831291852248083
+Type1,c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,iptm,4,9,-0.24356999999999995,-0.15634111111111113,-0.08722888888888883,-0.7936218148353374
+Type1,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",ptm_or_plddt,30,45,-0.016706666666666606,-0.0042197777777777225,-0.012486888888888884,-0.6346304559403734
+Type1,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,ptm_or_plddt,2,18,-0.05361499999999995,0.0023205555555555497,-0.055935555555555495,-2.5534983691291187
+Type1,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",ptm_or_plddt,26,69,0.010285384615384615,0.008653768115942036,0.0016316164994425782,0.19330340372606772
+Type1,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,ptm_or_plddt,27,32,-0.004469999999999941,-0.003354374999999934,-0.0011156250000000072,-0.09184768692227221
+Type1,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,iptm,30,67,0.0020633333333333567,0.0031368656716418155,-0.0010735323383084588,-0.13908740046525825
+Type1,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,iptm,2,34,0.0026350000000000496,0.05974617647058823,-0.057111176470588186,-1.27011102344572
+Type2A,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,ptm_or_plddt,21,104,0.05963904761904756,0.06741413461538456,-0.0077750869963370065,-0.15986120692480815
+Type2A,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,iptm,19,97,0.011638421052631617,0.03582164948453609,-0.02418322843190447,-0.3829583350664237
+Type2A,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,iptm,19,97,0.05151263157894738,0.06752711340206186,-0.016014481823114476,-0.1586660664993809
+Type2A,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,iptm,64,15,-0.08593984375000001,-0.09649266666666666,0.010552822916666649,0.3145820870132982
+Type2A,a2_folded_stability,A2 fold stability / Type 2A axis,ptm_or_plddt,64,15,-0.033946718750000014,0.03320466666666662,-0.06715138541666663,-0.8185982848336592
+Type2A,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,iptm,0,22,,0.0023659090909091134,,
+Type2A,c1_collagen_binding,collagen binding accessory C-domain axis,iptm,0,12,,0.0054408333333333,,
+Type2A,c2_collagen_binding,collagen binding accessory C-domain axis,iptm,2,10,0.04763499999999995,0.05250899999999992,-0.004873999999999969,-0.19745759864811602
+Type2A,c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,iptm,1,12,-0.2693,-0.17600416666666666,-0.09329583333333333,
+Type2A,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",ptm_or_plddt,3,69,-0.0036199999999998998,-0.009678985507246322,0.006058985507246423,0.28855437399650913
+Type2A,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,ptm_or_plddt,7,13,0.0002128571428571287,-0.005149999999999991,0.00536285714285712,0.19135278408897335
+Type2A,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",ptm_or_plddt,11,81,0.005126363636363673,0.009594320987654321,-0.004467957351290648,-0.5279403616814968
+Type2A,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,ptm_or_plddt,1,54,-0.0141699999999999,-0.004541851851851785,-0.009628148148148115,
+Type2A,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,iptm,37,57,0.0008529729729730168,0.003931228070175451,-0.003078255097202434,-0.40076665523092897
+Type2A,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,iptm,31,4,0.05920483870967742,0.053137500000000025,0.006067338709677392,0.13169684704751622
+Type2B,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,ptm_or_plddt,42,84,0.06808309523809519,0.06548833333333329,0.0025947619047619053,0.05340018597020161
+Type2B,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,iptm,41,76,0.03278439024390243,0.03069157894736843,0.0020928112965339987,0.03286413054050178
+Type2B,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,iptm,41,76,0.08895756097560974,0.05128921052631581,0.037668350449293925,0.38000748749040414
+Type2B,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,iptm,0,77,,-0.08696155844155844,,
+Type2B,a2_folded_stability,A2 fold stability / Type 2A axis,ptm_or_plddt,0,77,,-0.021528961038961063,,
+Type2B,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,iptm,0,22,,0.0023659090909091134,,
+Type2B,c1_collagen_binding,collagen binding accessory C-domain axis,iptm,0,12,,0.005440833333333301,,
+Type2B,c2_collagen_binding,collagen binding accessory C-domain axis,iptm,0,12,,0.051696666666666585,,
+Type2B,c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,iptm,0,13,,-0.18318076923076923,,
+Type2B,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",ptm_or_plddt,0,72,,-0.009426527777777723,,
+Type2B,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,ptm_or_plddt,0,20,,-0.0032729999999999994,,
+Type2B,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",ptm_or_plddt,0,92,,0.009060108695652179,,
+Type2B,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,ptm_or_plddt,1,55,-0.00902,-0.004716909090909023,-0.004303090909090977,
+Type2B,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,iptm,1,94,0.00666,0.0027195744680851308,0.003940425531914869,
+Type2B,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,iptm,0,35,,0.05851142857142857,,
+Type2M,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,ptm_or_plddt,49,77,0.05946918367346934,0.07060662337662332,-0.011137439703153985,-0.23080327244628623
+Type2M,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,iptm,49,68,0.020559795918367374,0.03879279411764706,-0.018232998199279683,-0.28792968903835814
+Type2M,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,iptm,49,68,0.03462877551020411,0.08460882352941175,-0.04998004801920764,-0.507648522411377
+Type2M,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,iptm,0,77,,-0.08696155844155844,,
+Type2M,a2_folded_stability,A2 fold stability / Type 2A axis,ptm_or_plddt,0,77,,-0.021528961038961063,,
+Type2M,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,iptm,0,22,,0.002365909090909113,,
+Type2M,c1_collagen_binding,collagen binding accessory C-domain axis,iptm,0,12,,0.0054408333333333,,
+Type2M,c2_collagen_binding,collagen binding accessory C-domain axis,iptm,0,12,,0.05169666666666658,,
+Type2M,c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,iptm,0,13,,-0.18318076923076923,,
+Type2M,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",ptm_or_plddt,0,72,,-0.009426527777777721,,
+Type2M,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,ptm_or_plddt,0,20,,-0.0032729999999999994,,
+Type2M,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",ptm_or_plddt,0,92,,0.009060108695652179,,
+Type2M,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,ptm_or_plddt,0,55,,-0.004716909090909023,,
+Type2M,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,iptm,0,94,,0.0027195744680851308,,
+Type2M,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,iptm,0,35,,0.05851142857142857,,
+Type2N,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,ptm_or_plddt,0,125,,0.06610791999999995,,
+Type2N,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,iptm,0,116,,0.031860603448275876,,
+Type2N,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,iptm,0,116,,0.06490405172413795,,
+Type2N,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,iptm,0,77,,-0.08696155844155844,,
+Type2N,a2_folded_stability,A2 fold stability / Type 2A axis,ptm_or_plddt,0,77,,-0.021528961038961063,,
+Type2N,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,iptm,0,22,,0.0023659090909091134,,
+Type2N,c1_collagen_binding,collagen binding accessory C-domain axis,iptm,0,12,,0.005440833333333301,,
+Type2N,c2_collagen_binding,collagen binding accessory C-domain axis,iptm,0,12,,0.051696666666666585,,
+Type2N,c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,iptm,0,13,,-0.18318076923076923,,
+Type2N,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",ptm_or_plddt,0,72,,-0.009426527777777723,,
+Type2N,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,ptm_or_plddt,0,20,,-0.0032729999999999994,,
+Type2N,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",ptm_or_plddt,3,89,0.013193333333333333,0.008920786516853936,0.004272546816479397,0.49944220960276337
+Type2N,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,ptm_or_plddt,0,55,,-0.004716909090909023,,
+Type2N,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,iptm,23,73,0.005059130434782622,0.0019189041095890702,0.003140226325193551,0.4084281169108348
+Type2N,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,iptm,0,35,,0.05851142857142857,,
+Type3,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,ptm_or_plddt,3,123,0.07760666666666666,0.06599902439024385,0.011607642276422803,0.23917633501387695
+Type3,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,iptm,3,114,0.0037400000000000675,0.0318782456140351,-0.028138245614035034,-0.4409435019891192
+Type3,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,iptm,3,114,0.06652666666666669,0.06360201754385966,0.00292464912280703,0.02880122819902645
+Type3,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,iptm,2,75,-0.12815,-0.0858632,-0.042286799999999986,-1.2821691725799482
+Type3,a2_folded_stability,A2 fold stability / Type 2A axis,ptm_or_plddt,2,75,-0.03675999999999995,-0.02112280000000003,-0.015637199999999924,-0.1815992021270527
+Type3,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,iptm,0,22,,0.002365909090909113,,
+Type3,c1_collagen_binding,collagen binding accessory C-domain axis,iptm,1,11,-0.02065,0.007812727272727237,-0.028462727272727237,
+Type3,c2_collagen_binding,collagen binding accessory C-domain axis,iptm,2,10,0.03898499999999995,0.054238999999999905,-0.015253999999999955,-0.6364304966841909
+Type3,c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,iptm,2,11,-0.09084,-0.19997,0.10913,0.9894754517415197
+Type3,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",ptm_or_plddt,7,65,-0.01623999999999997,-0.00869276923076917,-0.007547230769230799,-0.3609215399319438
+Type3,ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,ptm_or_plddt,3,17,-0.008063333333333297,-0.002427647058823535,-0.005635686274509763,-0.20073393051443592
+Type3,d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",ptm_or_plddt,24,70,0.010502083333333342,0.008748714285714288,0.001753369047619054,0.19239334319615878
+Type3,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,ptm_or_plddt,7,48,-0.008309999999999915,-0.004192916666666603,-0.004117083333333312,-0.3427741929505768
+Type3,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,iptm,11,84,0.0019690909090909,0.00279595238095241,-0.0008268614718615099,-0.10620655216269789
+Type3,vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,iptm,0,35,,0.05851142857142857,,

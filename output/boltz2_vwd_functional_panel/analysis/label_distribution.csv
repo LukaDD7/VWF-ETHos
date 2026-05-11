@@ -1,0 +1,14 @@
+label,n
+all_variants,597
+positive_any,422
+type2_any,252
+negative_any,200
+negative_only,175
+positive_only,397
+negative_positive_overlap,25
+Type1,150
+Type2A,148
+Type2B,44
+Type2M,49
+Type2N,27
+Type3,61
