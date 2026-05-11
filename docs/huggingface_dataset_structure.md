@@ -87,16 +87,26 @@ df_manifest = pd.read_csv("https://huggingface.co/datasets/lucachangretta/VWF/ra
 | 脚本 | 用途 |
 |------|------|
 | `scripts/pipeline/upload_boltz2_results_huggingface.py` | 上传 A1+GPIbα 结果 |
-| `scripts/pipeline/upload_vwd_functional_boltz2_results_huggingface.py` | 上传 VWD Functional Panel 结果（增量） |
+| `scripts/pipeline/upload_vwd_functional_boltz2_results_huggingface.py` | 上传 VWD Functional Panel 结果（archive/folder 两种模式） |
 
-增量上传说明：HuggingFace `upload_folder` 会跳过已存在的文件，已上传的 A1+GPIbα 结果不会被重复上传。
+推荐上传方式：
+
+```bash
+# 最稳：把 raw result job directories 打包成少量 tar.gz shard，再一次 upload_folder commit
+HF_TOKEN=... python scripts/pipeline/upload_vwd_functional_boltz2_results_huggingface.py --mode archive
+
+# 如果希望 HuggingFace 页面上逐文件浏览，并且 Hub 能接受这次大 folder commit
+HF_TOKEN=... python scripts/pipeline/upload_vwd_functional_boltz2_results_huggingface.py --mode folder
+```
+
+旧逻辑不要再用：按每个 job 分别上传 CIF 和 confidence 会产生约 `989 * 2 + analysis` 个 commits，必然容易触发 HuggingFace commit rate limit。
 
 ---
 
 ## 注意事项
 
 1. **数据分离**：两批结果放在不同的子目录下，不会混在一起
-2. **增量传输**：后续新增的 VWD 结果可以直接再次运行上传脚本，已存在的文件会自动跳过
+2. **增量传输**：后续新增的 VWD 结果可以直接再次运行上传脚本；archive mode 会复用已有 shard 文件，folder mode 会由 Hub 端跳过未变化文件
 3. **git push 还是 HF**：小的分析 CSV 建议 git push（几 KB），大的结构文件走 HuggingFace
 
 ---

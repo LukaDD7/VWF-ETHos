@@ -37,6 +37,17 @@ EXTRA_BOLTZ_ARGS="--use_msa_server" \
 bash scripts/pipeline/run_vwd_functional_boltz2_panel.sh
 ```
 
+## Upload Results To HuggingFace
+
+After parsing results, use archive mode to avoid HuggingFace commit-rate limits:
+
+```bash
+HF_TOKEN=... python scripts/pipeline/upload_vwd_functional_boltz2_results_huggingface.py --mode archive
+```
+
+The old per-job upload pattern should not be used for this panel because it
+creates roughly two commits per job and can hit the Hub commit-rate limit.
+
 ## Panel Size
 
 - 597 unique missense variants.

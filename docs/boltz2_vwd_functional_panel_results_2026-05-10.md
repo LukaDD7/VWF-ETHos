@@ -31,7 +31,7 @@
 | a2_adamts13_folded_complex | 0.1684 | 0.0347 | 81 |
 | dprime_d3_fviii_binding | 0.1230 | 0.0076 | 100 |
 
-**注意**：以下 assay_key 显示 iPTM=0 或 N/A，可能需要进一步排查解析逻辑：
+**注意**：以下 assay_key 是单链/monomer 构件，没有 inter-chain interface；iPTM=0 是预期现象，不应作为主指标：
 - a1_aim_autoinhibition_context
 - a2_folded_stability
 - c_domain_assembly_context
@@ -39,15 +39,15 @@
 - d1d2_propeptide_context
 - d4_assembly_context
 
+这些构件应优先看 pTM、complex pLDDT、局部 pLDDT、PAE/RMSD 或下游提取的结构稳定性/暴露度特征。iPTM 只适合 D′D3-FVIII、A1-GPIbα、collagen、integrin、ADAMTS13 等复合物/界面任务。
+
 ---
 
 ## 已知问题
 
-1. **部分 assay iPTM=0**：某些 confidence 文件的 iPTM 值为 0，可能是：
-   - 这些 construct 的 interface 结合较弱
-   - 或者 JSON 解析逻辑需要调整（某些字段可能为空）
+1. **单链 assay iPTM=0**：这是正常现象。iPTM 是 inter-chain 指标，单链稳定性/构象任务没有链间界面。
 
-2. **HuggingFace 上传**：受速率限制（128 commits/hour）影响，目前还在陆续上传中
+2. **HuggingFace 上传**：旧上传脚本按 job 目录上传，每个 job 产生 CIF/CONF 两次 commit，约 2000 commits，容易触发 128 commits/hour 限制。应使用修订后的 archive 或 single-folder 上传模式。
 
 ---
 

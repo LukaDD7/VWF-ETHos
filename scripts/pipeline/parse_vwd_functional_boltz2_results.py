@@ -45,6 +45,20 @@ def parse_confidence_json(json_path):
         return None
 
 
+def mean_or_none(values):
+    values = [v for v in values if v is not None]
+    if not values:
+        return None
+    return sum(values) / len(values)
+
+
+def max_or_none(values):
+    values = [v for v in values if v is not None]
+    if not values:
+        return None
+    return max(values)
+
+
 def extract_job_name(conf_path):
     """从 confidence 文件路径提取 job name。"""
     # 路径: .../predictions/VWF_WT__dprime_d3_fviii_binding/confidence_VWF_WT__dprime_d3_fviii_binding_model_0.json
@@ -91,27 +105,40 @@ def main():
 
     print(f"Unique jobs: {len(job_data)}")
 
-    # 计算每个 job 的最佳 iptm（多 sample 取平均或最佳）
+    # 计算每个 job 的关键指标（多 sample 取平均和最佳）
     job_results = []
     for job_name, conf_files_list in sorted(job_data.items()):
         iptm_values = []
+        ptm_values = []
+        plddt_values = []
         for cf in conf_files_list:
             data = parse_confidence_json(cf)
-            if data and data["iptm"] is not None:
+            if not data:
+                continue
+            if data["iptm"] is not None:
                 iptm_values.append(data["iptm"])
+            if data["ptm"] is not None:
+                ptm_values.append(data["ptm"])
+            if data["complex_plddt"] is not None:
+                plddt_values.append(data["complex_plddt"])
 
-        if iptm_values:
-            avg_iptm = sum(iptm_values) / len(iptm_values)
-            best_iptm = max(iptm_values)
-            n_samples = len(iptm_values)
-        else:
-            avg_iptm = best_iptm = n_samples = None
+        avg_iptm = mean_or_none(iptm_values)
+        best_iptm = max_or_none(iptm_values)
+        avg_ptm = mean_or_none(ptm_values)
+        best_ptm = max_or_none(ptm_values)
+        avg_complex_plddt = mean_or_none(plddt_values)
+        best_complex_plddt = max_or_none(plddt_values)
+        n_samples = max(len(iptm_values), len(ptm_values), len(plddt_values)) or None
 
         # 从 manifest 查找额外信息
         variant_id = None
         domain = None
         assay_key = None
         clinical_axis = None
+        ligand_keys = None
+        n_chains = None
+        primary_metric = None
+        primary_metric_reason = None
 
         if manifest_df is not None:
             row = manifest_df[manifest_df["job_name"] == job_name]
@@ -120,6 +147,16 @@ def main():
                 domain = row.iloc[0].get("inferred_domain", None)
                 assay_key = row.iloc[0].get("assay_key", None)
                 clinical_axis = row.iloc[0].get("clinical_axis", None)
+                ligand_keys = row.iloc[0].get("ligand_keys", None)
+                n_chains = row.iloc[0].get("n_chains", None)
+
+        is_complex = ligand_keys is not None and str(ligand_keys).strip() not in ("", "nan")
+        if is_complex:
+            primary_metric = "iptm"
+            primary_metric_reason = "complex/interface assay"
+        else:
+            primary_metric = "ptm_or_plddt"
+            primary_metric_reason = "monomer assay; iPTM is not meaningful without an interface"
 
         job_results.append({
             "job_name": job_name,
@@ -127,9 +164,17 @@ def main():
             "domain": domain,
             "assay_key": assay_key,
             "clinical_axis": clinical_axis,
+            "ligand_keys": ligand_keys,
+            "n_chains": n_chains,
+            "primary_metric": primary_metric,
+            "primary_metric_reason": primary_metric_reason,
             "n_samples": n_samples,
             "avg_iptm": round(avg_iptm, 5) if avg_iptm is not None else None,
             "best_iptm": round(best_iptm, 5) if best_iptm is not None else None,
+            "avg_ptm": round(avg_ptm, 5) if avg_ptm is not None else None,
+            "best_ptm": round(best_ptm, 5) if best_ptm is not None else None,
+            "avg_complex_plddt": round(avg_complex_plddt, 5) if avg_complex_plddt is not None else None,
+            "best_complex_plddt": round(best_complex_plddt, 5) if best_complex_plddt is not None else None,
         })
 
     # 打印摘要
@@ -137,8 +182,8 @@ def main():
     print(f"{'Job Name':<50} {'Avg iPTM':>10} {'Best':>10} {'Samples':>8}")
     print("-" * 82)
     for r in job_results[:30]:
-        avg = f"{r['avg_iptm']:.4f}" if r['avg_iptm'] else "N/A"
-        best = f"{r['best_iptm']:.4f}" if r['best_iptm'] else "N/A"
+        avg = f"{r['avg_iptm']:.4f}" if r['avg_iptm'] is not None else "N/A"
+        best = f"{r['best_iptm']:.4f}" if r['best_iptm'] is not None else "N/A"
         n = r['n_samples'] or 0
         print(f"{r['job_name']:<50} {avg:>10} {best:>10} {n:>8}")
     if len(job_results) > 30:
@@ -150,17 +195,34 @@ def main():
     print(f"Total jobs: {len(job_results)}")
     print(f"Jobs with results: {len(valid_results)}")
     if valid_results:
-        iptm_values = [r['avg_iptm'] for r in valid_results if r['avg_iptm']]
-        print(f"iPTM range: {min(iptm_values):.4f} - {max(iptm_values):.4f}")
-        print(f"iPTM mean: {sum(iptm_values)/len(iptm_values):.4f}")
+        complex_iptm_values = [
+            r['avg_iptm']
+            for r in valid_results
+            if r['primary_metric'] == 'iptm' and r['avg_iptm'] is not None
+        ]
+        monomer_ptm_values = [
+            r['avg_ptm']
+            for r in valid_results
+            if r['primary_metric'] == 'ptm_or_plddt' and r['avg_ptm'] is not None
+        ]
+        if complex_iptm_values:
+            print(f"Complex iPTM range: {min(complex_iptm_values):.4f} - {max(complex_iptm_values):.4f}")
+            print(f"Complex iPTM mean: {sum(complex_iptm_values)/len(complex_iptm_values):.4f}")
+        if monomer_ptm_values:
+            print(f"Monomer pTM range: {min(monomer_ptm_values):.4f} - {max(monomer_ptm_values):.4f}")
+            print(f"Monomer pTM mean: {sum(monomer_ptm_values)/len(monomer_ptm_values):.4f}")
 
     # 按 assay_key 分组统计
     if HAS_PANDAS:
         df = pd.DataFrame(job_results)
         if "assay_key" in df.columns and df["assay_key"].notna().any():
             print()
-            print("iPTM by assay_key:")
-            grouped = df.groupby("assay_key")["avg_iptm"].agg(["mean", "std", "count"])
+            print("Primary metric by assay_key:")
+            df["primary_value"] = df.apply(
+                lambda r: r["avg_iptm"] if r["primary_metric"] == "iptm" else r["avg_ptm"],
+                axis=1,
+            )
+            grouped = df.groupby("assay_key")["primary_value"].agg(["mean", "std", "count"])
             for assay, row in grouped.iterrows():
                 print(f"  {assay:<30}: mean={row['mean']:.4f}, std={row['std']:.4f}, n={int(row['count'])}")
 
