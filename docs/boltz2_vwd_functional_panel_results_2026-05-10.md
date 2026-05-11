@@ -64,9 +64,10 @@
 
 ## 后续分析建议
 
-1. **排查 iPTM=0 的 assay**：检查 confidence 文件中的 raw data
-2. **阈值校准**：根据已知临床分类建立 GOF/LOF 阈值
-3. **HuggingFace 增量上传**：等待 rate limit 恢复后继续
+1. **建立 evidence matrix**：按 assay-specific WT baseline 计算 delta、z-score、rank，并为复合物/单链任务分别使用 iPTM 或 pTM/pLDDT。
+2. **阈值校准**：根据已知临床分类建立 GOF/LOF 或 LOF/stability 阈值，特别区分 Type 2N、2M-A3、2A、2B/2M-A1。
+3. **阴性对照校准**：GeneBe/ClinVar benign variants 应作为 negative/control variants，而不是只用 WT。
+4. **Agent v3 输入改造**：将 Boltz/FoldX/AF3/AlphaGenome 统一为结构化 evidence，供诊断 Agent 模拟临床路径。
 
 ---
 
