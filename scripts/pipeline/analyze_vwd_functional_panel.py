@@ -26,6 +26,11 @@ import pandas as pd
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_PANEL_DIR = PROJECT_ROOT / "output" / "boltz2_vwd_functional_panel"
 POSITIVE_LABELS = ("Type1", "Type2A", "Type2B", "Type2M", "Type2N", "Type3")
+A1_ASSAYS = (
+    "a1_aim_autoinhibition_context",
+    "a1_gpiba_forced_binding",
+    "a1_heparan_sulfate_binding",
+)
 
 
 def read_csv(path: Path) -> pd.DataFrame:
@@ -65,6 +70,7 @@ def assay_metric_summary(long_df: pd.DataFrame) -> pd.DataFrame:
                 "primary_metric": first_non_null(sub, "primary_metric"),
                 "n_rows": len(sub),
                 "n_run": int(sub["is_assay_run"].fillna(False).sum()),
+                "n_not_run": int((~bool_mask(sub["is_assay_run"])).sum()),
                 "n_with_boltz_result": int(sub["has_boltz_result"].fillna(False).sum()),
                 "n_with_primary_value": int(primary.notna().sum()),
                 "mean_primary": primary.mean(),
@@ -74,7 +80,9 @@ def assay_metric_summary(long_df: pd.DataFrame) -> pd.DataFrame:
                 "min_delta_vs_wt": delta.min(),
                 "max_delta_vs_wt": delta.max(),
                 "n_metric_ok": int((sub["metric_status"] == "ok").sum()),
-                "n_metric_missing": int((sub["metric_status"].fillna("no_result") != "ok").sum()),
+                "n_run_missing_metric": int(
+                    (bool_mask(sub["is_assay_run"]) & (sub["metric_status"].fillna("no_result") != "ok")).sum()
+                ),
             }
         )
     return pd.DataFrame(rows).sort_values(["assay_key"]).reset_index(drop=True)
@@ -167,6 +175,57 @@ def subtype_one_vs_rest_by_assay(long_df: pd.DataFrame) -> pd.DataFrame:
     return out.sort_values(["target_label", "assay_key"]).reset_index(drop=True)
 
 
+def type2b_vs_type2m_a1_assays(long_df: pd.DataFrame) -> pd.DataFrame:
+    non_wt = long_df[
+        (long_df["variant_id"] != "VWF_WT")
+        & (long_df["assay_key"].isin(A1_ASSAYS))
+    ].copy()
+
+    for label in ("Type2A", "Type2B", "Type2M", "Type2N"):
+        col = f"is_{label}"
+        if col not in non_wt.columns:
+            non_wt[col] = False
+        non_wt[col] = bool_mask(non_wt[col])
+
+    non_wt["type2b_only"] = (
+        non_wt["is_Type2B"]
+        & ~non_wt["is_Type2M"]
+        & ~non_wt["is_Type2A"]
+        & ~non_wt["is_Type2N"]
+    )
+    non_wt["type2m_only"] = (
+        non_wt["is_Type2M"]
+        & ~non_wt["is_Type2B"]
+        & ~non_wt["is_Type2A"]
+        & ~non_wt["is_Type2N"]
+    )
+
+    rows = []
+    for assay_key, sub in non_wt.groupby("assay_key", dropna=False):
+        type2b = pd.to_numeric(
+            sub.loc[sub["type2b_only"], "primary_value_delta_vs_wt"],
+            errors="coerce",
+        ).dropna()
+        type2m = pd.to_numeric(
+            sub.loc[sub["type2m_only"], "primary_value_delta_vs_wt"],
+            errors="coerce",
+        ).dropna()
+        rows.append(
+            {
+                "assay_key": assay_key,
+                "clinical_axis": first_non_null(sub, "clinical_axis"),
+                "primary_metric": first_non_null(sub, "primary_metric"),
+                "n_type2b_only": len(type2b),
+                "n_type2m_only": len(type2m),
+                "type2b_mean_delta": type2b.mean(),
+                "type2m_mean_delta": type2m.mean(),
+                "type2b_minus_type2m_delta": type2b.mean() - type2m.mean(),
+                "cohen_d_type2b_vs_type2m": cohen_d(type2b, type2m),
+            }
+        )
+    return pd.DataFrame(rows).sort_values("assay_key").reset_index(drop=True)
+
+
 def top_primary_delta_outliers(long_df: pd.DataFrame, n_per_assay: int = 20) -> pd.DataFrame:
     non_wt = long_df[long_df["variant_id"] != "VWF_WT"].copy()
     non_wt["abs_primary_zscore_within_assay"] = pd.to_numeric(
@@ -206,14 +265,15 @@ Files:
 - `label_distribution.csv`: label-policy counts.
 - `negative_vs_positive_by_assay.csv`: negative-only vs positive-only delta comparison.
 - `subtype_one_vs_rest_by_assay.csv`: weakly supervised subtype-vs-rest assay effects.
+- `type2b_vs_type2m_a1_assays.csv`: direct A1-axis Type 2B-only vs Type 2M-only comparison.
 - `top_primary_delta_outliers.csv`: strongest per-assay structural outliers.
 
 Interpretation:
 
 - Complex/interface assays use iPTM as the primary value.
 - Monomer/context assays use pTM first, then complex pLDDT if pTM is unavailable.
-- Rows marked `missing_monomer_ptm_plddt_rerun_parser` mean the old summary CSV
-  did not contain pTM/pLDDT; rerun `parse_vwd_functional_boltz2_results.py`.
+- `n_not_run` means a variant was intentionally outside that assay/domain, not
+  a failed Boltz job.
 """
     (output_dir / "README.md").write_text(readme)
 
@@ -228,6 +288,7 @@ def run_analysis(panel_dir: Path, output_dir: Path) -> None:
         "label_distribution.csv": label_distribution(matrix),
         "negative_vs_positive_by_assay.csv": negative_vs_positive_by_assay(long_df),
         "subtype_one_vs_rest_by_assay.csv": subtype_one_vs_rest_by_assay(long_df),
+        "type2b_vs_type2m_a1_assays.csv": type2b_vs_type2m_a1_assays(long_df),
         "top_primary_delta_outliers.csv": top_primary_delta_outliers(long_df),
     }
     for name, df in tables.items():

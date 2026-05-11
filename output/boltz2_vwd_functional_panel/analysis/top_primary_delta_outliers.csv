@@ -44,7 +44,7 @@ a1_heparan_sulfate_binding,VWF_K1362T,K1362T,Type2M,positive_only,A1,iptm,0.7153
 a1_heparan_sulfate_binding,VWF_S1358N,S1358N,Type2M,positive_only,A1,iptm,0.28912,0.43148,-0.14236,-2.0426771311772525,0.0168067226890756,ok
 a1_heparan_sulfate_binding,VWF_P1337L,P1337L,Type2B,positive_only,A1,iptm,0.30522,0.43148,-0.1262599999999999,-1.8837286828382944,0.0252100840336134,ok
 a1_heparan_sulfate_binding,VWF_W1313C,W1313C,Type2B,positive_only,A1,iptm,0.30567,0.43148,-0.1258099999999999,-1.879286024344348,0.0336134453781512,ok
-a1_heparan_sulfate_binding,VWF_M1304V,M1304V,Type2B,positive_only,A1,iptm,0.68059,0.43148,0.24911,1.8221395813228756,0.9915966386554622,ok
+a1_heparan_sulfate_binding,VWF_M1304V,M1304V,Type2B,positive_only,A1,iptm,0.68059,0.43148,0.24911,1.8221395813228751,0.9915966386554622,ok
 a1_heparan_sulfate_binding,VWF_Y1363C,Y1363C,Type2M,positive_only,A1,iptm,0.31607,0.43148,-0.1154099999999999,-1.7766112502620393,0.042016806722689,ok
 a1_heparan_sulfate_binding,VWF_R1341E,R1341E,Type2B,positive_only,A1,iptm,0.65946,0.43148,0.22798,1.6135320835960312,0.9831932773109244,ok
 a1_heparan_sulfate_binding,VWF_L1446P,L1446P,Type2A,positive_only,A1,iptm,0.33314,0.43148,-0.0983399999999999,-1.6080864047250196,0.0504201680672268,ok
@@ -59,7 +59,7 @@ a1_heparan_sulfate_binding,VWF_D1472H,D1472H,Negative_ClinVar|Negative_GeneBe|Ty
 a1_heparan_sulfate_binding,VWF_D1472Y,D1472Y,Negative_GeneBe,negative_only,A1,iptm,0.34917,0.43148,-0.08231,-1.4498290365962307,0.0756302521008403,ok
 a1_heparan_sulfate_binding,VWF_M1304R,M1304R,Type1|Type2A|Type2M,positive_only,A1,iptm,0.34991,0.43148,-0.0815699999999999,-1.4425233315172972,0.0840336134453781,ok
 a1_heparan_sulfate_binding,VWF_S1285P,S1285P,Type1,positive_only,A1,iptm,0.35155,0.43148,-0.07993,-1.4263323094504716,0.0924369747899159,ok
-a2_adamts13_folded_complex,VWF_V1665G,V1665G,Type2A,positive_only,A2,iptm,0.27491,0.25552,0.0193899999999999,3.216198199214693,1.0,ok
+a2_adamts13_folded_complex,VWF_V1665G,V1665G,Type2A,positive_only,A2,iptm,0.27491,0.25552,0.0193899999999999,3.2161981992146935,1.0,ok
 a2_adamts13_folded_complex,VWF_Y1542C,Y1542C,Type2A,positive_only,A2,iptm,0.09313,0.25552,-0.16239,-2.218109731185689,0.0125,ok
 a2_adamts13_folded_complex,VWF_Q1526H,Q1526H,Type3,positive_only,A2,iptm,0.10282,0.25552,-0.1527,-1.9284274567573712,0.025,ok
 a2_adamts13_folded_complex,VWF_G1579R,G1579R,Type2A,positive_only,A2,iptm,0.22733,0.25552,-0.02819,1.7937954523313722,0.9875,ok
@@ -159,7 +159,7 @@ c2_collagen_binding,VWF_T26S,T26S,Negative_GeneBe,negative_only,D1,,,0.51114,,,,
 c2_collagen_binding,VWF_R27H,R27H,Negative_GeneBe,negative_only,D1,,,0.51114,,,,
 c2_collagen_binding,VWF_T32A,T32A,Negative_GeneBe,negative_only,D1,,,0.51114,,,,
 c2_collagen_binding,VWF_R34G,R34G,Type3,positive_only,D1,,,0.51114,,,,
-c4_integrin_binding,VWF_R2535P,R2535P,Type1,positive_only,C4,iptm,0.13531,0.5825,-0.44719,-2.330812734751876,0.0769230769230769,ok
+c4_integrin_binding,VWF_R2535P,R2535P,Type1,positive_only,C4,iptm,0.13531,0.5825,-0.44719,-2.3308127347518757,0.0769230769230769,ok
 c4_integrin_binding,VWF_F2561Y,F2561Y,Negative_ClinVar|Negative_GeneBe,negative_only,C4,iptm,0.53538,0.5825,-0.04712,1.2012162328536786,1.0,ok
 c4_integrin_binding,VWF_N2531S,N2531S,Negative_GeneBe,negative_only,C4,iptm,0.2822,0.5825,-0.3003,-1.0339903410418252,0.1538461538461538,ok
 c4_integrin_binding,VWF_N2546Y,N2546Y,Type3,positive_only,C4,iptm,0.51269,0.5825,-0.06981,1.0008969455415333,0.9230769230769232,ok
@@ -182,7 +182,7 @@ c4_integrin_binding,VWF_T32A,T32A,Negative_GeneBe,negative_only,D1,,,0.5825,,,,
 c_domain_assembly_context,VWF_C2671Y,C2671Y,Type3,positive_only,C6,ptm_or_plddt,0.25926,0.35245,-0.09319,-4.098392024959636,0.0133333333333333,ok
 c_domain_assembly_context,VWF_C2671G,C2671G,Type1,positive_only,C6,ptm_or_plddt,0.26413,0.35245,-0.08832,-3.860713451040189,0.0266666666666666,ok
 c_domain_assembly_context,VWF_C2676Y,C2676Y,Type1,positive_only,C6,ptm_or_plddt,0.26569,0.35245,-0.08676,-3.784578219969483,0.04,ok
-c_domain_assembly_context,VWF_C2676F,C2676F,Type1,positive_only,C6,ptm_or_plddt,0.26715,0.35245,-0.0852999999999999,-3.713323452428949,0.0533333333333333,ok
+c_domain_assembly_context,VWF_C2676F,C2676F,Type1,positive_only,C6,ptm_or_plddt,0.26715,0.35245,-0.0852999999999999,-3.71332345242895,0.0533333333333333,ok
 c_domain_assembly_context,VWF_R2663C,R2663C,Type1,positive_only,C6,ptm_or_plddt,0.30347,0.35245,-0.0489799999999999,-1.9407390982699484,0.0666666666666666,ok
 c_domain_assembly_context,VWF_R2464C,R2464C,Type1,positive_only,C3,ptm_or_plddt,0.31628,0.35245,-0.0361699999999999,-1.315551720054729,0.08,ok
 c_domain_assembly_context,VWF_C2477Y,C2477Y,Type1,positive_only,C3,ptm_or_plddt,0.32888,0.35245,-0.0235699999999999,-0.7006133152528733,0.0933333333333333,ok
@@ -200,7 +200,7 @@ c_domain_assembly_context,VWF_N2679S,N2679S,Type1,positive_only,C6,ptm_or_plddt,
 c_domain_assembly_context,VWF_F2561Y,F2561Y,Negative_ClinVar|Negative_GeneBe,negative_only,C4,ptm_or_plddt,0.35184,0.35245,-0.0006099999999999,0.4199411112749518,0.8666666666666667,ok
 c_domain_assembly_context,VWF_R2311H,R2311H,Negative_GeneBe|Type1,negative_positive_overlap,C1,ptm_or_plddt,0.35174,0.35245,-0.0007099999999999,0.4150606477447789,0.8533333333333334,ok
 ck_dimerization_context,VWF_L2786P,L2786P,Type1,positive_only,CK,ptm_or_plddt,0.29191,0.36023,-0.0683199999999999,-2.37359038894128,0.05,ok
-ck_dimerization_context,VWF_M2782T,M2782T,Negative_GeneBe,negative_only,CK,ptm_or_plddt,0.40962,0.36023,0.0493899999999999,1.9216934009687527,1.0,ok
+ck_dimerization_context,VWF_M2782T,M2782T,Negative_GeneBe,negative_only,CK,ptm_or_plddt,0.40962,0.36023,0.0493899999999999,1.9216934009687532,1.0,ok
 ck_dimerization_context,VWF_C2804Y,C2804Y,Type3,positive_only,CK,ptm_or_plddt,0.39448,0.36023,0.03425,1.3692288985540233,0.95,ok
 ck_dimerization_context,VWF_P2776L,P2776L,Type1,positive_only,CK,ptm_or_plddt,0.32132,0.36023,-0.03891,-1.3004080232862458,0.1,ok
 ck_dimerization_context,VWF_C2771S,C2771S,Type2A,positive_only,CK,ptm_or_plddt,0.3915,0.36023,0.03127,1.2604875367841497,0.9,ok
@@ -219,14 +219,14 @@ ck_dimerization_context,VWF_V2793A,V2793A,Negative_GeneBe,negative_only,CK,ptm_o
 ck_dimerization_context,VWF_T2789S,T2789S,Negative_GeneBe,negative_only,CK,ptm_or_plddt,0.36147,0.36023,0.00124,0.1646811294186045,0.55,ok
 ck_dimerization_context,VWF_A2801D,A2801D,Type2A,positive_only,CK,ptm_or_plddt,0.36072,0.36023,0.0004899999999999,0.1373133370268565,0.5,ok
 ck_dimerization_context,VWF_T2789N,T2789N,Negative_GeneBe,negative_only,CK,ptm_or_plddt,0.35337,0.36023,-0.0068599999999999,-0.1308910284122616,0.45,ok
-d1d2_propeptide_context,VWF_D141N,D141N,Type1|Type3,positive_only,D1,ptm_or_plddt,0.27495,0.23439,0.04056,3.490868792578356,1.0,ok
+d1d2_propeptide_context,VWF_D141N,D141N,Type1|Type3,positive_only,D1,ptm_or_plddt,0.27495,0.23439,0.04056,3.4908687925783557,1.0,ok
 d1d2_propeptide_context,VWF_N318K,N318K,Negative_ClinVar|Negative_GeneBe|Type3,negative_positive_overlap,D1,ptm_or_plddt,0.27195,0.23439,0.03756,3.156584614090271,0.9896907216494846,ok
 d1d2_propeptide_context,VWF_P664L,P664L,Negative_GeneBe,negative_only,D2,ptm_or_plddt,0.26656,0.23439,0.03217,2.5559873734066785,0.979381443298969,ok
 d1d2_propeptide_context,VWF_G160W,G160W,Type1,positive_only,D1,ptm_or_plddt,0.26424,0.23439,0.0298499999999999,2.297474275375888,0.9690721649484536,ok
 d1d2_propeptide_context,VWF_C275S,C275S,Type1|Type3,positive_only,D1,ptm_or_plddt,0.22445,0.23439,-0.0099399999999999,-2.136248211971068,0.0103092783505154,ok
 d1d2_propeptide_context,VWF_R447W,R447W,Type3,positive_only,D2,ptm_or_plddt,0.26116,0.23439,0.02677,1.9542758521281247,0.9587628865979382,ok
 d1d2_propeptide_context,VWF_Y87S,Y87S,Type2A,positive_only,D1,ptm_or_plddt,0.22738,0.23439,-0.0070099999999999,-1.809763997647707,0.0206185567010309,ok
-d1d2_propeptide_context,VWF_G79V,G79V,Type3,positive_only,D1,ptm_or_plddt,0.25983,0.23439,0.02544,1.8060765329984076,0.9484536082474226,ok
+d1d2_propeptide_context,VWF_G79V,G79V,Type3,positive_only,D1,ptm_or_plddt,0.25983,0.23439,0.02544,1.8060765329984072,0.9484536082474226,ok
 d1d2_propeptide_context,VWF_C623W,C623W,Type2A,positive_only,D2,ptm_or_plddt,0.22764,0.23439,-0.0067499999999999,-1.7807927021787384,0.0309278350515463,ok
 d1d2_propeptide_context,VWF_L129M,L129M,Negative_GeneBe|Type3,negative_positive_overlap,D1,ptm_or_plddt,0.22776,0.23439,-0.0066299999999999,-1.767421335039217,0.0412371134020618,ok
 d1d2_propeptide_context,VWF_V444I,V444I,Negative_GeneBe,negative_only,D2,ptm_or_plddt,0.22984,0.23439,-0.0045499999999999,-1.5356509712874786,0.0515463917525773,ok

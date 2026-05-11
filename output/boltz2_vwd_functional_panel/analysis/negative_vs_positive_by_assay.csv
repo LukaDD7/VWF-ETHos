@@ -1,6 +1,6 @@
 assay_key,clinical_axis,primary_metric,n_negative_only,n_positive_only,negative_mean_delta,positive_mean_delta,positive_minus_negative_delta,cohen_d_positive_vs_negative
-a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,ptm_or_plddt,17,108,0.09216941176470585,0.062005648148148095,-0.030163763616557752,-0.6337365725388822
-a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,iptm,11,105,0.026749090909090893,0.03239609523809525,0.005647004329004359,0.08855446489948018
+a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,ptm_or_plddt,17,108,0.09216941176470585,0.062005648148148095,-0.030163763616557752,-0.6337365725388823
+a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,iptm,11,105,0.026749090909090893,0.03239609523809525,0.005647004329004359,0.0885544648994802
 a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,iptm,11,105,0.0981281818181818,0.06142342857142858,-0.036704753246753215,-0.3651294355737927
 a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,iptm,10,67,-0.092547,-0.08612791044776119,0.006419089552238813,0.1910079358640617
 a2_folded_stability,A2 fold stability / Type 2A axis,ptm_or_plddt,10,67,0.06595099999999994,-0.03458567164179107,-0.100536671641791,-1.27186914293247
@@ -10,7 +10,7 @@ c2_collagen_binding,collagen binding accessory C-domain axis,iptm,8,4,0.05776124
 c4_integrin_binding,platelet integrin alphaIIb beta3 / C4 RGD axis,iptm,7,6,-0.1750557142857143,-0.19265999999999997,-0.017604285714285683,-0.14928947750219915
 c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",ptm_or_plddt,38,34,-0.0020710526315788867,-0.01764735294117642,-0.015576300309597533,-0.7988197957172715
 ck_dimerization_context,C-terminal dimerization / Type 1 and 3 axis,ptm_or_plddt,8,12,0.00805874999999999,-0.01082749999999999,-0.01888624999999998,-0.7150547177036198
-d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",ptm_or_plddt,42,50,0.008822142857142858,0.009260000000000006,0.0004378571428571478,0.050995794854241605
+d1d2_propeptide_context,"biosynthesis, propeptide processing, multimerization / Type 1 and 3 axis",ptm_or_plddt,42,50,0.008822142857142858,0.009260000000000006,0.0004378571428571478,0.05099579485424159
 d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,ptm_or_plddt,25,30,-0.0019647999999999398,-0.00701033333333326,-0.005045533333333321,-0.42692952495329717
 dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,iptm,16,78,0.00568,0.002112307692307722,-0.0035676923076922783,-0.46263312415572244
-vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,iptm,3,32,0.06534000000000004,0.05787124999999999,-0.007468750000000045,-0.16214183268081345
+vwf73_adamts13_substrate,unfolded A2 cleavage-substrate / Type 2A axis,iptm,3,32,0.06534000000000004,0.05787124999999999,-0.007468750000000045,-0.16214183268081342

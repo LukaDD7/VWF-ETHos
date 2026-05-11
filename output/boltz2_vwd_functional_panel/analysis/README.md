@@ -8,11 +8,12 @@ Files:
 - `label_distribution.csv`: label-policy counts.
 - `negative_vs_positive_by_assay.csv`: negative-only vs positive-only delta comparison.
 - `subtype_one_vs_rest_by_assay.csv`: weakly supervised subtype-vs-rest assay effects.
+- `type2b_vs_type2m_a1_assays.csv`: direct A1-axis Type 2B-only vs Type 2M-only comparison.
 - `top_primary_delta_outliers.csv`: strongest per-assay structural outliers.
 
 Interpretation:
 
 - Complex/interface assays use iPTM as the primary value.
 - Monomer/context assays use pTM first, then complex pLDDT if pTM is unavailable.
-- Rows marked `missing_monomer_ptm_plddt_rerun_parser` mean the old summary CSV
-  did not contain pTM/pLDDT; rerun `parse_vwd_functional_boltz2_results.py`.
+- `n_not_run` means a variant was intentionally outside that assay/domain, not
+  a failed Boltz job.

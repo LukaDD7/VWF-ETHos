@@ -1,0 +1,4 @@
+assay_key,clinical_axis,primary_metric,n_type2b_only,n_type2m_only,type2b_mean_delta,type2m_mean_delta,type2b_minus_type2m_delta,cohen_d_type2b_vs_type2m
+a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,ptm_or_plddt,38,40,0.06574157894736836,0.05930174999999995,0.0064398289473684076,0.13147510240225968
+a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,iptm,37,40,0.03271810810810811,0.027259000000000023,0.005459108108108086,0.07949883126736701
+a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,iptm,37,40,0.08700297297297296,0.036993750000000034,0.05000922297297293,0.4753921273995653
