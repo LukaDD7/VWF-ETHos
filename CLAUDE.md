@@ -86,73 +86,116 @@ conda activate alphagenome
 # pyliftover 已通过 conda 安装，chain 文件：hg19ToHg38.over.chain.gz (本地)
 ```
 
-## Boltz-2 GPU Pipeline (A1 + GPIbα Complex Prediction)
+## GPU Pipeline Index
 
-Reference: `scripts/pipeline/run_a1_gpiba_boltz2.sh`
+All GPU scripts follow the same pattern: parallel workers (1 job/GPU), `.done` markers for resume, preflight checks, offline-only design.
 
-### Environment Setup
+**GPU 实例约束**: 不可联网（仅 CPU 实例可联网），/dev/shm 仅 64MB，计费制。
+
+### Boltz-2: A1 + GPIbα (已完成)
+
+- **Runner**: `scripts/pipeline/run_a1_gpiba_boltz2.sh`
+- **YAML 生成**: `scripts/pipeline/generate_a1_gpiba_yamls.py`
+- **结果解析**: `scripts/pipeline/parse_a1_gpiba_results.py`, `scripts/pipeline/pae_a1_gpiba_analysis.py`
+- **输入**: 74 YAML → `output/boltz2_a1_gpiba/`
+- **输出**: `output/boltz2_a1_gpiba_results/` (iPTM/PAE → `output/boltz2_a1_gpiba_analysis/`)
+- **用法**: `bash scripts/pipeline/run_a1_gpiba_boltz2.sh --gpus 4`
+
+### Boltz-2: VWD Functional Panel (含 FVIII 2N axis)
+
+- **Runner**: `scripts/pipeline/run_vwd_functional_boltz2_panel.sh`
+- **YAML 生成**: `scripts/pipeline/generate_vwd_functional_boltz2_yamls.py`
+- **结果解析**: `scripts/pipeline/parse_vwd_functional_boltz2_results.py`
+- **输入**: 990 YAML (15 assay × 597 variants + 15 WT baselines) → `output/boltz2_vwd_functional_panel/yamls/`
+- **输出**: `output/boltz2_vwd_functional_panel/boltz_results/`
+- **关键 assay**: `dprime_d3_fviii_binding` (100 jobs, 解决 2N 分类), `a1_gpiba_forced_binding` (120 jobs)
+- **用法**:
+  ```bash
+  bash scripts/pipeline/run_vwd_functional_boltz2_panel.sh --gpus 8           # 全部 990 jobs
+  bash scripts/pipeline/run_vwd_functional_boltz2_panel.sh --gpus 4 --filter fviii  # 只跑 FVIII (100 jobs)
+  bash scripts/pipeline/run_vwd_functional_boltz2_panel.sh --preflight        # 预检
+  ```
+- **算力估算**: 990 jobs / 8 GPU ≈ 41h; 100 FVIII jobs / 4 GPU ≈ 8h
+
+### GROMACS: VWF A1–GPIbα MD Simulation
+
+- **Runner**: `scripts/pipeline/run_gromacs_vwf_md.sh`
+- **MDP 参数**: 自动生成至 `output/gromacs_md/mdp/`（或手动放 `scripts/pipeline/mdp/`）
+- **输入**: Boltz-2 CIF → `output/boltz2_a1_gpiba_results/boltz_results_VWF_*/predictions/model_0.cif`
+- **输出**: `output/gromacs_md/VWF_<variant>/` (em → nvt → npt → production → analysis)
+- **依赖**: `conda install -c conda-forge gromacs=2025; pip install gemmi gmx_MMPBSA`
+- **用法**:
+  ```bash
+  bash scripts/pipeline/run_gromacs_vwf_md.sh --gpus 8                        # 全部
+  bash scripts/pipeline/run_gromacs_vwf_md.sh --gpus 4 --filter R1306W        # 单个突变
+  bash scripts/pipeline/run_gromacs_vwf_md.sh --phase equil                   # 只跑到平衡
+  bash scripts/pipeline/run_gromacs_vwf_md.sh --ns 500                        # 500 ns production
+  ```
+- **性能**: H200 单卡 ~200 ns/day (65K atoms), 8 GPU 并行 8 个突变体
+
+### CIF → 二次结构特征提取
+
+- **脚本**: `scripts/pipeline/compute_structural_features.py`
+- **输出**: `structural_features.csv` / `.parquet`
+- **特征**: SASA, ΔSASA, BSA, contacts, H-bonds, salt bridges, mutation-site RSA, Rg, confidence
+- **依赖**: `pip install biopython freesasa`
+- **用法**:
+  ```bash
+  python scripts/pipeline/compute_structural_features.py \
+      --boltz-results output/boltz2_a1_gpiba_results \
+      --output output/structural_features.csv
+  ```
+
+### Evidence Matrix Builder
+
+- **脚本**: `scripts/pipeline/build_vwd_evidence_matrix.py`
+- **输入**: functional panel 解析结果
+- **输出**: `output/boltz2_vwd_functional_panel/evidence_matrix.csv`
+
+### GPU Instance Checklist
 
 ```bash
+# 1. CPU 实例（可联网）— 环境准备
+conda create -n boltz2 python=3.11 && conda activate boltz2
+pip install boltz>=2.0 biopython freesasa gemmi torch
+# 打包: tar czf env_boltz2.tar.gz -C ~/miniconda3/envs/boltz2 .
+
+# 2. 传输到 GPU 实例
+scp env_boltz2.tar.gz gpu-instance:/workspace/
+scp -r VWF-ETHos/ gpu-instance:/workspace/
+
+# 3. GPU 实例（无网络）— 运行
 conda activate boltz2
-# gcc MUST be available (system-level install, not conda)
-which gcc  # should return /usr/bin/gcc
-```
-
-### Running
-
-```bash
-# Clean core files before first run
+export CC=$(which gcc)
 rm -f core.*
+bash scripts/pipeline/run_vwd_functional_boltz2_panel.sh --gpus 8 --preflight
+bash scripts/pipeline/run_vwd_functional_boltz2_panel.sh --gpus 8
 
-# Run on GPU instance (4 GPUs)
-bash scripts/pipeline/run_a1_gpiba_boltz2.sh --gpus 4
-
-# Or with 8 GPUs
-bash scripts/pipeline/run_a1_gpiba_boltz2.sh --gpus 8
-
-# Preflight check only
-bash scripts/pipeline/run_a1_gpiba_boltz2.sh --gpus 4 --preflight
+# 4. Triton JIT 缓存复用
+# 首次运行后: scp -r ~/.cache/triton/ next-gpu-instance:~/.cache/
 ```
 
-### Triton JIT Compilation Cache
+### Boltz-2 Troubleshooting (通用)
 
-Triton (used by Boltz-2 for GPU kernel generation) performs JIT compilation at runtime.
-**On first run on a new GPU instance, expect ~5-10 min delay per job** while Triton compiles kernels.
-To eliminate this delay on subsequent runs, Boltz-2 caches compiled kernels in `~/.cache/triton/`.
-Copy this cache directory to the same location on another GPU instance to reuse compiled kernels.
+| Error | Fix |
+|-------|-----|
+| `No supported gpu backend found` | `--num_workers 0` |
+| `Failed to find C compiler` | `export CC=$(which gcc)` |
+| `OSError: No space left on device` | `--num_workers 0` (避免 /dev/shm IPC) |
+| `core.*` files | `rm -f core.*`; 根因通常是 /dev/shm |
+| GPU util 4% | 正常 (diffusion sampling 串行) |
+| GPU util 0% | 等待 Triton JIT 编译 (首次 5-10 min) |
 
-### Key Parameters
+## Execution History
 
-- **74 YAML inputs** in `output/boltz2_a1_gpiba/`
-- **4 GPU workers** in parallel (1 job/GPU at a time)
-- **diffusion_samples=5** (each job generates 5 structural samples)
-- **recycling_steps=3**
-- **~15-25GB GPU memory per job**
-- **Output**: `output/boltz2_a1_gpiba_results/` with `.done` markers
+### 2026-05-12
+- **Functional panel runner upgraded**: `run_vwd_functional_boltz2_panel.sh` — 并行 worker + .done + preflight + assay filter
+- **GROMACS MD pipeline added**: `run_gromacs_vwf_md.sh` — CIF→PDB→EM→NVT→NPT→Production
+- **Structural features extractor added**: `compute_structural_features.py` — CIF→SASA/BSA/contacts
 
-### Troubleshooting
+### 2026-05-07
+- **A1+GPIbα Boltz-2 pipeline**: 74 variants completed
+- **Issues fixed**: /dev/shm 64MB, gcc, num_workers
 
-| Error | Cause | Fix |
-|-------|-------|-----|
-| `No supported gpu backend found` | `num_workers > 0` triggers DataLoader multiprocessing on CPU-only env | Use `--num_workers 0` |
-| `Failed to find C compiler` | Triton JIT needs gcc, `CC` env var not set | `export CC=$(which gcc)` in script |
-| `OSError: [Errno 28] No space left on device` | `/dev/shm` is only 64MB; DataLoader uses it for IPC | `--num_workers 0` avoids this |
-| `core.*` files generated | Process crashed (usually /dev/shm overflow) | `rm -f core.*`; fix root cause |
-| GPU util only 4% | Normal for diffusion sampling (sequential steps) | Not a problem, diffusion is inherently serial |
-| GPU util 0% after launch | JIT compilation happening (CPU-bound) | Wait, first run is slow |
-
-### Execution History (2026-05-07)
-
-- **Boltz-2 pipeline added**: `run_a1_gpiba_boltz2.sh`, `parse_a1_gpiba_results.py`
-- **74 VWF A1 domain variants** × GPIbα complex prediction planned
-- **Issues fixed during setup**: `/dev/shm` 64MB limit, missing gcc, `num_workers` crash, `CC` env not propagated
-
-## Execution History (2026-03-10)
-
-- **Script 01**: 过滤出 1198 个变异 (VUS + Pathogenic/Likely_pathogenic 阳性对照)
-- **Script 02**: hg19→hg38 坐标转换完成，1Mb 区间构建完成
-- **Script 03**: 1198/1198 变异预测成功 (100%)，耗时~98 分钟
-  - 输出：`03_inference_results.pkl` (含 raw_outputs), `03_inference_results.csv`
-  - Top 变异：chr12:6018550 (Delta: 76.81, Likely_pathogenic)
-- **Script 04**: 生成 Top 20 变异的 4 面板临床级可视化图
-  - 输出：`figures/*.png`, `04_analysis_summary.csv` (1198 条排行榜)
+### 2026-03-10
+- **AlphaGenome pipeline**: 1198/1198 variants predicted (100%)
