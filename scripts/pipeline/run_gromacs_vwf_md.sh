@@ -1,63 +1,38 @@
 #!/bin/bash
 # ==============================================================================
-# run_gromacs_vwf_md.sh — VWF A1–GPIbα MD Simulation (GROMACS, H200 GPU)
+# run_gromacs_vwf_md.sh — VWF MD Simulation (GROMACS, H200 GPU)
 # ==============================================================================
 #
-# 从 Boltz-2 预测的 CIF 结构出发，使用 GROMACS 运行分子动力学模拟。
-# 目标：提取 2B (GOF) vs 2M (LOF) 的动态分类特征。
+# 支持三种分子系统：
+#   complex   — A1-GPIbα 复合体 (默认)
+#   monomer  — VWF A1 单体（从复合体 CIF 提取 chain A）
+#   autoinhib — VWF D'D3-A1 自抑制模块（需 A1+D'D3 Boltz-2 结果）
 #
-# 工作流程：
-#   1. CIF → PDB 转换 (gemmi/obabel)
+# 工作流程（三种系统共用）：
+#   1. CIF → PDB 转换 (gemmi)
 #   2. gmx pdb2gmx: 拓扑构建 (CHARMM36m + TIP3P)
 #   3. gmx solvate + genion: 溶剂化 + 加离子 (0.15M NaCl)
-#   4. Energy Minimization (EM)
-#   5. NVT Equilibration (500 ps)
-#   6. NPT Equilibration (500 ps)
-#   7. Production MD (200 ns)
-#   8. 后分析: RMSF, PCA, MM/PBSA (可选)
+#   4. EM → NVT → NPT → Production MD
+#   5. 后分析: RMSF, PCA, MM/PBSA (complex), D'D3-A1 contacts (autoinhib)
 #
-# GPU 实例约束（同 Boltz-2 pipeline）：
-#   - 不可联网 → 力场文件必须预先包含在 GROMACS 安装中
-#   - 计费制 → 最大化 GPU 利用率，多突变体并行
-#   - /dev/shm 可能有限 → GROMACS 不依赖 /dev/shm，无影响
-#
-# H200 141GB 性能估算（VWF A1 + GPIbα ≈ 65K atoms with solvent）：
-#   - 全 GPU offload 模式：~200-300 ns/day
-#   - 200 ns production run ≈ 16-24 小时
-#   - 8 GPU 并行 8 个突变体 ≈ 同时完成
-#
-# 环境依赖（CPU 实例预装后传输）：
+# 环境依赖：
 #   conda create -n gromacs python=3.11
 #   conda install -c conda-forge gromacs=2025
-#   pip install gemmi  # CIF→PDB 转换
-#   pip install gmx_MMPBSA  # MM/PBSA (可选)
-#   力场文件: CHARMM36m（GROMACS 2025 内置）
+#   pip install gemmi
+#   conda install -c conda-forge gmx_mmpbsa  # 可选
 #
 # 用法：
-#   bash scripts/pipeline/run_gromacs_vwf_md.sh                  # 默认 4 GPU
-#   bash scripts/pipeline/run_gromacs_vwf_md.sh --gpus 8         # 8 GPU 并行
-#   bash scripts/pipeline/run_gromacs_vwf_md.sh --preflight      # 仅预检
-#   bash scripts/pipeline/run_gromacs_vwf_md.sh --phase em       # 只跑到 EM
-#   bash scripts/pipeline/run_gromacs_vwf_md.sh --phase equil    # 只跑到平衡
-#   bash scripts/pipeline/run_gromacs_vwf_md.sh --ns 500         # 500 ns production
+#   bash scripts/pipeline/run_gromacs_vwf_md.sh --system complex --gpus 8   # 默认
+#   bash scripts/pipeline/run_gromacs_vwf_md.sh --system monomer --gpus 8
+#   bash scripts/pipeline/run_gromacs_vwf_md.sh --system autoinhib --gpus 8
+#   bash scripts/pipeline/run_gromacs_vwf_md.sh --preflight
+#   bash scripts/pipeline/run_gromacs_vwf_md.sh --phase em --gpus 4
+#   bash scripts/pipeline/run_gromacs_vwf_md.sh --ns 500 --gpus 8
 #
-# 输入：
-#   output/boltz2_a1_gpiba_results/boltz_results_VWF_*/predictions/model_0.cif
-#   （由 run_a1_gpiba_boltz2.sh 产出的 Boltz-2 CIF 结构）
-#
-# 输出结构：
-#   output/gromacs_md/
-#     VWF_R1306W/
-#       input/        ← 转换后的 PDB
-#       topology/     ← pdb2gmx 输出
-#       em/           ← Energy Minimization
-#       nvt/          ← NVT 平衡
-#       npt/          ← NPT 平衡
-#       production/   ← 200 ns MD 轨迹
-#       analysis/     ← RMSF, PCA, etc.
-#       .done_em / .done_equil / .done_prod  ← 阶段完成标记
-#     worker_0.log
-#     run_log.txt
+# 输入来源（按 --system）：
+#   complex   → output/boltz2_a1_gpiba_results/
+#   monomer   → output/boltz2_a1_gpiba_results/ (提取 chain A)
+#   autoinhib → output/boltz2_a1_dp_d3_results/ (A1+D'D3)
 # ==============================================================================
 
 set -u
@@ -65,31 +40,56 @@ set -u
 # ---------- 默认参数 -----------------------------------------------------------
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
-BOLTZ_RESULTS="${ROOT_DIR}/output/boltz2_a1_gpiba_results"
-OUTPUT_DIR="${ROOT_DIR}/output/gromacs_md"
-MDP_DIR="${ROOT_DIR}/scripts/pipeline/mdp"
+SYSTEM_TYPE="complex"          # complex | monomer | autoinhib
 N_GPUS=4
-PROD_NS=200          # Production MD 时长 (ns)
-PHASE="prod"         # em / equil / prod
+PROD_NS=200
+PHASE="prod"
 PREFLIGHT_ONLY=false
-VARIANT_FILTER=""    # 空=全部, "R1306W"=仅指定突变
+VARIANT_FILTER=""
 
 # ---------- 参数解析 -----------------------------------------------------------
 while [[ $# -gt 0 ]]; do
     case $1 in
-        --gpus)           N_GPUS="$2"; shift 2 ;;
-        --boltz-results)  BOLTZ_RESULTS="$2"; shift 2 ;;
-        --out-dir)        OUTPUT_DIR="$2"; shift 2 ;;
-        --ns)             PROD_NS="$2"; shift 2 ;;
-        --phase)          PHASE="$2"; shift 2 ;;
-        --preflight)      PREFLIGHT_ONLY=true; shift ;;
-        --filter)         VARIANT_FILTER="$2"; shift 2 ;;
+        --gpus)             N_GPUS="$2"; shift 2 ;;
+        --system)           SYSTEM_TYPE="$2"; shift 2 ;;
+        --boltz-results)    BOLTZ_RESULTS="$2"; shift 2 ;;
+        --monomer-results)  MONOMER_RESULTS="$2"; shift 2 ;;
+        --autoinhib-results) AUTINHIB_RESULTS="$2"; shift 2 ;;
+        --out-dir)          OUTPUT_DIR="$2"; shift 2 ;;
+        --ns)               PROD_NS="$2"; shift 2 ;;
+        --phase)            PHASE="$2"; shift 2 ;;
+        --preflight)        PREFLIGHT_ONLY=true; shift ;;
+        --filter)           VARIANT_FILTER="$2"; shift 2 ;;
         -h|--help)
-            sed -n '2,55p' "$0" | sed 's/^# //'
+            sed -n '2,70p' "$0" | sed 's/^# //'
             exit 0 ;;
         *) echo "[WARN] Unknown argument: $1"; shift ;;
     esac
 done
+
+# CHARMM36m 在 gromacs env 内，需要明确指定 GMXDATA
+export GMXDATA="$(cd "$ROOT_DIR/../../envs/gromacs/share/gromacs" && pwd)"
+
+# ---------- 根据系统类型设置默认路径 ------------------------------------------
+case "$SYSTEM_TYPE" in
+    complex)
+        BOLTZ_RESULTS="${BOLTZ_RESULTS:-${ROOT_DIR}/output/boltz2_a1_gpiba_results}"
+        OUTPUT_DIR="${OUTPUT_DIR:-${ROOT_DIR}/output/gromacs_md}"
+        ;;
+    monomer)
+        BOLTZ_RESULTS="${MONOMER_RESULTS:-${ROOT_DIR}/output/boltz2_a1_gpiba_results}"
+        OUTPUT_DIR="${OUTPUT_DIR:-${ROOT_DIR}/output/gromacs_md_monomer}"
+        ;;
+    autoinhib)
+        BOLTZ_RESULTS="${AUTINHIB_RESULTS:-${ROOT_DIR}/output/boltz2_a1_dp_d3_results}"
+        OUTPUT_DIR="${OUTPUT_DIR:-${ROOT_DIR}/output/gromacs_md_autoinhib}"
+        ;;
+    *)
+        echo "[ERROR] Unknown system type: $SYSTEM_TYPE (must be complex|monomer|autoinhib)"
+        exit 1
+        ;;
+esac
+MDP_DIR="${ROOT_DIR}/scripts/pipeline/mdp"
 
 mkdir -p "$OUTPUT_DIR"
 LOG="${OUTPUT_DIR}/run_log.txt"
@@ -102,7 +102,8 @@ log() {
 
 # ---------- 预检 (Preflight) --------------------------------------------------
 log "============================================================"
-log "VWF A1-GPIbα GROMACS MD Pipeline"
+log "VWF GROMACS MD Pipeline"
+log "System: $SYSTEM_TYPE"
 log "Started: $(date)"
 log "============================================================"
 
@@ -143,10 +144,18 @@ fi
 # 4. Boltz-2 输入
 if [ ! -d "$BOLTZ_RESULTS" ]; then
     log "[ERROR] Boltz-2 results not found: $BOLTZ_RESULTS"
-    log "  先运行: bash scripts/pipeline/run_a1_gpiba_boltz2.sh"
+    case "$SYSTEM_TYPE" in
+        complex)     log "  先运行: bash scripts/pipeline/run_a1_gpiba_boltz2.sh" ;;
+        monomer)    log "  先运行: bash scripts/pipeline/run_a1_gpiba_boltz2.sh (monomer uses same CIFs)" ;;
+        autoinhib)   log "  先运行: python3 scripts/pipeline/generate_a1_dp_d3_yamls.py && bash scripts/pipeline/run_a1_dp_d3_boltz2.sh" ;;
+    esac
     PREFLIGHT_FAIL=true
 else
-    CIF_COUNT=$(find "$BOLTZ_RESULTS" -name "model_0.cif" 2>/dev/null | wc -l)
+    if [ "$SYSTEM_TYPE" = "complex" ]; then
+        CIF_COUNT=$(find "$BOLTZ_RESULTS" -name "*_model_0.cif" 2>/dev/null | wc -l)
+    else
+        CIF_COUNT=$(find "$BOLTZ_RESULTS" -name "*.cif" 2>/dev/null | wc -l)
+    fi
     log "[OK] Boltz-2 CIF structures found: $CIF_COUNT"
 fi
 
@@ -160,7 +169,7 @@ AVAIL_MB=$(df -m "$OUTPUT_DIR" 2>/dev/null | awk 'NR==2{print $4}' || echo "unkn
 log "[INFO] Disk available: ${AVAIL_MB}MB"
 
 log "------------------------------------------------------------"
-log "Config: N_GPUS=$N_GPUS | PROD_NS=${PROD_NS}ns | PHASE=$PHASE"
+log "Config: SYSTEM=$SYSTEM_TYPE | N_GPUS=$N_GPUS | PROD_NS=${PROD_NS}ns | PHASE=$PHASE"
 log "Filter: ${VARIANT_FILTER:-all variants}"
 log "------------------------------------------------------------"
 
@@ -309,30 +318,48 @@ fi
 # ---------- 扫描待跑突变体列表 ------------------------------------------------
 TODO_VARIANTS=()
 
-for BOLTZ_DIR in "$BOLTZ_RESULTS"/boltz_results_VWF_*; do
-    [ ! -d "$BOLTZ_DIR" ] && continue
-    JNAME=$(basename "$BOLTZ_DIR" | sed 's/^boltz_results_//')
-    # 只取 A1-GPIba complex 的结果
-    VARIANT=$(echo "$JNAME" | sed 's/_vs_GPIb_alpha$//')
-    CIF="${BOLTZ_DIR}/predictions/model_0.cif"
+if [ "$SYSTEM_TYPE" = "autoinhib" ]; then
+    # Autoinhib: output/boltz2_a1_dp_d3_results/boltz_results_VWF_WT_dp_d3_a1/
+    for BOLTZ_DIR in "$BOLTZ_RESULTS"/boltz_results_VWF_*; do
+        [ ! -d "$BOLTZ_DIR" ] && continue
+        JNAME=$(basename "$BOLTZ_DIR" | sed 's/^boltz_results_//')
+        VARIANT=$(echo "$JNAME" | sed 's/_dp_d3_a1$//')
+        CIF=$(find "$BOLTZ_DIR" -name "*.cif" 2>/dev/null | head -1)
+        [ -z "$CIF" ] && continue
+        DONE_FILE="${OUTPUT_DIR}/${VARIANT}/.done_${PHASE}"
+        [ -f "$DONE_FILE" ] && continue
+        TODO_VARIANTS+=("$VARIANT|$CIF|complex")
+    done
+elif [ "$SYSTEM_TYPE" = "monomer" ]; then
+    # Monomer: use A1-GPIbα results but extract chain A only
+    for BOLTZ_DIR in "$BOLTZ_RESULTS"/boltz_results_VWF_*; do
+        [ ! -d "$BOLTZ_DIR" ] && continue
+        JNAME=$(basename "$BOLTZ_DIR" | sed 's/^boltz_results_//')
+        VARIANT=$(echo "$JNAME" | sed 's/_vs_GPIb_alpha$//')
+        CIF_PATH="${BOLTZ_DIR}/predictions/${JNAME}/${JNAME}_model_0.cif"
+        [ ! -f "$CIF_PATH" ] && continue
+        DONE_FILE="${OUTPUT_DIR}/${VARIANT}/.done_${PHASE}"
+        [ -f "$DONE_FILE" ] && continue
+        TODO_VARIANTS+=("$VARIANT|$CIF_PATH|monomer")
+    done
+else
+    # Complex: A1-GPIbα
+    for BOLTZ_DIR in "$BOLTZ_RESULTS"/boltz_results_VWF_*; do
+        [ ! -d "$BOLTZ_DIR" ] && continue
+        JNAME=$(basename "$BOLTZ_DIR" | sed 's/^boltz_results_//')
+        VARIANT=$(echo "$JNAME" | sed 's/_vs_GPIb_alpha$//')
+        CIF="${BOLTZ_DIR}/predictions/${JNAME}/${JNAME}_model_0.cif"
+        [ ! -f "$CIF" ] && continue
+        if [ -n "$VARIANT_FILTER" ]; then
+            [[ "$VARIANT" != *"$VARIANT_FILTER"* ]] && continue
+        fi
+        DONE_FILE="${OUTPUT_DIR}/${VARIANT}/.done_${PHASE}"
+        [ -f "$DONE_FILE" ] && continue
+        TODO_VARIANTS+=("$VARIANT|$CIF|complex")
+    done
+fi
 
-    [ ! -f "$CIF" ] && continue
-
-    # 过滤
-    if [ -n "$VARIANT_FILTER" ]; then
-        [[ "$VARIANT" != *"$VARIANT_FILTER"* ]] && continue
-    fi
-
-    # 检查阶段完成标记
-    DONE_FILE="${OUTPUT_DIR}/${VARIANT}/.done_${PHASE}"
-    if [ -f "$DONE_FILE" ]; then
-        continue
-    fi
-
-    TODO_VARIANTS+=("$VARIANT|$CIF")
-done
-
-log "MD variants: total found=$(ls -d "$BOLTZ_RESULTS"/boltz_results_VWF_* 2>/dev/null | wc -l)  todo=${#TODO_VARIANTS[@]}"
+log "MD variants: found=${#TODO_VARIANTS[@]}  phase=$PHASE"
 
 if [ ${#TODO_VARIANTS[@]} -eq 0 ]; then
     log "All matching variants already completed for phase=$PHASE."
@@ -346,6 +373,7 @@ run_md_worker() {
     local OUT_BASE=$3
     local MDP_BASE=$4
     local TARGET_PHASE=$5
+    local SYSTEM=$6
     local WORKER_LOG="${OUT_BASE}/worker_${GPU_ID}.log"
 
     echo "[GPU ${GPU_ID}] MD Worker started at $(date)" > "$WORKER_LOG"
@@ -353,27 +381,111 @@ run_md_worker() {
     local JOB_OK=0
     local JOB_FAIL=0
 
-    while IFS='|' read -r VARIANT CIF_PATH; do
+    while IFS='|' read -r VARIANT CIF_PATH SYS; do
         [ -z "$VARIANT" ] && continue
+        SYS="${SYS:-complex}"
 
         local WORK="${OUT_BASE}/${VARIANT}"
         mkdir -p "$WORK"/{input,topology,em,nvt,npt,production,analysis}
 
-        echo "[GPU ${GPU_ID}] $(date '+%H:%M:%S') START: $VARIANT" >> "$WORKER_LOG"
+        echo "[GPU ${GPU_ID}] $(date '+%H:%M:%S') START: $VARIANT (sys=$SYS)" >> "$WORKER_LOG"
 
-        # ---- Step 1: CIF → PDB ----
-        if [ ! -f "$WORK/input/complex.pdb" ]; then
-            python3 -c "
+        # ---- Step 1: CIF → PDB (monomer = chain A only) ----
+        if [ "$SYS" = "monomer" ]; then
+            INPUT_PDB="$WORK/input/monomer.pdb"
+        else
+            INPUT_PDB="$WORK/input/complex.pdb"
+        fi
+
+        if [ ! -f "$INPUT_PDB" ]; then
+            if [ "$SYS" = "monomer" ]; then
+                python3 -c "
 import gemmi
 doc = gemmi.cif.read('$CIF_PATH')
 st = gemmi.make_structure_from_block(doc[0])
-st.write_pdb('$WORK/input/complex.pdb')
+for m in st:
+    for c in list(m):
+        if c.name != 'A':
+            m.remove_chain(c.name)
+st.write_pdb('$INPUT_PDB')
+print('OK: CIF → PDB (chain A)')
+" >> "$WORKER_LOG" 2>&1
+            else
+                python3 -c "
+import gemmi
+doc = gemmi.cif.read('$CIF_PATH')
+st = gemmi.make_structure_from_block(doc[0])
+st.write_pdb('$INPUT_PDB')
 print('OK: CIF → PDB')
 " >> "$WORKER_LOG" 2>&1
+            fi
             if [ $? -ne 0 ]; then
                 echo "[GPU ${GPU_ID}] FAIL CIF→PDB: $VARIANT" >> "$WORKER_LOG"
-                JOB_FAIL=$((JOB_FAIL + 1))
+                JOB_FAIL=$((JOB_FAIL + 1)); continue
+            fi
+            # ---- Fix terminal OXT for CHARMM36m ----
+            python3 << OXTEOF
+import gemmi, math, sys
+
+def add_oxt(pdb_path):
+    st = gemmi.read_pdb(pdb_path)
+    fixed = 0
+    for model in st:
+        for chain in model:
+            atoms = list(chain)
+            if not atoms:
                 continue
+            # Group atoms by residue
+            by_res = {}
+            for a in atoms:
+                r = a.rel_seq
+                if r not in by_res:
+                    by_res[r] = []
+                by_res[r].append(a)
+            if not by_res:
+                continue
+            last_resnum = max(by_res.keys())
+            last_atoms = by_res[last_resnum]
+            atom_names = {a.name for a in last_atoms}
+            resname = last_atoms[0].res_name.strip()
+            if resname in ('ALA','ARG','ASN','ASP','CYS','GLN','GLU','GLY','HIS','ILE',
+                           'LEU','LYS','MET','PHE','PRO','SER','THR','TRP','TYR','VAL'):
+                if 'OXT' not in atom_names and 'C' in atom_names and 'O' in atom_names:
+                    # Add OXT: reflect O across CA
+                    c_atom = next(a for a in last_atoms if a.name == 'C')
+                    ca_atom = next((a for a in last_atoms if a.name == 'CA'), None)
+                    o_atom = next(a for a in last_atoms if a.name == 'O')
+                    if ca_atom is not None:
+                        # OXT position: reflect O across CA-C vector
+                        cx, cy, cz = c_atom.x, c_atom.y, c_atom.z
+                        cax, cay, caz = ca_atom.x, ca_atom.y, ca_atom.z
+                        ox, oy, oz = o_atom.x, o_atom.y, o_atom.z
+                        # OXT = 2*CA - O (reflected)
+                        n_x = 2*cax - ox
+                        n_y = 2*cay - oy
+                        n_z = 2*caz - oz
+                        oxt = gemmi.Atom()
+                        oxt.name = 'OXT'
+                        oxt.element = gemmi.Element('O')
+                        oxt.x, oxt.y, oxt.z = n_x, n_y, n_z
+                        oxt.occ = 1.0
+                        oxt.biso = 0.1
+                        oxt.altloc = ' '
+                        # Add to last atom's residue
+                        last_atoms[-1].append(oxt)
+                        fixed += 1
+    if fixed > 0:
+        st.write_pdb(pdb_path)
+        print(f'OK: added {fixed} OXT atom(s)')
+    else:
+        print('OK: no OXT needed')
+    return True
+
+add_oxt('$INPUT_PDB')
+OXTEOF
+            if [ $? -ne 0 ]; then
+                echo "[GPU ${GPU_ID}] FAIL OXT-fix: $VARIANT" >> "$WORKER_LOG"
+                JOB_FAIL=$((JOB_FAIL + 1)); continue
             fi
         fi
 
@@ -381,7 +493,7 @@ print('OK: CIF → PDB')
         if [ ! -f "$WORK/topology/processed.gro" ]; then
             cd "$WORK/topology"
             echo "1" | gmx pdb2gmx \
-                -f "$WORK/input/complex.pdb" \
+                -f "$INPUT_PDB" \
                 -o processed.gro \
                 -water tip3p \
                 -ff charmm36m \
@@ -514,7 +626,7 @@ for i in $(seq 0 $((N_GPUS - 1))); do
     JOB_COUNT=$(wc -l < "$LIST_FILE" 2>/dev/null || echo 0)
     [ "$JOB_COUNT" -eq 0 ] && continue
 
-    run_md_worker "$i" "$LIST_FILE" "$OUTPUT_DIR" "$MDP_DIR" "$PHASE" &
+    run_md_worker "$i" "$LIST_FILE" "$OUTPUT_DIR" "$MDP_DIR" "$PHASE" "$SYSTEM_TYPE" &
     PIDS+=($!)
     log "  Worker GPU-$i started (PID=${PIDS[-1]}, variants=$JOB_COUNT)"
 done
