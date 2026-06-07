@@ -56,6 +56,11 @@ class ExpertScores:
     # Expert 3: Clinical Genetics
     domain_pleiotropy_score: float = 0.0  # A1→2B/2M, A3→2M/2A etc.
 
+    # Autoinhibition (A1 AIM↔A1 接触, 来自 a1_aim_autoinhibition_context 结构)
+    # 越大 = AIM 从 A1 GPIb 面脱离越多 = 自抑制松开 = 越像 2B (GOF)。
+    # 由 extract_aim_autoinhib_features.py 产出, NaN = 无该特征 (向后兼容)。
+    aim_release_score: float = float('nan')
+
 
 @dataclass
 class MultiLabelClassificationResult:
@@ -131,6 +136,20 @@ FUNCTIONAL_SITES = {
     'A3_collagen': (1700, 1850),       # Collagen binding site → 2M
     'D4_sEC': (1874, 2255),            # D4 secretion/multimerization → 2A or Type1
 }
+
+# ---------------------------------------------------------------------------
+# Autoinhibition-release thresholds (2B vs 2M discriminator)
+# ---------------------------------------------------------------------------
+# aim_release_score = -zscore(AIM↔A1 contacts) from a1_aim_autoinhibition_context
+# structures (see extract_aim_autoinhib_features.py). Higher = AIM disengaged
+# from the A1 GPIb-binding face = autoinhibition released = 2B (gain-of-function).
+#
+# ⚠ DEFAULTS ARE PROVISIONAL — TUNE on the cluster against known 2B/2M before
+#   trusting. The naive ptm/plddt metric in evidence_matrix.csv does NOT separate
+#   2B/2M (2B vs 2M delta medians 0.067 vs 0.049, fully overlapping); this
+#   contact-based feature is the intended replacement and needs calibration.
+AIM_RELEASE_2B_Z = 1.0    # aim_release_score ≥ this → strong release → 2B
+AIM_RELEASE_LEAN_Z = 0.0  # aim_release_score > this (any release) → rescue A1 default toward 2B
 
 
 # ============================================================================
@@ -544,6 +563,22 @@ class ClinicalGeneticistAgent:
             # Key insight: 2B is "micro-perturbation leads to conformational opening",
             #            2M is "collapse leads to function loss"
 
+            # ---- RULE6-AIM: 直接机制信号 (自抑制松开 → 2B) -------------------
+            # AIM↔A1 接触显著减少 = AIM 从 GPIb 面脱离 = 自抑制松开 = 2B (GOF)。
+            # 这是为修复 2B→2M 漏判而引入的接口级特征; NaN 时退回原有逻辑(向后兼容)。
+            aim_release = getattr(expert_scores, 'aim_release_score', np.nan)
+            if not np.isnan(aim_release) and aim_release >= AIM_RELEASE_2B_Z:
+                return MultiLabelClassificationResult(
+                    main_subtype='2B',
+                    alternatives=['2M'],
+                    confidence=min(0.9, 0.7 + 0.1 * aim_release),
+                    reasoning="; ".join(reasoning_steps + [
+                        f"RULE6-AIM: 自抑制松开 score={aim_release:.2f} ≥ {AIM_RELEASE_2B_Z} "
+                        f"→ 2B (AIM 从 A1 GPIb 面脱离, GOF)"]),
+                    domain_pleiotropy="A1自抑制松开(AIM-A1接触显著减少)→2B(GPIb-GOF)",
+                    expert_scores=expert_scores
+                )
+
             # Check if position is in AIM regions (strong 2B signal)
             is_aim_n = 1238 <= position <= 1268
             is_aim_c = 1460 <= position <= 1472
@@ -600,6 +635,13 @@ class ClinicalGeneticistAgent:
                     confidence = 0.55
                     reasoning_steps.append(
                         f"RULE6e2: A1 + position={position} in known 2B range (no PAE data) → 2B (position heuristic)")
+                # 4c. 弱自抑制松开信号: 救回本会默认判 2M 的 2B (2B→2M 漏判修复)
+                elif not np.isnan(aim_release) and aim_release > AIM_RELEASE_LEAN_Z:
+                    main_subtype = '2B'
+                    confidence = 0.55
+                    reasoning_steps.append(
+                        f"RULE6f-AIM: A1 default 本为 2M, 但自抑制松开 score={aim_release:.2f} > "
+                        f"{AIM_RELEASE_LEAN_Z} → 改判 2B (marginal release)")
                 else:
                     main_subtype = '2M'
                     confidence = 0.6
@@ -731,7 +773,10 @@ class AgenticVWFClassifier:
             rna_drop_score=rna_drop_score,
             splice_override_score=splice_override_score,
             ag_rna_delta=ag_rna_delta,
-            ag_splice_delta=ag_splice_delta
+            ag_splice_delta=ag_splice_delta,
+            # 自抑制松开特征 (extract_aim_autoinhib_features.py → merge 进输入矩阵);
+            # 缺失时为 NaN, RULE6 退回原逻辑。
+            aim_release_score=variant_data.get('aim_release_score', np.nan),
         )
 
         # =====================================================================

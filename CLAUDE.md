@@ -311,6 +311,16 @@ force field 会通过 NFS 共享到 GPU 实例
 
 ## Execution History
 
+### 2026-06-07
+- **GPU flags 按后端条件化 (修活雷)**：`run_gromacs_vwf_md.sh` 之前在 OpenCL 构建上硬用 `-bonded gpu -update gpu` + `GMX_CUDA_GRAPH=1`(CUDA/SYCL 专属)→ EM 能过、NVT 必 fatal、白烧机时。现按 `$GPU_BACKEND` 选 flags:CUDA/SYCL→全 GPU 常驻;OpenCL/未知→`-nb gpu -pme gpu`(update/bonded 回 CPU)。
+- **`gpu_smoke_test.sh`**：诚实放行闸,用与 runner 相同的条件化 flags + md 积分器 tpr 实跑 5 步(Test B),`-nb gpu` only 的朴素 smoke 会假性放行。
+- **2B 自抑制特征接入分类器**：
+  - 实测 `evidence_matrix.csv` 的 `a1_aim_autoinhibition_context` 全局 `ptm_or_plddt` **分不开 2B/2M**(delta 中位数 0.067 vs 0.049, 全重叠)。
+  - 新增 `extract_aim_autoinhib_features.py`：从自抑制 CIF 抽 **AIM↔A1 接触数** → `aim_release_score`(越大=AIM 脱离=越像 2B),铺 ~130 变体。
+  - `agentic_vwf_classifier.py` RULE6 加性接入(NaN 退回原逻辑):强松开早返回 2B;弱松开救回本判 2M 的 A1 默认。**阈值 `AIM_RELEASE_2B_Z` 为暂定值,须在集群用已知 2B/2M 校准**。
+- **`docs/A40_RUNBOOK.md`**：独立 A40 机(非 /lzy NFS)的搬运 + 重建 CUDA gromacs env + smoke + autoinhib MD + 2B 特征流水线。
+- ⚠ **待办**:① A40 上 `gpu_smoke_test.sh` 必须 PASS 再上批量;② 集群上跑 extract + 校准 `AIM_RELEASE_2B_Z`,重跑分类器看 2B recall。
+
 ### 2026-06-01
 - **CHARMM36m 兼容性 bug 修复**：`charmm2gmx` 端口的 `aminoacids.n.tdb` 缺 per-residue `<RESNAME>1` patches, pdb2gmx 错误地从 `ethers.n.tdb` 选到 ether 的 `[ MET1 ]` patch
 - **解决方案**：在 `force_fields/charmm36m.ff/` 注入 17 个 protein N-terminal patches (MET1, ALA1, …, HIS1), run_gromacs_vwf_md.sh 通过 GMXLIB + cwd symlink 优先用 patched FF

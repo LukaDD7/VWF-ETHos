@@ -164,9 +164,27 @@ else
     OPENCL_ICD=$(ls /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so.* 2>/dev/null | head -1)
     log "[INFO] GPU backend: $GPU_BACKEND"
     log "[INFO] NVIDIA OpenCL ICD: ${OPENCL_ICD:-NOT FOUND (need nvidia driver)}"
-    if [ "$GPU_BACKEND" != "OpenCL" ]; then
-        log "[WARN] GROMACS GPU backend is '$GPU_BACKEND', expected 'OpenCL' for 2025.4-conda_forge"
-    fi
+
+    # ---- 按后端条件化 GPU offload flags ----------------------------------
+    # CRITICAL: GROMACS 的 -bonded gpu / -update gpu (GPU 常驻) 和 CUDA graphs
+    # 只在 CUDA/SYCL 构建支持; OpenCL 构建会 fatal ("not supported with OpenCL").
+    # 因此按实测后端选 flags, 否则 NVT 一开跑就挂、白烧 GPU 机时.
+    #   CUDA/SYCL → 全 GPU 常驻 (快, H200/A40 利用率最大化)
+    #   OpenCL/未知 → 只 -nb/-pme gpu, update/bonded 回 CPU (慢但能跑)
+    case "$GPU_BACKEND" in
+        CUDA|SYCL)
+            GPU_RESIDENT_FLAGS="-bonded gpu -update gpu"
+            export GMX_CUDA_GRAPH=1
+            log "[OK] GPU-resident mode ON (backend=$GPU_BACKEND): flags='-nb gpu -pme gpu $GPU_RESIDENT_FLAGS', CUDA graph=1"
+            ;;
+        *)
+            GPU_RESIDENT_FLAGS=""
+            unset GMX_CUDA_GRAPH
+            log "[WARN] backend='$GPU_BACKEND' 不支持 GPU 常驻 (-bonded/-update gpu)。"
+            log "       降级为 '-nb gpu -pme gpu' (update/bonded 在 CPU)。如需提速请改用 CUDA 构建的 gromacs。"
+            ;;
+    esac
+    export GPU_RESIDENT_FLAGS
 fi
 
 # 2. gemmi (CIF→PDB) — gromacs env 自带, 用 env 内 python 检测
@@ -550,7 +568,7 @@ print('OK: CIF → PDB')
                 -r "$WORK/em/em.gro" -p "$WORK/topology/topol.top" \
                 -o nvt.tpr -maxwarn 2 >> "$WORKER_LOG" 2>&1
             CUDA_VISIBLE_DEVICES=$GPU_ID ${GMX} mdrun -deffnm nvt \
-                -nb gpu -pme gpu -bonded gpu -update gpu -pin on \
+                -nb gpu -pme gpu ${GPU_RESIDENT_FLAGS} -pin on \
                 >> "$WORKER_LOG" 2>&1
             [ $? -ne 0 ] && { echo "[GPU ${GPU_ID}] FAIL NVT: $VARIANT" >> "$WORKER_LOG"; JOB_FAIL=$((JOB_FAIL + 1)); continue; }
 
@@ -560,7 +578,7 @@ print('OK: CIF → PDB')
                 -r "$WORK/nvt/nvt.gro" -t "$WORK/nvt/nvt.cpt" \
                 -p "$WORK/topology/topol.top" -o npt.tpr -maxwarn 2 >> "$WORKER_LOG" 2>&1
             CUDA_VISIBLE_DEVICES=$GPU_ID ${GMX} mdrun -deffnm npt \
-                -nb gpu -pme gpu -bonded gpu -update gpu -pin on \
+                -nb gpu -pme gpu ${GPU_RESIDENT_FLAGS} -pin on \
                 >> "$WORKER_LOG" 2>&1
             if [ $? -eq 0 ]; then
                 date '+%Y-%m-%d %H:%M:%S' > "$WORK/.done_equil"
@@ -579,10 +597,11 @@ print('OK: CIF → PDB')
             ${GMX} grompp -f "$MDP_BASE/production.mdp" -c "$WORK/npt/npt.gro" \
                 -t "$WORK/npt/npt.cpt" -p "$WORK/topology/topol.top" \
                 -o md_prod.tpr -maxwarn 2 >> "$WORKER_LOG" 2>&1
-            # 全 GPU offload，最大化 H200 利用率
-            CUDA_VISIBLE_DEVICES=$GPU_ID GMX_CUDA_GRAPH=1 ${GMX} mdrun \
+            # GPU offload: flags 按后端条件化 (见 preflight 的 GPU_RESIDENT_FLAGS)。
+            # CUDA/SYCL → 全常驻 + CUDA graph(已 export GMX_CUDA_GRAPH=1); OpenCL → 仅 -nb/-pme gpu。
+            CUDA_VISIBLE_DEVICES=$GPU_ID ${GMX} mdrun \
                 -deffnm md_prod \
-                -nb gpu -pme gpu -bonded gpu -update gpu \
+                -nb gpu -pme gpu ${GPU_RESIDENT_FLAGS} \
                 -pin on -nstlist 200 \
                 >> "$WORKER_LOG" 2>&1
             if [ $? -eq 0 ]; then
