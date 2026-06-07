@@ -97,6 +97,36 @@ All GPU scripts follow the same pattern: parallel workers (1 job/GPU), `.done` m
 
 **GPU 实例约束**: 不可联网（仅 CPU 实例可联网），/dev/shm 仅 64MB，计费制。
 
+### GPU 实例部署关键事实 (2026-06-01)
+
+1. **NFS 共享 env**: `/lzy/envs/gromacs` (5.1 GB) 已在 GPU 实例上, **无需 scp**。`/lzy/` 是 gpfs_hdd 并行文件系统
+2. **GROMACS 2025.4-conda_forge = OpenCL backend, 不是 CUDA**。`gmx mdrun -version` 输出:
+   - `GPU support: OpenCL`
+   - `OpenCL library: /lzy/envs/gromacs/lib/libOpenCL.so` (env 自带)
+   - 0 个 CUDA API 符号 (nm -D libgromacs.so.10 | grep cuda → 无)
+3. **GPU 实例需 NVIDIA driver 自带的 OpenCL ICD**:
+   - `/usr/lib/x86_64-linux-gnu/libnvidia-opencl.so.<ver>` (driver 装好就有)
+   - 不需要 libcudart / libcuda.so.1, 不需要 conda install cuda-*
+4. **不需要 conda activate**: 项目 runner (`run_gromacs_vwf_md.sh`) 用绝对路径 `${GMX:=/lzy/envs/gromacs/bin.AVX2_256/gmx}`, GPU 实例直接跑即可
+5. **Project 端 patched FF**: `force_fields/charmm36m.ff/aminoacids.n.tdb` 注入了 17 个 protein `<RESNAME>1` patches (解决 pdb2gmx 1MET bug), 通过 `GMXLIB=force_fields` + cwd symlink 让 gmx 优先用 patched copy
+6. **gemmi 已在 gromacs env**: `/lzy/envs/gromacs/bin/python -c "import gemmi"` → 0.7.5 ✅
+
+### GPU 实例一行命令开跑
+
+```bash
+# 在 GPU 实例上 (H200, NVIDIA driver 570+):
+cd /lzy/projects/VWF-ETHos
+bash scripts/pipeline/run_gromacs_vwf_md.sh --system complex --gpus 8 --ns 200
+# 74 变体 × 200ns @ H200 ≈ 9 天
+```
+
+**Preflight 自动验证** (脚本里):
+- `gmx` 绝对路径解析
+- GPU backend = OpenCL
+- NVIDIA OpenCL ICD 存在 (`/usr/lib/x86_64-linux-gnu/libnvidia-opencl.so.*`)
+- gemmi 在 gromacs env 可用
+- nvidia-smi 检测 GPU 数量
+
 ### Boltz-2: A1 + GPIbα (已完成)
 
 - **Runner**: `scripts/pipeline/run_a1_gpiba_boltz2.sh`
@@ -174,47 +204,45 @@ All GPU scripts follow the same pattern: parallel workers (1 job/GPU), `.done` m
 - **输入**: functional panel 解析结果
 - **输出**: `output/boltz2_vwd_functional_panel/evidence_matrix.csv`
 
-### GPU Instance Checklist
+### GPU Instance Checklist (2026-06-01 更新: GROMACS MD 简化)
 
 ```bash
-# 1. CPU 实例（可联网）— 环境准备
+# 0. GPU 实例先验证 (无需 conda activate)
+nvidia-smi                                                # 列出 H200
+ls /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so.*        # 应有 1 + 版本号
+envs/gromacs/bin.AVX2_256/gmx mdrun -version 2>&1 | head -25
+# 应输出: GPU support: OpenCL, OpenCL library: /lzy/envs/gromacs/lib/libOpenCL.so
+
+# 1. CPU 实例 (可联网) — 环境准备 (一次性, 已完成)
 conda create -n boltz2 python=3.11 && conda activate boltz2
 pip install boltz>=2.0 biopython freesasa gemmi torch
-# GROMACS 环境
 conda create -n gromacs python=3.11 && conda activate gromacs
 conda install -c conda-forge gromacs=2025 gmx_mmpbsa && pip install gemmi
-conda install -c conda-forge gcc_linux-64=13 gxx_linux-64=13  # gcc for runtime
-# 打包: tar czf env_boltz2.tar.gz -C ~/miniconda3/envs/boltz2 .
-# 打包: tar czf env_gromacs.tar.gz -C ~/miniconda3/envs/gromacs .
+conda install -c conda-forge gcc_linux-64=13 gxx_linux-64=13
 
-# 2. CHARMM36m force field（可选，见 Troubleshooting）
-# 从 MacKerell 下载 charmm36-feb2026_cgenff-5.0.ff.tgz 到 gromacs/share/gromacs/top/
+# 2. CHARMM36m force field (已下载, 不需再做)
+# /lzy/envs/gromacs/share/gromacs/top/charmm36m.ff/  (env 自带)
+# /lzy/projects/VWF-ETHos/force_fields/charmm36m.ff/  (project patched copy)
 
-# 3. 传输到 GPU 实例
-scp env_boltz2.tar.gz gpu-instance:/workspace/
-scp env_gromacs.tar.gz gpu-instance:/workspace/
-scp -r VWF-ETHos/ gpu-instance:/workspace/
+# 3. **不需要 scp 到 GPU 实例**! /lzy/ 是 NFS 共享 (gpfs_hdd)
+# GPU 实例上直接看到 /lzy/envs/gromacs/
 
-# 4. GPU 实例（无网络）— 运行
-conda activate boltz2
-export CC=$(which gcc)
-rm -f core.*
-bash scripts/pipeline/run_vwd_functional_boltz2_panel.sh --gpus 8 --preflight
-bash scripts/pipeline/run_vwd_functional_boltz2_panel.sh --gpus 8
+# 4. GROMACS MD (三系统) — 一行命令开跑
+cd /lzy/projects/VWF-ETHos
+bash scripts/pipeline/run_gromacs_vwf_md.sh --preflight --system complex
+bash scripts/pipeline/run_gromacs_vwf_md.sh --system complex --gpus 8 --ns 200
+# 74 变体 × 200ns @ 8×H200 ≈ 9 天
 
-# 5. GROMACS MD（三系统）
-conda activate gromacs
-export LD_LIBRARY_PATH=.../shared_libs:$LD_LIBRARY_PATH
-export CC=$(which gcc)
-bash scripts/pipeline/run_gromacs_vwf_md.sh --system complex --gpus 8
+# 5. monomer / autoinhib 同理
 bash scripts/pipeline/run_gromacs_vwf_md.sh --system monomer --gpus 8
-# Autoinhibition 需先跑 A1+D'D3 Boltz-2:
+bash scripts/pipeline/run_gromacs_vwf_md.sh --system autoinhib --gpus 8
+# autoinhib 需先跑 A1+D'D3 Boltz-2
 python3 scripts/pipeline/generate_a1_dp_d3_yamls.py
 bash scripts/pipeline/run_a1_dp_d3_boltz2.sh --gpus 8
-bash scripts/pipeline/run_gromacs_vwf_md.sh --system autoinhib --gpus 8
 
-# 6. Triton JIT 缓存复用
-# 首次运行后: scp -r ~/.cache/triton/ next-gpu-instance:~/.cache/
+# 6. Boltz-2 (Triton JIT 缓存复用, 旧方法已废, 见下)
+# 旧: scp -r ~/.cache/triton/ next-gpu-instance:~/.cache/
+# 新: 不需要, GROMACS OpenCL kernel 缓存在 gromacs env 内, NFS 共享
 ```
 
 ### Boltz-2 Troubleshooting (通用)
@@ -246,30 +274,54 @@ cp -r charmm36-feb2026_cgenff-5.0.ff <envs>/gromacs/share/gromacs/top/charmm36m.
 ```
 force field 会通过 NFS 共享到 GPU 实例
 
-### Boltz-2 PDB → pdb2gmx CHARMM36m 兼容性
+### Boltz-2 PDB → pdb2gmx CHARMM36m 兼容性（2026-06-01 解决）
 
 **错误**: `atom C1 not found in building block 1MET while combining tdb and rtp`
 
-**根本原因**: Boltz-2 输出的 PDB 缺少 CHARMM36m 所需的终端加帽原子：
-- **N 端**: 需要 N1/N2 加帽原子（Boltz-2 输出只有 N）
-- **C 端**: 需要 OXT 原子（Boltz-2 输出只有 C, O, CA）
+**真正的根本原因** (之前误诊为 N 端缺 N1/N2、C 端缺 OXT — 实际上 `-ignh` 模式下 pdb2gmx 自己的 `[ NH3+ ]` / `[ COO- ]` patch 会加 HC/OT1/OT2, 不需要预加):
 
-CHARMM27 对此更宽松（可接受），但 CHARMM36m 严格要求。
+- **charmm2gmx 端口不完整**：`gromacs-2025.4` 自带的 `charmm36m.ff/aminoacids.n.tdb` 只定义了通用的 `[ NH3+ ]` / `[ GLY-NH3+ ]` / `[ PRO-NH2+ ]` patches，**没有 per-residue `<RESNAME>1` patches**（MET1、ALA1、…）。
+- **pdb2gmx 选择逻辑**：遇到 N-terminal 残基时先查 `<RESNAME>1` patch。protein MET1 在 aminoacids.n.tdb 中找不到，但 `ethers.n.tdb` 里有 `[ MET1 ]`（用于醚类化学）。pdb2gmx 错误地用 ether patch 处理 protein MET, 而 ether patch 引用 `C1` 原子, 在 MET rtp 中找不到 → 报错。
+- **charmm27 之所以能跑通**：charmm27.ff 没有 ethers.n.tdb, 所以 `[ MET1 ]` 完全不存在, pdb2gmx 直接 fall back 到 `[ NH3+ ]`。
 
-**已验证可行的组合**:
-- `charmm27` + `-ignh` → ✅ 成功（用于当前 74 个突变体）
-- `charmm36m` + `-ter` + `chainsep id` → ❌ N 端 C1 仍然报错
+**解决方案（已实施）**:
+1. 复制 `charmm36m.ff` 到 `force_fields/`
+2. 在 `aminoacids.n.tdb` 顶部注入 protein 兼容的 `[ MET1 ] [ ALA1 ] [ VAL1 ] [ LEU1 ] [ ILE1 ] [ PHE1 ] [ TRP1 ] [ SER1 ] [ THR1 ] [ CYS1 ] [ TYR1 ] [ ASN1 ] [ GLN1 ] [ ASP1 ] [ GLU1 ] [ ARG1 ] [ LYS1 ] [ HIS1 ]` patches, 全部等同于 `[ NH3+ ]` (改 N atomtype 为 NH3, 加 3 个 HC)
+3. `run_gromacs_vwf_md.sh` 在 `pdb2gmx` 步骤前:
+   - `ln -sf $ROOT_DIR/force_fields/charmm36m.ff $WORK/topology/charmm36m.ff`
+   - `cd $WORK/topology`
+   - `GMXLIB=$ROOT_DIR/force_fields gmx pdb2gmx … -ff charmm36m -ignh`
+   - 让 gmx 优先在当前目录 + GMXLIB 找到 patched FF, 而不是 conda env 内置的
+4. **删除**了原有的 OXT 预添加步骤 (gemmi 0.6.5 没有 `Atom.x` 属性, 而且 `[ COO- ]` patch 已经会 `delete O` + `add OT1/OT2`)
 
-**推荐方向**（待实现）:
-1. **修改 Boltz-2 YAML 配置**，让 Boltz-2 预测时输出更完整的 PDB（带 terminal patches）
-2. **用 OpenMM + CHARMM36m XML** 做结构预处理（`boltz2` 环境已有 `charmm36_2024.xml`），输出标准化的 PDB
-3. **GROMACS `pdb2gmx` 预处理脚本**: 写一个 `preprocess_for_pdb2gmx.py`，用 gemmi 给每个链的 N/C 端加上所需原子（参考 `scripts/pipeline/preprocess_for_pdb2gmx.py` 的框架，但 gemmi API 调用需修复）
+**验证** (R1306W 变体, complex 系统, 489 残基 7827 atoms):
+- `gmx pdb2gmx` ✅
+  - Chain A (HIS → PRO): `Start terminus HIS-1: NH3+` / `End terminus PRO-199: COO-`
+  - Chain B (MET → ASP): `Start terminus MET-1: MET1` (用我们注入的 patch) / `End terminus ASP-290: COO-`
+  - Total mass 32086.404 a.m.u., total charge -8.000 e
+- `gmx editconf` ✅ box vectors 10.712 nm
+- `gmx solvate` ✅ 26077 SOL
+- `gmx grompp + genion` ✅ 83 NA + 79 CL
+- `gmx mdrun -steep` ✅ 466 steps, Epot -1.3306265e+06 kJ/mol, Fmax 9.1e+02 < 1000
 
 **相关文件**:
-- `scripts/pipeline/preprocess_for_pdb2gmx.py` — 框架脚本（OXT 添加逻辑已验证，但 chain splitting 的 gemmi API 调用需调试）
-- `scripts/pipeline/run_gromacs_vwf_md.sh` — 目前用 charmm27 临时方案（行 432: `-ff charmm27`）
+- `force_fields/charmm36m.ff/aminoacids.n.tdb` — 注入的 [ MET1 ] 等 patches
+- `scripts/pipeline/run_gromacs_vwf_md.sh` — pdb2gmx 步骤已用 patched FF
+- `scripts/pipeline/preprocess_for_pdb2gmx.py` — 旧的 OXT 预添加脚本, 已废弃 (但保留以防未来有其它需要)
 
 ## Execution History
+
+### 2026-06-01
+- **CHARMM36m 兼容性 bug 修复**：`charmm2gmx` 端口的 `aminoacids.n.tdb` 缺 per-residue `<RESNAME>1` patches, pdb2gmx 错误地从 `ethers.n.tdb` 选到 ether 的 `[ MET1 ]` patch
+- **解决方案**：在 `force_fields/charmm36m.ff/` 注入 17 个 protein N-terminal patches (MET1, ALA1, …, HIS1), run_gromacs_vwf_md.sh 通过 GMXLIB + cwd symlink 优先用 patched FF
+- **删除** OXT 预添加步骤（gemmi 0.6.5 Atom.x 不存在 + [ COO- ] patch 自处理）
+- **端到端验证**：R1306W complex (A1+GPIbα, 489 残基 7827 atoms) 跑通 pdb2gmx → editconf → solvate → genion → grompp → mdrun (EM 466 steps, Fmax < 1000)
+- **GPU 部署准备**：
+  - 确认 gromacs 2025.4 = OpenCL backend (无需 CUDA runtime)
+  - `run_gromacs_vwf_md.sh` 改用 `${GMX}` 绝对路径, 不依赖 conda activate
+  - Preflight 自动检测 OpenCL ICD / GPU backend / gemmi in gromacs env
+  - 整个 gromacs env (5.1GB) 通过 NFS (`/lzy/` gpfs_hdd) 共享, GPU 实例无需 scp
+  - 性能: CPU 16-core ≈ 21 ns/day vs H200 ≈ 200 ns/day → 9× per-node 加速, 8 GPU 并行 9 天跑完 74 变体
 
 ### 2026-05-29
 - **GROMACS MD pipeline expanded**: Three-system architecture (complex / monomer / autoinhib)

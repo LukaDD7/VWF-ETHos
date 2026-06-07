@@ -1,0 +1,396 @@
+; CHARMM-port for GROMACS
+; created with charmm2gmx version 1.0.4.dev2+gfb5404623 on 2026-02-26 12:17:01.126436
+; Code: https://gitlab.com/awacha/charmm2gmx
+; Documentation: https://awacha.gitlab.com/charmm2gmx
+; Citation: András F. Wacha and Justin A. Lemkul: "charmm2gmx: An Automated 
+;      Method to Port the CHARMM Additive Force Field to GROMACS". Journal of
+;      Chemical Information and Modeling 2023, 63(14), 4246-4252.
+;      DOI: 10.1021/acs.jcim.3c00860
+;
+; Charmm2GMX written by András Wacha and Justin Lemkul, based on the original
+; port by E. Prabhu Raman, Justin A. Lemkul, Robert Best and Alexander D. 
+; MacKerell, Jr.
+; Termini database from the CHARMM force field
+
+[ None ]
+; Empty, do-nothing terminus
+
+; residue topologies from file ../toppar_c36_releases/charmm/toppar/top_all36_prot.rtf
+
+; === Patches added by VWF-ETHos to fix pdb2gmx patch-resolution bug ===
+; Bug: pdb2gmx first looks for a patch named "<RESNAME>1" (e.g. MET1) in any
+; loaded n.tdb. charmm36m.ff/ethers.n.tdb defines [ MET1 ] for ether chemistry,
+; which is incorrectly picked for protein N-terminal MET (causing
+; "atom C1 not found in buiding block 1MET"). Same problem would occur for
+; any residue whose <RESNAME>1 patch is defined in a non-protein n.tdb.
+; We add protein-compatible per-residue <RESNAME>1 patches here so pdb2gmx
+; applies the standard NH3+ treatment.
+
+[ MET1 ]
+; Protein N-terminal MET — equivalent to [ NH3+ ] (charmm2gmx port was missing this)
+; Based on CGenFF/CHARMM36 prot N-terminus specification.
+[ delete ]
+ HN
+ HN2
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH3       14.007000  -0.3000
+CA     CT1       12.011000   0.2100
+HA     HB1        1.008000   0.1000
+[ add ]
+3   4   H     N      CA     C
+  HC         1.008000   0.3300  -1
+
+[ ALA1 ]
+; Protein N-terminal ALA
+[ delete ]
+ HN
+ HN2
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH3       14.007000  -0.3000
+CA     CT1       12.011000   0.2100
+HA     HB1        1.008000   0.1000
+[ add ]
+3   4   H     N      CA     C
+  HC         1.008000   0.3300  -1
+
+[ VAL1 ]
+; Protein N-terminal VAL
+[ delete ]
+ HN
+ HN2
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH3       14.007000  -0.3000
+CA     CT1       12.011000   0.2100
+HA     HB1        1.008000   0.1000
+[ add ]
+3   4   H     N      CA     C
+  HC         1.008000   0.3300  -1
+
+[ LEU1 ]
+; Protein N-terminal LEU
+[ delete ]
+ HN
+ HN2
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH3       14.007000  -0.3000
+CA     CT1       12.011000   0.2100
+HA     HB1        1.008000   0.1000
+[ add ]
+3   4   H     N      CA     C
+  HC         1.008000   0.3300  -1
+
+[ ILE1 ]
+; Protein N-terminal ILE
+[ delete ]
+ HN
+ HN2
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH3       14.007000  -0.3000
+CA     CT1       12.011000   0.2100
+HA     HB1        1.008000   0.1000
+[ add ]
+3   4   H     N      CA     C
+  HC         1.008000   0.3300  -1
+
+[ PHE1 ]
+; Protein N-terminal PHE
+[ delete ]
+ HN
+ HN2
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH3       14.007000  -0.3000
+CA     CT1       12.011000   0.2100
+HA     HB1        1.008000   0.1000
+[ add ]
+3   4   H     N      CA     C
+  HC         1.008000   0.3300  -1
+
+[ TRP1 ]
+; Protein N-terminal TRP
+[ delete ]
+ HN
+ HN2
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH3       14.007000  -0.3000
+CA     CT1       12.011000   0.2100
+HA     HB1        1.008000   0.1000
+[ add ]
+3   4   H     N      CA     C
+  HC         1.008000   0.3300  -1
+
+[ SER1 ]
+; Protein N-terminal SER
+[ delete ]
+ HN
+ HN2
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH3       14.007000  -0.3000
+CA     CT1       12.011000   0.2100
+HA     HB1        1.008000   0.1000
+[ add ]
+3   4   H     N      CA     C
+  HC         1.008000   0.3300  -1
+
+[ THR1 ]
+; Protein N-terminal THR
+[ delete ]
+ HN
+ HN2
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH3       14.007000  -0.3000
+CA     CT1       12.011000   0.2100
+HA     HB1        1.008000   0.1000
+[ add ]
+3   4   H     N      CA     C
+  HC         1.008000   0.3300  -1
+
+[ CYS1 ]
+; Protein N-terminal CYS
+[ delete ]
+ HN
+ HN2
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH3       14.007000  -0.3000
+CA     CT1       12.011000   0.2100
+HA     HB1        1.008000   0.1000
+[ add ]
+3   4   H     N      CA     C
+  HC         1.008000   0.3300  -1
+
+[ TYR1 ]
+; Protein N-terminal TYR
+[ delete ]
+ HN
+ HN2
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH3       14.007000  -0.3000
+CA     CT1       12.011000   0.2100
+HA     HB1        1.008000   0.1000
+[ add ]
+3   4   H     N      CA     C
+  HC         1.008000   0.3300  -1
+
+[ ASN1 ]
+; Protein N-terminal ASN
+[ delete ]
+ HN
+ HN2
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH3       14.007000  -0.3000
+CA     CT1       12.011000   0.2100
+HA     HB1        1.008000   0.1000
+[ add ]
+3   4   H     N      CA     C
+  HC         1.008000   0.3300  -1
+
+[ GLN1 ]
+; Protein N-terminal GLN
+[ delete ]
+ HN
+ HN2
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH3       14.007000  -0.3000
+CA     CT1       12.011000   0.2100
+HA     HB1        1.008000   0.1000
+[ add ]
+3   4   H     N      CA     C
+  HC         1.008000   0.3300  -1
+
+[ ASP1 ]
+; Protein N-terminal ASP
+[ delete ]
+ HN
+ HN2
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH3       14.007000  -0.3000
+CA     CT1       12.011000   0.2100
+HA     HB1        1.008000   0.1000
+[ add ]
+3   4   H     N      CA     C
+  HC         1.008000   0.3300  -1
+
+[ GLU1 ]
+; Protein N-terminal GLU
+[ delete ]
+ HN
+ HN2
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH3       14.007000  -0.3000
+CA     CT1       12.011000   0.2100
+HA     HB1        1.008000   0.1000
+[ add ]
+3   4   H     N      CA     C
+  HC         1.008000   0.3300  -1
+
+[ ARG1 ]
+; Protein N-terminal ARG
+[ delete ]
+ HN
+ HN2
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH3       14.007000  -0.3000
+CA     CT1       12.011000   0.2100
+HA     HB1        1.008000   0.1000
+[ add ]
+3   4   H     N      CA     C
+  HC         1.008000   0.3300  -1
+
+[ LYS1 ]
+; Protein N-terminal LYS
+[ delete ]
+ HN
+ HN2
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH3       14.007000  -0.3000
+CA     CT1       12.011000   0.2100
+HA     HB1        1.008000   0.1000
+[ add ]
+3   4   H     N      CA     C
+  HC         1.008000   0.3300  -1
+
+[ HIS1 ]
+; Protein N-terminal HIS
+[ delete ]
+ HN
+ HN2
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH3       14.007000  -0.3000
+CA     CT1       12.011000   0.2100
+HA     HB1        1.008000   0.1000
+[ add ]
+3   4   H     N      CA     C
+  HC         1.008000   0.3300  -1
+; === End VWF-ETHos additions ===
+
+[ GLY-NH3+ ]
+; Glycine N-terminus
+[ delete ]
+ HN
+ HN2
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH3       14.007000  -0.3000
+CA     CT2       12.011000   0.1300
+[ add ]
+3   4   H     N      CA     C     
+  HC         1.008000   0.3300  -1
+
+[ NH3+ ]
+; standard N-terminus
+[ delete ]
+ HN
+ HN2
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH3       14.007000  -0.3000
+CA     CT1       12.011000   0.2100
+HA     HB1        1.008000   0.1000
+[ add ]
+3   4   H     N      CA     C     
+  HC         1.008000   0.3300  -1
+
+[ PRO-NH2+ ]
+; Proline N-Terminal
+[ delete ]
+ H2
+ H3
+ HT1
+ HT2
+ H1
+[ replace ]
+N      NP        14.007000  -0.0700
+CD     CP3       12.011000   0.1600
+CA     CP1       12.011000   0.1600
+[ add ]
+2   6   HN    N      CA     CD    
+  HC         1.008000   0.2400  -1
+
+[ GLY-NH2 ]
+; neutral N-terminal glycine; charges from LSN
+[ delete ]
+ HN
+ H2
+ HN2
+ H3
+ HN1
+ H1
+[ replace ]
+N      NH2       14.007000  -0.9600
+CA     CT2       12.011000   0.1000
+[ add ]
+2   4   HT    N      CA     C     
+  H          1.008000   0.3400  -1
+
+[ NH2 ]
+; neutral N-terminus; charges from LSN
+[ delete ]
+ HN
+ HN2
+ H3
+ HT1
+ HT2
+ HN1
+[ replace ]
+N      NH2       14.007000  -0.9600
+CA     CT1       12.011000   0.1900
+[ add ]
+2   4   H     N      CA     C     
+  H          1.008000   0.3400  -1

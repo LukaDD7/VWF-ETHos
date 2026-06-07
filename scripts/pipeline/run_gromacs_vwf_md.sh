@@ -67,8 +67,50 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# CHARMM36m 在 gromacs env 内，需要明确指定 GMXDATA
+# CHARMM36m 在 gromacs env 内,需要明确指定 GMXDATA
 export GMXDATA="$(cd "$ROOT_DIR/../../envs/gromacs/share/gromacs" && pwd)"
+
+# Force field: use project-patched charmm36m.ff (adds per-residue <RESNAME>1
+# N-terminal patches that the charmm2gmx port was missing — see
+# force_fields/charmm36m.ff/aminoacids.n.tdb for details).
+# Set GMXLIB so gmx pdb2gmx loads the patched FF first, before the conda
+# env's pristine copy. We do this by symlinking the patched FF into a
+# runtime directory and pointing GMXLIB there; the symlink + cwd trick also
+# makes gmx find it ahead of the system path.
+export GMXLIB="${GMXLIB_OVERRIDE:-$ROOT_DIR/force_fields}"
+
+# ---------- OpenCL ICD vendor 注册 (GPU 实例无 /etc/OpenCL/vendors 时用 NFS 替代) ---
+# GPU 实例上 NVIDIA OpenCL ICD lib 存在 (/usr/lib/x86_64-linux-gnu/libnvidia-opencl.so.*)
+# 但 /etc/OpenCL/vendors/ 可能不存在, 导致 OpenCL loader 找不到 NVIDIA 设备.
+# 我们把 nvidia.icd 放到项目内 opencl_vendors/ 并设 OCL_ICD_VENDORS 指向那里.
+OPENCL_VENDORS_DIR="$ROOT_DIR/opencl_vendors"
+if [ -d "$OPENCL_VENDORS_DIR" ] && [ -n "$(ls "$OPENCL_VENDORS_DIR"/*.icd 2>/dev/null)" ]; then
+    export OCL_ICD_VENDORS="$OPENCL_VENDORS_DIR"
+    log "[OK] OCL_ICD_VENDORS=$OCL_ICD_VENDORS (NFS-based OpenCL ICD)"
+else
+    log "[WARN] No OpenCL ICD files in $OPENCL_VENDORS_DIR"
+    log "  GROMACS may fail to detect GPU. nvidia-smi working is required."
+fi
+
+# ---------- 定位 gmx (无需 conda activate) --------------------------------------
+# GPU 实例通过 NFS 共享 /lzy/envs/gromacs, 但 conda 默认不搜这个路径.
+# 我们用绝对路径, 不依赖 conda activate.
+if command -v gmx &>/dev/null; then
+    GMX="$(command -v gmx)"
+    log "[OK] gmx: $GMX (from PATH)"
+elif [ -x "$ROOT_DIR/../../envs/gromacs/bin.AVX2_256/gmx" ]; then
+    GMX="$ROOT_DIR/../../envs/gromacs/bin.AVX2_256/gmx"
+    log "[OK] gmx: $GMX (absolute path, AVX2_256 SIMD)"
+elif [ -x "$ROOT_DIR/../../envs/gromacs/bin/gmx" ]; then
+    GMX="$ROOT_DIR/../../envs/gromacs/bin/gmx"
+    log "[OK] gmx: $GMX (absolute path, default SIMD)"
+else
+    log "[ERROR] gmx not found in PATH or $ROOT_DIR/../../envs/gromacs/"
+    log "  在 GPU 实例上确保 NFS 挂载 /lzy/, 或先 conda activate gromacs"
+    PREFLIGHT_FAIL=true
+    GMX=""
+fi
+export GMX
 
 # ---------- 根据系统类型设置默认路径 ------------------------------------------
 case "$SYSTEM_TYPE" in
@@ -110,28 +152,41 @@ log "============================================================"
 PREFLIGHT_FAIL=false
 
 # 1. GROMACS
-if ! command -v gmx &>/dev/null; then
+if [ -z "${GMX:-}" ]; then
     log "[ERROR] 'gmx' not found."
-    log "  安装: conda install -c conda-forge gromacs=2025"
+    log "  解决: conda activate gromacs, 或确保 NFS 挂载 /lzy/envs/gromacs/"
     PREFLIGHT_FAIL=true
 else
-    GMX_VER=$(gmx --version 2>&1 | head -1)
+    GMX_VER=$("$GMX" --version 2>&1 | head -1)
     log "[OK] GROMACS: $GMX_VER"
+    # 检测 GPU backend
+    GPU_BACKEND=$("$GMX" mdrun -version 2>&1 | grep "GPU support:" | awk '{print $NF}')
+    OPENCL_ICD=$(ls /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so.* 2>/dev/null | head -1)
+    log "[INFO] GPU backend: $GPU_BACKEND"
+    log "[INFO] NVIDIA OpenCL ICD: ${OPENCL_ICD:-NOT FOUND (need nvidia driver)}"
+    if [ "$GPU_BACKEND" != "OpenCL" ]; then
+        log "[WARN] GROMACS GPU backend is '$GPU_BACKEND', expected 'OpenCL' for 2025.4-conda_forge"
+    fi
 fi
 
-# 2. gemmi (CIF→PDB)
-if ! command -v gemmi &>/dev/null && ! python3 -c "import gemmi" &>/dev/null; then
-    log "[WARN] gemmi not found (needed for CIF→PDB conversion)."
-    log "  安装: pip install gemmi"
+# 2. gemmi (CIF→PDB) — gromacs env 自带, 用 env 内 python 检测
+GMX_PY="${GMX_PY:-$(dirname "$GMX")/../../bin/python}"
+if [ ! -x "$GMX_PY" ] && [ -x "$ROOT_DIR/../../envs/gromacs/bin/python" ]; then
+    GMX_PY="$ROOT_DIR/../../envs/gromacs/bin/python"
 fi
+if "$GMX_PY" -c "import gemmi" 2>/dev/null; then
+    GEMMI_VER=$("$GMX_PY" -c "import gemmi; print(gemmi.__version__)" 2>/dev/null)
+    log "[OK] gemmi: $GEMMI_VER (in gromacs env)"
+else
+    log "[WARN] gemmi not found in gromacs env (needed for CIF→PDB conversion)."
+    log "  解决: /lzy/envs/gromacs/bin/python -m pip install gemmi"
+fi
+export GMX_PY
 
-# 3. CUDA / GPU
-GPU_COUNT=$(python3 -c "import torch; print(torch.cuda.device_count())" 2>/dev/null || echo "0")
-if [ "$GPU_COUNT" -eq 0 ]; then
-    # GROMACS 用 nvidia-smi 检测
-    GPU_COUNT=$(nvidia-smi -L 2>/dev/null | wc -l || echo "0")
-fi
-log "[INFO] GPUs detected: $GPU_COUNT"
+# 3. GPU 检测 — 用 nvidia-smi, 不依赖 torch (gromacs env 无 torch)
+GPU_COUNT=$(nvidia-smi -L 2>/dev/null | wc -l || echo "0")
+GPU_NAME=$(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null | head -1)
+log "[INFO] GPUs detected: $GPU_COUNT ($GPU_NAME)"
 if [ "$GPU_COUNT" -lt "$N_GPUS" ] 2>/dev/null; then
     log "[WARN] Adjusting N_GPUS from $N_GPUS to $GPU_COUNT"
     N_GPUS=$GPU_COUNT
@@ -423,78 +478,30 @@ print('OK: CIF → PDB')
                 echo "[GPU ${GPU_ID}] FAIL CIF→PDB: $VARIANT" >> "$WORKER_LOG"
                 JOB_FAIL=$((JOB_FAIL + 1)); continue
             fi
-            # ---- Fix terminal OXT for CHARMM36m ----
-            python3 << OXTEOF
-import gemmi, math, sys
-
-def add_oxt(pdb_path):
-    st = gemmi.read_pdb(pdb_path)
-    fixed = 0
-    for model in st:
-        for chain in model:
-            atoms = list(chain)
-            if not atoms:
-                continue
-            # Group atoms by residue
-            by_res = {}
-            for a in atoms:
-                r = a.rel_seq
-                if r not in by_res:
-                    by_res[r] = []
-                by_res[r].append(a)
-            if not by_res:
-                continue
-            last_resnum = max(by_res.keys())
-            last_atoms = by_res[last_resnum]
-            atom_names = {a.name for a in last_atoms}
-            resname = last_atoms[0].res_name.strip()
-            if resname in ('ALA','ARG','ASN','ASP','CYS','GLN','GLU','GLY','HIS','ILE',
-                           'LEU','LYS','MET','PHE','PRO','SER','THR','TRP','TYR','VAL'):
-                if 'OXT' not in atom_names and 'C' in atom_names and 'O' in atom_names:
-                    # Add OXT: reflect O across CA
-                    c_atom = next(a for a in last_atoms if a.name == 'C')
-                    ca_atom = next((a for a in last_atoms if a.name == 'CA'), None)
-                    o_atom = next(a for a in last_atoms if a.name == 'O')
-                    if ca_atom is not None:
-                        # OXT position: reflect O across CA-C vector
-                        cx, cy, cz = c_atom.x, c_atom.y, c_atom.z
-                        cax, cay, caz = ca_atom.x, ca_atom.y, ca_atom.z
-                        ox, oy, oz = o_atom.x, o_atom.y, o_atom.z
-                        # OXT = 2*CA - O (reflected)
-                        n_x = 2*cax - ox
-                        n_y = 2*cay - oy
-                        n_z = 2*caz - oz
-                        oxt = gemmi.Atom()
-                        oxt.name = 'OXT'
-                        oxt.element = gemmi.Element('O')
-                        oxt.x, oxt.y, oxt.z = n_x, n_y, n_z
-                        oxt.occ = 1.0
-                        oxt.biso = 0.1
-                        oxt.altloc = ' '
-                        # Add to last atom's residue
-                        last_atoms[-1].append(oxt)
-                        fixed += 1
-    if fixed > 0:
-        st.write_pdb(pdb_path)
-        print(f'OK: added {fixed} OXT atom(s)')
-    else:
-        print('OK: no OXT needed')
-    return True
-
-add_oxt('$INPUT_PDB')
-OXTEOF
-            if [ $? -ne 0 ]; then
-                echo "[GPU ${GPU_ID}] FAIL OXT-fix: $VARIANT" >> "$WORKER_LOG"
-                JOB_FAIL=$((JOB_FAIL + 1)); continue
-            fi
         fi
 
-        # ---- Step 2: pdb2gmx ----
+        # ---- Step 2: pdb2gmx (with project-patched charmm36m.ff) ----
+        # Why the FF swap: the charmm2gmx port bundled in gromacs-2025.4
+        # omits per-residue N-terminal patches (MET1, ALA1, ...). When
+        # pdb2gmx encounters a protein N-terminal MET, it falls back to
+        # the [ MET1 ] patch from ethers.n.tdb (which is for ether
+        # chemistry, not proteins) and fails with
+        # "atom C1 not found in buiding block 1MET". We copy charmm36m.ff
+        # to force_fields/ and add protein-compatible <RESNAME>1 patches
+        # to aminoacids.n.tdb. Setting GMXLIB=force_fields and running
+        # pdb2gmx from a symlinked dir makes gmx find our patched copy
+        # first.
         if [ ! -f "$WORK/topology/processed.gro" ]; then
+            # Symlink project's patched charmm36m.ff into the topology
+            # dir so pdb2gmx "current directory" lookup beats the env's
+            # pristine copy.
+            ln -sf "$ROOT_DIR/force_fields/charmm36m.ff" \
+                "$WORK/topology/charmm36m.ff"
             cd "$WORK/topology"
-            echo "1" | gmx pdb2gmx \
+            echo "1" | GMXLIB="$ROOT_DIR/force_fields" ${GMX} pdb2gmx \
                 -f "$INPUT_PDB" \
                 -o processed.gro \
+                -p topol.top \
                 -water tip3p \
                 -ff charmm36m \
                 -ignh \
@@ -510,10 +517,10 @@ OXTEOF
         # ---- Step 3: Box + Solvate + Ions ----
         if [ ! -f "$WORK/topology/solv_ions.gro" ]; then
             cd "$WORK/topology"
-            gmx editconf -f processed.gro -o newbox.gro -c -d 1.2 -bt dodecahedron >> "$WORKER_LOG" 2>&1
-            gmx solvate -cp newbox.gro -cs spc216.gro -o solv.gro -p topol.top >> "$WORKER_LOG" 2>&1
-            gmx grompp -f "$MDP_BASE/em.mdp" -c solv.gro -p topol.top -o ions.tpr -maxwarn 2 >> "$WORKER_LOG" 2>&1
-            echo "SOL" | gmx genion -s ions.tpr -o solv_ions.gro -p topol.top \
+            ${GMX} editconf -f processed.gro -o newbox.gro -c -d 1.2 -bt dodecahedron >> "$WORKER_LOG" 2>&1
+            ${GMX} solvate -cp newbox.gro -cs spc216.gro -o solv.gro -p topol.top >> "$WORKER_LOG" 2>&1
+            ${GMX} grompp -f "$MDP_BASE/em.mdp" -c solv.gro -p topol.top -o ions.tpr -maxwarn 2 >> "$WORKER_LOG" 2>&1
+            echo "SOL" | ${GMX} genion -s ions.tpr -o solv_ions.gro -p topol.top \
                 -pname NA -nname CL -neutral -conc 0.15 >> "$WORKER_LOG" 2>&1
             cd "$OUT_BASE"
         fi
@@ -521,9 +528,9 @@ OXTEOF
         # ---- Step 4: Energy Minimization ----
         if [ ! -f "$WORK/.done_em" ]; then
             cd "$WORK/em"
-            gmx grompp -f "$MDP_BASE/em.mdp" -c "$WORK/topology/solv_ions.gro" \
+            ${GMX} grompp -f "$MDP_BASE/em.mdp" -c "$WORK/topology/solv_ions.gro" \
                 -p "$WORK/topology/topol.top" -o em.tpr -maxwarn 2 >> "$WORKER_LOG" 2>&1
-            CUDA_VISIBLE_DEVICES=$GPU_ID gmx mdrun -v -deffnm em \
+            CUDA_VISIBLE_DEVICES=$GPU_ID ${GMX} mdrun -v -deffnm em \
                 -nb gpu -pme gpu >> "$WORKER_LOG" 2>&1
             if [ $? -eq 0 ]; then
                 date '+%Y-%m-%d %H:%M:%S' > "$WORK/.done_em"
@@ -539,20 +546,20 @@ OXTEOF
         # ---- Step 5: NVT Equilibration ----
         if [ ! -f "$WORK/.done_equil" ]; then
             cd "$WORK/nvt"
-            gmx grompp -f "$MDP_BASE/nvt.mdp" -c "$WORK/em/em.gro" \
+            ${GMX} grompp -f "$MDP_BASE/nvt.mdp" -c "$WORK/em/em.gro" \
                 -r "$WORK/em/em.gro" -p "$WORK/topology/topol.top" \
                 -o nvt.tpr -maxwarn 2 >> "$WORKER_LOG" 2>&1
-            CUDA_VISIBLE_DEVICES=$GPU_ID gmx mdrun -deffnm nvt \
+            CUDA_VISIBLE_DEVICES=$GPU_ID ${GMX} mdrun -deffnm nvt \
                 -nb gpu -pme gpu -bonded gpu -update gpu -pin on \
                 >> "$WORKER_LOG" 2>&1
             [ $? -ne 0 ] && { echo "[GPU ${GPU_ID}] FAIL NVT: $VARIANT" >> "$WORKER_LOG"; JOB_FAIL=$((JOB_FAIL + 1)); continue; }
 
             # ---- Step 6: NPT Equilibration ----
             cd "$WORK/npt"
-            gmx grompp -f "$MDP_BASE/npt.mdp" -c "$WORK/nvt/nvt.gro" \
+            ${GMX} grompp -f "$MDP_BASE/npt.mdp" -c "$WORK/nvt/nvt.gro" \
                 -r "$WORK/nvt/nvt.gro" -t "$WORK/nvt/nvt.cpt" \
                 -p "$WORK/topology/topol.top" -o npt.tpr -maxwarn 2 >> "$WORKER_LOG" 2>&1
-            CUDA_VISIBLE_DEVICES=$GPU_ID gmx mdrun -deffnm npt \
+            CUDA_VISIBLE_DEVICES=$GPU_ID ${GMX} mdrun -deffnm npt \
                 -nb gpu -pme gpu -bonded gpu -update gpu -pin on \
                 >> "$WORKER_LOG" 2>&1
             if [ $? -eq 0 ]; then
@@ -569,11 +576,11 @@ OXTEOF
         # ---- Step 7: Production MD ----
         if [ ! -f "$WORK/.done_prod" ]; then
             cd "$WORK/production"
-            gmx grompp -f "$MDP_BASE/production.mdp" -c "$WORK/npt/npt.gro" \
+            ${GMX} grompp -f "$MDP_BASE/production.mdp" -c "$WORK/npt/npt.gro" \
                 -t "$WORK/npt/npt.cpt" -p "$WORK/topology/topol.top" \
                 -o md_prod.tpr -maxwarn 2 >> "$WORKER_LOG" 2>&1
             # 全 GPU offload，最大化 H200 利用率
-            CUDA_VISIBLE_DEVICES=$GPU_ID GMX_CUDA_GRAPH=1 gmx mdrun \
+            CUDA_VISIBLE_DEVICES=$GPU_ID GMX_CUDA_GRAPH=1 ${GMX} mdrun \
                 -deffnm md_prod \
                 -nb gpu -pme gpu -bonded gpu -update gpu \
                 -pin on -nstlist 200 \
