@@ -41,3 +41,13 @@ temp/
 logs/
 data/
 figures/
+
+# 本地 conda env 和运行产物 (每台机独立 bootstrap, 不入 repo)
+envs/
+mdout.mdp
+output/_smoke_test/
+output/gromacs_md*/
+
+# 临时数据备份 (不要入 repo)
+0423-Type2B-excel/
+archived/
