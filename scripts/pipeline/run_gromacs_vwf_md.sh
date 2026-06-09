@@ -504,7 +504,7 @@ run_md_worker() {
 
         if [ ! -f "$INPUT_PDB" ]; then
             if [ "$SYS" = "monomer" ]; then
-                python3 -c "
+                "$GMX_PY" -c "
 import gemmi
 doc = gemmi.cif.read('$CIF_PATH')
 st = gemmi.make_structure_from_block(doc[0])
@@ -516,7 +516,7 @@ st.write_pdb('$INPUT_PDB')
 print('OK: CIF → PDB (chain A)')
 " >> "$WORKER_LOG" 2>&1
             else
-                python3 -c "
+                "$GMX_PY" -c "
 import gemmi
 doc = gemmi.cif.read('$CIF_PATH')
 st = gemmi.make_structure_from_block(doc[0])
@@ -580,8 +580,11 @@ print('OK: CIF → PDB')
             cd "$WORK/em"
             ${GMX} grompp -f "$MDP_BASE/em.mdp" -c "$WORK/topology/solv_ions.gro" \
                 -p "$WORK/topology/topol.top" -o em.tpr -maxwarn 2 >> "$WORKER_LOG" 2>&1
+            # GROMACS 2025.x: -pme gpu 不支持非动力学积分器 (steep/l-bfgs),
+            # EM 段必须让 PME 回 CPU。只 offload NB 到 GPU (-nb gpu) 即可,
+            # EM 跑得短 (~1-5 min),PME on CPU 几乎不影响总时长。
             CUDA_VISIBLE_DEVICES=$GPU_ID ${GMX} mdrun -v -deffnm em \
-                -nb gpu -pme gpu >> "$WORKER_LOG" 2>&1
+                -nb gpu -pme cpu >> "$WORKER_LOG" 2>&1
             if [ $? -eq 0 ]; then
                 date '+%Y-%m-%d %H:%M:%S' > "$WORK/.done_em"
                 echo "[GPU ${GPU_ID}] OK EM: $VARIANT" >> "$WORKER_LOG"
