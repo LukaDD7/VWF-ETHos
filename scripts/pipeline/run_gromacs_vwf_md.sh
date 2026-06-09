@@ -67,8 +67,26 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
+# ---------- log() 提前定义 (gmx 路径检测段就要用) ----------------------------
+# LOG 文件路径临时用 /dev/null,等 OUTPUT_DIR 确定后再换;
+# 之前的实现把 log() 定义在 line 153,在 gmx 检测(line 95-112)之后,
+# 导致检测段调 log 时 bash 报 "log: 未找到命令" 错。
+LOG="/dev/null"
+log() {
+    local msg="[$(date '+%H:%M:%S')] $*"
+    echo "$msg"
+    echo "$msg" >> "$LOG"
+}
+
 # CHARMM36m 在 gromacs env 内,需要明确指定 GMXDATA
-export GMXDATA="$(cd "$ROOT_DIR/../../envs/gromacs/share/gromacs" && pwd)"
+# 优先 LZY NFS (/lzy/envs/gromacs/...) 共享路径,失败再回退到本地重建 env
+if [ -d "$ROOT_DIR/../../envs/gromacs/share/gromacs" ]; then
+    export GMXDATA="$(cd "$ROOT_DIR/../../envs/gromacs/share/gromacs" && pwd)"
+elif [ -d "$ROOT_DIR/envs/gromacs/share/gromacs" ]; then
+    export GMXDATA="$(cd "$ROOT_DIR/envs/gromacs/share/gromacs" && pwd)"
+else
+    export GMXDATA=""
+fi
 
 # Force field: use project-patched charmm36m.ff (adds per-residue <RESNAME>1
 # N-terminal patches that the charmm2gmx port was missing — see
@@ -100,13 +118,20 @@ if command -v gmx &>/dev/null; then
     log "[OK] gmx: $GMX (from PATH)"
 elif [ -x "$ROOT_DIR/../../envs/gromacs/bin.AVX2_256/gmx" ]; then
     GMX="$ROOT_DIR/../../envs/gromacs/bin.AVX2_256/gmx"
-    log "[OK] gmx: $GMX (absolute path, AVX2_256 SIMD)"
+    log "[OK] gmx: $GMX (absolute path, AVX2_256 SIMD, via LZY NFS /lzy/)"
 elif [ -x "$ROOT_DIR/../../envs/gromacs/bin/gmx" ]; then
     GMX="$ROOT_DIR/../../envs/gromacs/bin/gmx"
-    log "[OK] gmx: $GMX (absolute path, default SIMD)"
+    log "[OK] gmx: $GMX (absolute path, default SIMD, via LZY NFS /lzy/)"
+elif [ -x "$ROOT_DIR/envs/gromacs/bin.AVX2_256/gmx" ]; then
+    # Local rebuilt env (A40 独立机,无 /lzy NFS 时的 A40_AGENT_SETUP 路径)
+    GMX="$ROOT_DIR/envs/gromacs/bin.AVX2_256/gmx"
+    log "[OK] gmx: $GMX (absolute path, AVX2_256 SIMD, 本地重建 env)"
+elif [ -x "$ROOT_DIR/envs/gromacs/bin/gmx" ]; then
+    GMX="$ROOT_DIR/envs/gromacs/bin/gmx"
+    log "[OK] gmx: $GMX (absolute path, default SIMD, 本地重建 env)"
 else
-    log "[ERROR] gmx not found in PATH or $ROOT_DIR/../../envs/gromacs/"
-    log "  在 GPU 实例上确保 NFS 挂载 /lzy/, 或先 conda activate gromacs"
+    log "[ERROR] gmx not found in PATH, $ROOT_DIR/../../envs/gromacs/ or $ROOT_DIR/envs/gromacs/"
+    log "  解决: 跑 scripts/setup/a40_selfcheck.sh,按 A40_AGENT_SETUP.md 在本地建 env;或挂 /lzy NFS。"
     PREFLIGHT_FAIL=true
     GMX=""
 fi
@@ -134,13 +159,9 @@ esac
 MDP_DIR="${ROOT_DIR}/scripts/pipeline/mdp"
 
 mkdir -p "$OUTPUT_DIR"
+# 之前的"临时 log"写入 /dev/null,这里重定向到真正的日志
 LOG="${OUTPUT_DIR}/run_log.txt"
-
-log() {
-    local msg="[$(date '+%H:%M:%S')] $*"
-    echo "$msg"
-    echo "$msg" >> "$LOG"
-}
+# (log() 函数本身已在文件顶部定义,这里无需重复定义)
 
 # ---------- 预检 (Preflight) --------------------------------------------------
 log "============================================================"
@@ -188,9 +209,20 @@ else
 fi
 
 # 2. gemmi (CIF→PDB) — gromacs env 自带, 用 env 内 python 检测
-GMX_PY="${GMX_PY:-$(dirname "$GMX")/../../bin/python}"
-if [ ! -x "$GMX_PY" ] && [ -x "$ROOT_DIR/../../envs/gromacs/bin/python" ]; then
-    GMX_PY="$ROOT_DIR/../../envs/gromacs/bin/python"
+# 同时支持两种 env 布局:
+#   (a) LZY NFS 共享: /lzy/envs/gromacs/{bin.AVX2_256/gmx, bin/python}
+#   (b) A40 本地重建: $ROOT_DIR/envs/gromacs/{bin.AVX2_256/gmx, bin/python}
+GMX_PY=""
+for cand in \
+    "$ROOT_DIR/../../envs/gromacs/bin/python" \
+    "$ROOT_DIR/envs/gromacs/bin/python"; do
+    if [ -x "$cand" ]; then GMX_PY="$cand"; break; fi
+done
+# Fallback: 用绝对路径重拼 (对 gmx 在 bin.AVX2_256/ 子目录的 layout,
+# $GMX/../../bin/python 解析到 envs/gromacs/bin/python)
+if [ -z "$GMX_PY" ] && [ -n "${GMX:-}" ]; then
+    cand_py="$(cd "$(dirname "$GMX")/../.." 2>/dev/null && pwd)/bin/python"
+    [ -x "$cand_py" ] && GMX_PY="$cand_py"
 fi
 if "$GMX_PY" -c "import gemmi" 2>/dev/null; then
     GEMMI_VER=$("$GMX_PY" -c "import gemmi; print(gemmi.__version__)" 2>/dev/null)
