@@ -1,0 +1,33 @@
+[05:26:25] ============================================================
+[05:26:25] VWF A1+D'D3 Boltz-2 Parallel Run
+[05:26:25] Started: Fri May 29 05:26:25 UTC 2026
+[05:26:25] ============================================================
+[05:26:25] [OK] boltz found
+[05:26:44] [INFO] CUDA GPUs detected: 4
+[05:26:44] [OK] Input dir: /inspire/hdd/global_user/mengweicheng-240108120092/lzy/projects/VWF-ETHos/scripts/pipeline/../../output/boltz2_a1_dp_d3 (5 YAML files)
+[05:26:44] [INFO] Disk: available=3112448MB, estimated_needed=1250MB
+[05:26:44] [INFO] MSA mode: offline (msa: empty)
+[05:26:44] ------------------------------------------------------------
+[05:26:44] Config: N_GPUS=4 | recycling=3 | samples=5
+[05:26:44] ------------------------------------------------------------
+[05:26:44] Jobs: total=5  done=0  remaining=5
+[05:26:44] Distribution across 4 GPUs:
+[05:26:44]   GPU 0: 2 jobs
+[05:26:44]   GPU 1: 1 jobs
+[05:26:44]   GPU 2: 1 jobs
+[05:26:44]   GPU 3: 1 jobs
+[05:26:44] Launching 4 parallel GPU workers...
+[05:26:44]   Worker GPU-0 started (PID=102721, jobs=2)
+[05:26:44]   Worker GPU-1 started (PID=102726, jobs=1)
+[05:26:44]   Worker GPU-2 started (PID=102734, jobs=1)
+[05:26:44]   Worker GPU-3 started (PID=102745, jobs=1)
+[05:26:44] 
+[05:26:44] Workers running. Monitor with:
+[05:26:44]   watch -n 30 'find /inspire/hdd/global_user/mengweicheng-240108120092/lzy/projects/VWF-ETHos/scripts/pipeline/../../output/boltz2_a1_dp_d3_results -name .done | wc -l'
+[05:26:44] 
+[05:30:52] 
+[05:30:52] ============================================================
+[05:30:52] Boltz-2 Run finished: Fri May 29 05:30:52 UTC 2026
+[05:30:52]   Completed: 5 / 5
+[05:30:52]   Output dir: /inspire/hdd/global_user/mengweicheng-240108120092/lzy/projects/VWF-ETHos/scripts/pipeline/../../output/boltz2_a1_dp_d3_results
+[05:30:52] ============================================================

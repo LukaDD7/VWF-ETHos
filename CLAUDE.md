@@ -321,6 +321,23 @@ force field 会通过 NFS 共享到 GPU 实例
 - **`docs/A40_RUNBOOK.md`**：独立 A40 机(非 /lzy NFS)的搬运 + 重建 CUDA gromacs env + smoke + autoinhib MD + 2B 特征流水线。
 - ⚠ **待办**:① A40 上 `gpu_smoke_test.sh` 必须 PASS 再上批量;② 集群上跑 extract + 校准 `AIM_RELEASE_2B_Z`,重跑分类器看 2B recall。
 
+### 2026-06-02
+- **gromacs env 瘦身（CPU 实例上）**: 删 `bin.AVX_256/`, `bin.SSE2/`, `lib.AVX_256/`, `lib.SSE2/`（4 个目录共 ~64 MB）。本机是 Xeon Max 9462, AVX2_256 路径用, 其他两个 SIMD 变体永远不会 fallback 到（wrapper 自动检测 CPU 选 SIMD, gromacs 编译时硬编码, fallback 路径只服务老 CPU）。
+- **保留 `bin.AVX2_256/` + `lib.AVX2_256/`**: 真 binary `libgromacs.so.10.0.0` (30.5 MB) 唯一保留。
+- **不动 `AmberTools/`, `qml/`, `x86_64-conda-linux-gnu/sysroot/`**: gmx_MMPBSA 间接依赖 PyQt5/matplotlib/pandas/seaborn, 删这堆会破 gmx_MMPBSA 链; sysroot 包含 `kernel-headers`/`libstdcxx-devel` 但体积太小 (800 KB), 不值得风险。
+- **smoke test (post-delete)**: `gmx mdrun -nb cpu -ntmpi 1 -s em.tpr -nsteps 5` → `Potential Energy = -7.9213700e+05 kJ/mol`, exit 0, `SIMD instructions: AVX2_256` (没 fallback)。
+- **check_gpu_baseline.py 仍然**: `backend=opencl, phase=cpu, exit 0`, L1/L2/L3 PASS, L4/L5 SKIP (per-instance)。
+- **没碰 GPU 那边**（CPU 实例, no nvidia-smi, 无法验证 L4a/L5）。GPU 实例上需要手动跑 `gmx mdrun -nb gpu -ntmpi 1 -gpu_id 0 -s em.tpr -nsteps 5 -deffnm /tmp/gpu_smoke` 确认: (1) `1 OpenCL device detected`; (2) mdrun 5 步 exit 0; (3) `gpu_smello.log` 出现 `Using 1 OpenCL device`。
+- **顺便核对: use_case_gromacs.md Bug 3 ("libnuma" 是 gmx 动态依赖) 已陈旧**。新发现: gromacs 2025.4-conda_forge 这个 build 实际**不依赖** libnuma (`ldd bin.AVX2_256/gmx | grep numa` 空)。env 内 `libnuma.so.*` 不存在, gmx 在裸 `LD_LIBRARY_PATH` 下也跑得动。shared_libs/libnuma.so.1 是历史遗留 workaround, 实际不需要。use_case_gromacs.md 还没改 (下一步)。
+
+### 2026-06-02 (R1306W 端到端复现 1MET fix)
+- **环境**: LZY CPU 实例 (Xeon Max 9462), gromacs env 2025.4-conda_forge, gemmi 0.7.5, charmm2gmx 1.0.4.dev2 (2026-02-26)
+- **复现脚本** (用户提供的 5 步验证): preprocess → pdb2gmx → 产物对比
+- **A) env 内 charmm36m.ff (无 [MET1] patch)**: pdb2gmx 跑 chain A HIS-1 用 [NH3+] OK, chain B MET-1 触发 ethers.n.tdb [ MET1 ] (ether) patch → **Fatal error: atom C1 not found in buiding block 1MET, exit 1** ← 完全复现原 bug
+- **B) force_fields/charmm36m.ff (注入 [MET1] patch)**: pdb2gmx 用 [NH3+] / [MET1] / ... 全 protein 兼容 patches, 2 chains / 489 residues / 7827 atoms / mass 54925.097 a.m.u. / charge -4.000 e / **exit 0** ← fix 验证
+- **mdrun smoke (existing em.tpr, post-refactor)**: Potential -7.9213700e+05 kJ/mol, exit 0, 与 2026-06-01 瘦身前完全一致 → 无回归
+- **结论**: 1MET fix 在 CPU 实例 100% 复现 + 验证。GPU 实例还需手动跑 mdrun -nb gpu 5 步 (留 in_progress)。
+
 ### 2026-06-01
 - **CHARMM36m 兼容性 bug 修复**：`charmm2gmx` 端口的 `aminoacids.n.tdb` 缺 per-residue `<RESNAME>1` patches, pdb2gmx 错误地从 `ethers.n.tdb` 选到 ether 的 `[ MET1 ]` patch
 - **解决方案**：在 `force_fields/charmm36m.ff/` 注入 17 个 protein N-terminal patches (MET1, ALA1, …, HIS1), run_gromacs_vwf_md.sh 通过 GMXLIB + cwd symlink 优先用 patched FF
