@@ -1,0 +1,11 @@
+model                                     total  H-clash  heavy  min(Å)
+------------------------------------------------------------------------
+VWF_WT_dp_d3_a1_model_0.cif                  28        0     28    0.76
+VWF_WT_dp_d3_a1_model_1.cif                  32        0     32    1.05
+VWF_WT_dp_d3_a1_model_2.cif                  18        0     18    0.75
+VWF_WT_dp_d3_a1_model_3.cif                  28        0     28    1.11
+VWF_WT_dp_d3_a1_model_4.cif                  34        0     34    0.87
+------------------------------------------------------------------------
+[推荐] 最干净(重原子 clash 最少): VWF_WT_dp_d3_a1_model_2.cif
+注: Boltz CIF 不含 H → 这里只反映重原子重叠。H-clash 要在 pdb2gmx 后的
+    processed 结构上查 (gmx editconf -f processed.gro -o processed.pdb, 再 --input 它)。
