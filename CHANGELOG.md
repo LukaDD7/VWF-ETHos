@@ -19,6 +19,7 @@ All notable changes to the VWF-ETHos project are documented here.
 
 - **`scripts/pipeline/fetch_clean_7a6o.py`** — 下载并清理 VWF AIM-A1 自抑制态**实验晶体结构 PDB 7A6O**(X-ray 2.12 Å):删纳米抗体 VHH81/SO4/水,只留 VWF 链,报告残基范围/编号体系/缺失 loop/2B 热点覆盖。作为 MD 的可靠 WT 起点(力场只能局部松弛、修不了 Boltz 的错 pose;AIM-A1 也比 D'D3-A1 更对题 2B 机制)。
 - **`scripts/pipeline/relax_autoinhib_structure.sh`** 加 `--pdb` 入口:直喂干净 PDB(如 7A6O)跑分级弛豫,跳过 Boltz CIF。
+- **`scripts/pipeline/build_2b_mutants_foldx.py`** — 在 7A6O WT 骨架上用 FoldX(RepairPDB→BuildModel)批量造 2B/2M 点突变体 → 每个 `<variant>.pdb` 供 relax+MD。含**编号偏移自动探测(`--detect-offset`)+ WT 残基身份校验**(防改错残基)。把突变效应与预测噪声解耦。
 - `docs/AUTOINHIB_MD_VALIDATION_GATES.md` 加 §0:优先走实验结构 7A6O,Boltz 路线降为交叉验证。
 
 ### Added (2026-06-10, MD 验证闸门)
