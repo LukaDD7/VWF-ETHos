@@ -151,6 +151,24 @@ FUNCTIONAL_SITES = {
 AIM_RELEASE_2B_Z = 1.0    # aim_release_score ≥ this → strong release → 2B
 AIM_RELEASE_LEAN_Z = 0.0  # aim_release_score > this (any release) → rescue A1 default toward 2B
 
+# ---------------------------------------------------------------------------
+# 轴B: GPIbα 结合能力 (LOF 探测) —— a1_gpiba_forced_binding 的 zscore
+# ---------------------------------------------------------------------------
+# 临床: 2M(A1型)= 功能丧失,开放态也结合不上 GPIb → forced_binding 亲和力下降。
+# 2B = 功能获得,结合面保留/增强 → 亲和力不降。实测该 zscore 对 2B/2M 仅弱方向性
+# (2B 68% 偏高 vs 2M ~平),故用保守阈值: 仅"明显下降"才判 LOF→2M。须校准。
+FB_LOSS_Z = -1.0          # fb_binding_zscore ≤ this → 结合明显丧失 → 2M (LOF)
+
+# ---------------------------------------------------------------------------
+# 轴C: 临床复发性 2B 热点位置 (ISTH VWF 数据库常见 2B 突变残基)
+# ---------------------------------------------------------------------------
+# 注: 同一位置不同替换可异型 (如 P1266L=2B, P1266Q=2M); 故仅作"先验",
+# 需与轴A(松开)联合,不单独定型。须按本地标签复核/校准。
+TWO_B_HOTSPOT_POS = frozenset({
+    1266, 1296, 1304, 1306, 1308, 1309, 1310, 1313, 1314,
+    1316, 1321, 1324, 1341, 1342, 1377, 1392, 1461,
+})
+
 
 # ============================================================================
 # EXPERT 1: STRUCTURAL EXPERT
@@ -557,104 +575,76 @@ class ClinicalGeneticistAgent:
         # RULE 6: A1 domain → 2B vs 2M (pleiotropy resolution)
         # =====================================================================
         if domain == 'A1':
-            reasoning_steps.append("RULE6: A1 domain pleiotropy resolution")
+            # ============================================================
+            # RULE6 (重设计): A1 域 = 2B(GOF) vs 2M(LOF), 方向相反, 同域同位点。
+            # 老逻辑用"损伤大小"推"功能方向"(轻扰→2B,重损→2M)在原理上错误:
+            # GOF/LOF 是方向不是程度。改为**多轴方向判别**(先定方向):
+            #   轴B  GPIb 结合能力 (forced_binding) ↓↓ → 结合面坏 → 2M (LOF)
+            #   轴A  自抑制松开 (AIM↔A1 接触/MD 闭合态) ↑ + 结合保留 → 2B (GOF)
+            #   轴C  临床 2B 热点位置 (先验, 需与松开联合)
+            # 静态轴 A/B 实测都弱(2B/2M 重叠), MD 闭合态稳定性才是 2B 决定特征;
+            # 因此无明确方向信号时返回 uncertain, 不硬判(历史 2B↔2M 漏判区)。
+            # 所有新特征缺失(NaN)时自动退到结构启发, 向后兼容。
+            # ============================================================
+            reasoning_steps.append("RULE6: A1 域多轴方向判别 (2B=GOF / 2M=LOF)")
 
-            # A1 domain: 2B (GPIb gain-of-function) or 2M (collagen binding)
-            # Key insight: 2B is "micro-perturbation leads to conformational opening",
-            #            2M is "collapse leads to function loss"
-
-            # ---- RULE6-AIM: 直接机制信号 (自抑制松开 → 2B) -------------------
-            # AIM↔A1 接触显著减少 = AIM 从 GPIb 面脱离 = 自抑制松开 = 2B (GOF)。
-            # 这是为修复 2B→2M 漏判而引入的接口级特征; NaN 时退回原有逻辑(向后兼容)。
-            aim_release = getattr(expert_scores, 'aim_release_score', np.nan)
-            if not np.isnan(aim_release) and aim_release >= AIM_RELEASE_2B_Z:
-                return MultiLabelClassificationResult(
-                    main_subtype='2B',
-                    alternatives=['2M'],
-                    confidence=min(0.9, 0.7 + 0.1 * aim_release),
-                    reasoning="; ".join(reasoning_steps + [
-                        f"RULE6-AIM: 自抑制松开 score={aim_release:.2f} ≥ {AIM_RELEASE_2B_Z} "
-                        f"→ 2B (AIM 从 A1 GPIb 面脱离, GOF)"]),
-                    domain_pleiotropy="A1自抑制松开(AIM-A1接触显著减少)→2B(GPIb-GOF)",
-                    expert_scores=expert_scores
-                )
-
-            # Check if position is in AIM regions (strong 2B signal)
+            aim_release = getattr(expert_scores, 'aim_release_score', np.nan)   # 轴A: 自抑制松开
+            fb_z = variant_data.get('fb_binding_zscore', np.nan)               # 轴B: GPIb 结合 (低=LOF)
             is_aim_n = 1238 <= position <= 1268
             is_aim_c = 1460 <= position <= 1472
-
-            if is_aim_n or is_aim_c:
-                # 1. Strong signal: AIM region → 2B
-                main_subtype = '2B'
-                confidence = 0.85
-                if is_aim_n:
-                    reasoning_steps.append(f"RULE6a: A1 N-terminal AIM region ({1238}-{1268}), pos={position} → 2B (AIM disruption)")
-                else:
-                    reasoning_steps.append(f"RULE6b: A1 C-terminal AIM region ({1460}-{1472}), pos={position} → 2B (AIM disruption)")
-
-            # 2. Interface analysis: PAE perturbation with mild-moderate structural damage → 2B (GOF)
-            #    "micro-adjustment leads to conformational opening"
-            #    Also consider allosteric effects from edge mutations
+            is_hotspot = position in TWO_B_HOTSPOT_POS                          # 轴C
             allosteric_risk = self.structural_expert.compute_allosteric_risk(variant_data)
+            binding_lost = (not np.isnan(fb_z)) and fb_z <= FB_LOSS_Z
 
-            if (0.15 < expert_scores.interface_perturbation < 0.6 and
-                  expert_scores.structural_damage_score < 0.5):
-                # Classic 2B conformation: interface perturbed but structure not collapsed
-                main_subtype = '2B'
-                confidence = 0.75
-                reasoning_steps.append(
-                    f"RULE6c: A1 + interface perturbation={expert_scores.interface_perturbation:.2f} "
-                    f"+ mild damage ({expert_scores.structural_damage_score:.2f}) → 2B (GOF, conformational opening)")
+            def _a1(sub, conf, why, alts=None):
+                return MultiLabelClassificationResult(
+                    main_subtype=sub,
+                    alternatives=alts if alts is not None else (['2M'] if sub == '2B' else ['2B']),
+                    confidence=conf,
+                    reasoning="; ".join(reasoning_steps + [why]),
+                    domain_pleiotropy="A1域: 2B=自抑制松开+结合保留(GOF); 2M=结合面破坏(LOF)",
+                    expert_scores=expert_scores)
 
-            # 2b. Allosteric effect detected → 2B (edge mutation causing long-range conformational change)
-            elif allosteric_risk > 0.4:
-                main_subtype = '2B'
-                confidence = 0.7
-                reasoning_steps.append(
-                    f"RULE6c2: A1 + allosteric risk={allosteric_risk:.2f} → 2B (allosteric effect)")
+            # 轴B 优先: 结合能力明显丧失 → 2M (LOF), 与是否松开无关 -------------
+            if binding_lost:
+                return _a1('2M', min(0.85, 0.6 + abs(fb_z) * 0.05),
+                           f"RULE6-B: forced_binding z={fb_z:.2f} ≤ {FB_LOSS_Z} → 结合丧失 → 2M (LOF)")
 
-            # 3. Severe structural damage → 2M (LOF)
-            elif expert_scores.structural_damage_score > 0.6:
-                main_subtype = '2M'
-                confidence = 0.75
-                reasoning_steps.append(
-                    f"RULE6d: A1 + high structural damage ({expert_scores.structural_damage_score:.2f}) → 2M (LOF, collapse)")
+            # 轴A 强信号: 自抑制强松开 + 结合保留 → 2B (GOF) --------------------
+            if not np.isnan(aim_release) and aim_release >= AIM_RELEASE_2B_Z:
+                return _a1('2B', min(0.9, 0.7 + 0.1 * aim_release),
+                           f"RULE6-A: 自抑制松开 score={aim_release:.2f} ≥ {AIM_RELEASE_2B_Z} + 结合保留 → 2B (GOF)")
 
-            # 4. Default fallback - but handle NaN in PAE gracefully
-            else:
-                # If we have PAE data (even small values), still consider 2B possibility
-                if not np.isnan(expert_scores.interface_perturbation) and expert_scores.interface_perturbation > 0.1:
-                    main_subtype = '2B'
-                    confidence = 0.6
-                    reasoning_steps.append(
-                        f"RULE6e: A1 + marginal PAE signal ({expert_scores.interface_perturbation:.2f}) → 2B (marginal)")
-                # 4b. Position-based heuristic fallback for A1 variants without PAE data
-                # If no AF3 structure but position is in known 2B-associated positions, lean toward 2B
-                elif self._is_2b_associated_position(position):
-                    main_subtype = '2B'
-                    confidence = 0.55
-                    reasoning_steps.append(
-                        f"RULE6e2: A1 + position={position} in known 2B range (no PAE data) → 2B (position heuristic)")
-                # 4c. 弱自抑制松开信号: 救回本会默认判 2M 的 2B (2B→2M 漏判修复)
-                elif not np.isnan(aim_release) and aim_release > AIM_RELEASE_LEAN_Z:
-                    main_subtype = '2B'
-                    confidence = 0.55
-                    reasoning_steps.append(
-                        f"RULE6f-AIM: A1 default 本为 2M, 但自抑制松开 score={aim_release:.2f} > "
-                        f"{AIM_RELEASE_LEAN_Z} → 改判 2B (marginal release)")
-                else:
-                    main_subtype = '2M'
-                    confidence = 0.6
-                    reasoning_steps.append("RULE6f: A1 + low damage/no PAE → 2M (default)")
+            # AIM 区位置 (强 2B 先验, 结合未丧失) -------------------------------
+            if is_aim_n or is_aim_c:
+                return _a1('2B', 0.8,
+                           f"RULE6-AIM位: pos={position} 在 AIM {'N' if is_aim_n else 'C'}端区 + 结合保留 → 2B")
 
-            return MultiLabelClassificationResult(
-                main_subtype=main_subtype,
-                alternatives=['2M'] if main_subtype == '2B' else ['2B'],
-                confidence=confidence,
-                reasoning="; ".join(reasoning_steps),
-                domain_pleiotropy="A1域可致2B(GPIb-GOF)或2M(胶原结合)，微扰+轻损→2B，重损→2M",
-                expert_scores=expert_scores
-            )
+            # 结构启发 (保留): 接口微扰+轻损 / 别构 → 2B (构象开放) --------------
+            if 0.15 < expert_scores.interface_perturbation < 0.6 and expert_scores.structural_damage_score < 0.5:
+                return _a1('2B', 0.72,
+                           f"RULE6c: 接口微扰 {expert_scores.interface_perturbation:.2f} + 轻损 → 2B (构象开放)")
+            if allosteric_risk > 0.4:
+                return _a1('2B', 0.68, f"RULE6c2: 别构风险 {allosteric_risk:.2f} → 2B")
+
+            # 轴C: 临床 2B 热点 + 任意松开倾向(或无松开数据)→ 2B --------------
+            if is_hotspot and (np.isnan(aim_release) or aim_release > AIM_RELEASE_LEAN_Z):
+                return _a1('2B', 0.6, f"RULE6-C: pos={position} 为临床复发性 2B 热点 → 2B (先验)")
+
+            # 弱自抑制松开救回 -------------------------------------------------
+            if not np.isnan(aim_release) and aim_release > AIM_RELEASE_LEAN_Z:
+                return _a1('2B', 0.55,
+                           f"RULE6f-AIM: 弱松开 {aim_release:.2f} > {AIM_RELEASE_LEAN_Z} → 2B (marginal)")
+
+            # 重度折叠损伤 → 2M (LOF, collapse) --------------------------------
+            if expert_scores.structural_damage_score > 0.6:
+                return _a1('2M', 0.72,
+                           f"RULE6d: 重度结构损伤 {expert_scores.structural_damage_score:.2f} → 2M (LOF)")
+
+            # 无明确方向信号 → uncertain (不硬判; MD 闭合态稳定性出来后定 2B/2M) --
+            return _a1('uncertain', 0.35,
+                       "RULE6-U: A1 无明确方向信号(轴A/B/C 皆弱)→ uncertain (待 MD 闭合态稳定性)",
+                       alts=['2B', '2M'])
 
         # =====================================================================
         # RULE 7: A3 domain → 2M (collagen binding)

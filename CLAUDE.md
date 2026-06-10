@@ -311,6 +311,18 @@ force field 会通过 NFS 共享到 GPU 实例
 
 ## Execution History
 
+### 2026-06-10
+- **2B/2M 分类机制重设计 (临床驱动)**：老 RULE6 用"损伤大小→功能方向"(轻扰→2B,重损→2M)在原理上错误——GOF(2B)/LOF(2M)是方向不是程度,这是 12 个 2B 漏 8 个进 2M 的根。改为 `agentic_vwf_classifier.py` 的**多轴方向判别**:
+  - 轴B `fb_binding_zscore`(a1_gpiba_forced_binding)明显↓ → 结合面坏 → **2M (LOF)**,优先级最高;
+  - 轴A `aim_release_score`(自抑制松开)↑ + 结合保留 → **2B (GOF)**;
+  - 轴C 临床复发性 2B 热点位置(先验,需与松开联合);
+  - 无明确方向信号 → **uncertain**(不硬判;待 MD 闭合态稳定性)。8 项功能自测通过。
+  - 实测:静态轴 A/B 单独都分不开 2B/2M(forced_binding 2B 仅 68% 偏高 vs 2M ~平;autoinhib plddt 全重叠)→ **MD 闭合态稳定性才是 2B 决定特征**。阈值 `FB_LOSS_Z`/`TWO_B_HOTSPOT_POS` 暂定,须按本地标签校准。
+- **Boltz→MD blocker 应对(autoinhib EM Fmax 5.9e9)**:
+  - `diagnose_clashes.py` — 全原子(含 H)clash 定位,纠正 blocker 报告"随机 1500 重原子无 clash"的不完整扫描(LJ(SR)=+4e7 是 steric 信号;最可能坏 ω → 重建 HN 撞羰基 O)。扫 5 个 model 挑最干净。
+  - `relax_autoinhib_structure.sh` — 分级弛豫(真空受约束 EM 解 H-clash → 真空无约束 → 溶剂化 EM),纯 CPU,逐级报 Fmax。这是 blocker 报告跳过的标准修法。
+- **关键解耦**:2B 进分类器靠静态接触特征(`extract_aim_autoinhib_features.py` 直接读 CIF),**不依赖 MD 跑通**;MD(5 变体)是金标准验证/校准层。
+
 ### 2026-06-07
 - **GPU flags 按后端条件化 (修活雷)**：`run_gromacs_vwf_md.sh` 之前在 OpenCL 构建上硬用 `-bonded gpu -update gpu` + `GMX_CUDA_GRAPH=1`(CUDA/SYCL 专属)→ EM 能过、NVT 必 fatal、白烧机时。现按 `$GPU_BACKEND` 选 flags:CUDA/SYCL→全 GPU 常驻;OpenCL/未知→`-nb gpu -pme gpu`(update/bonded 回 CPU)。
 - **`gpu_smoke_test.sh`**：诚实放行闸,用与 runner 相同的条件化 flags + md 积分器 tpr 实跑 5 步(Test B),`-nb gpu` only 的朴素 smoke 会假性放行。

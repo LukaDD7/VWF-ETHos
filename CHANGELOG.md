@@ -4,6 +4,15 @@ All notable changes to the VWF-ETHos project are documented here.
 
 ## [Unreleased]
 
+### Changed (2026-06-10)
+
+- **`scripts/agentic_vwf_classifier.py`** — RULE6(A1)重设计为**多轴方向判别**(2B=GOF/2M=LOF):轴B `fb_binding_zscore`↓→2M;轴A `aim_release_score`↑+结合保留→2B;轴C 临床 2B 热点先验;无方向信号→uncertain(不再硬判 2M)。修"用损伤大小推功能方向"的原理性错误。8 项功能自测通过;`FB_LOSS_Z`/`TWO_B_HOTSPOT_POS` 须校准。
+
+### Added (2026-06-10)
+
+- **`scripts/pipeline/diagnose_clashes.py`** — 全原子(含 H)steric clash 定位,排查 Boltz→GROMACS EM 跑飞(Fmax 5.9e9);扫 5 个 model 挑最干净。
+- **`scripts/pipeline/relax_autoinhib_structure.sh`** — 分级弛豫(真空受约束 EM→真空无约束→溶剂化 EM),纯 CPU,解 Boltz 结构内部 clash,逐级报 Fmax。
+
 ### Added (2026-06-09)
 
 - **`docs/A40_ENV_SETUP_REPORT_2026-06-09.md`** — 7×A40 独立服务器(无 `/lzy` NFS)的 GROMACS env 部署完整报告:从 git pull 到 SMOKE PASS 全流程、3 个 runner bug 修复、4 个新发现坑(curl 假断网、Test A 的 em.tpr 问题、初始结构需 EM、em.tpr vs md.tpr 命名冲突)、目标程序(autoinhib MD)恢复路径。
