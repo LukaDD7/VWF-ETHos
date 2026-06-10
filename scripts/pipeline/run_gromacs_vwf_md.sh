@@ -296,10 +296,12 @@ generate_mdp_files() {
     # Energy Minimization
     cat > "$MDP_OUT/em.mdp" << 'EMEOF'
 ; Energy Minimization
-integrator  = steep
-emtol       = 1000.0    ; kJ/mol/nm
-emstep      = 0.01
-nsteps      = 50000
+; integrator: cg (conjugate gradient) — 比 steep 快 ~5-10x, 支持 constraints
+; (l-bfgs 不支持 constraints — 见 gromacs 2025.3 错误 "L-BFGS + constraints not implemented")
+integrator  = cg
+emtol       = 1000.0    ; kJ/mol/nm (production-ready)
+emstep      = 0.01      ; cg 初始步长; gromacs 自适应
+nsteps      = 5000      ; cg 在 ~500-1500 步内收敛; 5000 是硬上限
 nstlist     = 10
 cutoff-scheme = Verlet
 ns_type     = grid
