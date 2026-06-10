@@ -43,7 +43,9 @@ done
 
 # ---------- 定位 gmx ----------------------------------------------------------
 if [ -z "$GMX" ]; then
-    for cand in /lzy/envs/gromacs/bin.AVX2_256/gmx \
+    for cand in "$ROOT_DIR/envs/gromacs/bin.AVX2_256/gmx" \
+                "$ROOT_DIR/envs/gromacs/bin/gmx" \
+                /lzy/envs/gromacs/bin.AVX2_256/gmx \
                 "$ROOT_DIR/../../envs/gromacs/bin.AVX2_256/gmx" \
                 "$(command -v gmx 2>/dev/null)"; do
         [ -n "$cand" ] && [ -x "$cand" ] && { GMX="$cand"; break; }
