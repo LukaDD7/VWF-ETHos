@@ -59,10 +59,10 @@ def find_clashes(struct_path, heavy_cut, h_cut, top, skip_adjacent=1):
                                         (m.chain_idx, cra.residue.seqid.num, cra.atom.name)]))
                     if key in seen:
                         continue
-                    if cra.residue.seqid.num == res.seqid.num and cra.chain_idx == ci and cra.atom.name == atom.name:
+                    if cra.residue.seqid.num == res.seqid.num and m.chain_idx == ci and cra.atom.name == atom.name:
                         continue
                     # 排除同链相邻残基(肽键)与同残基(共价键)
-                    if cra.chain_idx == ci and abs(cra.residue.seqid.num - res.seqid.num) <= skip_adjacent:
+                    if m.chain_idx == ci and abs(cra.residue.seqid.num - res.seqid.num) <= skip_adjacent:
                         continue
                     d = atom.pos.dist(cra.atom.pos)
                     involves_h = is_h(atom) or is_h(cra.atom)

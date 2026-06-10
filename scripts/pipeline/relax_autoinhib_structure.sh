@@ -44,7 +44,13 @@ if [ -z "$GMX" ]; then
     done
 fi
 [ -x "$GMX" ] || { echo "[FATAL] 找不到 gmx, 用 --gmx 指定"; exit 1; }
-GMX_PY="$(dirname "$GMX")/../../bin/python"; [ -x "$GMX_PY" ] || GMX_PY="$(dirname "$GMX")/python"
+GMX_BINDIR="$(dirname "$GMX")"
+GMX_ENVDIR="$(cd "$GMX_BINDIR/.." && pwd)"
+case "$(basename "$GMX_BINDIR")" in
+    bin.AVX2_256|bin.SSE2|bin) GMX_PY="$GMX_ENVDIR/bin/python" ;;
+    *) GMX_PY="$GMX_BINDIR/python" ;;
+esac
+[ -x "$GMX_PY" ] || GMX_PY="$(command -v python3 2>/dev/null)"
 export GMXLIB="${GMXLIB:-$ROOT_DIR/force_fields}"
 
 # 找 CIF (autoinhib 目录有 VWF_VWF_ 双前缀, glob 容错)
@@ -65,7 +71,7 @@ echo " WORK: $WORK"
 echo "============================================================"
 
 fmax_of() { grep -h "Maximum force" "$1" 2>/dev/null | tail -1 | grep -oE "[0-9.]+e[+-][0-9]+|[0-9.]+" | head -1; }
-report() { local f; f=$(fmax_of "$1"); echo "   → Fmax = ${f:-?} kJ/mol/nm"; echo "${f:-1e99}"; }
+report() { local f; f=$(fmax_of "$1"); echo "   → Fmax = ${f:-?} kJ/mol/nm" >&2; printf "%s\n" "${f:-1e99}"; }
 
 # ---- 1. CIF→PDB --------------------------------------------------------------
 echo "[1] CIF→PDB"
