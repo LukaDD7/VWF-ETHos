@@ -322,10 +322,16 @@ force field 会通过 NFS 共享到 GPU 实例
   OpenMM relax 被评非首选、文档未成。
 
 **待推进 (按序)**:
-1. **解 MD blocker**: `python3 scripts/pipeline/diagnose_clashes.py --variant-dir
-   output/boltz2_a1_dp_d3_results/boltz_results_VWF_WT_dp_d3_a1`(确认 H-clash 还是重原子
-   重叠 + 挑最干净 model)→ `bash scripts/pipeline/relax_autoinhib_structure.sh
-   --variant VWF_WT`(逐级看 Fmax)。通→跑 autoinhib MD;不通→换 model / OpenMM / 暂走静态。
+1. **解 MD blocker — 已部分实跑(2026-06-10)**: WT model_2(18 重原子 clash, 非 H-clash)经
+   `relax_autoinhib_structure.sh` 分级弛豫 5.9e9→195(真空)→8.6e3(溶剂化松), **可救, 不必 OpenMM**
+   (见 `docs/AUTOINHIB_RELAX_HANDOFF_2026-06-10.md`)。但"能收敛≠读数可信", **上 NVT/批量前必过
+   `docs/AUTOINHIB_MD_VALIDATION_GATES.md` 的 3 道闸**:
+   - 闸1 (make-or-break): `diagnose_clashes.py --input <model_2.cif> --top 20` → 18 个 clash
+     若落在 D'D3-A1 界面则这套 MD 不可信(换 model / AF3 / 退静态);不在界面则放行。
+     ⚠ 此前我猜的"H-clash(坏 ω)"经实测**是错的**, 全是重原子重叠。
+   - 闸2: `check_relax_distortion.py --orig <model_2.cif> --relaxed em_vac.pdb` → 真空 EM 没挪界面。
+   - 闸3: `run_autoinhib_md_from_relaxed.sh --variant VWF_WT --model 2` → cg 压 EM + 约束 NVT/NPT
+     + production(WT-only, 过了再上 5 变体)。
 2. **轴A 好版本**: `extract_aim_autoinhib_features.py`(panel ~130 变体)→ 真 `aim_release_score`
    (现矩阵里 `aim_global_zscore` 是分不开的旧全局值)→ 用 known 2B/2M 校准 `AIM_RELEASE_2B_Z`,
    与 heparan 联合, 重测 2B recall(基线 2/12)。

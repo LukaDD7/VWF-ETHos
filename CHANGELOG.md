@@ -15,6 +15,13 @@ All notable changes to the VWF-ETHos project are documented here.
 2. 跑 `extract_aim_autoinhib_features.py`（panel ~130 变体)→ 得到真 `aim_release_score`（现矩阵里是分不开的旧全局值)→ 用 known 2B/2M 校准 `AIM_RELEASE_2B_Z`，与 heparan LOF 联合，重测 2B recall（基线 2/12)。
 3. 校准 `TWO_B_HOTSPOT_POS` / `LOF_COMBINED_Z` against 本地标签。
 
+### Added (2026-06-10, MD 验证闸门)
+
+- **`docs/AUTOINHIB_MD_VALIDATION_GATES.md`** — 上 NVT/批量前必过的 3 道闸:① clash 落不落在 D'D3-A1 界面(make-or-break);② 真空 EM 有没有挪动自抑制几何;③ 受控(带约束)平衡。含决策树。给 A40 Agent。
+- **`scripts/pipeline/check_relax_distortion.py`** (闸门2) — gemmi CA 叠合,比较 Boltz 原始 vs 弛豫后结构,报全 CA-RMSD + 位移最大残基(对照 clash/界面判是否变形)。
+- **`scripts/pipeline/run_autoinhib_md_from_relaxed.sh`** (闸门3) — 从 `relax_m*/em_10k.gro`+`topol.top` 受控续跑:cg 压 EM<1000 → 带 `-DPOSRES` 约束 NVT → 约束 NPT → 松开 production;GPU flags 按后端条件化;单变体,过了再上批量。
+- **背景**: A40 实跑确认 WT model_2(18 重原子 clash, 非 H-clash)经分级弛豫 5.9e9→195(真空)→8.6e3(溶剂化松)可救,不必跳 OpenMM。但"能收敛≠读数可信",故加上述 3 闸。
+
 ### Changed (2026-06-10, 校准更新)
 
 - **`scripts/agentic_vwf_classifier.py`** — 轴B(LOF→2M)从"单看 forced_binding"改为 **forced_binding + heparan 两轴联合**。校准 (known 2B n=39/2M n=47): fb 单用太弱(2M:2B 误伤比~1.5);heparan 较好(2B 中位+0.37 vs 2M −0.40);**联合 `mean(fb,heparan) ≤ −0.75` 最优 → 抓 30% 2M、仅误伤 5% 2B**。`LOF_COMBINED_Z=-0.75`,heparan 缺失时退到极保守单轴 `FB_LOSS_Z=-1.5`。8 项自测通过。机制: heparan 位点紧邻 GPIb 面,2M 破坏结合面会同时拖低两者。
