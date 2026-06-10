@@ -15,6 +15,12 @@ All notable changes to the VWF-ETHos project are documented here.
 2. 跑 `extract_aim_autoinhib_features.py`（panel ~130 变体)→ 得到真 `aim_release_score`（现矩阵里是分不开的旧全局值)→ 用 known 2B/2M 校准 `AIM_RELEASE_2B_Z`，与 heparan LOF 联合，重测 2B recall（基线 2/12)。
 3. 校准 `TWO_B_HOTSPOT_POS` / `LOF_COMBINED_Z` against 本地标签。
 
+### Added (2026-06-10, 实验结构路线)
+
+- **`scripts/pipeline/fetch_clean_7a6o.py`** — 下载并清理 VWF AIM-A1 自抑制态**实验晶体结构 PDB 7A6O**(X-ray 2.12 Å):删纳米抗体 VHH81/SO4/水,只留 VWF 链,报告残基范围/编号体系/缺失 loop/2B 热点覆盖。作为 MD 的可靠 WT 起点(力场只能局部松弛、修不了 Boltz 的错 pose;AIM-A1 也比 D'D3-A1 更对题 2B 机制)。
+- **`scripts/pipeline/relax_autoinhib_structure.sh`** 加 `--pdb` 入口:直喂干净 PDB(如 7A6O)跑分级弛豫,跳过 Boltz CIF。
+- `docs/AUTOINHIB_MD_VALIDATION_GATES.md` 加 §0:优先走实验结构 7A6O,Boltz 路线降为交叉验证。
+
 ### Added (2026-06-10, MD 验证闸门)
 
 - **`docs/AUTOINHIB_MD_VALIDATION_GATES.md`** — 上 NVT/批量前必过的 3 道闸:① clash 落不落在 D'D3-A1 界面(make-or-break);② 真空 EM 有没有挪动自抑制几何;③ 受控(带约束)平衡。含决策树。给 A40 Agent。

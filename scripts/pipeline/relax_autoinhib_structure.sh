@@ -22,13 +22,14 @@ set -u
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
-VARIANT=""; SYSTEM="autoinhib"; MODEL=0; DO_SOLVATE=true
+VARIANT=""; SYSTEM="autoinhib"; MODEL=0; DO_SOLVATE=true; PDB_IN=""
 GMX="${GMX:-}"
 while [[ $# -gt 0 ]]; do
     case $1 in
         --variant) VARIANT="$2"; shift 2 ;;
         --system)  SYSTEM="$2"; shift 2 ;;
         --model)   MODEL="$2"; shift 2 ;;
+        --pdb)     PDB_IN="$2"; shift 2 ;;   # 直接喂干净 PDB(如 7A6O 实验结构), 跳过 Boltz CIF
         --no-solvate) DO_SOLVATE=false; shift ;;
         --gmx)     GMX="$2"; shift 2 ;;
         -h|--help) sed -n '2,30p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
@@ -53,19 +54,26 @@ esac
 [ -x "$GMX_PY" ] || GMX_PY="$(command -v python3 2>/dev/null)"
 export GMXLIB="${GMXLIB:-$ROOT_DIR/force_fields}"
 
-# 找 CIF (autoinhib 目录有 VWF_VWF_ 双前缀, glob 容错)
-case "$SYSTEM" in
-    autoinhib) RES="$ROOT_DIR/output/boltz2_a1_dp_d3_results" ;;
-    *) echo "[FATAL] 目前只支持 --system autoinhib"; exit 1 ;;
-esac
-CIF=$(ls "$RES"/boltz_results_*"$VARIANT"*/predictions/*/*_model_${MODEL}.cif 2>/dev/null | head -1)
-[ -z "$CIF" ] && { echo "[FATAL] 找不到 $VARIANT model $MODEL 的 CIF (在 $RES 下)"; exit 1; }
-
-WORK="$ROOT_DIR/output/gromacs_md_${SYSTEM}/${VARIANT}/relax_m${MODEL}"
+# 输入: --pdb 直喂干净 PDB(实验结构路线); 否则按 --variant/--model 找 Boltz CIF
+CIF=""
+if [ -n "$PDB_IN" ]; then
+    [ -f "$PDB_IN" ] || { echo "[FATAL] --pdb 文件不存在: $PDB_IN"; exit 1; }
+    SRC="$PDB_IN"
+    WORK="$ROOT_DIR/output/gromacs_md_${SYSTEM}/${VARIANT}/relax_pdb"
+else
+    case "$SYSTEM" in
+        autoinhib) RES="$ROOT_DIR/output/boltz2_a1_dp_d3_results" ;;
+        *) echo "[FATAL] 目前只支持 --system autoinhib (或用 --pdb 直喂)"; exit 1 ;;
+    esac
+    CIF=$(ls "$RES"/boltz_results_*"$VARIANT"*/predictions/*/*_model_${MODEL}.cif 2>/dev/null | head -1)
+    [ -z "$CIF" ] && { echo "[FATAL] 找不到 $VARIANT model $MODEL 的 CIF (在 $RES 下)"; exit 1; }
+    SRC="$CIF"
+    WORK="$ROOT_DIR/output/gromacs_md_${SYSTEM}/${VARIANT}/relax_m${MODEL}"
+fi
 mkdir -p "$WORK"; cd "$WORK"
 echo "============================================================"
 echo " relax: $VARIANT  model=$MODEL  system=$SYSTEM"
-echo " CIF : $CIF"
+echo " 输入: $SRC"
 echo " GMX : $GMX     GMXLIB=$GMXLIB     (全程 -nb cpu)"
 echo " WORK: $WORK"
 echo "============================================================"
@@ -73,13 +81,18 @@ echo "============================================================"
 fmax_of() { grep -h "Maximum force" "$1" 2>/dev/null | tail -1 | grep -oE "[0-9.]+e[+-][0-9]+|[0-9.]+" | head -1; }
 report() { local f; f=$(fmax_of "$1"); echo "   → Fmax = ${f:-?} kJ/mol/nm" >&2; printf "%s\n" "${f:-1e99}"; }
 
-# ---- 1. CIF→PDB --------------------------------------------------------------
-echo "[1] CIF→PDB"
-"$GMX_PY" - "$CIF" raw.pdb <<'PY'
+# ---- 1. 准备 raw.pdb (PDB 直用 / CIF→PDB) ------------------------------------
+if [ -n "$PDB_IN" ]; then
+    echo "[1] 用 --pdb 输入 (实验结构路线)"
+    cp -f "$SRC" raw.pdb
+else
+    echo "[1] CIF→PDB"
+    "$GMX_PY" - "$SRC" raw.pdb <<'PY'
 import sys, gemmi
 st = gemmi.read_structure(sys.argv[1]); st.setup_entities(); st.write_pdb(sys.argv[2])
 PY
-[ -f raw.pdb ] || { echo "[FATAL] CIF→PDB 失败"; exit 1; }
+fi
+[ -f raw.pdb ] || { echo "[FATAL] 准备 raw.pdb 失败"; exit 1; }
 
 # ---- 2. pdb2gmx --------------------------------------------------------------
 echo "[2] pdb2gmx (charmm36m + force_fields patch)"

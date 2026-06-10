@@ -4,8 +4,27 @@
 > 但"EM 能收敛"≠"MD 读数可信"。**在跑 NVT/NPT/production 前,先过下面 3 道闸**;
 > 任何一道不过,这套 autoinhib MD 测出来的"自抑制松开"都可能是假象,会误导 2B 分类。
 >
-> 背景:这套 MD 的唯一目的,是量"**D'D3↔A1 自抑制接口在 310K 下稳不稳/会不会松开**"
+> 背景:这套 MD 的唯一目的,是量"**A1 自抑制接口在 310K 下稳不稳/会不会松开**"
 > (2B = 松开 = GOF)。所以**接口区域的结构保真度**是一切。下面三道闸都围绕这个。
+
+---
+
+## 0. 推荐:优先改用实验结构 7A6O(AIM-A1),而不是跟 Boltz 死磕
+
+VWF AIM-A1 自抑制态有**实验晶体结构 PDB 7A6O**(X-ray 2.12 Å)——真实坐标、clash 极少、
+EM 一下就过,且 AIM-A1 正是文献公认的 2B 自抑制机制(比 Boltz 的 D'D3-A1 构建更对题)。
+**用它当 WT 骨架,远比 de novo 预测可靠**(力场只能局部松弛、修不了错 pose)。
+
+```bash
+python3 scripts/pipeline/fetch_clean_7a6o.py          # 下载+删纳米抗体/水/SO4 → 干净 WT PDB
+bash scripts/pipeline/relax_autoinhib_structure.sh --pdb structures/7A6O_AIM_A1_clean.pdb --variant 7A6O_WT
+bash scripts/pipeline/run_autoinhib_md_from_relaxed.sh --variant 7A6O_WT --model pdb   # 见脚本注释调整
+```
+突变体:在该 WT 骨架上用 FoldX BuildModel 改单残基(把"突变效应"与"预测噪声"解耦),各自 relax+MD,
+WT vs 突变体闭合态稳定性之差 = 2B 信号。
+
+> 走实验结构路线时,下面的闸门 1/2(针对 Boltz 结构的 clash/形变)基本自动通过;
+> 仍建议跑闸门 3 的受控平衡。Boltz 路线作为交叉验证保留。
 
 ---
 

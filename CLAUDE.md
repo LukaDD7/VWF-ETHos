@@ -322,7 +322,12 @@ force field 会通过 NFS 共享到 GPU 实例
   OpenMM relax 被评非首选、文档未成。
 
 **待推进 (按序)**:
-1. **解 MD blocker — 已部分实跑(2026-06-10)**: WT model_2(18 重原子 clash, 非 H-clash)经
+0. **首选: 改用实验结构 7A6O(AIM-A1, X-ray 2.12 Å)做 MD 起点**, 而非 de novo Boltz。
+   `python3 scripts/pipeline/fetch_clean_7a6o.py`(下载+删纳米抗体→干净 WT PDB)→
+   `relax_autoinhib_structure.sh --pdb structures/7A6O_AIM_A1_clean.pdb --variant 7A6O_WT`。
+   理由: 力场只能局部松弛、修不了 Boltz 的错域间 pose; AIM-A1 也比 D'D3-A1 更对题 2B 机制。
+   突变体在该 WT 骨架上 FoldX BuildModel 改单残基(解耦突变效应 vs 预测噪声)。Boltz 路线降为交叉验证。
+1. **(Boltz 路线/交叉验证) 解 MD blocker — 已部分实跑(2026-06-10)**: WT model_2(18 重原子 clash, 非 H-clash)经
    `relax_autoinhib_structure.sh` 分级弛豫 5.9e9→195(真空)→8.6e3(溶剂化松), **可救, 不必 OpenMM**
    (见 `docs/AUTOINHIB_RELAX_HANDOFF_2026-06-10.md`)。但"能收敛≠读数可信", **上 NVT/批量前必过
    `docs/AUTOINHIB_MD_VALIDATION_GATES.md` 的 3 道闸**:
