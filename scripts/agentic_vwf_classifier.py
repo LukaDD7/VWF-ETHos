@@ -152,12 +152,17 @@ AIM_RELEASE_2B_Z = 1.0    # aim_release_score ≥ this → strong release → 2B
 AIM_RELEASE_LEAN_Z = 0.0  # aim_release_score > this (any release) → rescue A1 default toward 2B
 
 # ---------------------------------------------------------------------------
-# 轴B: GPIbα 结合能力 (LOF 探测) —— a1_gpiba_forced_binding 的 zscore
+# 轴B: A1 结合面完整性 (LOF 探测) = forced_binding + heparan 两轴联合
 # ---------------------------------------------------------------------------
-# 临床: 2M(A1型)= 功能丧失,开放态也结合不上 GPIb → forced_binding 亲和力下降。
-# 2B = 功能获得,结合面保留/增强 → 亲和力不降。实测该 zscore 对 2B/2M 仅弱方向性
-# (2B 68% 偏高 vs 2M ~平),故用保守阈值: 仅"明显下降"才判 LOF→2M。须校准。
-FB_LOSS_Z = -1.0          # fb_binding_zscore ≤ this → 结合明显丧失 → 2M (LOF)
+# 临床: 2M(A1型)= 功能丧失,A1 GPIb 结合面被破坏 → GPIb 与 heparan(位点紧邻)
+# 结合都降; 2B = 功能获得,结合面保留 → 两者不降。
+# 校准 (output/type2b_type2m_known_axis_distribution.csv, 2B n=39 / 2M n=47):
+#   - fb_binding_zscore 单用太弱 (各阈值 2M:2B 误伤比 ~1.5, 会反噬 2B 召回);
+#   - heparan_zscore 较好 (2B 中位 +0.37 vs 2M -0.40);
+#   - **联合 mean(fb, heparan) ≤ -0.75 最佳: 抓 30% 的 2M, 仅误伤 5% 的 2B**。
+# 故 LOF→2M 要求两条结合面轴一致变低(都需存在), 既抓 LOF 又不重引入 2B→2M 漏判。
+LOF_COMBINED_Z = -0.75    # mean(fb_binding_zscore, heparan_zscore) ≤ this → 结合面丧失 → 2M
+FB_LOSS_Z = -1.5          # (单轴 fallback, 仅 heparan 缺失时) forced_binding 极低才判 LOF
 
 # ---------------------------------------------------------------------------
 # 轴C: 临床复发性 2B 热点位置 (ISTH VWF 数据库常见 2B 突变残基)
@@ -589,12 +594,24 @@ class ClinicalGeneticistAgent:
             reasoning_steps.append("RULE6: A1 域多轴方向判别 (2B=GOF / 2M=LOF)")
 
             aim_release = getattr(expert_scores, 'aim_release_score', np.nan)   # 轴A: 自抑制松开
-            fb_z = variant_data.get('fb_binding_zscore', np.nan)               # 轴B: GPIb 结合 (低=LOF)
+            fb_z = variant_data.get('fb_binding_zscore', np.nan)               # 轴B-1: GPIb 结合
+            hep_z = variant_data.get('heparan_zscore', np.nan)                 # 轴B-2: heparan 结合
             is_aim_n = 1238 <= position <= 1268
             is_aim_c = 1460 <= position <= 1472
             is_hotspot = position in TWO_B_HOTSPOT_POS                          # 轴C
             allosteric_risk = self.structural_expert.compute_allosteric_risk(variant_data)
-            binding_lost = (not np.isnan(fb_z)) and fb_z <= FB_LOSS_Z
+            # 轴B: 两条结合面轴联合 (校准最优: mean ≤ -0.75)。两者都在 → 用联合;
+            # 仅 fb 在 → 退到极保守单轴 (FB_LOSS_Z=-1.5)。
+            if not np.isnan(fb_z) and not np.isnan(hep_z):
+                lof_score = (fb_z + hep_z) / 2.0
+                binding_lost = lof_score <= LOF_COMBINED_Z
+                lof_why = f"mean(fb={fb_z:.2f}, heparan={hep_z:.2f})={lof_score:.2f} ≤ {LOF_COMBINED_Z}"
+            elif not np.isnan(fb_z):
+                binding_lost = fb_z <= FB_LOSS_Z
+                lof_why = f"forced_binding z={fb_z:.2f} ≤ {FB_LOSS_Z} (heparan 缺失, 单轴保守)"
+            else:
+                binding_lost = False
+                lof_why = ""
 
             def _a1(sub, conf, why, alts=None):
                 return MultiLabelClassificationResult(
@@ -605,10 +622,10 @@ class ClinicalGeneticistAgent:
                     domain_pleiotropy="A1域: 2B=自抑制松开+结合保留(GOF); 2M=结合面破坏(LOF)",
                     expert_scores=expert_scores)
 
-            # 轴B 优先: 结合能力明显丧失 → 2M (LOF), 与是否松开无关 -------------
+            # 轴B 优先: A1 结合面丧失 → 2M (LOF), 与是否松开无关 ----------------
             if binding_lost:
-                return _a1('2M', min(0.85, 0.6 + abs(fb_z) * 0.05),
-                           f"RULE6-B: forced_binding z={fb_z:.2f} ≤ {FB_LOSS_Z} → 结合丧失 → 2M (LOF)")
+                return _a1('2M', 0.72,
+                           f"RULE6-B: {lof_why} → A1 结合面丧失 → 2M (LOF)")
 
             # 轴A 强信号: 自抑制强松开 + 结合保留 → 2B (GOF) --------------------
             if not np.isnan(aim_release) and aim_release >= AIM_RELEASE_2B_Z:

@@ -154,11 +154,13 @@ m = pd.read_parquet("VWF_Alpha_Matrix.parquet")
 a = pd.read_csv("output/aim_autoinhib_features.csv")
 m = m.merge(a[["aa_change","aim_release_score"]], on="aa_change", how="left")
 
-# 轴B: GPIb 结合能力 (来自 functional panel evidence_matrix.csv, forced_binding zscore)
+# 轴B: A1 结合面完整性 (forced_binding + heparan 两轴联合 LOF, 校准最优)
 ev = pd.read_csv("output/boltz2_vwd_functional_panel/evidence_matrix.csv")
 ev["aa_change"] = ev["wt_aa"] + ev["position"].astype(str) + ev["mut_aa"]
-ev = ev.rename(columns={"a1_gpiba_forced_binding__primary_zscore_within_assay": "fb_binding_zscore"})
-m = m.merge(ev[["aa_change","fb_binding_zscore"]], on="aa_change", how="left")
+ev = ev.rename(columns={
+    "a1_gpiba_forced_binding__primary_zscore_within_assay": "fb_binding_zscore",
+    "a1_heparan_sulfate_binding__primary_zscore_within_assay": "heparan_zscore"})
+m = m.merge(ev[["aa_change","fb_binding_zscore","heparan_zscore"]], on="aa_change", how="left")
 
 m.to_parquet("VWF_Alpha_Matrix.parquet")
 ```

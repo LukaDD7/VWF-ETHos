@@ -4,6 +4,10 @@ All notable changes to the VWF-ETHos project are documented here.
 
 ## [Unreleased]
 
+### Changed (2026-06-10, 校准更新)
+
+- **`scripts/agentic_vwf_classifier.py`** — 轴B(LOF→2M)从"单看 forced_binding"改为 **forced_binding + heparan 两轴联合**。校准 (known 2B n=39/2M n=47): fb 单用太弱(2M:2B 误伤比~1.5);heparan 较好(2B 中位+0.37 vs 2M −0.40);**联合 `mean(fb,heparan) ≤ −0.75` 最优 → 抓 30% 2M、仅误伤 5% 2B**。`LOF_COMBINED_Z=-0.75`,heparan 缺失时退到极保守单轴 `FB_LOSS_Z=-1.5`。8 项自测通过。机制: heparan 位点紧邻 GPIb 面,2M 破坏结合面会同时拖低两者。
+
 ### Changed (2026-06-10)
 
 - **`scripts/agentic_vwf_classifier.py`** — RULE6(A1)重设计为**多轴方向判别**(2B=GOF/2M=LOF):轴B `fb_binding_zscore`↓→2M;轴A `aim_release_score`↑+结合保留→2B;轴C 临床 2B 热点先验;无方向信号→uncertain(不再硬判 2M)。修"用损伤大小推功能方向"的原理性错误。8 项功能自测通过;`FB_LOSS_Z`/`TWO_B_HOTSPOT_POS` 须校准。
