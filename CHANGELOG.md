@@ -4,6 +4,17 @@ All notable changes to the VWF-ETHos project are documented here.
 
 ## [Unreleased]
 
+### Status / 两条线大局 (2026-06-10)
+
+- ✅ **静态特征分类器 = 已优化(可用,待标签校准）**：`agentic_vwf_classifier.py` RULE6 改为多轴方向判别（2B=GOF / 2M=LOF），轴B 用 forced_binding+heparan 联合 LOF（校准: 30% 2M 召回 / 5% 2B 误伤），无方向信号→uncertain。
+- 🔴 **动态 MD（GROMACS autoinhib）= 仍卡住，无实质进展**：env+smoke 已通（CUDA, A40），但 5 个 Boltz D'D3-A1 结构 EM 跑飞（Fmax 5.9e9）**未解决**；`diagnose_clashes.py` / `relax_autoinhib_structure.sh` 已修好可运行但**尚未产出可用结构/任何 MD 轨迹**；OpenMM relax 被评为非首选、文档未成。
+- **解耦**：2B 进分类器靠静态接触特征，不依赖 MD；MD 是金标准验证层。
+
+**下一步（交接给推进的 agent）**：
+1. 跑 `diagnose_clashes.py --variant-dir <WT autoinhib>`（确认 H-clash vs 重原子 + 挑最干净 model）→ `relax_autoinhib_structure.sh --variant VWF_WT`，贴回 Fmax 逐级。通则跑 autoinhib MD；不通则决定换 model / OpenMM / 暂走静态。
+2. 跑 `extract_aim_autoinhib_features.py`（panel ~130 变体)→ 得到真 `aim_release_score`（现矩阵里是分不开的旧全局值)→ 用 known 2B/2M 校准 `AIM_RELEASE_2B_Z`，与 heparan LOF 联合，重测 2B recall（基线 2/12)。
+3. 校准 `TWO_B_HOTSPOT_POS` / `LOF_COMBINED_Z` against 本地标签。
+
 ### Changed (2026-06-10, 校准更新)
 
 - **`scripts/agentic_vwf_classifier.py`** — 轴B(LOF→2M)从"单看 forced_binding"改为 **forced_binding + heparan 两轴联合**。校准 (known 2B n=39/2M n=47): fb 单用太弱(2M:2B 误伤比~1.5);heparan 较好(2B 中位+0.37 vs 2M −0.40);**联合 `mean(fb,heparan) ≤ −0.75` 最优 → 抓 30% 2M、仅误伤 5% 2B**。`LOF_COMBINED_Z=-0.75`,heparan 缺失时退到极保守单轴 `FB_LOSS_Z=-1.5`。8 项自测通过。机制: heparan 位点紧邻 GPIb 面,2M 破坏结合面会同时拖低两者。

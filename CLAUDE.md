@@ -311,6 +311,28 @@ force field 会通过 NFS 共享到 GPU 实例
 
 ## Execution History
 
+### 2026-06-10 — 大局与交接 (给下一步推进的 agent 看)
+
+两条线状态:
+- ✅ **静态特征分类器: 已优化, 可用(待标签校准)**。多轴方向判别(2B=GOF/2M=LOF) +
+  forced_binding+heparan 联合 LOF(校准 30% 2M 召回/5% 2B 误伤) + uncertain 闸。
+- 🔴 **动态 MD(GROMACS autoinhib): 仍卡, 无实质进展**。env+smoke 已通(CUDA, A40),
+  但 5 个 Boltz D'D3-A1 结构 **EM 跑飞(Fmax 5.9e9)未解决**; `diagnose_clashes.py` /
+  `relax_autoinhib_structure.sh` 已修好可运行但**还没产出任何可用结构 / MD 轨迹**;
+  OpenMM relax 被评非首选、文档未成。
+
+**待推进 (按序)**:
+1. **解 MD blocker**: `python3 scripts/pipeline/diagnose_clashes.py --variant-dir
+   output/boltz2_a1_dp_d3_results/boltz_results_VWF_WT_dp_d3_a1`(确认 H-clash 还是重原子
+   重叠 + 挑最干净 model)→ `bash scripts/pipeline/relax_autoinhib_structure.sh
+   --variant VWF_WT`(逐级看 Fmax)。通→跑 autoinhib MD;不通→换 model / OpenMM / 暂走静态。
+2. **轴A 好版本**: `extract_aim_autoinhib_features.py`(panel ~130 变体)→ 真 `aim_release_score`
+   (现矩阵里 `aim_global_zscore` 是分不开的旧全局值)→ 用 known 2B/2M 校准 `AIM_RELEASE_2B_Z`,
+   与 heparan 联合, 重测 2B recall(基线 2/12)。
+3. **校准** `TWO_B_HOTSPOT_POS` / `LOF_COMBINED_Z` / `FB_LOSS_Z` against 本地标签
+   (数据: `output/type2b_type2m_known_axis_distribution.csv`)。
+- 关键解耦: 2B 进分类器靠静态接触特征, **不依赖 MD 跑通**; MD 是金标准验证/校准层。
+
 ### 2026-06-10
 - **2B/2M 分类机制重设计 (临床驱动)**：老 RULE6 用"损伤大小→功能方向"(轻扰→2B,重损→2M)在原理上错误——GOF(2B)/LOF(2M)是方向不是程度,这是 12 个 2B 漏 8 个进 2M 的根。改为 `agentic_vwf_classifier.py` 的**多轴方向判别**:
   - 轴B `fb_binding_zscore`(a1_gpiba_forced_binding)明显↓ → 结合面坏 → **2M (LOF)**,优先级最高;
