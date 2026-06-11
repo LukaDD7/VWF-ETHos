@@ -22,7 +22,7 @@ set -u
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
-VARIANT=""; SYSTEM="autoinhib"; MODEL=0; DO_SOLVATE=true; PDB_IN=""
+VARIANT=""; SYSTEM="autoinhib"; MODEL=0; DO_SOLVATE=true; PDB_IN=""; SKIP_VACUUM=false
 GMX="${GMX:-}"
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -31,6 +31,7 @@ while [[ $# -gt 0 ]]; do
         --model)   MODEL="$2"; shift 2 ;;
         --pdb)     PDB_IN="$2"; shift 2 ;;   # 直接喂干净 PDB(如 7A6O 实验结构), 跳过 Boltz CIF
         --no-solvate) DO_SOLVATE=false; shift ;;
+        --skip-vacuum) SKIP_VACUUM=true; shift ;;  # 跳过 em_posres/em_vac(已 pdb2gmx 干净, 用于 FoldX 突变体)
         --gmx)     GMX="$2"; shift 2 ;;
         -h|--help) sed -n '2,30p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
         *) echo "[WARN] unknown arg: $1"; shift ;;
@@ -101,12 +102,13 @@ echo 1 | "$GMX" pdb2gmx -f raw.pdb -o conf.gro -p topol.top -i posre.itp \
     || { echo "[FATAL] pdb2gmx 失败, 看 $WORK/pdb2gmx.log (多半 1MET/端基, 确认 GMXLIB)"; exit 1; }
 
 # ---- 公共 EM mdp 生成 --------------------------------------------------------
-mk_em() {  # $1=file  $2=extra("define = -DPOSRES" or "")  $3=coulomb(cutoff|PME)
+mk_em() {  # $1=file  $2=extra("define = -DPOSRES" or "")  $3=coulomb(cutoff|PME)  $4=emtol  $5=emstep  $6=nsteps
+    local emtol=${4:-200.0} emstep=${5:-0.001} nsteps=${6:-100000}
     cat > "$1" <<EOF
 integrator    = steep
-emtol         = 200.0
-emstep        = 0.001
-nsteps        = 100000
+emtol         = $emtol
+emstep        = $emstep
+nsteps        = $nsteps
 nstlist       = 10
 cutoff-scheme = Verlet
 coulombtype   = $3
@@ -118,29 +120,60 @@ $2
 EOF
 }
 
+# 真空 EM 用快档(实验结构/FoldX 突变体已干净, 不需 0.001 emstep 慢爬)
+mk_em_vacuum() {
+    mk_em "$1" "$2" "$3" 200 0.01 500
+}
+# 溶剂化 EM 用更猛档(Fmax 起始 ~4e5, 需较大步; water-only 阶段 POSRES 锁蛋白)
+mk_em_sol() {
+    cat > "$1" <<EOF
+integrator    = steep
+emtol         = 5000.0
+emstep        = 0.05
+nsteps        = 50
+nstlist       = 10
+cutoff-scheme = Verlet
+coulombtype   = PME
+rcoulomb      = 1.2
+rvdw          = 1.2
+pbc           = xyz
+constraints   = h-bonds
+define        = -DPOSRES
+EOF
+}
+
 # ---- 3. 真空大盒 + 受约束 EM (放开 H, 重原子约束) -----------------------------
-echo "[3] 真空受约束 EM (-DPOSRES): 放开 H/水解 clash, 重原子不动"
-"$GMX" editconf -f conf.gro -o box.gro -c -d 1.5 -bt cubic > /dev/null 2>&1
-mk_em em_posres.mdp "define = -DPOSRES" "cutoff"
-"$GMX" grompp -f em_posres.mdp -c box.gro -r box.gro -p topol.top -o em_posres.tpr -maxwarn 5 > grompp1.log 2>&1 \
-    || { echo "[FATAL] grompp(受约束) 失败, 看 grompp1.log"; tail -5 grompp1.log; exit 1; }
-"$GMX" mdrun -v -deffnm em_posres -nb cpu > md1.log 2>&1
-F1=$(report md1.log)
+if $SKIP_VACUUM; then
+    echo "[3/4] 跳过真空 EM (--skip-vacuum, 适用 FoldX 突变体): 直接用 conf.gro 溶剂化"
+    F1="N/A"; F2="N/A"
+    # 用 conf.gro 作为 em_vac.gro 的等价值(下游 solvate 步骤)
+    "$GMX" editconf -f conf.gro -o box.gro -c -d 1.5 -bt cubic > /dev/null 2>&1
+    cp -f conf.gro em_posres.gro
+    cp -f conf.gro em_vac.gro
+else
+    echo "[3] 真空受约束 EM (-DPOSRES): 放开 H/水解 clash, 重原子不动"
+    "$GMX" editconf -f conf.gro -o box.gro -c -d 1.5 -bt cubic > /dev/null 2>&1
+    mk_em em_posres.mdp "define = -DPOSRES" "cutoff" 200 0.01 500
+    "$GMX" grompp -f em_posres.mdp -c box.gro -r box.gro -p topol.top -o em_posres.tpr -maxwarn 5 > grompp1.log 2>&1 \
+        || { echo "[FATAL] grompp(受约束) 失败, 看 grompp1.log"; tail -5 grompp1.log; exit 1; }
+    "$GMX" mdrun -v -deffnm em_posres -nb cpu > md1.log 2>&1
+    F1=$(report md1.log)
 
-# ---- 4. 真空无约束 EM --------------------------------------------------------
-echo "[4] 真空无约束 EM"
-mk_em em_vac.mdp "" "PME"
-"$GMX" grompp -f em_vac.mdp -c em_posres.gro -p topol.top -o em_vac.tpr -maxwarn 5 > grompp2.log 2>&1 \
-    || { echo "[FATAL] grompp(无约束) 失败"; tail -5 grompp2.log; exit 1; }
-"$GMX" mdrun -v -deffnm em_vac -nb cpu > md2.log 2>&1
-F2=$(report md2.log)
+    # ---- 4. 真空无约束 EM --------------------------------------------------------
+    echo "[4] 真空无约束 EM"
+    mk_em em_vac.mdp "" "PME" 200 0.01 500
+    "$GMX" grompp -f em_vac.mdp -c em_posres.gro -p topol.top -o em_vac.tpr -maxwarn 5 > grompp2.log 2>&1 \
+        || { echo "[FATAL] grompp(无约束) 失败"; tail -5 grompp2.log; exit 1; }
+    "$GMX" mdrun -v -deffnm em_vac -nb cpu > md2.log 2>&1
+    F2=$(report md2.log)
 
-# 判定真空阶段
-awk -v f="$F2" 'BEGIN{ exit !(f+0 < 1e6) }' \
-    || { echo ""; echo "❌ 真空 EM 后 Fmax 仍 $F2 (>1e6) → Boltz 几何坏得较重。"
-         echo "   建议: ① 换 model (diagnose_clashes.py 挑最干净的); ② 上 OpenMM relax。"
-         exit 2; }
-echo "✅ 真空弛豫后 Fmax=$F2 (<1e6), 内部 clash 已基本解开。"
+    # 判定真空阶段
+    awk -v f="$F2" 'BEGIN{ exit !(f+0 < 1e6) }' \
+        || { echo ""; echo "❌ 真空 EM 后 Fmax 仍 $F2 (>1e6) → Boltz 几何坏得较重。"
+             echo "   建议: ① 换 model (diagnose_clashes.py 挑最干净的); ② 上 OpenMM relax。"
+             exit 2; }
+    echo "✅ 真空弛豫后 Fmax=$F2 (<1e6), 内部 clash 已基本解开。"
+fi
 
 $DO_SOLVATE || { echo "[--no-solvate] 停在真空弛豫。产物: $WORK/em_vac.gro"; exit 0; }
 
@@ -148,13 +181,14 @@ $DO_SOLVATE || { echo "[--no-solvate] 停在真空弛豫。产物: $WORK/em_vac.
 echo "[5] 溶剂化 + 0.15M NaCl + 溶剂化 EM"
 "$GMX" editconf -f em_vac.gro -o nb.gro -c -d 1.2 -bt dodecahedron > /dev/null 2>&1
 "$GMX" solvate -cp nb.gro -cs spc216.gro -o solv.gro -p topol.top > sol.log 2>&1
-mk_em em_sol.mdp "" "PME"
-"$GMX" grompp -f em_sol.mdp -c solv.gro -p topol.top -o ions.tpr -maxwarn 5 > grompp3.log 2>&1
+mk_em_sol em_sol.mdp
+"$GMX" grompp -f em_sol.mdp -c solv.gro -r solv.gro -p topol.top -o ions.tpr -maxwarn 5 > grompp3.log 2>&1
 echo SOL | "$GMX" genion -s ions.tpr -o solv_ions.gro -p topol.top -pname NA -nname CL -neutral -conc 0.15 > ion.log 2>&1
-"$GMX" grompp -f em_sol.mdp -c solv_ions.gro -p topol.top -o em.tpr -maxwarn 5 > grompp4.log 2>&1 \
+"$GMX" grompp -f em_sol.mdp -c solv_ions.gro -r solv_ions.gro -p topol.top -o em.tpr -maxwarn 5 > grompp4.log 2>&1 \
     || { echo "[FATAL] 溶剂化 grompp 失败"; tail -5 grompp4.log; exit 1; }
 "$GMX" mdrun -v -deffnm em -nb cpu > md3.log 2>&1
 F3=$(report md3.log)
+cp -f em.gro solv_ions_em.gro  # 友好的别名: 水已 settled
 
 echo ""
 echo "============================================================"
