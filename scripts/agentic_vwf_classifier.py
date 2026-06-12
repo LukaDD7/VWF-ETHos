@@ -144,10 +144,11 @@ FUNCTIONAL_SITES = {
 # structures (see extract_aim_autoinhib_features.py). Higher = AIM disengaged
 # from the A1 GPIb-binding face = autoinhibition released = 2B (gain-of-function).
 #
-# ⚠ DEFAULTS ARE PROVISIONAL — TUNE on the cluster against known 2B/2M before
-#   trusting. The naive ptm/plddt metric in evidence_matrix.csv does NOT separate
-#   2B/2M (2B vs 2M delta medians 0.067 vs 0.049, fully overlapping); this
-#   contact-based feature is the intended replacement and needs calibration.
+# ⚠ STILL PROVISIONAL — 这条轴无法用 panel 的 z-score 校准。evidence_matrix.csv 里的
+#   a1_aim_autoinhibition_context z 是旧的全局 ptm/plddt context 值, 仍分不开 2B/2M
+#   (calib_2b2m v2 实测中位: 2B aim=-0.09 vs 2M aim=-0.36, 弱且不可靠), 它 ≠ 几何
+#   接触数 aim_release_score。真值要 extract_aim_autoinhib_features.py 跑 panel CIF
+#   (待 H200→HF→A40 数据传输), 或由 7A6O AIM-A1 MD 的接触下降量定标 → 届时回填本常数。
 AIM_RELEASE_2B_Z = 1.0    # aim_release_score ≥ this → strong release → 2B
 AIM_RELEASE_LEAN_Z = 0.0  # aim_release_score > this (any release) → rescue A1 default toward 2B
 
@@ -156,10 +157,14 @@ AIM_RELEASE_LEAN_Z = 0.0  # aim_release_score > this (any release) → rescue A1
 # ---------------------------------------------------------------------------
 # 临床: 2M(A1型)= 功能丧失,A1 GPIb 结合面被破坏 → GPIb 与 heparan(位点紧邻)
 # 结合都降; 2B = 功能获得,结合面保留 → 两者不降。
-# 校准 (output/type2b_type2m_known_axis_distribution.csv, 2B n=39 / 2M n=47):
-#   - fb_binding_zscore 单用太弱 (各阈值 2M:2B 误伤比 ~1.5, 会反噬 2B 召回);
-#   - heparan_zscore 较好 (2B 中位 +0.37 vs 2M -0.40);
-#   - **联合 mean(fb, heparan) ≤ -0.75 最佳: 抓 30% 的 2M, 仅误伤 5% 的 2B**。
+# 校准 v2 (2026-06-12, calibrate_2b2m_thresholds.py): 用更大的独立干净标签集
+# (build_labeled_variant_set.py 从 /Volumes/LQ1000/VWD 文献表清出, A1 域单标签
+#  2B=36 / 2M=37 join 上 panel) 重校, 与旧 44/49 集结论一致, 故阈值不动:
+#   - 中位 z: 2B fb=-0.24 hep=+0.34 | 2M fb=-0.11 hep=-0.21 (hep 是最干净的方向轴);
+#   - fb 单轴几乎没用 (最佳 net 仅 0.07 @ -0.75) → fb-only fallback 必须保守;
+#   - heparan 单轴较好但高召回点误伤大 (@ -0.25: 抓 49% 2M 但误伤 28% 2B);
+#   - **联合 mean(fb, heparan) ≤ -0.75 = 精度最优点: 抓 24% 2M, 仅误伤 6% 2B (net 0.19)**。
+#   - 收紧到 -1.0 → 16% 2M / 3% 2B (更高精度选项); 现守 -0.75 平衡召回与防 2B→2M 漏判。
 # 故 LOF→2M 要求两条结合面轴一致变低(都需存在), 既抓 LOF 又不重引入 2B→2M 漏判。
 LOF_COMBINED_Z = -0.75    # mean(fb_binding_zscore, heparan_zscore) ≤ this → 结合面丧失 → 2M
 FB_LOSS_Z = -1.5          # (单轴 fallback, 仅 heparan 缺失时) forced_binding 极低才判 LOF
