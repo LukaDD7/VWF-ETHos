@@ -4,11 +4,16 @@ All notable changes to the VWF-ETHos project are documented here.
 
 ## [Unreleased]
 
-### Status / 两条线大局 (2026-06-10)
+### Status / 两条线大局 (更新 2026-06-11)
 
-- ✅ **静态特征分类器 = 已优化(可用,待标签校准）**：`agentic_vwf_classifier.py` RULE6 改为多轴方向判别（2B=GOF / 2M=LOF），轴B 用 forced_binding+heparan 联合 LOF（校准: 30% 2M 召回 / 5% 2B 误伤），无方向信号→uncertain。
-- 🔴 **动态 MD（GROMACS autoinhib）= 仍卡住，无实质进展**：env+smoke 已通（CUDA, A40），但 5 个 Boltz D'D3-A1 结构 EM 跑飞（Fmax 5.9e9）**未解决**；`diagnose_clashes.py` / `relax_autoinhib_structure.sh` 已修好可运行但**尚未产出可用结构/任何 MD 轨迹**；OpenMM relax 被评为非首选、文档未成。
-- **解耦**：2B 进分类器靠静态接触特征，不依赖 MD；MD 是金标准验证层。
+- ✅ **静态特征分类器 = 已优化(可用,待标签校准）**：`agentic_vwf_classifier.py` RULE6 多轴方向判别（2B=GOF / 2M=LOF），轴B forced_binding+heparan 联合 LOF（校准 30% 2M 召回 / 5% 2B 误伤），无方向信号→uncertain。
+- 🟢 **动态 MD = 突破**：弃 Boltz D'D3-A1（EM 跑飞 5.9e9），改用**实验结构 7A6O（AIM-A1, 2.12 Å）**做 WT 骨架 + FoldX 在骨架上造突变体。WT 弛豫秒过（em_vac Fmax=187），14 突变体 14/14 WT 身份匹配。WT NVT 已跑通,批量 MD 进行中（~3-4 天）。
+- **解耦**：2B 进分类器靠静态接触特征,不依赖 MD;MD 是金标准验证/校准层。
+- **下一步**:批量 MD 完 → `analyze_gromacs_md.py` 出 2B vs 2M 接触判定 → 校准 `AIM_RELEASE_2B_Z` 回填分类器（两线合流）。
+
+### Changed (2026-06-11)
+
+- **`scripts/pipeline/analyze_gromacs_md.py`** — autoinhib 分析从 **D'D3-A1 重写为 7A6O AIM-A1 体系**:修了多处 gemmi API bug(`.seq_num`、`element` 当原子名、`read_pdb` 读 `.gro`)使其**之前根本跑不通**;改为**轨迹级** AIM↔A1 接触数时间序列(trjconv 取帧 + gemmi NeighborSearch)、自动适配局部/规范残基编号、匹配 7A6O 批量 runner 的 `<variant>/md_7a6o/` 布局、并输出 **WT vs 2B vs 2M 判定**(`verdict_2b_vs_2m.csv`:每变体平衡态接触 + Δvs_WT,期望 2B 接触显著↓)。AIM/A1 范围、cutoff、skip、标签均可 CLI 覆盖。
 
 **下一步（交接给推进的 agent）**：
 1. 跑 `diagnose_clashes.py --variant-dir <WT autoinhib>`（确认 H-clash vs 重原子 + 挑最干净 model）→ `relax_autoinhib_structure.sh --variant VWF_WT`，贴回 Fmax 逐级。通则跑 autoinhib MD；不通则决定换 model / OpenMM / 暂走静态。
