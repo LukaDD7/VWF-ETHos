@@ -97,12 +97,17 @@ constraint_algorithm = lincs
 EOF
 }
 
-# ---- 0. cg 压 EM 到 Fmax<1000 ----
-echo "[0] cg EM polish (emtol=1000)"
-{ echo "integrator = cg"; echo "emtol = 1000"; echo "nsteps = 5000"; echo "nstlist = 10";
-  echo "cutoff-scheme = Verlet"; echo "coulombtype = PME"; echo "rcoulomb = 1.2";
-  echo "rvdw = 1.2"; echo "pbc = xyz"; } > em2.mdp
-"$GMX" grompp -f em2.mdp -c start.gro -p topol.top -o em2.tpr -maxwarn 5 > g_em2.log 2>&1 \
+# ---- 0. steep + POSRES EM polish ----
+# 注: 不能用 cg —— 刚溶剂化系统残余水 clash 会让 cg 立刻炸 SETTLE (water can't be settled)。
+# steep 容忍 clash, h-bonds 约束 + -DPOSRES 锁蛋白 (input 已 EM 过, 这步只是稳一下再升温)。
+# 需要 posre.itp + grompp -r start.gro 作 POSRES reference。
+echo "[0] steep + -DPOSRES EM polish"
+{ echo "integrator = steep"; echo "emtol = 1000"; echo "emstep = 0.01"; echo "nsteps = 500";
+  echo "nstlist = 10"; echo "cutoff-scheme = Verlet"; echo "coulombtype = PME";
+  echo "rcoulomb = 1.2"; echo "rvdw = 1.2"; echo "pbc = xyz";
+  echo "constraints = h-bonds"; echo "constraint_algorithm = lincs";
+  [ -f posre.itp ] && echo "define = -DPOSRES"; } > em2.mdp
+"$GMX" grompp -f em2.mdp -c start.gro -r start.gro -p topol.top -o em2.tpr -maxwarn 5 > g_em2.log 2>&1 \
     || { echo "[FATAL] grompp em2 失败"; tail -5 g_em2.log; exit 1; }
 RUN -deffnm em2 > md_em2.log 2>&1
 echo "   EM Fmax = $(fmax_of md_em2.log)"
