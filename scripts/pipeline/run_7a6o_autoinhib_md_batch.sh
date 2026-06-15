@@ -4,7 +4,7 @@
 #
 # 7A6O AIM-A1 route runner. Starts from:
 #   WT:      output/gromacs_md_autoinhib/7A6O_WT/relax_m2/nvt_soft.gro/.cpt
-#   mutants: output/gromacs_md_autoinhib/<VARIANT>/relax_pdb/em.gro
+#   mutants: output/gromacs_md_autoinhib/<VARIANT>/relax_pdb/solv_ions_em.gro
 #
 # Modes:
 #   --phase benchmark  Short NPT-only performance/stability check.
@@ -59,10 +59,15 @@ fi
 export GMXLIB="${GMXLIB:-$ROOT_DIR/force_fields}"
 export OCL_ICD_VENDORS="${OCL_ICD_VENDORS:-$ROOT_DIR/opencl_vendors}"
 GPU_BACKEND=$("$GMX" mdrun -version 2>&1 | awk '/GPU support:/ {print $NF; exit}')
-case "$GPU_BACKEND" in
-    CUDA|SYCL) GPU_FLAGS="-nb gpu -pme gpu -bonded gpu -update gpu"; export GMX_CUDA_GRAPH=1 ;;
-    *) GPU_FLAGS="-nb gpu -pme gpu"; unset GMX_CUDA_GRAPH 2>/dev/null || true ;;
-esac
+if [ -n "${GMX_GPU_FLAGS:-}" ]; then
+    GPU_FLAGS="$GMX_GPU_FLAGS"
+else
+    case "$GPU_BACKEND" in
+        CUDA|SYCL) GPU_FLAGS="-nb gpu -pme gpu -update cpu" ;;
+        *) GPU_FLAGS="-nb gpu -pme gpu -update cpu" ;;
+    esac
+fi
+unset GMX_CUDA_GRAPH 2>/dev/null || true
 
 steps_from_ps() { awk -v ps="$1" 'BEGIN{printf "%d", ps * 500}'; }
 steps_from_ns() { awk -v ns="$1" 'BEGIN{printf "%d", ns * 500000}'; }
@@ -154,7 +159,11 @@ resolve_variant() {
         VARIANT_LABEL="7A6O_WT"
     else
         RELAX_DIR="$OUT_ROOT/$variant/relax_pdb"
-        START_GRO="$RELAX_DIR/em.gro"
+        if [ -f "$RELAX_DIR/solv_ions_em_refined.gro" ]; then
+            START_GRO="$RELAX_DIR/solv_ions_em_refined.gro"
+        else
+            START_GRO="$RELAX_DIR/solv_ions_em.gro"
+        fi
         START_CPT=""
         TOP_DIR="$RELAX_DIR"
         CAN_SKIP_NVT=false
@@ -169,6 +178,10 @@ run_one() {
     resolve_variant "$variant" || return 1
 
     local work="$OUT_ROOT/$VARIANT_LABEL/md_7a6o"
+    if [ -f "$work/md_prod.gro" ]; then
+        echo "[$(date '+%F %T')] skip existing production: $work/md_prod.gro"
+        return 0
+    fi
     mkdir -p "$work"
     cp -f "$TOP_DIR/topol.top" "$work/topol.top"
     [ -f "$TOP_DIR/posre.itp" ] && cp -f "$TOP_DIR/posre.itp" "$work/posre.itp"
@@ -223,15 +236,29 @@ run_one() {
 IFS=',' read -r -a VARIANT_ARR <<< "$VARIANTS"
 IFS=',' read -r -a GPU_ARR <<< "$GPU_IDS"
 
-active=0
+failures=0
+pids=()
+wait_batch() {
+    [ "${#pids[@]}" -eq 0 ] && return 0
+    local pid status
+    for pid in "${pids[@]}"; do
+        if ! wait "$pid"; then
+            status=$?
+            echo "[ERROR] child PID $pid failed with status $status" >&2
+            failures=$((failures + 1))
+        fi
+    done
+    pids=()
+}
+
 for i in "${!VARIANT_ARR[@]}"; do
     variant="${VARIANT_ARR[$i]}"
     gpu="${GPU_ARR[$(( i % ${#GPU_ARR[@]} ))]}"
     run_one "$variant" "$gpu" > "$OUT_ROOT/${variant}_md_7a6o_${PHASE}.log" 2>&1 &
-    active=$((active + 1))
-    if [ "$active" -ge "$MAX_PARALLEL" ]; then
-        wait
-        active=0
+    pids+=("$!")
+    if [ "${#pids[@]}" -ge "$MAX_PARALLEL" ]; then
+        wait_batch
     fi
 done
-wait
+wait_batch
+exit "$failures"

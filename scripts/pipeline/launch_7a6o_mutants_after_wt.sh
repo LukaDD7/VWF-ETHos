@@ -13,8 +13,13 @@ NTOMP="${NTOMP:-16}"
 LOG="$MD_ROOT/mutants_7a6o_batch_$(date '+%Y%m%d_%H%M%S').log"
 
 [ -x "$RUNNER" ] || { echo "[FATAL] missing runner: $RUNNER"; exit 1; }
-[ -f "$MD_ROOT/7A6O_WT/md_7a6o/md_prod.gro" ] || {
-  echo "[FATAL] WT production is not complete yet: missing $MD_ROOT/7A6O_WT/md_7a6o/md_prod.gro"
+WT_PROD_DIR="$MD_ROOT/7A6O_WT/md_7a6o"
+WT_DONE_FILE=""
+for cand in "$WT_PROD_DIR/md_prod.gro" "$WT_PROD_DIR"/md_prod_run.part*.gro; do
+  [ -f "$cand" ] && WT_DONE_FILE="$cand"
+done
+[ -n "$WT_DONE_FILE" ] || {
+  echo "[FATAL] WT production is not complete yet: missing md_prod.gro or md_prod_run.part*.gro in $WT_PROD_DIR"
   echo "        If you intentionally want to start mutants before WT finishes, set REQUIRE_WT_DONE=0."
   [ "${REQUIRE_WT_DONE:-1}" = "0" ] || exit 2
 }
@@ -25,6 +30,7 @@ if pgrep -af 'gmx mdrun|run_7a6o_autoinhib_md_batch' >/dev/null; then
 fi
 
 echo "[INFO] Launching mutant batch"
+echo "[INFO] wt_done=${WT_DONE_FILE:-not-required}"
 echo "[INFO] variants=$VARIANTS"
 echo "[INFO] gpu_ids=$GPU_IDS max_parallel=$MAX_PARALLEL ns=$NS"
 echo "[INFO] log=$LOG"

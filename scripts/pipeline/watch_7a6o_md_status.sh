@@ -14,17 +14,22 @@ pgrep -af 'run_7a6o_autoinhib_md_batch|gmx mdrun|md_prod' || true
 echo
 echo "[WT production files]"
 if [ -d "$WT_DIR" ]; then
-  ls -lh --time-style=long-iso "$WT_DIR"/md_prod.* 2>/dev/null || true
+  ls -lh --time-style=long-iso "$WT_DIR"/md_prod.* "$WT_DIR"/md_prod_run.* 2>/dev/null || true
 else
   echo "missing: $WT_DIR"
 fi
 
 echo
 echo "[WT production log tail]"
-if [ -f "$WT_DIR/md_prod.log" ]; then
-  tail -40 "$WT_DIR/md_prod.log"
+wt_log=""
+for cand in "$WT_DIR"/md_prod_run.part*.log "$WT_DIR/md_prod.log"; do
+  [ -f "$cand" ] && wt_log="$cand"
+done
+if [ -n "$wt_log" ]; then
+  echo "log: $wt_log"
+  tail -40 "$wt_log"
 else
-  echo "missing: $WT_DIR/md_prod.log"
+  echo "missing: $WT_DIR/md_prod.log or $WT_DIR/md_prod_run.part*.log"
 fi
 
 echo
