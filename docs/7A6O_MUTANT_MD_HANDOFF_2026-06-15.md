@@ -61,7 +61,7 @@ find output/gromacs_md_autoinhib -path '*/md_7a6o/md_prod.gro' -type f | wc -l
 - `scripts/pipeline/run_7a6o_variant_direct.sh`
   - Minimal single-variant runner used for the live jobs.
   - Avoids backend probing and internal background scheduling.
-  - Uses stable GROMACS flags: `-nb gpu -pme gpu -update cpu`.
+  - Uses optimized GROMACS flags: `-nb gpu -pme gpu -bonded gpu -update gpu -pin on -pinoffset <gpu*ntomp>`.
   - Starts from `solv_ions_em_refined.gro` if present.
 
 - `scripts/pipeline/refine_7a6o_mutant_em.sh`
@@ -70,7 +70,7 @@ find output/gromacs_md_autoinhib -path '*/md_7a6o/md_prod.gro' -type f | wc -l
 
 - `scripts/pipeline/run_7a6o_autoinhib_md_batch.sh`
   - Now prefers `solv_ions_em_refined.gro`.
-  - Disables CUDA Graph and GPU update by default.
+  - Disables CUDA Graph by default; the direct runner now uses GPU update only after refined EM and CPU pinoffset validation.
   - Propagates child failures instead of returning success after failed children.
 
 - `scripts/pipeline/launch_7a6o_mutants_after_wt.sh`
@@ -89,3 +89,42 @@ find output/gromacs_md_autoinhib -path '*/md_7a6o/md_prod.gro' -type f | wc -l
 ## Safe exit
 
 It is safe to exit the terminal after confirming `pgrep` shows `run_7a6o_variant_direct` or `gmx mdrun` processes. These jobs were launched with `setsid`, not attached to an interactive shell.
+
+
+## Update - 2026-06-17 GPU parallel optimization
+
+The first mutant wave was relaunched after validating that refined starts can run with GPU update. The slow path was `-update cpu` plus overlapping CPU thread pinning; it produced only about 0.5-1 ns/day in several parallel jobs. The current direct runner uses GPU update and assigns non-overlapping CPU pin ranges with `pinoffset = gpu * NTOMP`.
+
+Current first-wave live mapping at relaunch:
+
+| GPU | Variant | Launcher PID | GROMACS mode |
+| --- | --- | ---: | --- |
+| 0 | `R1306W` | `52129` | resume `md_prod.cpt` with `-noappend` |
+| 1 | `R1306Q` | `52130` | resume `md_prod.cpt` with `-noappend` |
+| 2 | `R1308C` | `52131` | resume `md_prod.cpt` with `-noappend` |
+| 3 | `I1309V` | `52132` | resume `md_prod.cpt` with `-noappend` |
+| 4 | `S1310F` | `52133` | resume `md_prod.cpt` with `-noappend` |
+| 5 | `W1313C` | `52134` | resume `md_prod.cpt` with `-noappend` |
+| 6 | `V1314F` | `52135` | resume `md_prod.cpt` with `-noappend` |
+
+Important output convention: resumed production uses `mdrun -noappend`, so completion may be written as `md_prod.part0003.gro` or a later `md_prod.part*.gro`, not necessarily `md_prod.gro`. Status and completion checks must accept both.
+
+A follow-up queue script was added:
+
+```bash
+setsid bash scripts/pipeline/launch_7a6o_followup_queue.sh   > output/gromacs_md_autoinhib/followup_queue_$(date +%Y%m%d_%H%M).log 2>&1 < /dev/null &
+```
+
+By default it waits for each first-wave variant to produce `md_prod.gro` or `md_prod.part*.gro`, then launches the paired second-wave variant on the same GPU:
+
+| GPU | Wait for | Then launch |
+| --- | --- | --- |
+| 0 | `R1306W` | `R1374H` |
+| 1 | `R1306Q` | `V1316M` |
+| 2 | `R1308C` | `P1337L` |
+| 3 | `I1309V` | `R1341Q` |
+| 4 | `S1310F` | `R1341W` |
+| 5 | `W1313C` | `R1374C` |
+| 6 | `V1314F` | `G1324S` |
+
+Use `bash scripts/pipeline/watch_7a6o_md_status.sh` for a compact status view. It now reports active direct runners, follow-up queue processes, mutant production state, latest official production checkpoint, and fatal/LINCS/CUDA markers.

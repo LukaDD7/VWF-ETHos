@@ -9,6 +9,7 @@ ns="${NS:-50}"
 nvt_ps="${NVT_PS:-50}"
 npt_ps="${NPT_PS:-200}"
 ntomp="${NTOMP:-16}"
+pinoffset="$((gpu * ntomp))"
 export GMXLIB="${GMXLIB:-$ROOT_DIR/force_fields}"
 export OCL_ICD_VENDORS="${OCL_ICD_VENDORS:-$ROOT_DIR/opencl_vendors}"
 unset GMX_CUDA_GRAPH 2>/dev/null || true
@@ -47,14 +48,24 @@ cp -f "$relax/topol.top" "$work/topol.top"
 [ -f "$relax/posre.itp" ] && cp -f "$relax/posre.itp" "$work/posre.itp"
 cp -f "$start" "$work/start.gro"
 cd "$work"
-echo "[$(date '+%F %T')] $variant direct start gpu=$gpu start=$start"
+echo "[$(date '+%F %T')] $variant direct start gpu=$gpu pinoffset=$pinoffset start=$start"
+if [ -f md_prod.gro ] || ls md_prod.part*.gro >/dev/null 2>&1; then
+  echo "[$(date '+%F %T')] $variant production already complete in $work"
+  exit 0
+fi
+if [ -f md_prod.cpt ] && [ -f md_prod.tpr ]; then
+  echo "[$(date '+%F %T')] $variant resume production from md_prod.cpt"
+  CUDA_VISIBLE_DEVICES="$gpu" "$GMX" mdrun -deffnm md_prod -cpi md_prod.cpt -noappend -ntmpi 1 -ntomp "$ntomp" -gpu_id 0 -nb gpu -pme gpu -bonded gpu -update gpu -pin on -pinoffset "$pinoffset" > md_prod_resume.stdout 2>&1
+  echo "[$(date '+%F %T')] $variant direct production complete"
+  exit 0
+fi
 write_nvt "$(steps_from_ps "$nvt_ps")"
 "$GMX" grompp -f nvt.mdp -c start.gro -r start.gro -p topol.top -o nvt.tpr -maxwarn 5 > g_nvt.log 2>&1
-CUDA_VISIBLE_DEVICES="$gpu" "$GMX" mdrun -deffnm nvt -ntmpi 1 -ntomp "$ntomp" -gpu_id 0 -nb gpu -pme gpu -update cpu -pin on > md_nvt.log 2>&1
+CUDA_VISIBLE_DEVICES="$gpu" "$GMX" mdrun -deffnm nvt -ntmpi 1 -ntomp "$ntomp" -gpu_id 0 -nb gpu -pme gpu -bonded gpu -update gpu -pin on -pinoffset "$pinoffset" > md_nvt.stdout 2>&1
 write_npt "$(steps_from_ps "$npt_ps")"
 "$GMX" grompp -f npt.mdp -c nvt.gro -r nvt.gro -t nvt.cpt -p topol.top -o npt.tpr -maxwarn 5 > g_npt.log 2>&1
-CUDA_VISIBLE_DEVICES="$gpu" "$GMX" mdrun -deffnm npt -ntmpi 1 -ntomp "$ntomp" -gpu_id 0 -nb gpu -pme gpu -update cpu -pin on > md_npt.log 2>&1
+CUDA_VISIBLE_DEVICES="$gpu" "$GMX" mdrun -deffnm npt -ntmpi 1 -ntomp "$ntomp" -gpu_id 0 -nb gpu -pme gpu -bonded gpu -update gpu -pin on -pinoffset "$pinoffset" > md_npt.stdout 2>&1
 write_prod "$(steps_from_ns "$ns")"
 "$GMX" grompp -f production.mdp -c npt.gro -t npt.cpt -p topol.top -o md_prod.tpr -maxwarn 5 > g_prod.log 2>&1
-CUDA_VISIBLE_DEVICES="$gpu" "$GMX" mdrun -deffnm md_prod -ntmpi 1 -ntomp "$ntomp" -gpu_id 0 -nb gpu -pme gpu -update cpu -pin on > md_prod.log 2>&1
+CUDA_VISIBLE_DEVICES="$gpu" "$GMX" mdrun -deffnm md_prod -ntmpi 1 -ntomp "$ntomp" -gpu_id 0 -nb gpu -pme gpu -bonded gpu -update gpu -pin on -pinoffset "$pinoffset" > md_prod.stdout 2>&1
 echo "[$(date '+%F %T')] $variant direct production complete"

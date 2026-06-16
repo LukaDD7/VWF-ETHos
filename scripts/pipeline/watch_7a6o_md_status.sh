@@ -9,7 +9,7 @@ echo "=== 7A6O MD status: $(date '+%F %T') ==="
 echo
 
 echo "[Processes]"
-pgrep -af 'run_7a6o_autoinhib_md_batch|gmx mdrun|md_prod' || true
+pgrep -af 'run_7a6o_autoinhib_md_batch|run_7a6o_variant_direct|launch_7a6o_followup_queue|gmx mdrun|md_prod' || true
 
 echo
 echo "[WT production files]"
@@ -37,6 +37,33 @@ echo "[Mutant relaxed structures]"
 count=$(find "$MD_ROOT" -path '*/relax_pdb/solv_ions_em.gro' -type f 2>/dev/null | wc -l)
 echo "solv_ions_em.gro count: $count"
 find "$MD_ROOT" -path '*/relax_pdb/solv_ions_em.gro' -type f 2>/dev/null | sed "s#^$MD_ROOT/##" | sort
+
+echo
+echo "[Mutant production status]"
+for variant_dir in "$MD_ROOT"/*; do
+  [ -d "$variant_dir/md_7a6o" ] || continue
+  variant="$(basename "$variant_dir")"
+  [ "$variant" = "7A6O_WT" ] && continue
+  work="$variant_dir/md_7a6o"
+  if [ -f "$work/md_prod.gro" ] || compgen -G "$work/md_prod.part*.gro" >/dev/null; then
+    state="complete"
+  elif [ -f "$work/md_prod.cpt" ] || compgen -G "$work/md_prod.part*.log" >/dev/null; then
+    state="running_or_resumable"
+  else
+    state="not_started"
+  fi
+  latest_log="$(ls -t "$work"/md_prod.part*.log "$work"/md_prod.log 2>/dev/null | head -1 || true)"
+  latest_cpt=""
+  for cand in "$work/md_prod.cpt" "$work"/md_prod.part*.cpt; do
+    [ -f "$cand" ] && latest_cpt="$cand"
+  done
+  echo "=== $variant: $state ==="
+  [ -n "$latest_cpt" ] && ls -lh --time-style=long-iso "$latest_cpt"
+  [ -n "$latest_log" ] && {
+    echo "log: $latest_log"
+    grep -E 'Step|Writing checkpoint|Performance:|Finished mdrun|Fatal error|LINCS WARNING|cudaError' "$latest_log" | tail -8 || true
+  }
+done
 
 echo
 echo "[Relax loop tail]"
