@@ -128,3 +128,24 @@ By default it waits for each first-wave variant to produce `md_prod.gro` or `md_
 | 6 | `V1314F` | `G1324S` |
 
 Use `bash scripts/pipeline/watch_7a6o_md_status.sh` for a compact status view. It now reports active direct runners, follow-up queue processes, mutant production state, latest official production checkpoint, and fatal/LINCS/CUDA markers.
+
+
+## Update - 2026-06-17 NUMA pinning correction
+
+A second performance pass found that `pinoffset = gpu * NTOMP` was still wrong because GROMACS numbers logical CPUs as physical-core / SMT-pair order. With `pinstride=1`, threads landed on SMT siblings and GPU3-GPU6 still used NUMA0 cores. The live production jobs were stopped with TERM, each wrote a fresh `md_prod.cpt`, and the first wave was resumed again from checkpoint.
+
+Current direct-runner CPU policy:
+
+- `NTOMP=8`
+- `-pin on -pinstride 2`
+- GPU0: `pinoffset=0`, OS CPUs `0-7`
+- GPU1: `pinoffset=16`, OS CPUs `8-15`
+- GPU2: `pinoffset=32`, OS CPUs `16-23`
+- GPU3: `pinoffset=64`, OS CPUs `32-39`
+- GPU4: `pinoffset=80`, OS CPUs `40-47`
+- GPU5: `pinoffset=96`, OS CPUs `48-55`
+- GPU6: `pinoffset=112`, OS CPUs `56-63`
+
+This aligns GPU0-GPU2 with NUMA node0 and GPU3-GPU6 with NUMA node1 according to `nvidia-smi topo -m`. The final live first-wave relaunch logs use the suffix `numa8s2_20260617_2121`; the follow-up queue log is `output/gromacs_md_autoinhib/followup_queue_numa8s2_20260617_2126.log`.
+
+A 60-second smoke check after relaunch showed all seven `md_prod.part0005.*` outputs growing and no fatal/LINCS/CUDA errors in the new logs. Use at least one full checkpoint interval, about 15 minutes, before estimating steady-state ns/day.
