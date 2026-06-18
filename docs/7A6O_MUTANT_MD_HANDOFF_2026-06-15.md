@@ -149,3 +149,23 @@ Current direct-runner CPU policy:
 This aligns GPU0-GPU2 with NUMA node0 and GPU3-GPU6 with NUMA node1 according to `nvidia-smi topo -m`. The final live first-wave relaunch logs use the suffix `numa8s2_20260617_2121`; the follow-up queue log is `output/gromacs_md_autoinhib/followup_queue_numa8s2_20260617_2126.log`.
 
 A 60-second smoke check after relaunch showed all seven `md_prod.part0005.*` outputs growing and no fatal/LINCS/CUDA errors in the new logs. Use at least one full checkpoint interval, about 15 minutes, before estimating steady-state ns/day.
+
+
+## Update - 2026-06-18 completed-trajectory analysis script
+
+A dedicated analysis script was added for the current noappend/split production layout:
+
+```bash
+python3 scripts/pipeline/analyze_7a6o_completed_md.py   --input output/gromacs_md_autoinhib   --output output/gromacs_md_autoinhib/analysis_completed_7a6o   --force
+```
+
+What it does:
+
+- Discovers only completed runs: WT plus variants with `md_prod.gro` or `md_prod.part*.gro`.
+- Concatenates official production segments only: `md_prod.xtc` and `md_prod.part*.xtc`; probe/test trajectories are ignored.
+- Checks the concatenated trajectory with `gmx check`.
+- Computes backbone RMSD with `gmx rms`.
+- Computes AIM-A1 nonlocal contact counts using `gmx select` + `gmx mindist`, without requiring `gemmi`.
+- Outputs `qc_summary.csv`, `aim_a1_contacts_summary.csv`, and `aim_a1_contacts_timeseries.csv`.
+
+A smoke test passed on `WT,R1306W` and produced 501-frame 0-50 ns trajectories plus expected WT-relative contact deltas. When all 14 mutants finish, rerun the command above with no `--variants` argument to analyze all completed trajectories together.
