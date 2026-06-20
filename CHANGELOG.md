@@ -4,6 +4,14 @@ All notable changes to the VWF-ETHos project are documented here.
 
 ## [Unreleased]
 
+### Added (2026-06-20) — 7A6O AIM-A1 MD 特征 → 分类器 (轴B' 结合面完整性)
+
+- **A40 push 回 50 ns MD 结果** (`md_data/7a6o_reference_md/`, Git LFS, WT + 14 参考变体) pull 落地 (需 `git lfs`, 校验和与 `manifest.csv` 一致)。构件原生编号 1262–1466 经 12 个突变位点比对确证。
+- **机制调研 + 符号纠偏**：平衡(无剪切) MD 看不到力依赖的 2B 松开；医学上稳健的可观测量是 **AIM→GPIbα 结合面屏蔽接触的保留率 (= 结合面完整性)**，而非 AIM↔A1 总接触数(后者方向相反、误导)。数据驱动的 WT 屏蔽界面 = A1 [1305-1308,1313,1376,1378,1380,1410,1434]，恰盖 2B 突变位点 → 验证 Deng 2017 模型。保留率 **WT 0.81 > 2B 0.75 > 2M 0.63**(2M 结合面坏 → 屏蔽不住)。
+- **`scripts/pipeline/extract_7a6o_md_features.py`**(新)→ `output/md_7a6o_features.csv` + `md_7a6o_masking_interface.json`。`md_face_destab_score` 高 = 结合面破坏 = 2M/LOF；AUC(2M>2B)=0.83(单副本, n(2M)=3, 有重叠 → 软证据)。
+- **`agentic_vwf_classifier.py`**：新增**轴B' MD 结合面完整性**(`MD_FACE_DESTAB_2M_Z=1.0`)。RULE6 中：轴B 已判 2M 时 MD 确证→升置信(0.72→0.8)；`uncertain` 兜底前加 MD tie-breaker(强结合面破坏→2M 软证据 0.55)，排在 2B 热点/AIM 位之后→**绝不硬翻 2B**。`AIM_RELEASE_2B_Z` 处加警示：勿用平衡 MD 接触下降反推(符号相反)。
+- **参考集回归**：15 变体过分类器，**2B→2M 误翻 = 0**(V1316M 越阈但 1316∈热点先判 2B)，**R1374H(2M) 由 uncertain 救回 2M**，其余与 NaN 完全一致(向后兼容)。详见 `docs/7A6O_MD_FEATURE_ANALYSIS_2026-06-20.md`。
+
 ### Status / 两条线大局 (更新 2026-06-11)
 
 - ✅ **静态特征分类器 = 已优化(可用,待标签校准）**：`agentic_vwf_classifier.py` RULE6 多轴方向判别（2B=GOF / 2M=LOF），轴B forced_binding+heparan 联合 LOF（校准 30% 2M 召回 / 5% 2B 误伤），无方向信号→uncertain。

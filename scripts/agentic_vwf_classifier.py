@@ -61,6 +61,11 @@ class ExpertScores:
     # 由 extract_aim_autoinhib_features.py 产出, NaN = 无该特征 (向后兼容)。
     aim_release_score: float = float('nan')
 
+    # MD A1 结合面破坏程度 (7A6O AIM-A1 平衡 MD; extract_7a6o_md_features.py)。
+    # 越高 = WT AIM→结合面屏蔽接触丢失越多 = GPIbα 结合面被破坏 = 2M (LOF)。
+    # ⚠ 平衡 MD 的 LOF/2M 证据轴, 不是 2B release 轴; NaN = 无 MD (向后兼容)。
+    md_face_destab_score: float = float('nan')
+
 
 @dataclass
 class MultiLabelClassificationResult:
@@ -151,6 +156,27 @@ FUNCTIONAL_SITES = {
 #   (待 H200→HF→A40 数据传输), 或由 7A6O AIM-A1 MD 的接触下降量定标 → 届时回填本常数。
 AIM_RELEASE_2B_Z = 1.0    # aim_release_score ≥ this → strong release → 2B
 AIM_RELEASE_LEAN_Z = 0.0  # aim_release_score > this (any release) → rescue A1 default toward 2B
+# ⚠ 2026-06-20 7A6O AIM-A1 MD 实测纠偏: 不要用"MD AIM↔A1 接触下降量"反推 aim_release_score
+#   并定标本常数。平衡 50ns MD 里 **2M 丢失的 AIM→结合面屏蔽接触比 2B 更多**(2M 比 2B
+#   接触更少/mindist 更大), 与"接触下降=2B 松开"的旧假设**符号相反**。力依赖的 2B 松开在
+#   无剪切的平衡 MD 中不显现 → MD 接触类指标是 LOF/2M 轴(见下 MD_FACE_DESTAB_2M_Z), 不是
+#   2B release 轴。aim_release_score 仍需 panel CIF 或 steered/force MD 定标, 勿用平衡 MD 接触。
+
+# ---------------------------------------------------------------------------
+# 轴B': MD A1 结合面完整性 (7A6O AIM-A1 平衡 MD; LOF/2M 证据轴)
+# ---------------------------------------------------------------------------
+# md_face_destab_score = -zscore(变体在 tail 40-50ns 保留的 WT AIM→结合面 masking
+# 接触比例)。数据驱动的 WT 屏蔽界面 = AIM 接触 A1 残基 [1305-1308,1313,1376,1378,
+# 1380,1410,1434] (恰好覆盖 2B 突变位点 → 验证 Deng et al. Blood 2017 屏蔽模型)。
+# 越高 = 屏蔽接触丢失越多 = A1 GPIbα 结合面被破坏 = 2M (LOF)。
+# 校准 (7A6O 参考集 WT+8×2B+3×2M, 单 50ns 副本, extract_7a6o_md_features.py):
+#   保留率 mask_retention: WT 0.81 > 2B 0.75 > 2M 0.63; destab 2M 中位 +0.27
+#   (R1374H +1.60, G1324S +0.72, R1374C +0.27) vs 2B 中位 -0.13; AUC(2M>2B)=0.83。
+#   ⚠ 平衡 MD 看不到力依赖的 2B 松开 → 本轴**只作 2M/LOF 确证, 绝不判 2B**;
+#     n(2M)=3 单副本 + 2B/2M 重叠(V1316M destab=+1.16 但属 2B, 靠 TWO_B_HOTSPOT 1316
+#     先定 2B) → 仅作软证据/tie-breaker, 不硬翻已由热点/AIM 位定的 2B。待多副本/更多
+#     2M 标签或 steered-MD 后收紧。
+MD_FACE_DESTAB_2M_Z = 1.0   # md_face_destab_score ≥ this → 强结合面破坏 → 支持 2M (LOF)
 
 # ---------------------------------------------------------------------------
 # 轴B: A1 结合面完整性 (LOF 探测) = forced_binding + heparan 两轴联合
@@ -601,6 +627,8 @@ class ClinicalGeneticistAgent:
             aim_release = getattr(expert_scores, 'aim_release_score', np.nan)   # 轴A: 自抑制松开
             fb_z = variant_data.get('fb_binding_zscore', np.nan)               # 轴B-1: GPIb 结合
             hep_z = variant_data.get('heparan_zscore', np.nan)                 # 轴B-2: heparan 结合
+            md_destab = getattr(expert_scores, 'md_face_destab_score', np.nan) # 轴B': MD 结合面破坏 (LOF/2M)
+            md_lof = (not np.isnan(md_destab)) and (md_destab >= MD_FACE_DESTAB_2M_Z)
             is_aim_n = 1238 <= position <= 1268
             is_aim_c = 1460 <= position <= 1472
             is_hotspot = position in TWO_B_HOTSPOT_POS                          # 轴C
@@ -629,8 +657,10 @@ class ClinicalGeneticistAgent:
 
             # 轴B 优先: A1 结合面丧失 → 2M (LOF), 与是否松开无关 ----------------
             if binding_lost:
-                return _a1('2M', 0.72,
-                           f"RULE6-B: {lof_why} → A1 结合面丧失 → 2M (LOF)")
+                conf, why = 0.72, f"RULE6-B: {lof_why} → A1 结合面丧失 → 2M (LOF)"
+                if md_lof:   # MD 平衡态结合面破坏 = 独立确证, 提升置信
+                    conf, why = 0.8, why + f" [MD 结合面破坏确证 destab={md_destab:.2f}]"
+                return _a1('2M', conf, why)
 
             # 轴A 强信号: 自抑制强松开 + 结合保留 → 2B (GOF) --------------------
             if not np.isnan(aim_release) and aim_release >= AIM_RELEASE_2B_Z:
@@ -662,6 +692,14 @@ class ClinicalGeneticistAgent:
             if expert_scores.structural_damage_score > 0.6:
                 return _a1('2M', 0.72,
                            f"RULE6d: 重度结构损伤 {expert_scores.structural_damage_score:.2f} → 2M (LOF)")
+
+            # MD 软证据 tie-breaker: 平衡态结合面强破坏 → 2M (LOF) --------------
+            # 仅在轴 A/B/C 与结构启发皆未定向时介入 (此处已排除 2B 热点/AIM 位/别构);
+            # 故不会硬翻已定的 2B。软证据, 低置信。
+            if md_lof:
+                return _a1('2M', 0.55,
+                           f"RULE6-MD: 平衡 MD A1 结合面破坏 destab={md_destab:.2f} ≥ "
+                           f"{MD_FACE_DESTAB_2M_Z} → 2M (LOF, 软证据)")
 
             # 无明确方向信号 → uncertain (不硬判; MD 闭合态稳定性出来后定 2B/2M) --
             return _a1('uncertain', 0.35,
@@ -789,6 +827,8 @@ class AgenticVWFClassifier:
             # 自抑制松开特征 (extract_aim_autoinhib_features.py → merge 进输入矩阵);
             # 缺失时为 NaN, RULE6 退回原逻辑。
             aim_release_score=variant_data.get('aim_release_score', np.nan),
+            # MD 结合面破坏 (7A6O AIM-A1 平衡 MD); 缺失时 NaN, RULE6 退回原逻辑。
+            md_face_destab_score=variant_data.get('md_face_destab_score', np.nan),
         )
 
         # =====================================================================

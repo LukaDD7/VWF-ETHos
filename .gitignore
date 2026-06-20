@@ -51,3 +51,8 @@ output/gromacs_md*/
 # 临时数据备份 (不要入 repo)
 0423-Type2B-excel/
 archived/
+
+# MDAnalysis 轨迹偏移缓存 (本地生成, 勿入 repo)
+*_offsets.npz
+*_offsets.lock
+.*.xtc_offsets.*
