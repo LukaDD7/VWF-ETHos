@@ -26,18 +26,20 @@ from statistics import mean
 from typing import Iterable
 
 DEFAULT_VARIANTS = [
-    "WT",
+    "WT", "WT_r1", "WT_r2", "WT_r3",
     "R1306W", "R1306Q", "R1308C", "I1309V", "S1310F", "W1313C", "V1314F", "V1316M",
     "R1374C", "R1374H", "G1324S",
     "P1337L", "R1341Q", "R1341W",
+    "C1458R", "C1458R_r1", "C1458R_r2", "C1458R_r3",
 ]
 
 LABELS = {
-    "WT": "WT",
+    "WT": "WT", "WT_r1": "WT", "WT_r2": "WT", "WT_r3": "WT",
     "R1306W": "2B", "R1306Q": "2B", "R1308C": "2B", "I1309V": "2B", "S1310F": "2B",
     "W1313C": "2B", "V1314F": "2B", "V1316M": "2B",
     "R1374C": "2M", "R1374H": "2M", "G1324S": "2M",
     "P1337L": "?", "R1341Q": "?", "R1341W": "?",
+    "C1458R": "patient", "C1458R_r1": "patient", "C1458R_r2": "patient", "C1458R_r3": "patient",
 }
 
 SELECTIONS = {
