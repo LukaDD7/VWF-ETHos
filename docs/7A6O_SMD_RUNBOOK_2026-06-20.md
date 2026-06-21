@@ -26,6 +26,9 @@
 - 盒子：先把 N→C 向量转到 +z，再开 **8.2 × 8.2 × 11.8 nm** 长盒（~80k 原子，原 35k 的~2.3×）。
 - 默认拉伸：`PULL_NM=5.0 nm`，`RATE=0.001 nm/ps (1 nm/ns)`，`K=1000 kJ/mol/nm²`
   → 每副本 **5 ns / 2.5M 步**。A40 单卡约 2–4 h/副本。
+- Pull geometry 使用 `direction-periodic` 沿 +z 拉伸，而不是 `distance`；否则拉到接近半盒长时 GROMACS 会报
+  `Distance between pull groups ... larger than 0.49 times the box size`。
+- prep 默认 `PREP_NTOMP=16`，避免 EM/NVT/NPT 独占 128 CPU 线程；可按机器负载调整。
 
 ## 3. 跑法
 
@@ -80,6 +83,7 @@ python3 scripts/pipeline/analyze_7a6o_smd.py \
 |---|---|
 | `grompp` tc-grps 找不到 Protein | index.ndx 已含默认组(make_ndx)+anchor，检查 `grep '\[' smd/index.ndx` |
 | EM/NVT LINCS 崩 | EM 没收敛；查 `prep_em.log` Fmax，必要时 emtol 调 200 |
+| `Distance between pull groups ... larger than 0.49 times the box size` | 确认 `run_7a6o_smd.sh` 使用 `pull-coord1-geometry = direction-periodic`；旧 `distance` geometry 会在 5 nm 拉伸中失败 |
 | 拉伸中蛋白撞周期镜像 | 加大 `BOX_Z`（env 变量）或减小 `PULL_NM` |
 | 力曲线无峰（单调升） | RATE 太快，AIM 没来得及协同解折叠；降 `RATE=0.0005` |
 | GPU 0% util 数分钟 | 正常（首次 kernel 编译）；持续 0% 查 `md_smd_rep*.stdout` |
