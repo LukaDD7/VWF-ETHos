@@ -40,13 +40,17 @@
 ```bash
 cd $PROJ
 for v in WT R1306W R1374H; do
-  bash scripts/pipeline/prep_7a6o_smd.sh $v 0               # 建盒+溶剂+EM+NVT/NPT
-  RATE=0.00025 bash scripts/pipeline/run_7a6o_smd.sh $v 0 5 # 慢速 0.25 nm/ns, 5 副本
+  bash scripts/pipeline/prep_7a6o_smd.sh $v 0                           # 建盒+溶剂+EM+NVT/NPT
+  RATE=0.00025 SMD_TAG=slow025 bash scripts/pipeline/run_7a6o_smd.sh $v 0 5 # 慢速 0.25 nm/ns, 5 副本
 done
-python3 scripts/pipeline/analyze_7a6o_smd.py
+python3 scripts/pipeline/analyze_7a6o_smd.py \
+  --output output/md_7a6o_smd_slow025_features.csv --tag slow025
 # 期望: WT 力最高, R1306W(2B) 明显更低, R1374H(2M) ≈ WT/居中, 且 AUC(2B 力<2M) > 0.5。
 # 仍反号 → 换反应坐标(AIM vs A1 核心脱离)或退回平衡轴, 不强上 SMD 力轴。
 ```
+
+`SMD_TAG=slow025` 会把慢速输出写成 `smd_slow025_repN.*`，不覆盖默认快速输出 `smd_repN.*`。
+若机器正在跑全量 prep，可先用 `bash scripts/pipeline/run_7a6o_smd_slow_probe.sh` 只启动 WT 的 tagged slow probe；CPU 空下来后再设置 `VARIANTS="WT R1306W R1374H"` 跑完整 go/no-go。
 
 ### 3.2 全量参考集（确认分得开后）—— 多 GPU 并行
 变体清单（与平衡特征同一套标签，便于联合校准）：

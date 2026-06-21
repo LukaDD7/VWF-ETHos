@@ -73,10 +73,13 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--input", default="output/gromacs_md_autoinhib")
     ap.add_argument("--output", default="output/md_7a6o_smd_features.csv")
+    ap.add_argument("--tag", default=None,
+                    help="Only analyse a tagged deffnm namespace, e.g. slow025 -> smd_slow025_rep*_pullf.xvg")
     args = ap.parse_args()
 
+    pullf_pattern = f"smd_{args.tag}_rep*_pullf.xvg" if args.tag else "*_pullf.xvg"
     per_rep = []
-    for pf in sorted(glob.glob(os.path.join(args.input, "*", "smd", "*_pullf.xvg"))):
+    for pf in sorted(glob.glob(os.path.join(args.input, "*", "smd", pullf_pattern))):
         variant = pf.split(os.sep)[-3]
         rep = re.search(r"rep(\d+)", os.path.basename(pf))
         rep = int(rep.group(1)) if rep else 0
@@ -88,7 +91,11 @@ def main() -> int:
             print(f"Skipping incomplete SMD replica: {pf}")
             continue
         peak_pN, work, t_peak = analyse_pull(pf, px)
-        per_rep.append(dict(variant=variant, label=LABELS.get(variant, "?"), rep=rep,
+        tag = None
+        tag_match = re.match(r"smd_(.+)_rep\d+_pullf\.xvg$", os.path.basename(pf))
+        if tag_match:
+            tag = tag_match.group(1)
+        per_rep.append(dict(variant=variant, label=LABELS.get(variant, "?"), rep=rep, smd_tag=tag or "default",
                             rupture_force_pN=round(peak_pN, 1),
                             work_kJmol=round(work, 1) if work == work else np.nan,
                             t_peak_ps=round(t_peak, 1)))
@@ -98,7 +105,7 @@ def main() -> int:
     rep_df = pd.DataFrame(per_rep)
     rep_df.to_csv(args.output.replace(".csv", "_perrep.csv"), index=False)
 
-    agg = rep_df.groupby(["variant", "label"]).agg(
+    agg = rep_df.groupby(["variant", "label", "smd_tag"]).agg(
         n_reps=("rep", "count"),
         smd_unfold_force_pN=("rupture_force_pN", "mean"),
         smd_unfold_force_sd=("rupture_force_pN", "std"),

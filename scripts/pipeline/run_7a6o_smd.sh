@@ -23,6 +23,7 @@ nreps="${3:-3}"
 PULL_NM="${PULL_NM:-5.0}"      # nm of extension (captures AIM rupture peak)
 RATE="${RATE:-0.001}"         # nm/ps  (0.001 = 1 nm/ns; lower = gentler, costlier)
 KSPRING="${KSPRING:-1000}"    # kJ/mol/nm^2
+SMD_TAG="${SMD_TAG:-}"        # optional suffix namespace, e.g. slow025 -> smd_slow025_rep1
 NTOMP="${NTOMP:-8}"
 case "$gpu" in
   0) po=0;; 1) po=16;; 2) po=32;; 3) po=64;; 4) po=80;; 5) po=96;; 6) po=112;; *) po=$((gpu*NTOMP));;
@@ -35,15 +36,21 @@ for f in smd_npt.gro topol_smd.top index.ndx; do
 done
 # nsteps = extension / rate / dt(0.002)
 nsteps=$(awk -v p="$PULL_NM" -v r="$RATE" 'BEGIN{printf "%d", p/r/0.002}')
-echo "[smd] $variant: $nreps reps, pull $PULL_NM nm @ $RATE nm/ps -> $nsteps steps ($(awk -v n=$nsteps 'BEGIN{printf "%.1f",n*0.002/1000}') ns/rep)"
+if [ -n "$SMD_TAG" ]; then
+  case "$SMD_TAG" in *[!A-Za-z0-9_.-]*) echo "FATAL: SMD_TAG contains unsafe characters: $SMD_TAG"; exit 2;; esac
+  deffnm_prefix="smd_${SMD_TAG}_rep"
+else
+  deffnm_prefix="smd_rep"
+fi
+echo "[smd] $variant: $nreps reps, tag=${SMD_TAG:-default}, pull $PULL_NM nm @ $RATE nm/ps -> $nsteps steps ($(awk -v n=$nsteps 'BEGIN{printf "%.1f",n*0.002/1000}') ns/rep)"
 # 速率主导警示: >= 1 nm/ns 时 rupture force (~1000 pN) 远超实验 (~10-20 pN), 由黏滞摩擦
 # 主导而非自抑制能垒 -> 2B/2M 差异可能被掩盖甚至反号 (见 docs/7A6O_SMD_*HANDOFF*)。
 # 标定/go-no-go 用 RATE=0.00025 (0.25 nm/ns) 跑 WT+R1306W+R1374H, >=5 reps。
 awk -v r="$RATE" 'BEGIN{ if (r+0 >= 0.001) print "[smd] WARN: RATE="r" nm/ps 处于速率主导区; 标定请用 RATE=0.00025 + >=5 reps (见 runbook)"}'
 
 for rep in $(seq 1 "$nreps"); do
-  deffnm="smd_rep${rep}"
-  if [ -f "${deffnm}.gro" ]; then echo "[smd] $variant rep$rep already done"; continue; fi
+  deffnm="${deffnm_prefix}${rep}"
+  if [ -f "${deffnm}.gro" ]; then echo "[smd] $variant ${SMD_TAG:+tag=$SMD_TAG }rep$rep already done"; continue; fi
   seed=$((12345 + rep * 7919))
   cat > ${deffnm}.mdp <<EOF
 integrator          = md
