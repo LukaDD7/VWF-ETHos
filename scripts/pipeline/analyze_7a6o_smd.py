@@ -81,6 +81,12 @@ def main() -> int:
         rep = re.search(r"rep(\d+)", os.path.basename(pf))
         rep = int(rep.group(1)) if rep else 0
         px = pf.replace("_pullf.xvg", "_pullx.xvg")
+        gro = re.sub(r"_pullf\.xvg$", ".gro", pf)
+        # A killed/failed mdrun can leave pullf/pullx without a final .gro.
+        # Treat only completed replicas as analysable features.
+        if not (os.path.exists(px) and os.path.exists(gro)):
+            print(f"Skipping incomplete SMD replica: {pf}")
+            continue
         peak_pN, work, t_peak = analyse_pull(pf, px)
         per_rep.append(dict(variant=variant, label=LABELS.get(variant, "?"), rep=rep,
                             rupture_force_pN=round(peak_pN, 1),
