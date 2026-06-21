@@ -105,21 +105,38 @@ def main() -> int:
         smd_work_kJmol=("work_kJmol", "mean"),
     ).reset_index().round(2)
 
-    # z-score over labeled reference (WT+2B+2M); LOW force = easier unfolding = 2B lean
-    ref = agg[agg.label.isin(["WT", "2B", "2M"])]["smd_unfold_force_pN"]
-    mu, sd = ref.mean(), ref.std()
-    agg["smd_force_z"] = ((agg["smd_unfold_force_pN"] - mu) / sd).round(3)
-    # 2B-positive score: higher = easier to unfold = more 2B-like
-    agg["smd_2b_score"] = (-agg["smd_force_z"]).round(3)
+    # z-score over labeled reference (WT+2B+2M).
+    # Two complementary 2B-positive metrics (higher = easier AIM release = more 2B):
+    #   peak rupture force -- sensitive to a single-frame spike, rate-dominated at fast pull;
+    #   pulling work        -- integral up to rupture, smoother / less spike-sensitive.
+    # Report both; prefer whichever separates known 2B from 2M/WT at the chosen pull rate.
+    def zscore(col, invert):
+        ref = agg[agg.label.isin(["WT", "2B", "2M"])][col]
+        mu, sd = ref.mean(), ref.std()
+        z = (agg[col] - mu) / sd
+        return z.round(3), (-z if invert else z).round(3)
+
+    agg["smd_force_z"], agg["smd_2b_score"] = zscore("smd_unfold_force_pN", invert=True)
+    agg["smd_work_z"], agg["smd_2b_score_work"] = zscore("smd_work_kJmol", invert=True)
     agg.to_csv(args.output, index=False)
 
     print(f"Written: {args.output}  (+ _perrep.csv)")
     pd.set_option("display.width", 200)
     print(agg.sort_values("smd_unfold_force_pN").to_string(index=False))
     for lab in ["WT", "2B", "2M", "?"]:
-        s = agg[agg.label == lab]["smd_unfold_force_pN"]
+        s = agg[agg.label == lab]
         if len(s):
-            print(f"  {lab}: rupture force {s.mean():.0f} +/- {s.std():.0f} pN  (n={len(s)})")
+            print(f"  {lab}: force {s['smd_unfold_force_pN'].mean():.0f}+/-{s['smd_unfold_force_pN'].std():.0f} pN | "
+                  f"work {s['smd_work_kJmol'].mean():.0f} kJ/mol  (n={len(s)})")
+    # quick 2B-vs-2M separation check (force; lower-in-2B expected)
+    b = agg[agg.label == "2B"]["smd_unfold_force_pN"].values
+    m = agg[agg.label == "2M"]["smd_unfold_force_pN"].values
+    if len(b) and len(m):
+        import itertools
+        auc = np.mean([1.0 if bv < mv else 0.5 if bv == mv else 0.0
+                       for bv, mv in itertools.product(b, m)])
+        print(f"\nAUC(2B force < 2M) = {auc:.2f}  (1.0 = 2B always unfolds at lower force; "
+              f"<=0.5 = no/backwards separation -> revisit pull rate before wiring into classifier)")
     return 0
 
 

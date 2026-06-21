@@ -36,6 +36,10 @@ done
 # nsteps = extension / rate / dt(0.002)
 nsteps=$(awk -v p="$PULL_NM" -v r="$RATE" 'BEGIN{printf "%d", p/r/0.002}')
 echo "[smd] $variant: $nreps reps, pull $PULL_NM nm @ $RATE nm/ps -> $nsteps steps ($(awk -v n=$nsteps 'BEGIN{printf "%.1f",n*0.002/1000}') ns/rep)"
+# 速率主导警示: >= 1 nm/ns 时 rupture force (~1000 pN) 远超实验 (~10-20 pN), 由黏滞摩擦
+# 主导而非自抑制能垒 -> 2B/2M 差异可能被掩盖甚至反号 (见 docs/7A6O_SMD_*HANDOFF*)。
+# 标定/go-no-go 用 RATE=0.00025 (0.25 nm/ns) 跑 WT+R1306W+R1374H, >=5 reps。
+awk -v r="$RATE" 'BEGIN{ if (r+0 >= 0.001) print "[smd] WARN: RATE="r" nm/ps 处于速率主导区; 标定请用 RATE=0.00025 + >=5 reps (见 runbook)"}'
 
 for rep in $(seq 1 "$nreps"); do
   deffnm="smd_rep${rep}"
@@ -87,8 +91,12 @@ EOF
   "$GMX" grompp -f ${deffnm}.mdp -c smd_npt.gro -p topol_smd.top -n index.ndx -o ${deffnm}.tpr -maxwarn 5 \
       > g_${deffnm}.log 2>&1
   echo "[smd] $variant rep$rep gpu=$gpu start $(date '+%F %T')"
+  # NOTE: COM pulling forces the integration/update step onto the CPU in GROMACS
+  # (`-update gpu` is rejected with pull), so the CPU is the bottleneck here.
+  # `-bonded gpu` offloads bonded forces to free CPU -> avoids the ~1 ns/day crawl
+  # seen when integration is CPU-bound AND CPUs are oversubscribed by prep jobs.
   CUDA_VISIBLE_DEVICES="$gpu" "$GMX" mdrun -deffnm ${deffnm} -ntmpi 1 -ntomp "$NTOMP" -gpu_id 0 \
-      -nb gpu -pme gpu -pin on -pinstride 2 -pinoffset "$po" \
+      -nb gpu -pme gpu -bonded gpu -pin on -pinstride 2 -pinoffset "$po" \
       -px ${deffnm}_pullx.xvg -pf ${deffnm}_pullf.xvg > md_${deffnm}.stdout 2>&1
   echo "[smd] $variant rep$rep done $(date '+%F %T') -> ${deffnm}_pullf.xvg"
 done

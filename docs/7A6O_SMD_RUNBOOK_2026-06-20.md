@@ -33,15 +33,19 @@
 ## 3. 跑法
 
 ### 3.1 先做 3 个对照确认"力能分开"（强烈建议先跑这步再铺全量）
+> ⚠ 2026-06-21 实测：默认 `RATE=0.001`(1 nm/ns) 下 2B/2M 力**反号**(R1306W 1117 pN >
+> R1374H 993 pN)，因 ~1000 pN 由黏滞摩擦主导而非自抑制能垒。**标定务必用慢速**。
+> WT 之前"变慢"是 CPU 超订 + 缺 `-bonded gpu`（已修），**非 WT 拓扑问题**
+> （见 `docs/7A6O_SMD_WT_DIAGNOSIS_2026-06-21.md`）。
 ```bash
 cd $PROJ
 for v in WT R1306W R1374H; do
-  bash scripts/pipeline/prep_7a6o_smd.sh $v 0          # 建盒+溶剂+EM+NVT/NPT (~30–60 min)
-  bash scripts/pipeline/run_7a6o_smd.sh  $v 0 3        # 3 副本 SMD
+  bash scripts/pipeline/prep_7a6o_smd.sh $v 0               # 建盒+溶剂+EM+NVT/NPT
+  RATE=0.00025 bash scripts/pipeline/run_7a6o_smd.sh $v 0 5 # 慢速 0.25 nm/ns, 5 副本
 done
 python3 scripts/pipeline/analyze_7a6o_smd.py
-# 期望: WT 解折叠力最高, R1306W(2B) 明显更低, R1374H(2M) ≈ WT 或居中。
-# 若 WT vs 2B 分不开 → 调 RATE 更慢(0.0005)或换 anchor, 再铺全量。
+# 期望: WT 力最高, R1306W(2B) 明显更低, R1374H(2M) ≈ WT/居中, 且 AUC(2B 力<2M) > 0.5。
+# 仍反号 → 换反应坐标(AIM vs A1 核心脱离)或退回平衡轴, 不强上 SMD 力轴。
 ```
 
 ### 3.2 全量参考集（确认分得开后）—— 多 GPU 并行
@@ -85,7 +89,9 @@ python3 scripts/pipeline/analyze_7a6o_smd.py \
 | EM/NVT LINCS 崩 | EM 没收敛；查 `prep_em.log` Fmax，必要时 emtol 调 200 |
 | `Distance between pull groups ... larger than 0.49 times the box size` | 确认 `run_7a6o_smd.sh` 使用 `pull-coord1-geometry = direction-periodic`；旧 `distance` geometry 会在 5 nm 拉伸中失败 |
 | 拉伸中蛋白撞周期镜像 | 加大 `BOX_Z`（env 变量）或减小 `PULL_NM` |
-| 力曲线无峰（单调升） | RATE 太快，AIM 没来得及协同解折叠；降 `RATE=0.0005` |
+| 力曲线无峰（单调升） | RATE 太快，AIM 没来得及协同解折叠；降 `RATE=0.00025` |
+| SMD 生产巨慢（~1 ns/day） | CPU 超订(prep×NTOMP=16 并发)+pull 强制 CPU update。已加 `-bonded gpu`；prep 降 `PREP_NTOMP=8` 或与 SMD 错峰 |
+| 2B/2M 力反号或分不开 | RATE 太快(速率主导)。用 `RATE=0.00025`+≥5 reps 标定；看 `analyze` 打印的 AUC |
 | GPU 0% util 数分钟 | 正常（首次 kernel 编译）；持续 0% 查 `md_smd_rep*.stdout` |
 
 ## 5. 与现有体系的关系
