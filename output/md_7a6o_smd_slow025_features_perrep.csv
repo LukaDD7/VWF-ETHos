@@ -1,0 +1,6 @@
+variant,label,rep,smd_tag,rupture_force_pN,work_kJmol,t_peak_ps
+WT,WT,1,slow025,1049.6,526.0,19975.0
+WT,WT,2,slow025,999.3,420.3,19974.0
+WT,WT,3,slow025,1053.8,532.1,19967.0
+WT,WT,4,slow025,1040.1,522.9,19772.0
+WT,WT,5,slow025,1093.3,486.2,19978.0
