@@ -1,0 +1,39 @@
+# new-2B A1-domain variants for 7A6O AIM-A1 equilibrium salt-bridge MD
+# aa_change in native VWF numbering (matches 7A6O); build_2b_mutants_foldx --detect-offset handles PDB offset
+# conflict_ref_2M flagged variants kept as 2M contrast for z-score calibration
+H1268Q
+H1268D
+H1268N
+C1272F
+C1272R
+C1272S
+S1285F
+M1303M
+M1304V   # hotspot
+R1306E   # hotspot
+R1306W   # hotspot
+R1306P   # hotspot
+R1308S   # hotspot
+R1308P   # hotspot
+R1308C   # hotspot
+I1309V   # hotspot
+S1310F   # hotspot
+S1310P   # hotspot
+W1313C   # hotspot
+V1314M   # hotspot
+V1314L   # hotspot
+V1314F   # hotspot
+V1314D   # hotspot
+V1316M   # hotspot
+L1340P
+R1341E   # hotspot
+R1341L   # hotspot
+R1374C   # conflict→ref2M (control)
+R1374H   # conflict→ref2M (control)
+E1389K
+N1421K
+L1446P
+L1460P
+L1460V
+A1461D   # hotspot
+D1472H
