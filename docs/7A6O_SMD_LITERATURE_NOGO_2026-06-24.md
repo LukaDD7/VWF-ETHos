@@ -151,6 +151,48 @@ soft-2M 翻为 2B(0.55)、md_lof-only 回归 soft-2M(0.55)、binding_lost+塌陷
 
 ---
 
+## 8. 扩展集验证：new-2B Boltz panel recall（2026-06-24）
+
+62 个新 2B（reconcile 后 64 runnable，A1 域 36 个）跑完 functional Boltz panel
+（`output/boltz2_new_2b_panel/`，163 job），解析得 fb_binding / heparan iPTM。
+**这批没有 7A6O MD 轨迹**，故本验证测的是"**静态 hotspot + forced_binding 逻辑
+在更大 2B 集上的泛化天花板**"——即 MD 盐桥联合判据*尚未*贡献时的 recall。
+
+**关键归一化坑（已修）**：z-score 必须对**跨亚型分布**（full panel 池入 2A/2B/2M/2N，
+n=156）计算，**不能**在 2B-only 新批内算。批内 z 让"低 z"= "比其它 2B 低"，
+会让 `LOF_COMBINED_Z` 闸误触发。脚本 `validate_new_2b_panel_recall.py` 把新原始
+primary_value 池进 full panel 后再 z。
+
+**结果（34 个 clean 新 2B，跨亚型 z，无 MD）**：
+
+| 分组 | 2B recall | |
+|---|---|---|
+| hotspot | **18/19 (95%)** | hotspot 先验稳健泛化 ✓ |
+| non-hotspot | 5/15 (33%) | 仍是缺口 = MD 盐桥要补的那批 |
+| 总计 | 23/34 (68%) | |
+
+**3 个误判 2M（LOF 闸在真 2B 上误触发，全是"需 MD"病例）**：
+- `C1272R`、`H1268Q`（均在 N-AIM 自抑制区 1262–1271 附近，non-hotspot）
+- `V1316M`（**经典复发 2B 热点**，fb z=-1.44 / hep z=-0.89 双低 → LOF 闸在 hotspot
+  分支*之前*触发）。**§7 ③ 已预言此风险**。
+
+**用户决策（2026-06-24）**：V1316M 这类 hotspot↔LOF 顺序冲突 **不改逻辑，记录为
+已知局限**——LOF 闸保持 A1 的 2M 守门员优先级；无 MD 时双低 fb 的 2B 暂救不回，
+待 7A6O MD 盐桥特征（`aim_sb_retained_z`）上线再由联合判据解。
+
+**结论**：① hotspot 逻辑可靠（95%），可上生产；② 剩余失败模式（3 误判 + non-hotspot
+33%）**恰好全是"需 MD"病例**，定量印证本 no-go 文档主论点——静态 iPTM 轴分不开
+non-hotspot 2B 的 GOF 方向，MD 盐桥联合判据是唯一路径。
+
+**复现**：`python3 scripts/pipeline/validate_new_2b_panel_recall.py`
+→ `output/new_2b_panel_recall.csv`
+
+**仍待办**：① 在 62 个新 2B 上跑 7A6O MD（或 FoldX/AF3 旁路）拿 `aim_sb_retained_z`，
+重测 non-hotspot recall；② 解决 4 个 unmapped 解析行（Q895H/R578Q/S1731T/Y1605A，
+manifest 映射）；③ 仲裁 2 个标签冲突变体 F1369I(2B vs 2M)、R1597W(2B vs 2A)。
+
+---
+
 ## 参考文献
 - Nat Commun 2021 — Activation of VWF via mechanical unfolding of its discontinuous AIM. https://pmc.ncbi.nlm.nih.gov/articles/PMC8060278/
 - RSC Chem Biol 2022 — N-terminal AIM stabilizes the mechanosensor catch bond. https://pmc.ncbi.nlm.nih.gov/articles/PMC9175105/
