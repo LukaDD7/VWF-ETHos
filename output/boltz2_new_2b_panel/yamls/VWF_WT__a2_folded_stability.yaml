@@ -1,0 +1,14 @@
+version: 1
+sequences:
+  - protein:
+      id: A
+      sequence: PGLLGVSTLGPKRNSMVLDVAFVLEGSDKIGEADFNRSKEFMEEVIQRMDVGQDSIHVTVLQYSYMVTVEYPFSEAQSKGDILQRVREIRYQGGNRTNTGLALRYLSDHSFLVSQGDREQAPNLVYMVTGNPASDEIKRLPGDIQVVPIGVGPNANVQELERIGWPNAPILIQDFETLPREAPDLVLQRCCSG
+      msa: empty
+# job: VWF_WT__a2_folded_stability
+# variant_id: VWF_WT
+# assay_key: a2_folded_stability
+# clinical_axis: A2 fold stability / Type 2A axis
+# construct_role: folded A2 monomer
+# vwf_range: 1480-1672
+# interpretability: medium
+# baseline: WT reference for delta metrics

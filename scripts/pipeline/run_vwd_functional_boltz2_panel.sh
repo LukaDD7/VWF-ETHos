@@ -54,6 +54,7 @@ ROOT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 INPUT_DIR="${ROOT_DIR}/output/boltz2_vwd_functional_panel/yamls"
 OUTPUT_DIR="${ROOT_DIR}/output/boltz2_vwd_functional_panel/boltz_results"
 N_GPUS=4
+GPU_IDS=""        # 显式物理 GPU 索引列表, 如 "4,5,6,7"; 空=用 0..N_GPUS-1
 RECYCLING_STEPS=3
 DIFFUSION_SAMPLES=5
 PREFLIGHT_ONLY=false
@@ -63,6 +64,7 @@ ASSAY_FILTER=""   # 空=全部, "fviii"=仅FVIII, "gpiba"=仅GPIba
 while [[ $# -gt 0 ]]; do
     case $1 in
         --gpus)              N_GPUS="$2"; shift 2 ;;
+        --gpu-ids)           GPU_IDS="$2"; shift 2 ;;
         --input-dir)         INPUT_DIR="$2"; shift 2 ;;
         --out-dir)           OUTPUT_DIR="$2"; shift 2 ;;
         --recycling-steps)   RECYCLING_STEPS="$2"; shift 2 ;;
@@ -106,9 +108,22 @@ fi
 # 2. CUDA / GPU
 GPU_COUNT=$(python3 -c "import torch; print(torch.cuda.device_count())" 2>/dev/null || echo "0")
 log "[INFO] CUDA GPUs detected: $GPU_COUNT"
-if [ "$GPU_COUNT" -lt "$N_GPUS" ] 2>/dev/null; then
-    log "[WARN] Requested $N_GPUS GPUs but only $GPU_COUNT detected. Adjusting."
-    N_GPUS=$GPU_COUNT
+# 构建物理 GPU 索引数组: --gpu-ids "4,5,6,7" 用指定卡; 否则用 0..N_GPUS-1
+if [ -n "$GPU_IDS" ]; then
+    IFS=',' read -r -a GPU_IDS_ARR <<< "$GPU_IDS"
+    N_GPUS=${#GPU_IDS_ARR[@]}
+    MAX_ID=0; for g in "${GPU_IDS_ARR[@]}"; do [ "$g" -gt "$MAX_ID" ] && MAX_ID=$g; done
+    if [ "$MAX_ID" -ge "$GPU_COUNT" ] 2>/dev/null; then
+        log "[ERROR] --gpu-ids=$GPU_IDS 含索引 $MAX_ID, 但只检测到 $GPU_COUNT 张卡 (索引 0..$((GPU_COUNT-1)))."
+        PREFLIGHT_FAIL=true
+    fi
+    log "[INFO] Using explicit physical GPU ids: ${GPU_IDS_ARR[*]} (N_GPUS=$N_GPUS)"
+else
+    if [ "$GPU_COUNT" -lt "$N_GPUS" ] 2>/dev/null; then
+        log "[WARN] Requested $N_GPUS GPUs but only $GPU_COUNT detected. Adjusting."
+        N_GPUS=$GPU_COUNT
+    fi
+    GPU_IDS_ARR=(); for i in $(seq 0 $((N_GPUS - 1))); do GPU_IDS_ARR+=("$i"); done
 fi
 if [ "$GPU_COUNT" -eq 0 ]; then
     log "[ERROR] No CUDA GPUs found. Cannot run."
@@ -310,10 +325,11 @@ for i in $(seq 0 $((N_GPUS - 1))); do
     JOB_COUNT=$(wc -l < "$LIST_FILE" 2>/dev/null || echo 0)
     [ "$JOB_COUNT" -eq 0 ] && continue
 
-    run_worker "$i" "$LIST_FILE" "$OUTPUT_DIR" \
+    PHYS_GPU="${GPU_IDS_ARR[$i]}"
+    run_worker "$PHYS_GPU" "$LIST_FILE" "$OUTPUT_DIR" \
         "$RECYCLING_STEPS" "$DIFFUSION_SAMPLES" &
     PIDS+=($!)
-    log "  Worker GPU-$i started (PID=${PIDS[-1]}, jobs=$JOB_COUNT)"
+    log "  Worker logical-$i -> physical GPU-$PHYS_GPU started (PID=${PIDS[-1]}, jobs=$JOB_COUNT)"
 done
 
 log ""

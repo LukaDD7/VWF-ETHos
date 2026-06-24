@@ -388,6 +388,47 @@ def load_original_tables(input_dir: Path) -> pd.DataFrame:
     return grouped
 
 
+AA1_TO_AA3 = {one: three for three, one in AA3_TO_AA1.items() if one != "*"}
+
+
+def load_variants_csv(path: Path, subtype_filter: str | None = None) -> pd.DataFrame:
+    """Load variants from a clean CSV (cols: aa_change/wt_aa/position/mut_aa[,subtype]).
+
+    Produces the same grouped schema as load_original_tables() so the rest of the
+    panel generator is unchanged. Used to feed the expanded label set
+    (output/expanded_label_set.csv) instead of the raw patient xlsx tables.
+    """
+    df = pd.read_csv(path)
+    if subtype_filter is not None and "subtype" in df.columns:
+        df = df[df["subtype"].astype(str) == subtype_filter]
+    rows: list[dict[str, object]] = []
+    for _, r in df.iterrows():
+        wt, pos, mut = str(r["wt_aa"]), int(r["position"]), str(r["mut_aa"])
+        if wt not in AA1_TO_AA3 or mut not in AA1_TO_AA3:
+            continue
+        aa3 = f"{AA1_TO_AA3[wt]}{pos}{AA1_TO_AA3[mut]}"
+        rows.append({
+            "variant_id": f"VWF_{wt}{pos}{mut}",
+            "aa_change_3letter": aa3,
+            "wt_aa": wt, "position": pos, "mut_aa": mut,
+            "source_labels": str(r.get("subtype", "")),
+            "source_files": Path(path).name,
+            "source_rows": "", "source_domains": str(r.get("domain", "") or ""),
+            "inferred_domain": infer_domain_for_position(pos),
+        })
+    if not rows:
+        return pd.DataFrame()
+    return (pd.DataFrame(rows)
+            .groupby(["variant_id", "wt_aa", "position", "mut_aa"], as_index=False)
+            .agg(aa_change_3letter=("aa_change_3letter", "first"),
+                 source_labels=("source_labels", "first"),
+                 source_files=("source_files", "first"),
+                 source_rows=("source_rows", "first"),
+                 source_domains=("source_domains", "first"),
+                 inferred_domain=("inferred_domain", "first"))
+            .sort_values(["position", "variant_id"]).reset_index(drop=True))
+
+
 def find_mutation_column(raw: pd.DataFrame) -> int | None:
     counts: dict[int, int] = {}
     for col_idx in raw.columns:
@@ -726,12 +767,23 @@ def main() -> None:
     parser.add_argument("--limit-variants", type=int, default=None, help="Optional quick-test limit.")
     parser.add_argument("--write-json-batches", action="store_true", help="Also write JSON batches.")
     parser.add_argument("--batch-size", type=int, default=30, help="Jobs per JSON batch.")
+    parser.add_argument("--variants-csv", type=Path, default=None,
+                        help="Load variants from a clean CSV (aa_change/wt_aa/position/mut_aa"
+                             "[,subtype]) instead of the patient xlsx tables.")
+    parser.add_argument("--subtype-filter", default=None,
+                        help="With --variants-csv, keep only rows whose subtype == this (e.g. 2B).")
     args = parser.parse_args()
 
     wt_seq = read_fasta(args.wt_fasta)
-    variants = load_original_tables(args.input_dir)
+    if args.variants_csv is not None:
+        variants = load_variants_csv(args.variants_csv, args.subtype_filter)
+        src = f"{args.variants_csv}" + (f" (subtype={args.subtype_filter})" if args.subtype_filter else "")
+    else:
+        variants = load_original_tables(args.input_dir)
+        src = str(args.input_dir)
     if variants.empty:
-        raise SystemExit(f"No missense variants parsed from {args.input_dir}")
+        raise SystemExit(f"No missense variants parsed from {src}")
+    print(f"Loaded {len(variants)} variants from {src}")
 
     variants_out, panel_out, manifest_out = generate_panel(
         variants=variants,
