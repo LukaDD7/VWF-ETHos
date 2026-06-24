@@ -24,6 +24,7 @@ ROOT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
 VARIANT=""; SYSTEM="autoinhib"; MODEL=0; DO_SOLVATE=true; PDB_IN=""; SKIP_VACUUM=false
 GMX="${GMX:-}"
+RELAX_NTOMP="${RELAX_NTOMP:-8}"
 while [[ $# -gt 0 ]]; do
     case $1 in
         --variant) VARIANT="$2"; shift 2 ;;
@@ -75,7 +76,7 @@ mkdir -p "$WORK"; cd "$WORK"
 echo "============================================================"
 echo " relax: $VARIANT  model=$MODEL  system=$SYSTEM"
 echo " 输入: $SRC"
-echo " GMX : $GMX     GMXLIB=$GMXLIB     (全程 -nb cpu)"
+echo " GMX : $GMX     GMXLIB=$GMXLIB     (全程 -nb cpu, ntomp=$RELAX_NTOMP)"
 echo " WORK: $WORK"
 echo "============================================================"
 
@@ -156,7 +157,7 @@ else
     mk_em em_posres.mdp "define = -DPOSRES" "cutoff" 200 0.01 500
     "$GMX" grompp -f em_posres.mdp -c box.gro -r box.gro -p topol.top -o em_posres.tpr -maxwarn 5 > grompp1.log 2>&1 \
         || { echo "[FATAL] grompp(受约束) 失败, 看 grompp1.log"; tail -5 grompp1.log; exit 1; }
-    "$GMX" mdrun -v -deffnm em_posres -nb cpu > md1.log 2>&1
+    "$GMX" mdrun -v -deffnm em_posres -ntmpi 1 -ntomp "$RELAX_NTOMP" -nb cpu > md1.log 2>&1
     F1=$(report md1.log)
 
     # ---- 4. 真空无约束 EM --------------------------------------------------------
@@ -164,7 +165,7 @@ else
     mk_em em_vac.mdp "" "PME" 200 0.01 500
     "$GMX" grompp -f em_vac.mdp -c em_posres.gro -p topol.top -o em_vac.tpr -maxwarn 5 > grompp2.log 2>&1 \
         || { echo "[FATAL] grompp(无约束) 失败"; tail -5 grompp2.log; exit 1; }
-    "$GMX" mdrun -v -deffnm em_vac -nb cpu > md2.log 2>&1
+    "$GMX" mdrun -v -deffnm em_vac -ntmpi 1 -ntomp "$RELAX_NTOMP" -nb cpu > md2.log 2>&1
     F2=$(report md2.log)
 
     # 判定真空阶段
@@ -186,7 +187,7 @@ mk_em_sol em_sol.mdp
 echo SOL | "$GMX" genion -s ions.tpr -o solv_ions.gro -p topol.top -pname NA -nname CL -neutral -conc 0.15 > ion.log 2>&1
 "$GMX" grompp -f em_sol.mdp -c solv_ions.gro -r solv_ions.gro -p topol.top -o em.tpr -maxwarn 5 > grompp4.log 2>&1 \
     || { echo "[FATAL] 溶剂化 grompp 失败"; tail -5 grompp4.log; exit 1; }
-"$GMX" mdrun -v -deffnm em -nb cpu > md3.log 2>&1
+"$GMX" mdrun -v -deffnm em -ntmpi 1 -ntomp "$RELAX_NTOMP" -nb cpu > md3.log 2>&1
 F3=$(report md3.log)
 cp -f em.gro solv_ions_em.gro  # 友好的别名: 水已 settled
 

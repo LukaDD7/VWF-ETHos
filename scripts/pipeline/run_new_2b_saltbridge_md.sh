@@ -44,8 +44,10 @@ NS=50
 NVT_PS=50
 NPT_PS=200
 NTOMP=8
+RELAX_JOBS=6
+RELAX_NTOMP=8
 FOLDX_BIN="${FOLDX:-foldx}"
-PY="${PY:-python3}"
+PY="${PY:-$ROOT_DIR/envs/gromacs/bin/python3}"
 GMX="${GMX:-$ROOT_DIR/envs/gromacs/bin.AVX2_256/gmx}"
 DO_PREFLIGHT=false
 
@@ -58,6 +60,8 @@ while [[ $# -gt 0 ]]; do
         --nvt-ps) NVT_PS="$2"; shift 2 ;;
         --npt-ps) NPT_PS="$2"; shift 2 ;;
         --ntomp) NTOMP="$2"; shift 2 ;;
+        --relax-jobs) RELAX_JOBS="$2"; shift 2 ;;
+        --relax-ntomp) RELAX_NTOMP="$2"; shift 2 ;;
         --foldx) FOLDX_BIN="$2"; shift 2 ;;
         --gmx) GMX="$2"; shift 2 ;;
         --preflight) DO_PREFLIGHT=true; shift ;;
@@ -89,7 +93,12 @@ preflight() {
     command -v nvidia-smi >/dev/null 2>&1 && log "GPUs: $(nvidia-smi --query-gpu=index --format=csv,noheader 2>/dev/null | tr '\n' ' ')" || log "[WARN] nvidia-smi not found"
     log "GPU pool for MD: ${GPU_IDS}"
     "$GMX" --help >/dev/null 2>&1 # noop
-    $PY -c "import gemmi, MDAnalysis" 2>/dev/null && log "python deps: gemmi + MDAnalysis OK" || log "[WARN] need gemmi (build) + MDAnalysis (extract) in \$PY env"
+    $PY -c "import gemmi" 2>/dev/null \
+        && log "python dep: gemmi OK (build)" \
+        || { log "[FAIL] need gemmi in $PY env for build"; ok=false; }
+    $PY -c "import MDAnalysis" 2>/dev/null \
+        && log "python dep: MDAnalysis OK (extract)" \
+        || log "[WARN] need MDAnalysis in $PY env before extract"
     $ok && log "preflight PASS" || { log "preflight FAIL"; return 1; }
 }
 
@@ -102,21 +111,31 @@ stage_build() {
 }
 
 stage_relax() {
-    log "=== stage relax (per variant, CPU) ==="
-    local v pdb done_n=0 skip_n=0
+    log "=== stage relax (CPU jobs=${RELAX_JOBS}, ntomp=${RELAX_NTOMP}) ==="
+    local -a pids=() names=()
+    local v pdb skip_n=0 failed=0
     while read -r v; do
         pdb="$MUT_DIR/$v.pdb"
         if [ ! -f "$pdb" ]; then log "[skip] no mutant PDB (build skipped it?): $pdb"; skip_n=$((skip_n+1)); continue; fi
         if [ -f "$OUT_ROOT/$v/relax_pdb/solv_ions_em.gro" ] && [ -f "$OUT_ROOT/$v/relax_pdb/topol.top" ]; then
             log "[skip] already relaxed: $v"; skip_n=$((skip_n+1)); continue
         fi
-        log "relax $v"
-        GMX="$GMX" bash "$SCRIPT_DIR/relax_autoinhib_structure.sh" --pdb "$pdb" --variant "$v" \
-            > "$OUT_ROOT/${v}_relax.log" 2>&1 \
-            && { log "  relaxed $v"; done_n=$((done_n+1)); } \
-            || log "  [ERROR] relax failed for $v (see ${v}_relax.log)"
+        log "launch relax $v"
+        RELAX_NTOMP="$RELAX_NTOMP" GMX="$GMX" \
+            bash "$SCRIPT_DIR/relax_autoinhib_structure.sh" --pdb "$pdb" --variant "$v" \
+            > "$OUT_ROOT/${v}_relax.log" 2>&1 &
+        pids+=("$!"); names+=("$v")
+        if [ "${#pids[@]}" -ge "$RELAX_JOBS" ]; then
+            wait "${pids[0]}" || { log "[ERROR] relax failed: ${names[0]}"; failed=$((failed+1)); }
+            pids=("${pids[@]:1}"); names=("${names[@]:1}")
+        fi
     done < <(read_variants)
-    log "relax done=$done_n skip=$skip_n"
+    while [ "${#pids[@]}" -gt 0 ]; do
+        wait "${pids[0]}" || { log "[ERROR] relax failed: ${names[0]}"; failed=$((failed+1)); }
+        pids=("${pids[@]:1}"); names=("${names[@]:1}")
+    done
+    log "relax complete skip=$skip_n failed=$failed"
+    [ "$failed" -eq 0 ]
 }
 
 stage_md() {
@@ -192,7 +211,10 @@ stage_extract() {
     log "  or: $PY scripts/pipeline/validate_new_2b_panel_recall.py (re-run with sb joined)"
 }
 
-$DO_PREFLIGHT && { preflight || exit 1; }
+if $DO_PREFLIGHT; then
+    preflight
+    exit $?
+fi
 
 case "$STAGE" in
     build)   stage_build ;;

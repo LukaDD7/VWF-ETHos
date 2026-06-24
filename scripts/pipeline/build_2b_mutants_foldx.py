@@ -127,7 +127,7 @@ def main():
         vf = Path(args.variants_file)
         if not vf.is_absolute():
             vf = root / args.variants_file
-        raw = [l.strip() for l in open(vf) if l.strip() and not l.startswith("#")]
+        raw = [clean for l in open(vf) if (clean := l.split("#", 1)[0].strip())]
     elif args.variants:
         raw = [x for x in args.variants.split(",") if x.strip()]
     else:
@@ -135,7 +135,9 @@ def main():
     variants = []
     for s in raw:
         pv = parse_variant(s)
-        if pv:
+        if pv and pv[0] == pv[2]:
+            print(f"  [skip] 同义/no-op 变体: {s}")
+        elif pv:
             variants.append(pv)
         else:
             print(f"  [skip] 解析不了变体: {s}")
