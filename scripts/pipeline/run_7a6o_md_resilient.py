@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import csv
 import os
+import signal
 import subprocess
 import time
 from pathlib import Path
@@ -55,6 +56,29 @@ def main() -> int:
 
     root = args.root.resolve()
     out_root = root / "output/gromacs_md_autoinhib"
+    scheduler_pid = out_root / "resilient_md_scheduler.pid"
+    if scheduler_pid.is_file():
+        try:
+            existing_pid = int(scheduler_pid.read_text().strip())
+            os.kill(existing_pid, 0)
+        except (ValueError, ProcessLookupError, PermissionError):
+            pass
+        else:
+            log(f"FATAL scheduler already running: PID {existing_pid}")
+            return 3
+    scheduler_pid.write_text(f"{os.getpid()}\n")
+
+    def clear_pid_file(signum=None, _frame=None) -> None:
+        try:
+            if scheduler_pid.read_text().strip() == str(os.getpid()):
+                scheduler_pid.unlink()
+        except FileNotFoundError:
+            pass
+        if signum is not None:
+            raise SystemExit(128 + signum)
+
+    signal.signal(signal.SIGTERM, clear_pid_file)
+    signal.signal(signal.SIGINT, clear_pid_file)
     mutant_dir = root / "structures/7a6o_mutants"
     runner = root / "scripts/pipeline/run_7a6o_variant_direct.sh"
     gpu_ids = [int(item) for item in args.gpu_ids.split(",") if item.strip()]
@@ -131,6 +155,7 @@ def main() -> int:
             time.sleep(args.poll_seconds)
 
     log("all runnable variants have completed MD")
+    clear_pid_file()
     return 0
 
 
