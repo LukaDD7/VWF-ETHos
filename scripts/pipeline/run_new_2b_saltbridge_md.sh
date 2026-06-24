@@ -46,6 +46,8 @@ NPT_PS=200
 NTOMP=8
 RELAX_JOBS=6
 RELAX_NTOMP=8
+GPU_MIN_FREE_MIB=12000
+GPU_RETRY_SECONDS=300
 FOLDX_BIN="${FOLDX:-foldx}"
 PY="${PY:-$ROOT_DIR/envs/gromacs/bin/python3}"
 GMX="${GMX:-$ROOT_DIR/envs/gromacs/bin.AVX2_256/gmx}"
@@ -62,6 +64,8 @@ while [[ $# -gt 0 ]]; do
         --ntomp) NTOMP="$2"; shift 2 ;;
         --relax-jobs) RELAX_JOBS="$2"; shift 2 ;;
         --relax-ntomp) RELAX_NTOMP="$2"; shift 2 ;;
+        --gpu-min-free-mib) GPU_MIN_FREE_MIB="$2"; shift 2 ;;
+        --gpu-retry-seconds) GPU_RETRY_SECONDS="$2"; shift 2 ;;
         --foldx) FOLDX_BIN="$2"; shift 2 ;;
         --gmx) GMX="$2"; shift 2 ;;
         --preflight) DO_PREFLIGHT=true; shift ;;
@@ -139,28 +143,12 @@ stage_relax() {
 }
 
 stage_md() {
-    log "=== stage md (GPU pool ${GPU_IDS}) ==="
-    local -a pids=() ; local i=0 v gpu
-    while read -r v; do
-        if [ ! -f "$OUT_ROOT/$v/relax_pdb/solv_ions_em.gro" ]; then log "[skip] not relaxed: $v"; continue; fi
-        if [ -f "$OUT_ROOT/$v/md_7a6o/md_prod.gro" ] || ls "$OUT_ROOT/$v/md_7a6o/"md_prod.part*.gro >/dev/null 2>&1; then
-            log "[skip] MD done: $v"; continue
-        fi
-        gpu="${GPU_ARR[$(( i % ${#GPU_ARR[@]} ))]}"
-        log "launch MD $v on GPU $gpu"
-        NS="$NS" NVT_PS="$NVT_PS" NPT_PS="$NPT_PS" NTOMP="$NTOMP" \
-            bash "$SCRIPT_DIR/run_7a6o_variant_direct.sh" "$v" "$gpu" \
-            > "$OUT_ROOT/${v}_md_direct.log" 2>&1 &
-        pids+=("$!")
-        i=$((i+1))
-        # keep at most #GPU jobs in flight
-        if [ "${#pids[@]}" -ge "${#GPU_ARR[@]}" ]; then
-            wait "${pids[0]}" 2>/dev/null || log "[ERROR] a MD job failed"
-            pids=("${pids[@]:1}")
-        fi
-    done < <(read_variants)
-    for p in "${pids[@]}"; do wait "$p" 2>/dev/null || log "[ERROR] a MD job failed"; done
-    log "md stage complete"
+    log "=== stage md resilient (GPU pool ${GPU_IDS}, min-free=${GPU_MIN_FREE_MIB} MiB) ==="
+    "$PY" "$SCRIPT_DIR/run_7a6o_md_resilient.py" \
+        --root "$ROOT_DIR" --variants-file "$VARIANTS_FILE" \
+        --gpu-ids "$GPU_IDS" --min-free-mib "$GPU_MIN_FREE_MIB" \
+        --retry-seconds "$GPU_RETRY_SECONDS" \
+        --ns "$NS" --nvt-ps "$NVT_PS" --npt-ps "$NPT_PS" --ntomp "$NTOMP"
 }
 
 stage_extract() {
