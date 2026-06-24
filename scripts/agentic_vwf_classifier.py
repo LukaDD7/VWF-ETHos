@@ -66,6 +66,12 @@ class ExpertScores:
     # ⚠ 平衡 MD 的 LOF/2M 证据轴, 不是 2B release 轴; NaN = 无 MD (向后兼容)。
     md_face_destab_score: float = float('nan')
 
+    # MD AIM↔A1 盐桥保留 z-score (7A6O 平衡 MD; extract_aim_saltbridge_features.py)。
+    # 高 = 结合面接触保留 = "释放但功能在" = 2B-compatible/anti-2M (实测高 z 仅见 2B+WT,
+    # 无 2M); 低 = 接触塌陷 = 2M 旁证 (但低 z 不干净, 也含部分 2B, 仅作旁证不独立判 2M)。
+    # ⚠ 非 2B 阳性轴 (2B 是力现象, 平衡态不显现); 阈值待校准 (n: WT1/2B8/2M3 单副本)。
+    aim_sb_retained_z: float = float('nan')
+
 
 @dataclass
 class MultiLabelClassificationResult:
@@ -177,6 +183,18 @@ AIM_RELEASE_LEAN_Z = 0.0  # aim_release_score > this (any release) → rescue A1
 #     先定 2B) → 仅作软证据/tie-breaker, 不硬翻已由热点/AIM 位定的 2B。待多副本/更多
 #     2M 标签或 steered-MD 后收紧。
 MD_FACE_DESTAB_2M_Z = 1.0   # md_face_destab_score ≥ this → 强结合面破坏 → 支持 2M (LOF)
+
+# 轴B'': AIM↔A1 盐桥保留 (extract_aim_saltbridge_features.py, 7A6O 平衡 MD)。
+# 联合判据 (docs/7A6O_SMD_LITERATURE_NOGO_2026-06-24.md §6): 所有致病变体自抑制
+# (D1269-R1306) 都释放; 在此前提下看结合面是否保留 → 保留=2B(释放但功能在/GOF),
+# 塌陷=2M(释放且功能没了/LOF)。实测 z 分离:
+#   高 z (≥0.6): 仅 2B(I1309V/R1306W/S1310F)+WT, 无 2M → "结合面保留"是干净的
+#                anti-2M / 2B-protective 闸 (joint 判据的"+结合保留→2B"半边)。
+#   低 z (≤-0.7): 全部 3 个 2M, 但也含 2 个 2B(V1316M/V1314F) → 不干净 →
+#                **仅作 2M 旁证(与 md_destab/轴B 一致时提置信), 绝不独立判 2M**。
+# ⚠ 阈值待校准 (n: WT1/2B8/2M3 单副本)。NaN = 无该特征 (向后兼容)。
+AIM_SB_RETAINED_2B_Z = 0.6   # aim_sb_retained_z ≥ this → 结合面保留 → anti-2M, 支持 2B
+AIM_SB_COLLAPSE_2M_Z = -0.7  # aim_sb_retained_z ≤ this → 结合面塌陷 → 2M 旁证 (不独立判)
 
 # ---------------------------------------------------------------------------
 # 轴B: A1 结合面完整性 (LOF 探测) = forced_binding + heparan 两轴联合
@@ -629,6 +647,9 @@ class ClinicalGeneticistAgent:
             hep_z = variant_data.get('heparan_zscore', np.nan)                 # 轴B-2: heparan 结合
             md_destab = getattr(expert_scores, 'md_face_destab_score', np.nan) # 轴B': MD 结合面破坏 (LOF/2M)
             md_lof = (not np.isnan(md_destab)) and (md_destab >= MD_FACE_DESTAB_2M_Z)
+            sb_z = getattr(expert_scores, 'aim_sb_retained_z', np.nan)          # 轴B'': AIM↔A1 盐桥保留
+            face_retained = (not np.isnan(sb_z)) and (sb_z >= AIM_SB_RETAINED_2B_Z)   # 保留 → anti-2M (joint判据)
+            sb_collapsed = (not np.isnan(sb_z)) and (sb_z <= AIM_SB_COLLAPSE_2M_Z)     # 塌陷 → 2M 旁证 (不独立判)
             is_aim_n = 1238 <= position <= 1268
             is_aim_c = 1460 <= position <= 1472
             is_hotspot = position in TWO_B_HOTSPOT_POS                          # 轴C
@@ -660,6 +681,8 @@ class ClinicalGeneticistAgent:
                 conf, why = 0.72, f"RULE6-B: {lof_why} → A1 结合面丧失 → 2M (LOF)"
                 if md_lof:   # MD 平衡态结合面破坏 = 独立确证, 提升置信
                     conf, why = 0.8, why + f" [MD 结合面破坏确证 destab={md_destab:.2f}]"
+                if sb_collapsed:  # MD AIM↔A1 盐桥塌陷 = 旁证 (轴B 已判 2M, 此处仅提置信)
+                    conf, why = min(0.85, conf + 0.05), why + f" [MD 盐桥塌陷旁证 sb_z={sb_z:.2f}]"
                 return _a1('2M', conf, why)
 
             # 轴A 强信号: 自抑制强松开 + 结合保留 → 2B (GOF) --------------------
@@ -680,7 +703,12 @@ class ClinicalGeneticistAgent:
                 return _a1('2B', 0.68, f"RULE6c2: 别构风险 {allosteric_risk:.2f} → 2B")
 
             # 轴C: 临床 2B 热点 + 任意松开倾向(或无松开数据)→ 2B --------------
+            # 联合判据: 致病变体自抑制都释放, 若结合面保留(face_retained)→ "释放但功能在"
+            # = 2B(GOF), 与热点先验一致 → 提升置信。
             if is_hotspot and (np.isnan(aim_release) or aim_release > AIM_RELEASE_LEAN_Z):
+                if face_retained:
+                    return _a1('2B', 0.72, f"RULE6-C+保留: pos={position} 临床 2B 热点 + "
+                               f"MD 结合面保留 sb_z={sb_z:.2f} → 释放但功能在 → 2B (联合判据)")
                 return _a1('2B', 0.6, f"RULE6-C: pos={position} 为临床复发性 2B 热点 → 2B (先验)")
 
             # 弱自抑制松开救回 -------------------------------------------------
@@ -692,6 +720,13 @@ class ClinicalGeneticistAgent:
             if expert_scores.structural_damage_score > 0.6:
                 return _a1('2M', 0.72,
                            f"RULE6d: 重度结构损伤 {expert_scores.structural_damage_score:.2f} → 2M (LOF)")
+
+            # 联合判据闸: MD 结合面盐桥保留 (高 z, 实测仅 2B/WT, 无 2M) → 即便有弱 MD
+            # destab 也不翻 2M。致病前提下自抑制已释放 + 功能保留 → 2B marginal。
+            if face_retained:
+                return _a1('2B', 0.55,
+                           f"RULE6-保留: MD 结合面盐桥保留 sb_z={sb_z:.2f} ≥ "
+                           f"{AIM_SB_RETAINED_2B_Z} → 释放但功能保留 → 2B (marginal, 联合判据)")
 
             # MD 软证据 tie-breaker: 平衡态结合面强破坏 → 2M (LOF) --------------
             # 仅在轴 A/B/C 与结构启发皆未定向时介入 (此处已排除 2B 热点/AIM 位/别构);
@@ -829,6 +864,8 @@ class AgenticVWFClassifier:
             aim_release_score=variant_data.get('aim_release_score', np.nan),
             # MD 结合面破坏 (7A6O AIM-A1 平衡 MD); 缺失时 NaN, RULE6 退回原逻辑。
             md_face_destab_score=variant_data.get('md_face_destab_score', np.nan),
+            # MD AIM↔A1 盐桥保留 z (extract_aim_saltbridge_features.py); 缺失 NaN。
+            aim_sb_retained_z=variant_data.get('aim_sb_retained_z', np.nan),
         )
 
         # =====================================================================

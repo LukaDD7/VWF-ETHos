@@ -1,0 +1,303 @@
+aa_change,wt_aa,position,mut_aa,subtype,conflict,domain,sources,has_features
+A1437T,A,1437,T,2M,False,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+A1461D,A,1461,D,2B,False,A1,"lit_2B_S3,master",False
+A1461V,A,1461,V,2B,False,A2 (ADAMTS13 cleavage),"af3_ref,lit_2B_S3,master",True
+A1716P,A,1716,P,2B,False,A3,master,False
+A2093P,A,2093,P,1,False,D4,master,False
+A2178S,A,2178,S,2B,False,D4,"lit_2B_S3,master",False
+A2801D,A,2801,D,2B,False,CK,master,False
+A594G,A,594,G,1,False,D1_D2,master,False
+A631V,A,631,V,1,False,D1_D2,master,False
+A634P,A,634,P,3,False,D1_D2,master,False
+C1071F,C,1071,F,3,False,D_D3,master,False
+C1091R,C,1091,R,2A,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+C1111Y,C,1111,Y,1,False,D_D3,master,False
+C1130C,C,1130,C,1,False,D_D3,master,False
+C1149R,C,1149,R,1|2B,True,D_D3,master,False
+C1157F,C,1157,F,2B,False,D_D3,master,False
+C1190Y,C,1190,Y,2A,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+C1196R,C,1196,R,2A,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+C1227R,C,1227,R,1,False,D_D3,master,False
+C1234Y,C,1234,Y,2A,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+C1272F,C,1272,F,2B,False,A1,master,False
+C1272R,C,1272,R,2B,False,A1,"lit_2B_S3,master",False
+C1272S,C,1272,S,2B,False,A1,master,False
+C1872L,C,1872,L,3,False,A3,master,False
+C1879F,C,1879,F,1,False,D4,master,False
+C1899R,C,1899,R,1,False,D4,master,False
+C1950Y,C,1950,Y,1,False,D4,master,False
+C2184Y,C,2184,Y,1,False,D4,master,False
+C2212R,C,2212,R,3,False,D4,master,False
+C2237R,C,2237,R,3,False,D4,master,False
+C2248Y,C,2248,Y,3,False,D4,master,False
+C2283R,C,2283,R,3,False,B1_B3,master,False
+C2304Y,C,2304,Y,1,False,B1_B3,master,False
+C2325S,C,2325,S,3,False,B1_B3,master,False
+C2362F,C,2362,F,2B|3,True,C1_C6,master,False
+C2491R,C,2491,R,3,False,C1_C6,master,False
+C2557Y,C,2557,Y,1,False,C1_C6,master,False
+C255S,C,255,S,3,False,D1_D2,master,False
+C2619Y,C,2619,Y,1,False,C1_C6,master,False
+C2671Y,C,2671,Y,3,False,C1_C6,master,False
+C2693Y,C,2693,Y,1,False,C1_C6,master,False
+C2739R,C,2739,R,1,False,C1_C6,master,False
+C2739Y,C,2739,Y,3,False,C1_C6,master,False
+C2804Y,C,2804,Y,3,False,CK,master,False
+C291A,C,291,A,3,False,D1_D2,master,False
+C295Y,C,295,Y,3,False,D1_D2,master,False
+C321Y,C,321,Y,1,False,D1_D2,master,False
+C35R,C,35,R,3,False,D1_D2,master,False
+C370Y,C,370,Y,3,False,D1_D2,master,False
+C379G,C,379,G,1,False,D1_D2,master,False
+C410S,C,410,S,2B,False,D1_D2,master,False
+C623W,C,623,W,2A,False,D'D3 (GP1b binding),"af3_ref,master",True
+C633R,C,633,R,3,False,D1_D2,master,False
+C633Y,C,633,Y,1,False,D1_D2,master,False
+C665A,C,665,A,3,False,D1_D2,master,False
+C788Y,C,788,Y,2N,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+C799F,C,799,F,2N,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+C799Y,C,799,Y,2N,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+C849F,C,849,F,2N,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+C858S,C,858,S,2N,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+C858W,C,858,W,1,False,D_D3,master,False
+D1195Y,D,1195,Y,2A,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+D1373Y,D,1373,Y,2M,False,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+D141Y,D,141,Y,2B|3,True,D1_D2,master,False
+D1472A,D,1472,A,3,False,A1,master,False
+D1472H,D,1472,H,2B,False,A1,master,False
+D1498N,D,1498,N,2A,False,"A3 (Collagen binding, type 2M mutations)","af3_ref,master",True
+D1614G,D,1614,G,2A,False,"A3 (Collagen binding, type 2M mutations)","af3_ref,master",True
+D1614N,D,1614,N,2A,False,"A3 (Collagen binding, type 2M mutations)","af3_ref,master",True
+D172N,D,172,N,2A,False,D1-D2 (Signal peptide + Propeptide),"af3_ref,master",True
+D2509L,D,2509,L,3,False,C1_C6,master,False
+D437Y,D,437,Y,3,False,D1_D2,master,False
+D534N,D,534,N,1,False,D1_D2,master,False
+D558Y,D,558,Y,1,False,D1_D2,master,False
+D879N,D,879,N,2N,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+D896Y,D,896,Y,3,False,D_D3,master,False
+E1078K,E,1078,K,2B|2N,True,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+E1359K,E,1359,K,2M,False,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+E1389K,E,1389,K,2B,False,A1,"lit_2B_S3,master",False
+E2233K,E,2233,K,3,False,D4,master,False
+E2445R,E,2445,R,3,False,C1_C6,master,False
+E2720G,E,2720,G,3,False,C1_C6,master,False
+E787K,E,787,K,2N,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+F1280W,F,1280,W,3,False,A1,master,False
+F1369I,F,1369,I,2M,False,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+F165V,F,165,V,3,False,D1_D2,master,False
+F2061S,F,2061,S,3,False,D4,master,False
+F606I,F,606,I,2B,False,D1_D2,master,False
+G125V,G,125,V,3,False,D1_D2,master,False
+G1324S,G,1324,S,2B|2M,True,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+G1417W,G,1417,W,2M,False,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+G1573S,G,1573,S,2A,False,"A3 (Collagen binding, type 2M mutations)","af3_ref,master",True
+G1609R,G,1609,R,2A|2B,True,"A3 (Collagen binding, type 2M mutations)","af3_ref,master",True
+G160R,G,160,R,3,False,D1_D2,master,False
+G1629E,G,1629,E,2B,False,A2,master,False
+G1629R,G,1629,R,2B,False,A2,master,False
+G1672R,G,1672,R,2A,False,"A3 (Collagen binding, type 2M mutations)","af3_ref,master",True
+G1771R,G,1771,R,3,False,A3,master,False
+G1828V,G,1828,V,3,False,A3,master,False
+G22E,G,22,E,2B,False,D1_D2,master,False
+G2343V,G,2343,V,1,False,B1_B3,master,False
+G2352G,G,2352,G,1,False,B1_B3,master,False
+G2488G,G,2488,G,3,False,C1_C6,master,False
+G2518S,G,2518,S,1,False,C1_C6,master,False
+G39R,G,39,R,1,False,D1_D2,master,False
+G550R,G,550,R,2A,False,D'D3 (GP1b binding),"af3_ref,master",True
+G55E,G,55,E,2A,False,D1-D2 (Signal peptide + Propeptide),"af3_ref,master",True
+G64A,G,64,A,3,False,D1_D2,master,False
+G79V,G,79,V,3,False,D1_D2,master,False
+G839E,G,839,E,1,False,D_D3,master,False
+G967V,G,967,V,3,False,D_D3,master,False
+H1268D,H,1268,D,2B,False,A1,"lit_2B_S3,master",False
+H1268N,H,1268,N,2B,False,A1,"lit_2B_S3,master",False
+H1268Q,H,1268,Q,2B,False,A1,"lit_2B_S3,master",False
+H1419N,H,1419,N,2A,False,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+H54Q,H,54,Q,2B,False,D1_D2,master,False
+H556Q,H,556,Q,3,False,D1_D2,master,False
+I1309V,I,1309,V,2B,False,A1,"lit_2B_S3,master",False
+I1329M,I,1329,M,1,False,A1,master,False
+I1372S,I,1372,S,2B,False,A2 (ADAMTS13 cleavage),"af3_ref,lit_2B_S3,master",True
+I1416N,I,1416,N,2A|2B,True,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+I1416T,I,1416,T,2M,False,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+I1425F,I,1425,F,2M,False,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+I1628T,I,1628,T,2A,False,"A3 (Collagen binding, type 2M mutations)","af3_ref,master",True
+I1649N,I,1649,N,2A,False,"A3 (Collagen binding, type 2M mutations)","af3_ref,master",True
+K1518E,K,1518,E,2A|2B,True,"A3 (Collagen binding, type 2M mutations)","af3_ref,master",True
+K157E,K,157,E,3,False,D1_D2,master,False
+K1794E,K,1794,E,1,False,A3,master,False
+K2662R,K,2662,R,1,False,C1_C6,master,False
+K762E,K,762,E,1,False,D1_D2,master,False
+L1340P,L,1340,P,2B,False,A1,"lit_2B_S3,master",False
+L1361S,L,1361,S,1,False,A1,master,False
+L1365R,L,1365,R,2M,False,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+L1446P,L,1446,P,2B,False,A1,master,False
+L1460F,L,1460,F,2B,False,A2 (ADAMTS13 cleavage),"af3_ref,lit_2B_S3,master",True
+L1460P,L,1460,P,2B,False,A1,"lit_2B_S3,master",False
+L1460V,L,1460,V,2B,False,A1,"lit_2B_S3,master",False
+L1503Q,L,1503,Q,2A|2B,True,"A3 (Collagen binding, type 2M mutations)","af3_ref,master",True
+L1503R,L,1503,R,2B,False,A2,master,False
+L150P,L,150,P,3,False,D1_D2,master,False
+L1657I,L,1657,I,2A,False,"A3 (Collagen binding, type 2M mutations)","af3_ref,master",True
+L1774S,L,1774,S,1,False,A3,master,False
+L1781W,L,1781,W,3,False,A3,master,False
+L254V,L,254,V,3,False,D1_D2,master,False
+L2629R,L,2629,R,3,False,C1_C6,master,False
+L2786P,L,2786,P,1,False,CK,master,False
+L536P,L,536,P,2A,False,D'D3 (GP1b binding),"af3_ref,master",True
+L757V,L,757,V,3,False,D1_D2,master,False
+L777P,L,777,P,2B,False,D_D3,master,False
+L797R,L,797,R,2N,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+L817P,L,817,P,2B,False,D_D3,master,False
+L84F,L,84,F,2A,False,D1-D2 (Signal peptide + Propeptide),"af3_ref,master",True
+M1303M,M,1303,M,2B,False,A1,master,False
+M1304V,M,1304,V,2B,False,A1,"lit_2B_S3,master",False
+M16B,M,16,B,2B,False,D1_D2,master,False
+M1761K,M,1761,K,2B|2M,True,D4 (Multimerization),"af3_ref,master",True
+M771I,M,771,I,2B,False,D_D3,master,False
+M771V,M,771,V,1,False,D_D3,master,False
+N1421K,N,1421,K,2B,False,A1,master,False
+N1635I,N,1635,I,2A,False,"A3 (Collagen binding, type 2M mutations)","af3_ref,master",True
+N166I,N,166,I,1,False,D1_D2,master,False
+N2546Y,N,2546,Y,3,False,C1_C6,master,False
+N528S,N,528,S,2B,False,D1_D2,master,False
+P1266L,P,1266,L,2B,False,A2 (ADAMTS13 cleavage),"af3_ref,lit_2B_S3,master",True
+P1266Q,P,1266,Q,2B|2M,True,A2 (ADAMTS13 cleavage),"af3_ref,lit_2B_S3,master",True
+P1337L,P,1337,L,2B,False,A2 (ADAMTS13 cleavage),"af3_ref,lit_2B_S3,master",True
+P1413L,P,1413,L,1,False,A1,master,False
+P1790S,P,1790,S,2A,False,D4 (Multimerization),"af3_ref,master",True
+P1824H,P,1824,H,2B,False,A3,master,False
+P2063S,P,2063,S,2B,False,D4,master,False
+P2776L,P,2776,L,1,False,CK,master,False
+P293Q,P,293,Q,3,False,D1_D2,master,False
+P691Q,P,691,Q,3,False,D1_D2,master,False
+P811L,P,811,L,2N,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+P812L,P,812,L,2N,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+P812R,P,812,R,3,False,D_D3,master,False
+P864H,P,864,H,2B,False,D_D3,master,False
+Q104R,Q,104,R,3,False,D1_D2,master,False
+Q1053H,Q,1053,H,2B|2N,True,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+Q1311X,Q,1311,X,2B,False,A1,master,False
+Q1402P,Q,1402,P,2M,False,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+Q147R,Q,147,R,1,False,D1_D2,master,False
+Q1931H,Q,1931,H,3,False,D4,master,False
+Q499H,Q,499,H,1,False,D1_D2,master,False
+Q895H,Q,895,H,2B,False,D_D3,master,False
+R1205C,R,1205,C,1,False,D_D3,master,False
+R1205H,R,1205,H,2B,False,D_D3,master,False
+R1205S,R,1205,S,1,False,D_D3,master,False
+R1306E,R,1306,E,2B,False,A1,"lit_2B_S3,master",False
+R1306L,R,1306,L,2B,False,A2 (ADAMTS13 cleavage),"af3_ref,lit_2B_S3,master",True
+R1306P,R,1306,P,2B,False,A1,"lit_2B_S3,master",False
+R1306Q,R,1306,Q,2B,False,A2 (ADAMTS13 cleavage),"af3_ref,lit_2B_S3,master",True
+R1306W,R,1306,W,2B,False,A1,"lit_2B_S3,master",False
+R1308C,R,1308,C,2B,False,A1,"lit_2B_S3,master",False
+R1308H,R,1308,H,2A,False,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+R1308L,R,1308,L,2B,False,A2 (ADAMTS13 cleavage),"af3_ref,lit_2B_S3,master",True
+R1308P,R,1308,P,2B,False,A1,"lit_2B_S3,master",False
+R1308S,R,1308,S,2B,False,A1,"lit_2B_S3,master",False
+R1315C,R,1315,C,2B|3,True,A1,master,False
+R1315H,R,1315,H,1,False,A1,master,False
+R1334Q,R,1334,Q,2M,False,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+R1334W,R,1334,W,2M,False,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+R1341E,R,1341,E,2B,False,A1,"lit_2B_S3,master",False
+R1341L,R,1341,L,2B,False,A1,"lit_2B_S3,master",False
+R1341Q,R,1341,Q,2B,False,A2 (ADAMTS13 cleavage),"af3_ref,lit_2B_S3,master",True
+R1341W,R,1341,W,2B,False,A2 (ADAMTS13 cleavage),"af3_ref,lit_2B_S3,master",True
+R1342C,R,1342,C,1,False,A1,master,False
+R1374C,R,1374,C,2B|2M,True,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+R1374H,R,1374,H,2B|2M,True,A2 (ADAMTS13 cleavage),"af3_ref,lit_2B_S3,master",True
+R1379C,R,1379,C,2B,False,A2 (ADAMTS13 cleavage),"af3_ref,lit_2B_S3,master",True
+R1395W,R,1395,W,2M,False,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+R1399C,R,1399,C,2M,False,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+R139A,R,139,A,3,False,D1_D2,master,False
+R1426C,R,1426,C,2M,False,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+R1527Q,R,1527,Q,2A,False,"A3 (Collagen binding, type 2M mutations)","af3_ref,master",True
+R1564W,R,1564,W,1,False,A2,master,False
+R1583W,R,1583,W,1,False,A2,master,False
+R1597W,R,1597,W,2A,False,"A3 (Collagen binding, type 2M mutations)","af3_ref,master",True
+R1837W,R,1837,W,1,False,A3,master,False
+R202P,R,202,P,2A,False,D1-D2 (Signal peptide + Propeptide),"af3_ref,master",True
+R202Q,R,202,Q,2A,False,D1-D2 (Signal peptide + Propeptide),"af3_ref,master",True
+R202W,R,202,W,2A,False,D1-D2 (Signal peptide + Propeptide),"af3_ref,master",True
+R2185W,R,2185,W,1,False,D4,master,False
+R236C,R,236,C,1,False,D1_D2,master,False
+R2379C,R,2379,C,1,False,C1_C6,master,False
+R2464C,R,2464,C,1|2B,True,C1_C6,master,False
+R2535Q,R,2535,Q,3,False,C1_C6,master,False
+R2663C,R,2663,C,1,False,C1_C6,master,False
+R273W,R,273,W,2B|3,True,D1_D2,master,False
+R34G,R,34,G,3,False,D1_D2,master,False
+R447W,R,447,W,3,False,D1_D2,master,False
+R543Q,R,543,Q,2B,False,D1_D2,master,False
+R578Q,R,578,Q,2B,False,D1_D2,master,False
+R611C,R,611,C,2B,False,D1_D2,master,False
+R611H,R,611,H,2B,False,D1_D2,master,False
+R760C,R,760,C,2B|2N,True,D'D3 (GP1b binding),"af3_ref,master",True
+R760H,R,760,H,2A,False,D'D3 (GP1b binding),"af3_ref,master",True
+R768Q,R,768,Q,1,False,D_D3,master,False
+R782Q,R,782,Q,1,False,D_D3,master,False
+R782W,R,782,W,2N,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+R816Q,R,816,Q,2N,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+R816W,R,816,W,2N,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+R834Q,R,834,Q,2B,False,D_D3,master,False
+R834W,R,834,W,2B,False,D_D3,master,False
+R854Q,R,854,Q,2B|2N,True,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+R854W,R,854,W,2B|2N,True,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+R91Q,R,91,Q,2B,False,D1_D2,master,False
+R924Q,R,924,Q,2B,False,D_D3,"lit_2B_S3,master",False
+R924W,R,924,W,1,False,D_D3,master,False
+R960P,R,960,P,1,False,D_D3,master,False
+R960W,R,960,W,1,False,D_D3,master,False
+R976C,R,976,C,2A,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+S1285F,S,1285,F,2B,False,A1,master,False
+S1310F,S,1310,F,2B,False,A1,"lit_2B_S3,master",False
+S1310P,S,1310,P,2B,False,A1,"lit_2B_S3,master",False
+S1325F,S,1325,F,2M,False,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+S1378F,S,1378,F,1,False,A1,master,False
+S1394F,S,1394,F,2M,False,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+S1731L,S,1731,L,2M,False,D4 (Multimerization),"af3_ref,master",True
+S1783A,S,1783,A,2M,False,D4 (Multimerization),"af3_ref,master",True
+S2179F,S,2179,F,1,False,D4,master,False
+S2285G,S,2285,G,1,False,B1_B3,master,False
+S2479S,S,2479,S,3,False,C1_C6,master,False
+S2497P,S,2497,P,1,False,C1_C6,master,False
+S2775C,S,2775,C,2A,False,CT (C-terminal),"af3_ref,master",True
+S547F,S,547,F,2B,False,D1_D2,master,False
+S673T,S,673,T,3,False,D1_D2,master,False
+S968T,S,968,T,2B,False,D_D3,master,False
+T1156M,T,1156,M,1|2B,True,D_D3,master,False
+T1477I,T,1477,I,1,False,A1,master,False
+T1728S,T,1728,S,1,False,A3,master,False
+T2104I,T,2104,I,1,False,D4,master,False
+T2454N,T,2454,N,3,False,C1_C6,master,False
+T588P,T,588,P,2A,False,D'D3 (GP1b binding),"af3_ref,master",True
+T791M,T,791,M,2N,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+V1314D,V,1314,D,2B,False,A1,"lit_2B_S3,master",False
+V1314F,V,1314,F,2B,False,A1,"lit_2B_S3,master",False
+V1314L,V,1314,L,2B,False,A1,"lit_2B_S3,master",False
+V1314M,V,1314,M,2B,False,A1,"lit_2B_S3,master",False
+V1316M,V,1316,M,2B,False,A1,"lit_2B_S3,master",False
+V1360A,V,1360,A,2M,False,A2 (ADAMTS13 cleavage),"af3_ref,master",True
+V1499E,V,1499,E,2B,False,A2,master,False
+V1630M,V,1630,M,2A,False,"A3 (Collagen binding, type 2M mutations)","af3_ref,master",True
+V1758A,V,1758,A,1,False,A3,master,False
+V1934G,V,1934,G,1,False,D4,master,False
+V241G,V,241,G,1,False,D1_D2,master,False
+V2465M,V,2465,M,2A,False,CT (C-terminal),"af3_ref,master",True
+V86E,V,86,E,3,False,D1_D2,master,False
+V982L,V,982,L,3,False,D_D3,master,False
+W1120S,W,1120,S,2A,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+W1313C,W,1313,C,2B,False,A1,"lit_2B_S3,master",False
+W1745C,W,1745,C,2B|2M,True,D4 (Multimerization),"af3_ref,master",True
+Y1107C,Y,1107,C,2A,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+Y1146C,Y,1146,C,2A,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+Y1258C,Y,1258,C,2B,False,A2 (ADAMTS13 cleavage),"af3_ref,lit_2B_S3,master",True
+Y1456X,Y,1456,X,2B,False,A1,master,False
+Y1584C,Y,1584,C,1,False,A2,master,False
+Y1605A,Y,1605,A,2B,False,A2,master,False
+Y2160C,Y,2160,C,1,False,D4,master,False
+Y301C,Y,301,C,3,False,D1_D2,master,False
+Y795C,Y,795,C,2N,False,"A1 (Collagen binding, type 2B mutations)","af3_ref,master",True
+Y87S,Y,87,S,2A,False,D1-D2 (Signal peptide + Propeptide),"af3_ref,master",True
