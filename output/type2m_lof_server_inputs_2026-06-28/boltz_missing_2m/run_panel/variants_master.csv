@@ -1,0 +1,17 @@
+variant_id,wt_aa,position,mut_aa,aa_change_3letter,source_labels,source_files,source_rows,source_domains,inferred_domain,wt_validation_status,domain_source_agrees_with_inferred
+VWF_V1409F,V,1409,F,Val1409Phe,2M,variants_missing_2m.csv,,A1,A1,ok,True
+VWF_P1413R,P,1413,R,Pro1413Arg,2M,variants_missing_2m.csv,,A1,A1,ok,True
+VWF_I1416T,I,1416,T,Ile1416Thr,2M,variants_missing_2m.csv,,A1,A1,ok,True
+VWF_I1425F,I,1425,F,Ile1425Phe,2M,variants_missing_2m.csv,,A1,A1,ok,True
+VWF_R1426C,R,1426,C,Arg1426Cys,2M,variants_missing_2m.csv,,A1,A1,ok,True
+VWF_L1696R,L,1696,R,Leu1696Arg,2M,variants_missing_2m.csv,,A3,A3,ok,True
+VWF_S1699F,S,1699,F,Ser1699Phe,2M,variants_missing_2m.csv,,A3,A3,ok,True
+VWF_V1730G,V,1730,G,Val1730Gly,2M,variants_missing_2m.csv,,A3,A3,ok,True
+VWF_S1731T,S,1731,T,Ser1731Thr,2M,variants_missing_2m.csv,,A3,A3,ok,True
+VWF_L1733P,L,1733,P,Leu1733Pro,2M,variants_missing_2m.csv,,A3,A3,ok,True
+VWF_Y1735D,Y,1735,D,Tyr1735Asp,2M,variants_missing_2m.csv,,A3,A3,ok,True
+VWF_W1745C,W,1745,C,Trp1745Cys,2M,variants_missing_2m.csv,,A3,A3,ok,True
+VWF_M1761K,M,1761,K,Met1761Lys,2M,variants_missing_2m.csv,,A3,A3,ok,True
+VWF_S1783A,S,1783,A,Ser1783Ala,2M,variants_missing_2m.csv,,A3,A3,ok,True
+VWF_H1786D,H,1786,D,His1786Asp,2M,variants_missing_2m.csv,,A3,A3,ok,True
+VWF_V1822E,V,1822,E,Val1822Glu,2M,variants_missing_2m.csv,,A3,A3,ok,True

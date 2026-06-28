@@ -1,0 +1,7 @@
+{
+  "n_unique_variants": 16,
+  "n_assays": 15,
+  "n_yaml_jobs_including_wt": 41,
+  "n_variant_run_jobs": 26,
+  "n_wt_baselines": 15
+}

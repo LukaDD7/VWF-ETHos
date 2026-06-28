@@ -1,0 +1,14 @@
+version: 1
+sequences:
+  - protein:
+      id: A
+      sequence: CEACQEPGGLVVPPTDAPVSPTTLYVEDISEPPLHDFYCSRLLDLVFLLDGSSRLSEAEFEVLKAFVVDMMERLRISQKWVRVAVVEYHDGSHAYIGLKDRKRPSELRRIASQVKYAGSQVASTSEVLKYTLFQIFSKIDRPEASRITLLLMASQEPQRMSRNFVRYVQGLKKKKVIVIPVGIGPHANLKQIRLIEKQAPENKAFVLSSVDELEQQRDEIVSYLCDLAPEAPPPTLPPDMAQVTVGPGLLGVSTLGPKRN
+      msa: empty
+# job: VWF_WT__a1_aim_autoinhibition_context
+# variant_id: VWF_WT
+# assay_key: a1_aim_autoinhibition_context
+# clinical_axis: A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis
+# construct_role: AIM-flanked A1 monomeric construct
+# vwf_range: 1234-1493
+# interpretability: exploratory
+# baseline: WT reference for delta metrics

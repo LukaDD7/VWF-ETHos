@@ -1,0 +1,14 @@
+version: 1
+sequences:
+  - protein:
+      id: A
+      sequence: ECNDITARLQYVKVGSCKSEVEVDIHYCQGKCASKAMYSIDINDVQDQCSCCSPTRTEPMQVALHCTNGSVVYHEVLNAMECKCSPRKCSK
+      msa: empty
+# job: VWF_WT__ck_dimerization_context
+# variant_id: VWF_WT
+# assay_key: ck_dimerization_context
+# clinical_axis: C-terminal dimerization / Type 1 and 3 axis
+# construct_role: CK domain monomeric context
+# vwf_range: 2723-2813
+# interpretability: medium
+# baseline: WT reference for delta metrics

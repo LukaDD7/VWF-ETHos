@@ -1,0 +1,324 @@
+{
+  "name": "vwd_functional_panel_002",
+  "jobs": [
+    {
+      "name": "VWF_L1696R__a3_collagen_binding",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLRDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDRYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_S1699F__a3_collagen_binding",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGFSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDRYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_V1730G__a3_collagen_binding",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQGSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDRYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_S1731T__a3_collagen_binding",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVTVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDRYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_L1733P__a3_collagen_binding",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVPQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDRYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_Y1735D__a3_collagen_binding",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQDGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDRYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_W1745C__a3_collagen_binding",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPCNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDRYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_M1761K__a3_collagen_binding",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVKQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDRYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_S1783A__a3_collagen_binding",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTAEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDRYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_H1786D__a3_collagen_binding",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMDGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDRYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ]
+    },
+    {
+      "name": "VWF_V1822E__a3_collagen_binding",
+      "sequences": [
+        {
+          "protein": {
+            "id": "A",
+            "sequence": "EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPWNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTEFPIGIGDRYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG"
+          }
+        },
+        {
+          "protein": {
+            "id": "B",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "C",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        },
+        {
+          "protein": {
+            "id": "D",
+            "sequence": "GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP"
+          }
+        }
+      ]
+    }
+  ]
+}

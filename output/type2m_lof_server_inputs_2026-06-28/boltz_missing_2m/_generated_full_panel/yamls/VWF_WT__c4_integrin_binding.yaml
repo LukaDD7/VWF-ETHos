@@ -1,0 +1,18 @@
+version: 1
+sequences:
+  - protein:
+      id: A
+      sequence: SACEVVTGSPRGDSQSSWKSVGSQWASPENPCLINECVRVKEEVFIQQRNVSCPQLEVPVCPSGFQLSCKTSACCPSCRCE
+      msa: empty
+  - protein:
+      id: B
+      sequence: CPLNVTERGVDIPQNVTVKRSQNVLPGLNMRRDPKPQPDRNKFLDKMTSNVKELQPDSLNRQSLETYKSIVDIDNGTRNSVLQLASDQKTKDSPDLNM
+      msa: empty
+# job: VWF_WT__c4_integrin_binding
+# variant_id: VWF_WT
+# assay_key: c4_integrin_binding
+# clinical_axis: platelet integrin alphaIIb beta3 / C4 RGD axis
+# construct_role: C4 domain plus integrin beta3 headpiece proxy
+# vwf_range: 2497-2577
+# interpretability: exploratory
+# baseline: WT reference for delta metrics

@@ -1,0 +1,17 @@
+aa_change,wt_aa,position,mut_aa,subtype,domain,mechanism_track,recommended_boltz_axis
+V1409F,V,1409,F,2M,A1,A1_GPIb_or_A1_dynamics_LOF,a1_gpiba_forced_binding + a1_heparan_sulfate_binding + a1_aim_autoinhibition_context
+P1413R,P,1413,R,2M,A1,A1_GPIb_or_A1_dynamics_LOF,a1_gpiba_forced_binding + a1_heparan_sulfate_binding + a1_aim_autoinhibition_context
+I1416T,I,1416,T,2M,A1,A1_GPIb_or_A1_dynamics_LOF,a1_gpiba_forced_binding + a1_heparan_sulfate_binding + a1_aim_autoinhibition_context
+I1425F,I,1425,F,2M,A1,A1_GPIb_or_A1_dynamics_LOF,a1_gpiba_forced_binding + a1_heparan_sulfate_binding + a1_aim_autoinhibition_context
+R1426C,R,1426,C,2M,A1,A1_GPIb_or_A1_dynamics_LOF,a1_gpiba_forced_binding + a1_heparan_sulfate_binding + a1_aim_autoinhibition_context
+L1696R,L,1696,R,2M,A3,A3_collagen_I_III_binding_LOF,a3_collagen_binding
+S1699F,S,1699,F,2M,A3,A3_collagen_I_III_binding_LOF,a3_collagen_binding
+V1730G,V,1730,G,2M,A3,A3_collagen_I_III_binding_LOF,a3_collagen_binding
+S1731T,S,1731,T,2M,A3,A3_collagen_I_III_binding_LOF,a3_collagen_binding
+L1733P,L,1733,P,2M,A3,A3_collagen_I_III_binding_LOF,a3_collagen_binding
+Y1735D,Y,1735,D,2M,A3,A3_collagen_I_III_binding_LOF,a3_collagen_binding
+W1745C,W,1745,C,2M,A3,A3_collagen_I_III_binding_LOF,a3_collagen_binding
+M1761K,M,1761,K,2M,A3,A3_collagen_I_III_binding_LOF,a3_collagen_binding
+S1783A,S,1783,A,2M,A3,A3_collagen_I_III_binding_LOF,a3_collagen_binding
+H1786D,H,1786,D,2M,A3,A3_collagen_I_III_binding_LOF,a3_collagen_binding
+V1822E,V,1822,E,2M,A3,A3_collagen_I_III_binding_LOF,a3_collagen_binding

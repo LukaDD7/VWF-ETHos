@@ -1,0 +1,30 @@
+version: 1
+sequences:
+  - protein:
+      id: A
+      sequence: EGLQIPTLSPAPDCSQPLDVILLLDGSSSFPASYFDEMKSFAKAFISKANIGPRLTQVSVLQYGSITTIDVPCNVVPEKAHLLSLVDVMQREGGPSQIGDALGFAVRYLTSEMHGARPGASKAVVILVTDVSVDSVDAAADAARSNRVTVFPIGIGDRYDAAQLRILAGPAGDSNVVKLQRIEDLPTMVTLGNSFLHKLCSG
+      msa: empty
+  - protein:
+      id: B
+      sequence: GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP
+      msa: empty
+  - protein:
+      id: C
+      sequence: GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP
+      msa: empty
+  - protein:
+      id: D
+      sequence: GPRGQPGVMGFPGPKGNDGAPGKNGERGGPGGP
+      msa: empty
+# job: VWF_W1745C__a3_collagen_binding
+# variant_id: VWF_W1745C
+# aa_change: W1745C
+# source_labels: 2M
+# assay_key: a3_collagen_binding
+# clinical_axis: collagen I/III binding / Type 2M-A3 axis
+# construct_role: A3 domain plus collagen triple-helix peptide
+# vwf_range: 1673-1874
+# ligand_keys: Collagen_I_THP
+# expected_signal: loss_of_collagen_binding_supports_2M_A3
+# interpretability: high
+# notes: 
