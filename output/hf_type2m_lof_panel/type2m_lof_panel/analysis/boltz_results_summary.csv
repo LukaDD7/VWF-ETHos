@@ -1,0 +1,31 @@
+job_name,variant_id,domain,assay_key,clinical_axis,ligand_keys,n_chains,primary_metric,primary_metric_reason,n_samples,avg_iptm,best_iptm,avg_ptm,best_ptm,avg_complex_plddt,best_complex_plddt,primary_value
+VWF_H1786D__a3_collagen_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.473,0.53319,0.76036,0.78512,0.81259,0.81722,0.76036
+VWF_I1416T__a1_aim_autoinhibition_context,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.0,0.0,0.54476,0.60311,0.55929,0.59885,0.54476
+VWF_I1416T__a1_gpiba_forced_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.39192,0.66033,0.68933,0.80731,0.81522,0.84087,0.68933
+VWF_I1416T__a1_heparan_sulfate_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.62825,0.743,0.86659,0.93716,0.65679,0.69359,0.86659
+VWF_I1425F__a1_aim_autoinhibition_context,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.0,0.0,0.57125,0.59188,0.56771,0.60257,0.57125
+VWF_I1425F__a1_gpiba_forced_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.42387,0.71286,0.70666,0.83444,0.81408,0.8365,0.70666
+VWF_I1425F__a1_heparan_sulfate_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.60308,0.73248,0.84054,0.89245,0.71911,0.75236,0.84054
+VWF_L1696R__a3_collagen_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.52387,0.61679,0.75665,0.79757,0.80988,0.82512,0.75665
+VWF_L1733P__a3_collagen_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.44069,0.50656,0.71291,0.75009,0.74434,0.75894,0.71291
+VWF_M1761K__a3_collagen_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.68481,0.77086,0.83447,0.87082,0.82565,0.84045,0.83447
+VWF_P1413R__a1_aim_autoinhibition_context,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.0,0.0,0.56468,0.58231,0.55739,0.56939,0.56468
+VWF_P1413R__a1_gpiba_forced_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.29729,0.44735,0.64879,0.71794,0.8047,0.83454,0.64879
+VWF_P1413R__a1_heparan_sulfate_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.45411,0.75544,0.77929,0.93945,0.62918,0.68657,0.77929
+VWF_R1426C__a1_aim_autoinhibition_context,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.0,0.0,0.56704,0.69498,0.61586,0.65433,0.56704
+VWF_R1426C__a1_gpiba_forced_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.37587,0.57147,0.68058,0.77054,0.78641,0.81237,0.68058
+VWF_R1426C__a1_heparan_sulfate_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.59648,0.79556,0.84045,0.91254,0.73194,0.76905,0.84045
+VWF_S1699F__a3_collagen_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.49279,0.5618,0.7633,0.79751,0.80587,0.82137,0.7633
+VWF_S1731T__a3_collagen_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.55073,0.62455,0.78422,0.81911,0.80919,0.81355,0.78422
+VWF_S1783A__a3_collagen_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.55641,0.64804,0.79317,0.83168,0.82349,0.82649,0.79317
+VWF_V1409F__a1_aim_autoinhibition_context,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.0,0.0,0.60371,0.63848,0.72914,0.76876,0.60371
+VWF_V1409F__a1_gpiba_forced_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.2473,0.3092,0.62329,0.65148,0.84156,0.87125,0.62329
+VWF_V1409F__a1_heparan_sulfate_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.40389,0.49596,0.76715,0.82627,0.74497,0.79607,0.76715
+VWF_V1730G__a3_collagen_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.48894,0.6844,0.7571,0.82009,0.80328,0.81524,0.7571
+VWF_V1822E__a3_collagen_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.51905,0.63588,0.76218,0.81969,0.81548,0.82071,0.76218
+VWF_W1745C__a3_collagen_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.59311,0.74606,0.79135,0.85756,0.81952,0.83715,0.79135
+VWF_WT__a1_aim_autoinhibition_context,VWF_WT,,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,,1.0,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.0,0.0,0.59264,0.75329,0.60656,0.62591,0.59264
+VWF_WT__a1_gpiba_forced_binding,VWF_WT,,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,GPIb_alpha,2.0,iptm,complex/interface assay,5,0.26889,0.42801,0.63486,0.70416,0.8474,0.86354,0.26889
+VWF_WT__a1_heparan_sulfate_binding,VWF_WT,,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,Heparan_Sulfate_mimic,2.0,iptm,complex/interface assay,5,0.5547,0.79425,0.84735,0.89835,0.75571,0.77077,0.5547
+VWF_WT__a3_collagen_binding,VWF_WT,,a3_collagen_binding,collagen I/III binding / Type 2M-A3 axis,Collagen_I_THP,4.0,iptm,complex/interface assay,5,0.5389,0.61074,0.78383,0.81353,0.82152,0.83081,0.5389
+VWF_Y1735D__a3_collagen_binding,,,,,,,ptm_or_plddt,monomer assay; iPTM is not meaningful without an interface,5,0.55588,0.67539,0.74952,0.80256,0.77328,0.79477,0.74952

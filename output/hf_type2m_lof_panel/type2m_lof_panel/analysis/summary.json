@@ -1,0 +1,253 @@
+{
+  "purpose": "Type 2M LOF missing Boltz top-up panel",
+  "n_variants": 16,
+  "n_yaml_jobs": 30,
+  "assays": [
+    "a1_aim_autoinhibition_context",
+    "a1_gpiba_forced_binding",
+    "a1_heparan_sulfate_binding",
+    "a3_collagen_binding"
+  ],
+  "jobs": [
+    {
+      "job_name": "VWF_WT__a1_gpiba_forced_binding",
+      "yaml": "yamls/VWF_WT__a1_gpiba_forced_binding.yaml",
+      "assay_key": "a1_gpiba_forced_binding",
+      "variant_id": "VWF_WT",
+      "aa_change": NaN,
+      "run_decision": "WT_BASELINE"
+    },
+    {
+      "job_name": "VWF_WT__a1_heparan_sulfate_binding",
+      "yaml": "yamls/VWF_WT__a1_heparan_sulfate_binding.yaml",
+      "assay_key": "a1_heparan_sulfate_binding",
+      "variant_id": "VWF_WT",
+      "aa_change": NaN,
+      "run_decision": "WT_BASELINE"
+    },
+    {
+      "job_name": "VWF_WT__a1_aim_autoinhibition_context",
+      "yaml": "yamls/VWF_WT__a1_aim_autoinhibition_context.yaml",
+      "assay_key": "a1_aim_autoinhibition_context",
+      "variant_id": "VWF_WT",
+      "aa_change": NaN,
+      "run_decision": "WT_BASELINE"
+    },
+    {
+      "job_name": "VWF_WT__a3_collagen_binding",
+      "yaml": "yamls/VWF_WT__a3_collagen_binding.yaml",
+      "assay_key": "a3_collagen_binding",
+      "variant_id": "VWF_WT",
+      "aa_change": NaN,
+      "run_decision": "WT_BASELINE"
+    },
+    {
+      "job_name": "VWF_V1409F__a1_gpiba_forced_binding",
+      "yaml": "yamls/VWF_V1409F__a1_gpiba_forced_binding.yaml",
+      "assay_key": "a1_gpiba_forced_binding",
+      "variant_id": "VWF_V1409F",
+      "aa_change": "V1409F",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_V1409F__a1_heparan_sulfate_binding",
+      "yaml": "yamls/VWF_V1409F__a1_heparan_sulfate_binding.yaml",
+      "assay_key": "a1_heparan_sulfate_binding",
+      "variant_id": "VWF_V1409F",
+      "aa_change": "V1409F",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_V1409F__a1_aim_autoinhibition_context",
+      "yaml": "yamls/VWF_V1409F__a1_aim_autoinhibition_context.yaml",
+      "assay_key": "a1_aim_autoinhibition_context",
+      "variant_id": "VWF_V1409F",
+      "aa_change": "V1409F",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_P1413R__a1_gpiba_forced_binding",
+      "yaml": "yamls/VWF_P1413R__a1_gpiba_forced_binding.yaml",
+      "assay_key": "a1_gpiba_forced_binding",
+      "variant_id": "VWF_P1413R",
+      "aa_change": "P1413R",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_P1413R__a1_heparan_sulfate_binding",
+      "yaml": "yamls/VWF_P1413R__a1_heparan_sulfate_binding.yaml",
+      "assay_key": "a1_heparan_sulfate_binding",
+      "variant_id": "VWF_P1413R",
+      "aa_change": "P1413R",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_P1413R__a1_aim_autoinhibition_context",
+      "yaml": "yamls/VWF_P1413R__a1_aim_autoinhibition_context.yaml",
+      "assay_key": "a1_aim_autoinhibition_context",
+      "variant_id": "VWF_P1413R",
+      "aa_change": "P1413R",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_I1416T__a1_gpiba_forced_binding",
+      "yaml": "yamls/VWF_I1416T__a1_gpiba_forced_binding.yaml",
+      "assay_key": "a1_gpiba_forced_binding",
+      "variant_id": "VWF_I1416T",
+      "aa_change": "I1416T",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_I1416T__a1_heparan_sulfate_binding",
+      "yaml": "yamls/VWF_I1416T__a1_heparan_sulfate_binding.yaml",
+      "assay_key": "a1_heparan_sulfate_binding",
+      "variant_id": "VWF_I1416T",
+      "aa_change": "I1416T",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_I1416T__a1_aim_autoinhibition_context",
+      "yaml": "yamls/VWF_I1416T__a1_aim_autoinhibition_context.yaml",
+      "assay_key": "a1_aim_autoinhibition_context",
+      "variant_id": "VWF_I1416T",
+      "aa_change": "I1416T",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_I1425F__a1_gpiba_forced_binding",
+      "yaml": "yamls/VWF_I1425F__a1_gpiba_forced_binding.yaml",
+      "assay_key": "a1_gpiba_forced_binding",
+      "variant_id": "VWF_I1425F",
+      "aa_change": "I1425F",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_I1425F__a1_heparan_sulfate_binding",
+      "yaml": "yamls/VWF_I1425F__a1_heparan_sulfate_binding.yaml",
+      "assay_key": "a1_heparan_sulfate_binding",
+      "variant_id": "VWF_I1425F",
+      "aa_change": "I1425F",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_I1425F__a1_aim_autoinhibition_context",
+      "yaml": "yamls/VWF_I1425F__a1_aim_autoinhibition_context.yaml",
+      "assay_key": "a1_aim_autoinhibition_context",
+      "variant_id": "VWF_I1425F",
+      "aa_change": "I1425F",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_R1426C__a1_gpiba_forced_binding",
+      "yaml": "yamls/VWF_R1426C__a1_gpiba_forced_binding.yaml",
+      "assay_key": "a1_gpiba_forced_binding",
+      "variant_id": "VWF_R1426C",
+      "aa_change": "R1426C",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_R1426C__a1_heparan_sulfate_binding",
+      "yaml": "yamls/VWF_R1426C__a1_heparan_sulfate_binding.yaml",
+      "assay_key": "a1_heparan_sulfate_binding",
+      "variant_id": "VWF_R1426C",
+      "aa_change": "R1426C",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_R1426C__a1_aim_autoinhibition_context",
+      "yaml": "yamls/VWF_R1426C__a1_aim_autoinhibition_context.yaml",
+      "assay_key": "a1_aim_autoinhibition_context",
+      "variant_id": "VWF_R1426C",
+      "aa_change": "R1426C",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_L1696R__a3_collagen_binding",
+      "yaml": "yamls/VWF_L1696R__a3_collagen_binding.yaml",
+      "assay_key": "a3_collagen_binding",
+      "variant_id": "VWF_L1696R",
+      "aa_change": "L1696R",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_S1699F__a3_collagen_binding",
+      "yaml": "yamls/VWF_S1699F__a3_collagen_binding.yaml",
+      "assay_key": "a3_collagen_binding",
+      "variant_id": "VWF_S1699F",
+      "aa_change": "S1699F",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_V1730G__a3_collagen_binding",
+      "yaml": "yamls/VWF_V1730G__a3_collagen_binding.yaml",
+      "assay_key": "a3_collagen_binding",
+      "variant_id": "VWF_V1730G",
+      "aa_change": "V1730G",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_S1731T__a3_collagen_binding",
+      "yaml": "yamls/VWF_S1731T__a3_collagen_binding.yaml",
+      "assay_key": "a3_collagen_binding",
+      "variant_id": "VWF_S1731T",
+      "aa_change": "S1731T",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_L1733P__a3_collagen_binding",
+      "yaml": "yamls/VWF_L1733P__a3_collagen_binding.yaml",
+      "assay_key": "a3_collagen_binding",
+      "variant_id": "VWF_L1733P",
+      "aa_change": "L1733P",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_Y1735D__a3_collagen_binding",
+      "yaml": "yamls/VWF_Y1735D__a3_collagen_binding.yaml",
+      "assay_key": "a3_collagen_binding",
+      "variant_id": "VWF_Y1735D",
+      "aa_change": "Y1735D",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_W1745C__a3_collagen_binding",
+      "yaml": "yamls/VWF_W1745C__a3_collagen_binding.yaml",
+      "assay_key": "a3_collagen_binding",
+      "variant_id": "VWF_W1745C",
+      "aa_change": "W1745C",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_M1761K__a3_collagen_binding",
+      "yaml": "yamls/VWF_M1761K__a3_collagen_binding.yaml",
+      "assay_key": "a3_collagen_binding",
+      "variant_id": "VWF_M1761K",
+      "aa_change": "M1761K",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_S1783A__a3_collagen_binding",
+      "yaml": "yamls/VWF_S1783A__a3_collagen_binding.yaml",
+      "assay_key": "a3_collagen_binding",
+      "variant_id": "VWF_S1783A",
+      "aa_change": "S1783A",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_H1786D__a3_collagen_binding",
+      "yaml": "yamls/VWF_H1786D__a3_collagen_binding.yaml",
+      "assay_key": "a3_collagen_binding",
+      "variant_id": "VWF_H1786D",
+      "aa_change": "H1786D",
+      "run_decision": "RUN"
+    },
+    {
+      "job_name": "VWF_V1822E__a3_collagen_binding",
+      "yaml": "yamls/VWF_V1822E__a3_collagen_binding.yaml",
+      "assay_key": "a3_collagen_binding",
+      "variant_id": "VWF_V1822E",
+      "aa_change": "V1822E",
+      "run_decision": "RUN"
+    }
+  ]
+}

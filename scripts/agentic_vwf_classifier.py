@@ -213,6 +213,13 @@ AIM_SB_COLLAPSE_2M_Z = -0.7  # aim_sb_retained_z ≤ this → 结合面塌陷 �
 LOF_COMBINED_Z = -0.75    # mean(fb_binding_zscore, heparan_zscore) ≤ this → 结合面丧失 → 2M
 FB_LOSS_Z = -1.5          # (单轴 fallback, 仅 heparan 缺失时) forced_binding 极低才判 LOF
 
+# A3 collagen-binding Boltz axis. A low collagen-complex iPTM supports Type 2M
+# through impaired collagen I/III binding. This is intentionally a confidence
+# modifier inside the A3 rule, not a subtype override, because the supplementary
+# panel shows some known 2M variants with retained/high static complex scores.
+A3_COLLAGEN_LOF_Z = -1.0
+A3_COLLAGEN_RETAINED_Z = 1.0
+
 # ---------------------------------------------------------------------------
 # 轴C: 临床复发性 2B 热点位置 (ISTH VWF 数据库常见 2B 突变残基)
 # ---------------------------------------------------------------------------
@@ -745,9 +752,28 @@ class ClinicalGeneticistAgent:
         # RULE 7: A3 domain → 2M (collagen binding)
         # =====================================================================
         if domain == 'A3':
+            collagen_z = variant_data.get('a3_collagen_zscore', np.nan)
             main_subtype = '2M'
             confidence = 0.7
-            reasoning_steps.append("RULE7: A3 domain → 2M (collagen binding defect)")
+            if not np.isnan(collagen_z) and collagen_z <= A3_COLLAGEN_LOF_Z:
+                confidence = 0.78
+                reasoning_steps.append(
+                    f"RULE7: A3 domain + collagen-binding z={collagen_z:.2f} ≤ "
+                    f"{A3_COLLAGEN_LOF_Z} → 2M (collagen binding LOF support)"
+                )
+            elif not np.isnan(collagen_z) and collagen_z >= A3_COLLAGEN_RETAINED_Z:
+                confidence = 0.6
+                reasoning_steps.append(
+                    f"RULE7: A3 domain → 2M prior, but collagen-binding z={collagen_z:.2f} "
+                    f"does not support static LOF; keep low confidence"
+                )
+            elif not np.isnan(collagen_z):
+                confidence = 0.68
+                reasoning_steps.append(
+                    f"RULE7: A3 domain → 2M; collagen-binding z={collagen_z:.2f} is weak/neutral"
+                )
+            else:
+                reasoning_steps.append("RULE7: A3 domain → 2M (collagen binding defect)")
             return MultiLabelClassificationResult(
                 main_subtype=main_subtype,
                 alternatives=['2A'],
