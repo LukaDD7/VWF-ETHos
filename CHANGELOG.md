@@ -4,6 +4,15 @@ All notable changes to the VWF-ETHos project are documented here.
 
 ## [Unreleased]
 
+### Added (2026-06-28) — Type2M LOF Boltz-2 补充 panel + HF 上传
+
+- **Type2M LOF 补充 Boltz-2 panel 完成**：`output/type2m_lof_server_inputs_2026-06-28/boltz_missing_2m/`。16 个 clean 2M 变体 + 4个WT基线，跨 `a1_aim_autoinhibition_context` / `a1_gpiba_forced_binding` / `a1_heparan_sulfate_binding` / `a3_collagen_binding` 四个assay，共30个job。运行耗时 ~7min（30 jobs @ 7×H200），全部成功。
+- **结果解析完成**：`parse_vwd_functional_boltz2_results.py` 解析后写入 `output/boltz2_vwd_functional_panel/boltz_results_summary.csv`。关键发现：A1 assays iPTM 总体较低（forced_binding WT=0.27，heparan WT=0.55），A3 collagen assays 置信度较高（WT avg=0.54, best=0.61）。
+- **HuggingFace 上传**：完整上传到 `lucachangretta/VWF` 数据集：
+  - `type2m_lof_panel/boltz_results/` — 30个job原始CIF + confidence + PAE文件（540+文件，120MB）
+  - `type2m_lof_panel/analysis/` — 汇总CSV/JSON分析文件
+  - 浏览：https://huggingface.co/datasets/lucachangretta/VWF/tree/main/type2m_lof_panel
+
 ### Added (2026-06-20) — 7A6O AIM-A1 MD 特征 → 分类器 (轴B' 结合面完整性)
 
 - **A40 push 回 50 ns MD 结果** (`md_data/7a6o_reference_md/`, Git LFS, WT + 14 参考变体) pull 落地 (需 `git lfs`, 校验和与 `manifest.csv` 一致)。构件原生编号 1262–1466 经 12 个突变位点比对确证。

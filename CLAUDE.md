@@ -311,6 +311,22 @@ force field 会通过 NFS 共享到 GPU 实例
 
 ## Execution History
 
+### 2026-06-28 — Type2M LOF 补充 Boltz panel 完成
+
+- **目的**: 对静态分类器中分不清 2B/2M 的 clean 2M 变体（即已知 2M 但在证据矩阵中无显著 LOF 信号）做 Boltz-2 补充预测，测试其是否能被 A1/A3 assay 区分。
+- **输入**: `output/type2m_lof_server_inputs_2026-06-28/boltz_missing_2m/` — 16 个候选 clean 2M + 4 个 WT 对照，跨 4 个 assay (aim_autoinhibition / gpiba_forced / heparan / collagen)，共 30 个 YAML。
+- **运行**: `run_boltz_missing_2m.sh` @ 7×H200, ~7 min wall clock, 30/30 成功。
+- **解析**: `parse_vwd_functional_boltz2_results.py` → `output/boltz2_vwd_functional_panel/boltz_results_summary.csv`
+- **关键指标**:
+  - A1 aim_autoinhibition: 所有 iPTM = 0.00（预测为单体，无接口，iPTM 无含义），pTM = 0.54–0.60（中等置信度）
+  - A1 gpiba_forced_binding: iPTM 0.25–0.63（WT=0.27），最高 VWF_I1416T=0.66
+  - A1 heparan_sulfate_binding: iPTM 0.40–0.63（WT=0.55），最高 VWF_I1416T=0.74
+  - A3 collagen_binding: pTM 0.71–0.83，置信度较好
+- **HF 上传**: 原始结果 + 分析结果已传至 `lucachangretta/VWF` → `type2m_lof_panel/`
+  - 原始 CIF/confidence 文件: `type2m_lof_panel/boltz_results/`
+  - 分析汇总: `type2m_lof_panel/analysis/`
+  - 链接: https://huggingface.co/datasets/lucachangretta/VWF/tree/main/type2m_lof_panel
+
 ### 2026-06-10 — 大局与交接 (给下一步推进的 agent 看)
 
 两条线状态:
