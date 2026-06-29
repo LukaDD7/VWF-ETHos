@@ -184,7 +184,7 @@ run_one() {
     fi
     mkdir -p "$work"
     cp -f "$TOP_DIR/topol.top" "$work/topol.top"
-    [ -f "$TOP_DIR/posre.itp" ] && cp -f "$TOP_DIR/posre.itp" "$work/posre.itp"
+    cp -f "$TOP_DIR"/*.itp "$work"/
     cp -f "$START_GRO" "$work/start.gro"
     [ -n "$START_CPT" ] && [ -f "$START_CPT" ] && cp -f "$START_CPT" "$work/start.cpt"
 

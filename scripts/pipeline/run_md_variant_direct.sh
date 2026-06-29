@@ -79,7 +79,7 @@ start="$relax/solv_ions_em_refined.gro"
 work="$OUT_ROOT/$variant/$md_tag"
 mkdir -p "$work"
 cp -f "$relax/topol.top" "$work/topol.top"
-[ -f "$relax/posre.itp" ] && cp -f "$relax/posre.itp" "$work/posre.itp"
+cp -f "$relax"/*.itp "$work"/
 cp -f "$start" "$work/start.gro"
 cd "$work"
 
