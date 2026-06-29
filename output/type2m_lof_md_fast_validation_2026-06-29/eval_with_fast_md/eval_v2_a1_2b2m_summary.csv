@@ -1,0 +1,17 @@
+dataset,label,subset,n,correct,recall,uncertain,called_2b,called_2m
+a1_2b2m_no_md,2B,all,31,27,0.871,2,27,2
+a1_2b2m_no_md,2B,hotspot,25,24,0.96,0,24,1
+a1_2b2m_no_md,2B,non_hotspot,6,3,0.5,2,3,1
+a1_2b2m_no_md,2B,md_available,20,17,0.85,2,17,1
+a1_2b2m_no_md,2M,all,42,10,0.238,26,6,10
+a1_2b2m_no_md,2M,hotspot,7,1,0.143,0,6,1
+a1_2b2m_no_md,2M,non_hotspot,35,9,0.257,26,0,9
+a1_2b2m_no_md,2M,md_available,1,0,0.0,0,1,0
+a1_2b2m_with_existing_md,2B,all,31,29,0.935,0,29,2
+a1_2b2m_with_existing_md,2B,hotspot,25,24,0.96,0,24,1
+a1_2b2m_with_existing_md,2B,non_hotspot,6,5,0.833,0,5,1
+a1_2b2m_with_existing_md,2B,md_available,20,19,0.95,0,19,1
+a1_2b2m_with_existing_md,2M,all,42,12,0.286,24,6,12
+a1_2b2m_with_existing_md,2M,hotspot,7,1,0.143,0,6,1
+a1_2b2m_with_existing_md,2M,non_hotspot,35,11,0.314,24,0,11
+a1_2b2m_with_existing_md,2M,md_available,1,0,0.0,0,1,0

@@ -1,0 +1,6 @@
+label,n_base,correct_base,recall_base,uncertain_base,n_fast,correct_fast,recall_fast,uncertain_fast,delta_correct,delta_recall,delta_uncertain
+2A,118,70,0.593,18.0,118,70,0.593,18.0,0,0.0,0.0
+2B,38,29,0.763,6.0,38,29,0.763,6.0,0,0.0,0.0
+2M,53,21,0.396,26.0,53,23,0.434,24.0,2,0.038,-2.0
+2N,16,12,0.75,0.0,16,12,0.75,0.0,0,0.0,0.0
+ALL,225,132,0.587,50.0,225,134,0.596,48.0,2,0.009,-2.0
