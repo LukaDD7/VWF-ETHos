@@ -51,7 +51,7 @@ HARD_2B_NEGATIVES = [
         "priority_rank": 3,
         "mechanism_track": "2B_hard_negative_control",
         "recommended_md_model": "1SQ0_A1_GPIb_complex_MD",
-        "why": "true 2B hotspot hard case; guard against overcalling 2M",
+        "why": "true 2B hard case; guard against overcalling 2M without using position priors",
     },
 ]
 

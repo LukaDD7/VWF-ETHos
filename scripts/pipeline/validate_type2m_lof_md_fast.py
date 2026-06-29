@@ -192,14 +192,14 @@ def compare_predictions(base_dir: Path, fast_dir: Path, fast_features: pd.DataFr
     base = pd.read_csv(base_path)
     fast = pd.read_csv(fast_path)
     variants = set(fast_features["variant"].astype(str))
-    cols = ["aa_change", "true_label", "domain", "hotspot", "pred_with_md", "confidence_with_md", "reasoning_with_md"]
+    cols = ["aa_change", "true_label", "domain", "pred_with_md", "confidence_with_md", "reasoning_with_md"]
     base = base[base["aa_change"].isin(variants)][[c for c in cols if c in base.columns]].rename(
         columns={"pred_with_md": "pred_baseline", "confidence_with_md": "confidence_baseline", "reasoning_with_md": "reasoning_baseline"}
     )
     fast = fast[fast["aa_change"].isin(variants)][[c for c in cols if c in fast.columns]].rename(
         columns={"pred_with_md": "pred_fast_md", "confidence_with_md": "confidence_fast_md", "reasoning_with_md": "reasoning_fast_md"}
     )
-    out = base.merge(fast, on=["aa_change", "true_label", "domain", "hotspot"], how="outer")
+    out = base.merge(fast, on=["aa_change", "true_label", "domain"], how="outer")
     diag = fast_features[[
         c for c in [
             "variant", "md_face_destab_score", "md_closed_aim_contact_loss",

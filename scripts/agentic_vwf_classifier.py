@@ -179,8 +179,7 @@ AIM_RELEASE_LEAN_Z = 0.0  # aim_release_score > this (any release) → rescue A1
 #   保留率 mask_retention: WT 0.81 > 2B 0.75 > 2M 0.63; destab 2M 中位 +0.27
 #   (R1374H +1.60, G1324S +0.72, R1374C +0.27) vs 2B 中位 -0.13; AUC(2M>2B)=0.83。
 #   ⚠ 平衡 MD 看不到力依赖的 2B 松开 → 本轴**只作 2M/LOF 确证, 绝不判 2B**;
-#     n(2M)=3 单副本 + 2B/2M 重叠(V1316M destab=+1.16 但属 2B, 靠 TWO_B_HOTSPOT 1316
-#     先定 2B) → 仅作软证据/tie-breaker, 不硬翻已由热点/AIM 位定的 2B。待多副本/更多
+#     n(2M)=3 单副本 + 2B/2M 重叠 → 仅作软证据/tie-breaker。待多副本/更多
 #     2M 标签或 steered-MD 后收紧。
 MD_FACE_DESTAB_2M_Z = 1.0   # md_face_destab_score ≥ this → 强结合面破坏 → 支持 2M (LOF)
 
@@ -219,17 +218,6 @@ FB_LOSS_Z = -1.5          # (单轴 fallback, 仅 heparan 缺失时) forced_bind
 # panel shows some known 2M variants with retained/high static complex scores.
 A3_COLLAGEN_LOF_Z = -1.0
 A3_COLLAGEN_RETAINED_Z = 1.0
-
-# ---------------------------------------------------------------------------
-# 轴C: 临床复发性 2B 热点位置 (ISTH VWF 数据库常见 2B 突变残基)
-# ---------------------------------------------------------------------------
-# 注: 同一位置不同替换可异型 (如 P1266L=2B, P1266Q=2M); 故仅作"先验",
-# 需与轴A(松开)联合,不单独定型。须按本地标签复核/校准。
-TWO_B_HOTSPOT_POS = frozenset({
-    1266, 1296, 1304, 1306, 1308, 1309, 1310, 1313, 1314,
-    1316, 1321, 1324, 1341, 1342, 1377, 1392, 1461,
-})
-
 
 # ============================================================================
 # EXPERT 1: STRUCTURAL EXPERT
@@ -642,7 +630,6 @@ class ClinicalGeneticistAgent:
             # GOF/LOF 是方向不是程度。改为**多轴方向判别**(先定方向):
             #   轴B  GPIb 结合能力 (forced_binding) ↓↓ → 结合面坏 → 2M (LOF)
             #   轴A  自抑制松开 (AIM↔A1 接触/MD 闭合态) ↑ + 结合保留 → 2B (GOF)
-            #   轴C  临床 2B 热点位置 (先验, 需与松开联合)
             # 静态轴 A/B 实测都弱(2B/2M 重叠), MD 闭合态稳定性才是 2B 决定特征;
             # 因此无明确方向信号时返回 uncertain, 不硬判(历史 2B↔2M 漏判区)。
             # 所有新特征缺失(NaN)时自动退到结构启发, 向后兼容。
@@ -659,7 +646,6 @@ class ClinicalGeneticistAgent:
             sb_collapsed = (not np.isnan(sb_z)) and (sb_z <= AIM_SB_COLLAPSE_2M_Z)     # 塌陷 → 2M 旁证 (不独立判)
             is_aim_n = 1238 <= position <= 1268
             is_aim_c = 1460 <= position <= 1472
-            is_hotspot = position in TWO_B_HOTSPOT_POS                          # 轴C
             allosteric_risk = self.structural_expert.compute_allosteric_risk(variant_data)
             # 轴B: 两条结合面轴联合 (校准最优: mean ≤ -0.75)。两者都在 → 用联合;
             # 仅 fb 在 → 退到极保守单轴 (FB_LOSS_Z=-1.5)。
@@ -709,15 +695,6 @@ class ClinicalGeneticistAgent:
             if allosteric_risk > 0.4:
                 return _a1('2B', 0.68, f"RULE6c2: 别构风险 {allosteric_risk:.2f} → 2B")
 
-            # 轴C: 临床 2B 热点 + 任意松开倾向(或无松开数据)→ 2B --------------
-            # 联合判据: 致病变体自抑制都释放, 若结合面保留(face_retained)→ "释放但功能在"
-            # = 2B(GOF), 与热点先验一致 → 提升置信。
-            if is_hotspot and (np.isnan(aim_release) or aim_release > AIM_RELEASE_LEAN_Z):
-                if face_retained:
-                    return _a1('2B', 0.72, f"RULE6-C+保留: pos={position} 临床 2B 热点 + "
-                               f"MD 结合面保留 sb_z={sb_z:.2f} → 释放但功能在 → 2B (联合判据)")
-                return _a1('2B', 0.6, f"RULE6-C: pos={position} 为临床复发性 2B 热点 → 2B (先验)")
-
             # 弱自抑制松开救回 -------------------------------------------------
             if not np.isnan(aim_release) and aim_release > AIM_RELEASE_LEAN_Z:
                 return _a1('2B', 0.55,
@@ -736,7 +713,7 @@ class ClinicalGeneticistAgent:
                            f"{AIM_SB_RETAINED_2B_Z} → 释放但功能保留 → 2B (marginal, 联合判据)")
 
             # MD 软证据 tie-breaker: 平衡态结合面强破坏 → 2M (LOF) --------------
-            # 仅在轴 A/B/C 与结构启发皆未定向时介入 (此处已排除 2B 热点/AIM 位/别构);
+            # 仅在轴 A/B 与结构启发皆未定向时介入 (此处已排除 AIM 位/别构);
             # 故不会硬翻已定的 2B。软证据, 低置信。
             if md_lof:
                 return _a1('2M', 0.55,
@@ -745,7 +722,7 @@ class ClinicalGeneticistAgent:
 
             # 无明确方向信号 → uncertain (不硬判; MD 闭合态稳定性出来后定 2B/2M) --
             return _a1('uncertain', 0.35,
-                       "RULE6-U: A1 无明确方向信号(轴A/B/C 皆弱)→ uncertain (待 MD 闭合态稳定性)",
+                       "RULE6-U: A1 无明确方向信号(轴A/B 皆弱)→ uncertain (待 MD 闭合态稳定性)",
                        alts=['2B', '2M'])
 
         # =====================================================================

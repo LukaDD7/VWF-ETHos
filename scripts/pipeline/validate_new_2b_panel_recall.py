@@ -3,9 +3,11 @@
 
 Context (2026-06-24): the 62 new 2B variants were run through the functional
 Boltz-2 panel (output/boltz2_new_2b_panel) to get fb_binding / heparan iPTM. None
-of them have 7A6O MD trajectories, so this measures how the *static* hotspot +
-forced_binding logic generalizes to a larger 2B set -- i.e. the recall ceiling
-*before* the MD salt-bridge joint criterion can contribute.
+of them have 7A6O MD trajectories, so this measures how the *static*
+forced_binding/heparan logic generalizes to a larger 2B set -- i.e. the recall
+ceiling before MD-derived mechanism evidence can contribute. Recurrent Type 2B
+hotspot positions are not used, reported, or split because that position prior
+was removed from the production classifier as a leakage/circularity risk.
 
 Critical normalization note: z-scores MUST be computed against the cross-subtype
 distribution (the full functional panel pools 2A/2B/2M/2N), NOT within the 2B-only
@@ -15,7 +17,7 @@ We therefore pool the new raw primary_values with the full panel before z-scorin
 
 Outputs:
   output/new_2b_panel_recall.csv  per-variant call + features
-prints overall / hotspot / non-hotspot 2B recall and the false-2M list.
+prints overall 2B recall and the false-2M list.
 
 Usage:
     python3 scripts/pipeline/validate_new_2b_panel_recall.py
@@ -61,7 +63,6 @@ def main() -> int:
     args = ap.parse_args()
 
     m = load_classifier()
-    HOT = set(m.TWO_B_HOTSPOT_POS)
 
     # cross-subtype reference distribution from the full panel
     ev = pd.read_csv(args.panel)
@@ -95,7 +96,6 @@ def main() -> int:
 
     res = m.AgenticVWFClassifier().classify_batch(X)
     X = pd.concat([X.reset_index(drop=True), res[["main_subtype", "confidence"]]], axis=1)
-    X["hotspot"] = X.protein_pos.isin(HOT)
     X["conflict_ref_2M"] = X.aa_change.isin(CONFLICT_REF_2M)
 
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
@@ -108,14 +108,12 @@ def main() -> int:
 
     clean = X[~X.conflict_ref_2M]
     print(f"\n=== 2B recall (clean, n={len(clean)}; no MD features) ===")
-    for g, nm in [(clean, "all"), (clean[clean.hotspot], "hotspot"),
-                  (clean[~clean.hotspot], "non-hotspot")]:
-        n = len(g); c = int((g.main_subtype == "2B").sum())
-        print(f"  {nm:12s}: {c}/{n}" + (f"  ({100*c/n:.0f}%)" if n else ""))
+    n = len(clean); c = int((clean.main_subtype == "2B").sum())
+    print(f"  all: {c}/{n}" + (f"  ({100*c/n:.0f}%)" if n else ""))
 
     fp = clean[clean.main_subtype == "2M"]
     print("\n=== false 2M (LOF gate misfired on real 2B; needs MD salt-bridge) ===")
-    print(fp[["aa_change", "protein_pos", "hotspot", "fb_binding_zscore",
+    print(fp[["aa_change", "protein_pos", "fb_binding_zscore",
               "heparan_zscore"]].round(2).to_string(index=False) if len(fp) else "(none)")
     return 0
 

@@ -26,27 +26,25 @@ Closed-state contact-loss threshold: `20.0` contacts -> `md_face_destab_score=1.
 | label   |   n_base |   correct_base |   recall_base |   uncertain_base |   n_fast |   correct_fast |   recall_fast |   uncertain_fast |   delta_correct |   delta_recall |   delta_uncertain |
 |:--------|---------:|---------------:|--------------:|-----------------:|---------:|---------------:|--------------:|-----------------:|----------------:|---------------:|------------------:|
 | 2A      |      118 |             70 |         0.593 |               18 |      118 |             70 |         0.593 |               18 |               0 |          0     |                 0 |
-| 2B      |       38 |             29 |         0.763 |                6 |       38 |             29 |         0.763 |                6 |               0 |          0     |                 0 |
-| 2M      |       53 |             21 |         0.396 |               26 |       53 |             23 |         0.434 |               24 |               2 |          0.038 |                -2 |
+| 2B      |       38 |             15 |         0.395 |               19 |       38 |             15 |         0.395 |               19 |               0 |          0     |                 0 |
+| 2M      |       53 |             21 |         0.396 |               32 |       53 |             25 |         0.472 |               28 |               4 |          0.076 |                -4 |
 | 2N      |       16 |             12 |         0.75  |                0 |       16 |             12 |         0.75  |                0 |               0 |          0     |                 0 |
-| ALL     |      225 |            132 |         0.587 |               50 |      225 |            134 |         0.596 |               48 |               2 |          0.009 |                -2 |
+| ALL     |      225 |            118 |         0.524 |               69 |      225 |            122 |         0.542 |               65 |               4 |          0.018 |                -4 |
 
 ## Prediction Changes On Newly Completed MD Variants
 
 | aa_change   | true_label   | pred_baseline   | pred_fast_md   |   md_face_destab_score |   md_closed_aim_contact_loss | prediction_changed   | rescued_to_true_label   | strong_md_not_rescued   |
 |:------------|:-------------|:----------------|:---------------|-----------------------:|-----------------------------:|:---------------------|:------------------------|:------------------------|
+| A1377V      | 2M           | uncertain       | 2M             |                  1.283 |                      25.6544 | True                 | True                    | False                   |
+| G1324R      | 2M           | uncertain       | 2M             |                  2.186 |                      43.7202 | True                 | True                    | False                   |
 | L1276P      | 2M           | uncertain       | 2M             |                  1.701 |                      34.0118 | True                 | True                    | False                   |
 | L1276R      | 2M           | uncertain       | 2M             |                  2.266 |                      45.325  | True                 | True                    | False                   |
-| A1377V      | 2M           | 2B              | 2B             |                  1.283 |                      25.6544 | False                | False                   | True                    |
 | D1302G      | 2M           | uncertain       | uncertain      |                 -0.181 |                      -3.6253 | False                | False                   | False                   |
-| G1324A      | 2M           | 2B              | 2B             |                  0.716 |                      14.3209 | False                | False                   | False                   |
-| G1324R      | 2M           | 2B              | 2B             |                  2.186 |                      43.7202 | False                | False                   | True                    |
+| G1324A      | 2M           | uncertain       | uncertain      |                  0.716 |                      14.3209 | False                | False                   | False                   |
 | R1315G      | 2M           | uncertain       | uncertain      |                  0.614 |                      12.2879 | False                | False                   | False                   |
 | R1315P      | 2M           | uncertain       | uncertain      |                  0.189 |                       3.7894 | False                | False                   | False                   |
-| Y1321C      | 2M           | 2B              | 2B             |                  0.976 |                      19.5207 | False                | False                   | False                   |
-| Y1321W      | 2M           | 2B              | 2B             |                  0.803 |                      16.0588 | False                | False                   | False                   |
-
-Strong MD LOF but not rescued: `2`. These are rule-order/2B-prior review candidates.
+| Y1321C      | 2M           | uncertain       | uncertain      |                  0.976 |                      19.5207 | False                | False                   | False                   |
+| Y1321W      | 2M           | uncertain       | uncertain      |                  0.803 |                      16.0588 | False                | False                   | False                   |
 
 ## A1-GPIb Status
 

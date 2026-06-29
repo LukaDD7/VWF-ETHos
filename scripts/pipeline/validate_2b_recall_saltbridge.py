@@ -2,19 +2,17 @@
 """Validate the AIM salt-bridge joint criterion's effect on 2B recall (cluster).
 
 Run on the cluster where VWF_Alpha_Matrix.parquet (with fb_binding_zscore /
-heparan / AF3 features + type2_subtype labels) is available. Locally the 7A6O
-subset is hotspot-saturated (all known 2B at clinical hotspots -> 8/8 baseline,
-no headroom), so the salt-bridge feature's real value -- rescuing *non-hotspot*
-2B and guarding retained-face variants from soft-MD 2M flips -- can only be
-measured here. See docs/7A6O_SMD_LITERATURE_NOGO_2026-06-24.md sections 6-7.
+heparan / AF3 features + type2_subtype labels) is available. This no longer
+splits or decides by recurrent Type 2B hotspot positions; position priors were
+removed from the production classifier as a leakage/circularity risk.
 
 What it does:
   1. Load the feature matrix.
   2. Left-join aim_sb_retained_z (output/md_7a6o_saltbridge_features.csv) and, if
      absent, md_face_destab_score (output/md_7a6o_features.csv) on aa_change.
   3. Run the classifier twice -- WITH the salt-bridge column and WITHOUT it
-     (ablation = current baseline) -- and report 2B/2M recall overall and split
-     by in-hotspot vs non-hotspot, plus every variant whose call changed.
+     (ablation = current baseline) -- and report 2B/2M recall overall plus every
+     variant whose call changed.
 
 Usage:
     python3 scripts/pipeline/validate_2b_recall_saltbridge.py \
@@ -39,20 +37,17 @@ def load_classifier(path="scripts/agentic_vwf_classifier.py"):
     return mod
 
 
-def recall_block(df, pred_col, hotspots, label_col):
-    """Return recall strings for 2B/2M, overall + hotspot split."""
+def recall_block(df, pred_col, label_col):
+    """Return recall strings for 2B/2M overall."""
     out = {}
     for lab in ("2B", "2M"):
         sub = df[df[label_col] == lab]
         if len(sub) == 0:
             out[lab] = "n/a"
             continue
-        in_h = sub[sub["protein_pos"].isin(hotspots)]
-        non_h = sub[~sub["protein_pos"].isin(hotspots)]
         def r(s):
             return f"{int((s[pred_col] == lab).sum())}/{len(s)}" if len(s) else "0/0"
-        out[lab] = (f"overall {r(sub)} | hotspot {r(in_h)} | "
-                    f"non-hotspot {r(non_h)}")
+        out[lab] = f"overall {r(sub)}"
     return out
 
 
@@ -67,7 +62,6 @@ def main() -> int:
     args = ap.parse_args()
 
     m = load_classifier()
-    hotspots = set(m.TWO_B_HOTSPOT_POS)
 
     df = pd.read_parquet(args.matrix)
     print(f"matrix: {len(df)} rows; label col '{args.label_col}' present: "
@@ -99,8 +93,8 @@ def main() -> int:
     lc = "type2_subtype"
 
     print("\n=== 2B / 2M recall (baseline = no SB feature) ===")
-    rb = recall_block(labeled, "pred_base", hotspots, lc)
-    rw = recall_block(labeled, "pred_with", hotspots, lc)
+    rb = recall_block(labeled, "pred_base", lc)
+    rw = recall_block(labeled, "pred_with", lc)
     for lab in ("2B", "2M"):
         print(f"\n{lab}:")
         print(f"  baseline : {rb[lab]}")
@@ -111,8 +105,7 @@ def main() -> int:
     cols = [args.key, lc, "protein_pos", "aim_sb_retained_z", "pred_base", "pred_with"]
     cols = [c for c in cols if c in changed.columns]
     if len(changed):
-        changed = changed.assign(hotspot=changed["protein_pos"].isin(hotspots))
-        print(changed[cols + ["hotspot"]].to_string(index=False))
+        print(changed[cols].to_string(index=False))
     else:
         print("(none)")
     return 0

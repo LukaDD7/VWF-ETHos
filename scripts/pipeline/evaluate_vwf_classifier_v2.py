@@ -153,7 +153,6 @@ def load_eval_table(args, mod) -> tuple[pd.DataFrame, pd.DataFrame]:
         joined = joined.drop(columns=["md_face_destab_score"], errors="ignore")
         joined = joined.merge(face, left_on="aa_change", right_on="variant", how="left").drop(columns=["variant"])
 
-    joined["hotspot"] = joined["protein_pos"].isin(mod.TWO_B_HOTSPOT_POS)
     joined["in_a1_7a6o_range"] = joined["protein_pos"].between(1262, 1466)
     return joined, missing_boltz
 
@@ -217,8 +216,6 @@ def a1_2b2m_summary(df: pd.DataFrame, pred_col: str, dataset: str) -> list[dict]
     for lab in ["2B", "2M"]:
         for name, part in [
             ("all", sub[sub["true_label"] == lab]),
-            ("hotspot", sub[(sub["true_label"] == lab) & sub["hotspot"]]),
-            ("non_hotspot", sub[(sub["true_label"] == lab) & ~sub["hotspot"]]),
             ("md_available", sub[(sub["true_label"] == lab) & sub["aim_sb_retained_z"].notna()]),
         ]:
             n = len(part)
@@ -252,17 +249,16 @@ def md_priority_queue(df: pd.DataFrame) -> pd.DataFrame:
     sub.loc[sub["is_error_or_uncertain_no_md"], "priority"] = "high"
     sub.loc[
         (sub["true_label"] == "2B")
-        & (sub["pred_no_md"].isin(["2M", "uncertain"]))
-        & ~sub["hotspot"],
+        & (sub["pred_no_md"].isin(["2M", "uncertain"])),
         "priority",
-    ] = "highest_non_hotspot_2B_gap"
+    ] = "highest_2B_gap"
     sub["priority_rank"] = sub["priority"].map({
-        "highest_non_hotspot_2B_gap": 0,
+        "highest_2B_gap": 0,
         "high": 1,
         "low": 2,
     }).fillna(9)
     cols = [
-        "priority", "aa_change", "true_label", "protein_pos", "hotspot",
+        "priority", "aa_change", "true_label", "protein_pos",
         "pred_no_md", "pred_with_md", "fb_binding_zscore", "heparan_zscore",
         "lof_combined_z", "aim_static_zscore",
     ]
@@ -320,7 +316,7 @@ def type2m_lof_md_priority_queue(pred: pd.DataFrame) -> pd.DataFrame:
     uncertain = sub["pred_with_md"].eq("uncertain")
 
     # Highest risk: true 2M currently miscalled 2B. These need A1 dynamics/LOF
-    # evidence that can overrule hotspot/allosteric 2B priors.
+    # evidence that can resolve allosteric/open-state 2B-like priors.
     mask = a1 & md_missing & called_2b
     sub.loc[mask, "priority_rank"] = 0
     sub.loc[mask, "mechanism_track"] = "A1_2M_miscalled_2B_need_LOF_MD"
@@ -343,7 +339,7 @@ def type2m_lof_md_priority_queue(pred: pd.DataFrame) -> pd.DataFrame:
     sub.loc[mask, "why"] = "already called 2M; useful to calibrate MD LOF thresholds"
 
     cols = [
-        "aa_change", "protein_pos", "domain", "hotspot", "pred_no_md", "pred_with_md",
+        "aa_change", "protein_pos", "domain", "pred_no_md", "pred_with_md",
         "mechanism_track", "recommended_md_model", "why", "fb_binding_zscore",
         "heparan_zscore", "lof_combined_z", "aim_static_zscore", "aim_sb_retained_z",
         "md_face_destab_score", "priority_rank",
@@ -387,7 +383,7 @@ def main() -> int:
 
     pred.to_csv(out_dir / "eval_v2_predictions.csv", index=False)
     slim_cols = [
-        "aa_change", "true_label", "protein_pos", "domain", "hotspot",
+        "aa_change", "true_label", "protein_pos", "domain",
         "fb_binding_zscore", "heparan_zscore", "aim_sb_retained_z",
         "a3_collagen_zscore", "md_face_destab_score", "pred_no_md", "confidence_no_md",
         "pred_with_md", "confidence_with_md",

@@ -14,7 +14,8 @@ pdb2gmx/relax/MD 的干净 WT 蛋白 PDB。
 
 清理动作:
   - 只保留 VWF 链(最长的多肽链; 可 --vwf-chain 覆盖), 删纳米抗体 VHH81、SO4、水。
-  - 报告: VWF 残基范围 + 编号体系(VWF 规范 vs 局部)+ 内部缺失残基(gap)+ 常见 2B 热点覆盖。
+  - 报告: VWF 残基范围 + 编号体系(VWF 规范 vs 局部)+ 内部缺失残基(gap)+ legacy
+    recurrent Type 2B A1 residue coverage for structure/QC only.
 
 用法:
   python3 scripts/pipeline/fetch_clean_7a6o.py
@@ -34,9 +35,12 @@ except ImportError:
     print("[FATAL] 需要 gemmi: conda activate gromacs (或 boltz2)", file=sys.stderr)
     sys.exit(2)
 
-# 常见复发性 2B 热点(VWF 规范编号; 与 agentic_vwf_classifier.TWO_B_HOTSPOT_POS 对齐)
-TWO_B_HOTSPOTS = [1266, 1296, 1304, 1306, 1308, 1309, 1310, 1313, 1314,
-                  1316, 1321, 1324, 1341, 1342, 1377, 1392, 1461]
+# Legacy recurrent Type 2B A1 residues used only for reporting 7A6O structure
+# coverage. They are deliberately not imported by the production classifier.
+LEGACY_RECURRENT_2B_A1_POSITIONS = [
+    1266, 1296, 1304, 1306, 1308, 1309, 1310, 1313, 1314,
+    1316, 1321, 1324, 1341, 1342, 1377, 1392, 1461,
+]
 
 AA3to1 = {  # 兜底, gemmi 也能查
     'ALA': 'A', 'ARG': 'R', 'ASN': 'N', 'ASP': 'D', 'CYS': 'C', 'GLN': 'Q',
@@ -149,13 +153,13 @@ def main():
     else:
         print("\n  无内部 gap (链连续)。")
 
-    # 2B 热点覆盖 (仅当规范编号有意义)
+    # Legacy recurrent Type 2B A1 residue coverage (structure/QC only).
     if canonical:
-        present = sorted(p for p in TWO_B_HOTSPOTS if lo <= p <= hi and p in set(nums))
-        missing = sorted(p for p in TWO_B_HOTSPOTS if lo <= p <= hi and p not in set(nums))
-        print(f"\n  2B 热点覆盖(可直接 grafting 突变): {present}")
+        present = sorted(p for p in LEGACY_RECURRENT_2B_A1_POSITIONS if lo <= p <= hi and p in set(nums))
+        missing = sorted(p for p in LEGACY_RECURRENT_2B_A1_POSITIONS if lo <= p <= hi and p not in set(nums))
+        print(f"\n  legacy recurrent 2B A1 residue coverage (QC only): {present}")
         if missing:
-            print(f"  落在范围但未解析的热点: {missing}")
+            print(f"  recurrent positions in range but unresolved: {missing}")
 
     print(f"\n[OK] 干净 WT 结构 → {out}")
     print("下一步:")
