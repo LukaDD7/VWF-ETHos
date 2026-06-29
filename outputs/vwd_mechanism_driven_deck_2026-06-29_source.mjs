@@ -125,7 +125,7 @@ async function main() {
     metric(s, "Type 2 样本", "225", pos(310, 440, 210, 120), C.ink, "2A/2B/2M/2N");
     metric(s, "Type 2 recall", "54.2%", pos(568, 440, 240, 120), C.orange, "no hotspot prior");
     metric(s, "下一阶段目标", "机制补全", pos(864, 440, 280, 120), C.green, "Type 1/3 + 2M/2A");
-    foot(s, "Method name suggestion: mechanism-driven VWD agentic decision-support system; diagnosis remains clinician-confirmed.");
+    foot(s, "Mechanism-driven VWD agentic decision-support system; diagnosis remains clinician-confirmed.");
   }
 
   // 2
@@ -198,7 +198,7 @@ async function main() {
       "2B: recall 明显下降 = 之前确实依赖位置先验",
       "2M: recall 小幅上升 = G1324R/A1377V 不再被位置先验截走",
       "2N: recall 还行，但 precision 低 = 很多 2A 被吸到 2N",
-      "no-hotspot 版本更适合汇报和投稿",
+      "no-hotspot 版本降低循环证据和标签记忆风险",
     ], pos(695, 365, 440, 84), { size: 17 });
     foot(s, "Precision from current Type 2 confusion matrix: predicted-class purity; recall from true-label recovery.");
   }
@@ -223,7 +223,7 @@ async function main() {
       "2A 最大问题是被 2N 规则吸走：28 例 2A→2N",
     ], pos(742, 222, 410, 140), { size: 19 });
     addBox(s, pos(738, 410, 390, 98), { fill: "#FFF6F1", line: "#FFD3C2" });
-    addText(s, "汇报口径", pos(760, 432, 320, 28), { size: 20, bold: true, color: C.orange });
+    addText(s, "评估边界", pos(760, 432, 320, 28), { size: 20, bold: true, color: C.orange });
     addText(s, "当前模型应定位为 Type 2 机制分型原型；Type 1/3 补齐前不报告全分型 global accuracy。", pos(760, 466, 330, 38), { size: 16, color: C.ink });
     foot(s, "Repo artifact: eval_v2_type2_confusion_with_md.csv");
   }
@@ -308,7 +308,7 @@ async function main() {
   // 9
   {
     const s = deck.slides.add(); s.background.fill = "#FFFFFF";
-    title(s, "Boltz 特征怎么来：输入复合体，输出静态结构置信", "可作为汇报备注：Boltz 不是 MD，它预测一个静态复合体及相关 confidence/score。");
+    title(s, "Boltz 特征怎么来：输入复合体，输出静态结构置信", "Boltz 不是 MD，它预测一个静态复合体及相关 confidence/score。");
     smallTable(s, ["Boltz 轴", "我们输入什么", "Boltz 输出什么", "我们计算什么"], [
       ["A1-GPIb", "WT/variant A1 + GPIbα 片段", "complex prediction；iPTM/pTM/pLDDT 等", "primary score 与 WT/同轴分布比较 → fb_binding_zscore"],
       ["A1-heparan", "WT/variant A1 + heparan/heparin-like ligand context", "A1 表面结合 context 置信", "同法得到 heparan_zscore；作为 A1 表面/结合面 proxy"],
@@ -365,8 +365,8 @@ async function main() {
     ], pos(60, 170, 1110, 188), [170, 310, 300, 330], { rowH: 50, size: 15 });
     addBox(s, pos(100, 430, 1000, 92), { fill: "#FFF6F1", line: "#FFD3C2" });
     addText(s, "为什么慢", pos(132, 458, 160, 28), { size: 22, bold: true, color: C.orange });
-    addText(s, "50 ns production 已是千万级步数；SMD 还要为每个变体做受力路径、重复轨迹和拉速敏感性分析。GROMACS 文档也强调非平衡拉伸只有在足够慢或多路径统计下才可解释。", pos(300, 450, 740, 48), { size: 17 });
-    foot(s, "Sources: GROMACS pull-code docs; VWF A2 force-unfolding MD/AFM literature.");
+    addText(s, "50 ns production 已是千万级步数；SMD 还要为每个变体做受力路径、重复轨迹和拉速敏感性分析。本地记录中 5 ns × 3 reps/variant 是小时级；异常争用下 WT 曾慢到约 1.4 ns/day。", pos(300, 444, 740, 58), { size: 17 });
+    foot(s, "Sources: docs/7A6O_SMD_STATUS_HANDOFF_2026-06-21.md; docs/7A6O_SMD_WT_DIAGNOSIS_2026-06-21.md; GROMACS pull-code docs.");
   }
 
   // 13
@@ -375,8 +375,8 @@ async function main() {
     title(s, "三类动力学方法：成本与收益不同", "我们目前做的是第一类 equilibrium MD；SMD/PMF 只适合少量机制验证或高价值 case。");
     const steps = [
       ["Equilibrium MD", "无外力平衡动力学\n50 ns production tail features", "成本：每样本约小时-天级 GPU\n收益：可批量，当前已带来 2B/2M 信号"],
-      ["SMD probe", "Steered MD / constant-velocity pulling\n沿反应坐标拉开", "成本：每样本多重复，约数倍-十倍 MD\n收益：可能验证 AIM release / A2 unfolding"],
-      ["Umbrella / PMF", "umbrella sampling + potential of mean force\n多窗口自由能曲线", "成本：每样本最高，通常只做少数代表\n收益：机制论文级证据，不适合全量预测"],
+      ["SMD probe", "Steered MD / constant-velocity pulling\n沿反应坐标拉开", "本地配置：5 ns × 3 reps/variant\n成本：小时级/variant，慢速校准更贵"],
+      ["PMF", "umbrella sampling + potential of mean force\n多窗口自由能曲线", "成本：每样本最高，通常只做少数代表\n收益：机制论文级证据，不适合全量预测"],
     ];
     steps.forEach((st, i) => {
       const x = 84 + i * 380;
@@ -385,8 +385,8 @@ async function main() {
       addText(s, st[1], pos(x + 24, 278, 240, 72), { size: 17 });
       addText(s, st[2], pos(x + 24, 370, 240, 58), { size: 14, color: C.muted });
     });
-    addText(s, "汇报口径：SMD/PMF 可作为高价值 case 的机制确认，但短期提升 recall 的性价比仍是 equilibrium MD + score fusion。", pos(112, 520, 990, 36), { size: 21, bold: true });
-    foot(s, "Sources: GROMACS pull-code and umbrella sampling docs; force-MD is non-equilibrium and requires replicas/slow pulling for interpretation.");
+    addText(s, "当前策略：SMD/PMF 用于高价值 case 的机制确认；短期批量提升 recall 仍优先 equilibrium MD + score fusion。", pos(112, 520, 990, 36), { size: 21, bold: true });
+    foot(s, "Local SMD record: 5 ns production replicate at 1 nm/ns, 3 reps/variant; GROMACS pull-code docs: non-equilibrium pulling requires path/repetition care.");
   }
 
   // 14
@@ -402,31 +402,32 @@ async function main() {
       ["3", "未纳入", "60-70% for null-rich", "consequence/genotype/NMD module"],
     ], pos(58, 148, 1120, 362), [120, 160, 220, 620], { rowH: 54, size: 16 });
     addText(s, "* Type 1 当前进入 Eval 但规则未真正覆盖；因此不能当作系统最终能力。", pos(70, 540, 980, 24), { size: 16, color: C.muted });
-    foot(s, "Target bands are conservative planning estimates, not validated claims; report them as next-phase milestones.");
+    foot(s, "Target bands are conservative planning estimates, not validated claims.");
   }
 
   // 15
   {
     const s = deck.slides.add(); s.background.fill = "#FFFFFF";
-    title(s, "研究定位：不是泛化 pathogenicity，而是 subtype mechanism", "现有 AI 变异工具多回答“是否有害”；我们的问题是“有害通过哪条 VWF 机制表现为哪个 subtype”。");
+    title(s, "研究定位：subtype mechanism", "现有 AI 变异工具多回答“是否有害”；我们的问题是“有害通过哪条 VWF 机制表现为哪个 subtype”。");
     smallTable(s, ["相关方向", "已有能力", "留下的空白"], [
+      ["ClinGen/ACMG", "VWF rule specifications + curated evidence", "可作 pathogenicity/curation baseline；不是前瞻机制预测"],
       ["AlphaMissense/VEP", "missense pathogenicity prior", "不直接给 VWD subtype 和机制方向"],
       ["AF3/Boltz", "复合体结构与 confidence/affinity proxy", "静态结构不能覆盖动力学/剪切触发"],
       ["Medical LLM agents", "多专家推理框架", "缺少 VWF 特异结构-功能证据链"],
       ["本项目", "结构+AG+MD+规则解释", "需要更完整 Type 1/3 与 2M/2A 机制模块"],
-    ], pos(64, 160, 1110, 260), [210, 400, 500], { rowH: 56, size: 16 });
-    addBox(s, pos(112, 478, 980, 66), { fill: C.ink, line: C.ink });
-    addText(s, "研究问题：能否用结构预测、功能扰动和动力学特征，把 VWD subtype 诊断从表型标签推进为 variant-level 的机制可解释分型？", pos(146, 497, 910, 32), { size: 20, bold: true, color: "#FFFFFF" });
-    foot(s, "Sources: AF3 Nature 2024; Boltz-2 technical report/repository; AlphaMissense Science 2023/PubMed.");
+    ], pos(64, 150, 1110, 305), [210, 400, 500], { rowH: 54, size: 15 });
+    addBox(s, pos(112, 492, 980, 82), { fill: C.ink, line: C.ink });
+    addText(s, "研究问题：能否用结构预测、功能扰动和动力学特征，把 VWD subtype 诊断从表型标签推进为 variant-level 的机制可解释分型？", pos(146, 510, 910, 48), { size: 18, bold: true, color: "#FFFFFF" });
+    foot(s, "Sources: ClinGen VWD VCEP / CSpec registry; AF3 Nature 2024; Boltz-2; AlphaMissense Science 2023.");
   }
 
   // 16
   {
     const s = deck.slides.add(); s.background.fill = "#FFFFFF";
-    title(s, "Take-home", "汇报时建议把“系统还低”说成“机制补全空间明确”。");
+    title(s, "Take-home", "无位置记忆后的结果更保守，也更能暴露真正的机制缺口。");
     addBox(s, pos(80, 165, 1080, 85), { fill: "#F7FAFF", line: "#C7D7FE" });
     addText(s, "1. 命名可行", pos(112, 190, 180, 30), { size: 24, bold: true, color: C.blue });
-    addText(s, "“机制驱动的 VWD 智能体辅助分型/诊断系统”符合项目实质；建议强调 research prototype / decision support。", pos(310, 188, 790, 36), { size: 19 });
+    addText(s, "“机制驱动的 VWD 智能体辅助分型/诊断系统”符合项目实质；定位为 research prototype / decision support。", pos(310, 188, 790, 36), { size: 19 });
     addBox(s, pos(80, 285, 1080, 85), { fill: "#F7FFF8", line: "#BBE7C4" });
     addText(s, "2. 已有价值", pos(112, 310, 180, 30), { size: 24, bold: true, color: C.green });
     addText(s, "删掉 hotspot 后系统更干净；2M MD rescue 更可信，但 2B recall 暴露出缺少 force-release/GOF 动态证据。", pos(310, 308, 790, 36), { size: 19 });
