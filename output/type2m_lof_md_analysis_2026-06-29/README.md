@@ -7,6 +7,7 @@ Generated on 2026-06-29 from completed or checkpointed production MD runs only. 
 - A1-GPIb queue: 9/39 complete, 7 running/checkpointed, 23 not started by the scheduler yet.
 - 7A6O closed-state queue: 10/32 complete, 4 running/checkpointed, 18 not started by the scheduler yet.
 - 7A6O completed-run QC was generated for the first 10 complete closed-state runs.
+- A1-GPIb completed-run QC was generated for the first 9 complete runs.
 
 ## Remaining time estimate
 
@@ -22,6 +23,7 @@ These are queue-level estimates from the tmux scheduler timestamps, not guarante
 - `a1_gpiba_completed_and_running_summary.csv`: A1-GPIb queue status and completed-run metadata.
 - `7a6o_closed_state_completed_and_running_summary.csv`: 7A6O closed-state queue status and completed-run metadata.
 - `combined_completed_and_running_summary.csv`: combined view.
+- `a1_gpiba_completed_qc/qc_summary.csv`: frame counts and backbone RMSD for completed A1-GPIb runs.
 - `7a6o_completed_qc/qc_summary.csv`: frame counts and backbone RMSD for completed 7A6O closed-state runs.
 - `7a6o_completed_qc/aim_a1_contacts_summary.csv`: AIM-A1 contact summary for completed 7A6O closed-state runs.
 - `7a6o_completed_qc/aim_a1_contacts_timeseries.csv`: AIM-A1 contact time series.

@@ -1,0 +1,10 @@
+variant,prod_dir,frames,timestep_ps,atoms,rmsd_frames,rmsd_mean_nm,rmsd_max_nm,rmsd_tail40_50_mean_nm,rmsd_final_nm
+Y1321C,/media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/output/gromacs_md_a1_gpiba/Y1321C/md_a1_gpiba,501,100.0,74272,501,1.4617,4.8733,1.8461,0.2585
+Y1321W,/media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/output/gromacs_md_a1_gpiba/Y1321W/md_a1_gpiba,501,100.0,74258,501,2.2353,5.3023,3.1109,0.1391
+G1324A,/media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/output/gromacs_md_a1_gpiba/G1324A/md_a1_gpiba,501,100.0,74264,501,1.209,4.3906,2.5218,4.1128
+G1324R,/media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/output/gromacs_md_a1_gpiba/G1324R/md_a1_gpiba,501,100.0,74280,501,0.9385,3.9518,2.8937,3.5552
+G1324S,/media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/output/gromacs_md_a1_gpiba/G1324S/md_a1_gpiba,501,100.0,74259,501,1.676,4.2512,1.5218,0.264
+A1377V,/media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/output/gromacs_md_a1_gpiba/A1377V/md_a1_gpiba,501,100.0,74249,501,0.6329,4.2269,1.3611,0.1789
+L1276P,/media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/output/gromacs_md_a1_gpiba/L1276P/md_a1_gpiba,501,100.0,74265,501,1.3975,4.0992,3.1644,3.141
+R1315P,/media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/output/gromacs_md_a1_gpiba/R1315P/md_a1_gpiba,501,100.0,74267,501,1.265,4.2222,2.5221,3.349
+A1355D,/media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/output/gromacs_md_a1_gpiba/A1355D/md_a1_gpiba,501,100.0,74258,501,0.8785,4.1709,0.1938,0.2222
