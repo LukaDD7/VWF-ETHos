@@ -1,4 +1,4 @@
-# This file was created Mon Jun 29 14:12:49 2026
+# This file was created Tue Jun 30 11:42:20 2026
 # Created by:
 #                 :-) GROMACS - gmx rms, 2025.3-conda_forge (-:
 # 
@@ -9,7 +9,7 @@
 #   gmx rms -s /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/output/gromacs_md_a1_gpiba/G1324S/md_a1_gpiba/md_prod.tpr -f /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/output/gromacs_md_a1_gpiba/G1324S/md_a1_gpiba/md_prod.xtc -o /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/output/type2m_lof_md_analysis_2026-06-29/a1_gpiba_completed_qc/rmsd/G1324S_backbone_rmsd.xvg -tu ns
 # gmx rms is part of G R O M A C S:
 #
-# Georgetown Riga Oslo Madrid Amsterdam Chisinau Stockholm
+# Giant Rising Ordinary Mutants for A Clerical Setup
 #
 @    title "RMSD"
 @    xaxis  label "Time (ns)"

@@ -1,21 +1,20 @@
 # Type 2M LOF MD partial analysis
 
-Generated on 2026-06-29 from completed or checkpointed production MD runs only. Large trajectory files are intentionally ignored by git.
+Generated on 2026-06-30 from completed or checkpointed production MD runs only. Large trajectory files are intentionally ignored by git.
 
 ## Current progress
 
-- A1-GPIb queue: 9/39 complete, 7 running/checkpointed, 23 not started by the scheduler yet.
-- 7A6O closed-state queue: 10/32 complete, 4 running/checkpointed, 18 not started by the scheduler yet.
-- 7A6O completed-run QC was generated for the first 10 complete closed-state runs.
-- A1-GPIb completed-run QC was generated for the first 9 complete runs.
+- A1-GPIb queue: 25/39 complete, 7 running/checkpointed, 7 pending or waiting for retry.
+- 7A6O closed-state queue: 22/32 complete, 3 running/checkpointed, 7 pending or waiting for retry.
+- A1-GPIb completed-run QC was generated for the first 25 complete runs.
+- 7A6O completed-run QC and AIM-A1 contact features were generated for the first 22 complete closed-state runs.
 
 ## Remaining time estimate
 
 These are queue-level estimates from the tmux scheduler timestamps, not guarantees. They assume current GPU sharing and no repeated failures.
 
-- A1-GPIb: roughly 36-54 hours remaining. The queue uses GPUs 0-6, with 7 production runs in flight. Two variants (`L1276R`, `R1315G`) had an early `rc=134` retry event and may add delay if they fail again.
-- 7A6O closed-state: roughly 40-55 hours remaining. The queue uses GPUs 0-3, with 4 production runs in flight.
-- Both queues should likely finish in about 2 days if the current throughput holds.
+- A1-GPIb: roughly 12-24 hours remaining. Retry candidates include `L1276R`, `R1315G`, and `E1290L`.
+- 7A6O closed-state: roughly 12-24 hours remaining. Retry candidate observed: `R1374S`.
 
 ## Files
 

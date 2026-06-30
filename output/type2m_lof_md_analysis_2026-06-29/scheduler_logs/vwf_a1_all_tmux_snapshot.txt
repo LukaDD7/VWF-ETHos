@@ -1,3 +1,169 @@
+ 真空受约束 Fmax = N/A
+ 真空无约束 Fmax = N/A
+ 溶剂化   Fmax = 2.1046631e+04
+ ⚠ 溶剂化 EM Fmax=2.1046631e+04 偏高, 但已远好于 5.9e9。可再补 cg 或检查残余 cla
+sh。
+============================================================
+=== RELAX V1360A Sun Jun 28 14:08:10 CST 2026 ===
+bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+============================================================
+ relax: V1360A  model=0  system=a1_gpiba
+ 输入: /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/struct
+ures/1sq0_a1_gpiba_mutants/V1360A.pdb
+ GMX : /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/envs/g
+romacs/bin.AVX2_256/gmx     GMXLIB=/media/luzhenyang/project/alphagenome/alphage
+nome/VWF_ErTongYiyuan/force_fields     (全程 -nb cpu, ntomp=8)
+ WORK: /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/output
+/gromacs_md_a1_gpiba/V1360A/relax_pdb
+============================================================
+[1] 用 --pdb 输入 (实验结构路线)
+[2] pdb2gmx (charmm36m + force_fields patch)
+[3/4] 跳过真空 EM (--skip-vacuum, 适用 FoldX 突变体): 直接用 conf.gro 溶剂化
+[5] 溶剂化 + 0.15M NaCl + 溶剂化 EM
+   → Fmax = 1.8427596e+04 kJ/mol/nm
+
+============================================================
+ 真空受约束 Fmax = N/A
+ 真空无约束 Fmax = N/A
+ 溶剂化   Fmax = 1.8427596e+04
+ ⚠ 溶剂化 EM Fmax=1.8427596e+04 偏高, 但已远好于 5.9e9。可再补 cg 或检查残余 cla
+sh。
+============================================================
+=== RELAX L1361W Sun Jun 28 14:09:19 CST 2026 ===
+bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+============================================================
+ relax: L1361W  model=0  system=a1_gpiba
+ 输入: /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/struct
+ures/1sq0_a1_gpiba_mutants/L1361W.pdb
+ GMX : /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/envs/g
+romacs/bin.AVX2_256/gmx     GMXLIB=/media/luzhenyang/project/alphagenome/alphage
+nome/VWF_ErTongYiyuan/force_fields     (全程 -nb cpu, ntomp=8)
+ WORK: /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/output
+/gromacs_md_a1_gpiba/L1361W/relax_pdb
+============================================================
+[1] 用 --pdb 输入 (实验结构路线)
+[2] pdb2gmx (charmm36m + force_fields patch)
+[3/4] 跳过真空 EM (--skip-vacuum, 适用 FoldX 突变体): 直接用 conf.gro 溶剂化
+[5] 溶剂化 + 0.15M NaCl + 溶剂化 EM
+   → Fmax = 5.0471363e+04 kJ/mol/nm
+
+============================================================
+ 真空受约束 Fmax = N/A
+ 真空无约束 Fmax = N/A
+ 溶剂化   Fmax = 5.0471363e+04
+ ⚠ 溶剂化 EM Fmax=5.0471363e+04 偏高, 但已远好于 5.9e9。可再补 cg 或检查残余 cla
+sh。
+============================================================
+=== RELAX K1362T Sun Jun 28 14:10:29 CST 2026 ===
+bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+============================================================
+ relax: K1362T  model=0  system=a1_gpiba
+ 输入: /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/struct
+ures/1sq0_a1_gpiba_mutants/K1362T.pdb
+ GMX : /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/envs/g
+romacs/bin.AVX2_256/gmx     GMXLIB=/media/luzhenyang/project/alphagenome/alphage
+nome/VWF_ErTongYiyuan/force_fields     (全程 -nb cpu, ntomp=8)
+ WORK: /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/output
+/gromacs_md_a1_gpiba/K1362T/relax_pdb
+============================================================
+[1] 用 --pdb 输入 (实验结构路线)
+[2] pdb2gmx (charmm36m + force_fields patch)
+[3/4] 跳过真空 EM (--skip-vacuum, 适用 FoldX 突变体): 直接用 conf.gro 溶剂化
+[5] 溶剂化 + 0.15M NaCl + 溶剂化 EM
+   → Fmax = 4.3976025e+03 kJ/mol/nm
+
+============================================================
+ 真空受约束 Fmax = N/A
+ 真空无约束 Fmax = N/A
+ 溶剂化   Fmax = 4.3976025e+03
+ ✅ 溶剂化 EM 收敛 (<1e4)。MD-ready: /media/luzhenyang/project/alphagenome/alphag
+enome/VWF_ErTongYiyuan/output/gromacs_md_a1_gpiba/K1362T/relax_pdb/em.gro + topo
+l.top
+    可把它喂给后续 NVT/NPT/Production (或让 runner 从此结构续跑)。
+============================================================
+=== RELAX Y1363C Sun Jun 28 14:11:33 CST 2026 ===
+bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+============================================================
+ relax: Y1363C  model=0  system=a1_gpiba
+ 输入: /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/struct
+ures/1sq0_a1_gpiba_mutants/Y1363C.pdb
+ GMX : /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/envs/g
+romacs/bin.AVX2_256/gmx     GMXLIB=/media/luzhenyang/project/alphagenome/alphage
+nome/VWF_ErTongYiyuan/force_fields     (全程 -nb cpu, ntomp=8)
+ WORK: /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/output
+/gromacs_md_a1_gpiba/Y1363C/relax_pdb
+============================================================
+[1] 用 --pdb 输入 (实验结构路线)
+[2] pdb2gmx (charmm36m + force_fields patch)
+[3/4] 跳过真空 EM (--skip-vacuum, 适用 FoldX 突变体): 直接用 conf.gro 溶剂化
+[5] 溶剂化 + 0.15M NaCl + 溶剂化 EM
+   → Fmax = 4.5407910e+03 kJ/mol/nm
+
+============================================================
+ 真空受约束 Fmax = N/A
+ 真空无约束 Fmax = N/A
+ 溶剂化   Fmax = 4.5407910e+03
+ ✅ 溶剂化 EM 收敛 (<1e4)。MD-ready: /media/luzhenyang/project/alphagenome/alphag
+enome/VWF_ErTongYiyuan/output/gromacs_md_a1_gpiba/Y1363C/relax_pdb/em.gro + topo
+l.top
+    可把它喂给后续 NVT/NPT/Production (或让 runner 从此结构续跑)。
+============================================================
+=== RELAX F1369I Sun Jun 28 14:12:39 CST 2026 ===
+bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+============================================================
+ relax: F1369I  model=0  system=a1_gpiba
+ 输入: /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/struct
+ures/1sq0_a1_gpiba_mutants/F1369I.pdb
+ GMX : /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/envs/g
+romacs/bin.AVX2_256/gmx     GMXLIB=/media/luzhenyang/project/alphagenome/alphage
+nome/VWF_ErTongYiyuan/force_fields     (全程 -nb cpu, ntomp=8)
+ WORK: /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/output
+/gromacs_md_a1_gpiba/F1369I/relax_pdb
+============================================================
+[1] 用 --pdb 输入 (实验结构路线)
+[2] pdb2gmx (charmm36m + force_fields patch)
+[3/4] 跳过真空 EM (--skip-vacuum, 适用 FoldX 突变体): 直接用 conf.gro 溶剂化
+[5] 溶剂化 + 0.15M NaCl + 溶剂化 EM
+   → Fmax = 4.6122617e+03 kJ/mol/nm
+
+============================================================
+ 真空受约束 Fmax = N/A
+ 真空无约束 Fmax = N/A
+ 溶剂化   Fmax = 4.6122617e+03
+ ✅ 溶剂化 EM 收敛 (<1e4)。MD-ready: /media/luzhenyang/project/alphagenome/alphag
+enome/VWF_ErTongYiyuan/output/gromacs_md_a1_gpiba/F1369I/relax_pdb/em.gro + topo
+l.top
+    可把它喂给后续 NVT/NPT/Production (或让 runner 从此结构续跑)。
+============================================================
+=== RELAX D1373Y Sun Jun 28 14:13:44 CST 2026 ===
+bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+============================================================
+ relax: D1373Y  model=0  system=a1_gpiba
+ 输入: /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/struct
+ures/1sq0_a1_gpiba_mutants/D1373Y.pdb
+ GMX : /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/envs/g
+romacs/bin.AVX2_256/gmx     GMXLIB=/media/luzhenyang/project/alphagenome/alphage
+nome/VWF_ErTongYiyuan/force_fields     (全程 -nb cpu, ntomp=8)
+ WORK: /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/output
+/gromacs_md_a1_gpiba/D1373Y/relax_pdb
+============================================================
+[1] 用 --pdb 输入 (实验结构路线)
+[2] pdb2gmx (charmm36m + force_fields patch)
+[3/4] 跳过真空 EM (--skip-vacuum, 适用 FoldX 突变体): 直接用 conf.gro 溶剂化
+[5] 溶剂化 + 0.15M NaCl + 溶剂化 EM
+   → Fmax = 4.9559137e+04 kJ/mol/nm
+
+============================================================
+ 真空受约束 Fmax = N/A
+ 真空无约束 Fmax = N/A
+ 溶剂化   Fmax = 4.9559137e+04
+ ⚠ 溶剂化 EM Fmax=4.9559137e+04 偏高, 但已远好于 5.9e9。可再补 cg 或检查残余 cla
+sh。
+============================================================
+=== RELAX R1374S Sun Jun 28 14:14:53 CST 2026 ===
+bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8)
+============================================================
+ relax: R1374S  model=0  system=a1_gpiba
  输入: /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/struct
 ures/1sq0_a1_gpiba_mutants/R1374S.pdb
  GMX : /media/luzhenyang/project/alphagenome/alphagenome/VWF_ErTongYiyuan/envs/g
@@ -520,4 +686,38 @@ ding=39 GPUs=[0, 1, 2, 3, 4, 5, 6]
 [2026-06-29 12:09:53] launch K1362T attempt=1 GPU=6 free=44387 MiB
 [2026-06-29 12:16:24] complete A1355D on GPU 4
 [2026-06-29 12:16:24] launch Y1363C attempt=1 GPU=4 free=40229 MiB
+[2026-06-29 15:09:25] complete V1360A on GPU 5
+[2026-06-29 15:09:25] launch F1369I attempt=1 GPU=5 free=43687 MiB
+[2026-06-29 16:13:06] complete D1302G on GPU 2
+[2026-06-29 16:13:06] launch D1373Y attempt=1 GPU=2 free=41129 MiB
+[2026-06-29 17:15:48] complete E1359K on GPU 0
+[2026-06-29 17:15:48] launch R1374S attempt=1 GPU=0 free=44695 MiB
+[2026-06-29 17:38:52] complete H1322P on GPU 1
+[2026-06-29 17:38:52] launch L1382P attempt=1 GPU=1 free=41467 MiB
+[2026-06-29 18:49:04] complete Y1363C on GPU 4
+[2026-06-29 18:49:04] launch L1383R attempt=1 GPU=4 free=40229 MiB
+[2026-06-29 18:55:05] complete K1362T on GPU 6
+[2026-06-29 18:55:05] launch S1387I attempt=1 GPU=6 free=44387 MiB
+[2026-06-29 23:01:19] complete L1361W on GPU 3
+[2026-06-29 23:01:19] launch S1394F attempt=1 GPU=3 free=38243 MiB
+[2026-06-29 23:20:23] complete F1369I on GPU 5
+[2026-06-29 23:20:23] launch R1399C attempt=1 GPU=5 free=43687 MiB
+[2026-06-30 02:23:26] complete S1387I on GPU 6
+[2026-06-30 02:23:27] launch Q1402P attempt=1 GPU=6 free=44387 MiB
+[2026-06-30 02:28:58] complete L1383R on GPU 4
+[2026-06-30 02:28:58] launch V1439M attempt=1 GPU=4 free=40229 MiB
+[2026-06-30 04:13:17] complete D1373Y on GPU 2
+[2026-06-30 04:13:17] launch L1282R attempt=1 GPU=2 free=41125 MiB
+[2026-06-30 05:59:06] complete R1374S on GPU 0
+[2026-06-30 05:59:06] launch E1290L attempt=1 GPU=0 free=44697 MiB
+[2026-06-30 06:00:06] retry E1290L: rc=134, checkpoint retained, cooldown=300s
+[2026-06-30 06:00:07] launch L1296P attempt=1 GPU=0 free=44697 MiB
+[2026-06-30 06:49:46] complete L1382P on GPU 1
+[2026-06-30 06:49:46] launch R1315L attempt=1 GPU=1 free=41467 MiB
+[2026-06-30 08:30:34] complete R1399C on GPU 5
+[2026-06-30 08:30:34] launch Y1349C attempt=1 GPU=5 free=43687 MiB
+[2026-06-30 10:16:55] complete Q1402P on GPU 6
+[2026-06-30 10:16:55] launch S1358N attempt=1 GPU=6 free=44387 MiB
+[2026-06-30 10:20:25] complete V1439M on GPU 4
+[2026-06-30 10:20:26] launch L1365R attempt=1 GPU=4 free=40229 MiB
 
