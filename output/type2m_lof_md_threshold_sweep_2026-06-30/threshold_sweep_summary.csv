@@ -1,0 +1,8 @@
+contact_loss_threshold,completed_md_rows,completed_md_label_counts,strong_md_rows,changed_predictions,rescued_to_true,2M_delta_correct,2M_recall_fast,2B_delta_correct,2B_recall_fast,ALL_delta_correct,ALL_recall_fast,ALL_delta_uncertain
+10.0,22,2M:22,15,15,15,15,0.679,0,0.395,15,0.591,-15
+15.0,22,2M:22,13,13,13,13,0.642,0,0.395,13,0.582,-13
+20.0,22,2M:22,10,10,10,10,0.585,0,0.395,10,0.569,-10
+25.0,22,2M:22,8,8,8,8,0.547,0,0.395,8,0.56,-8
+30.0,22,2M:22,7,7,7,7,0.528,0,0.395,7,0.556,-7
+35.0,22,2M:22,6,6,6,6,0.509,0,0.395,6,0.551,-6
+40.0,22,2M:22,4,4,4,4,0.472,0,0.395,4,0.542,-4
