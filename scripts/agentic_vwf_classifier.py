@@ -438,32 +438,6 @@ class ClinicalGeneticistAgent:
         self.structural_expert = structural_expert
         self.transcriptomic_expert = transcriptomic_expert
 
-    @staticmethod
-    def _is_2b_associated_position(position: int) -> bool:
-        """
-        Check if position falls within exclusively Type 2B-associated positions.
-
-        Based on literature: 2B mutations cluster in A1 domain AIM regions.
-        CRITICAL LIMITATION: Same position can be 2B OR 2M depending on AA substitution!
-        (e.g., P1266L=2B, P1266Q=2M; R1308L=2B, R1308H=2A)
-
-        This heuristic is ONLY for use as a fallback when NO structural data is available,
-        and should be very conservative to avoid false positives.
-
-        Only positions with STRICT 2B-only literature evidence are included.
-        """
-        # AIM regions - but note that P1266Q from same position is 2M!
-        # Only include positions with consistent 2B evidence
-        if 1238 <= position <= 1268:
-            # P1266 is borderline (P1266L=2B, P1266Q=2M), so exclude it
-            if position == 1266:
-                return False
-            return True
-        if 1460 <= position <= 1472:
-            return True
-
-        return False
-
     def fuse(self, variant_data: Dict, expert_scores: ExpertScores) -> MultiLabelClassificationResult:
         """
         Main fusion logic - interpretable rule-based decision making.

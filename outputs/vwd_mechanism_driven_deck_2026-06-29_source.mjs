@@ -123,7 +123,7 @@ async function main() {
     addBox(s, pos(48, 390, 1184, 2), { fill: C.ink, line: C.ink });
     metric(s, "最新实际 Eval", "340", pos(52, 440, 210, 120), C.blue, "Type 1 + Type 2");
     metric(s, "Type 2 样本", "225", pos(310, 440, 210, 120), C.ink, "2A/2B/2M/2N");
-    metric(s, "Type 2 recall", "54.2%", pos(568, 440, 240, 120), C.orange, "no hotspot prior");
+    metric(s, "Type 2 recall", "54.2%", pos(568, 440, 240, 120), C.orange, "mechanism evidence only");
     metric(s, "下一阶段目标", "机制补全", pos(864, 440, 280, 120), C.green, "Type 1/3 + 2M/2A");
     foot(s, "Mechanism-driven VWD agentic decision-support system; diagnosis remains clinician-confirmed.");
   }
@@ -179,7 +179,7 @@ async function main() {
   // 4
   {
     const s = deck.slides.add(); s.background.fill = "#FFFFFF";
-    title(s, "Type 2: 去掉 hotspot 后，系统更干净但更保守", "with MD + no hotspot prior 后，2B recall 下降，2M recall 上升；这暴露了真正需要动态 GOF 证据的缺口。");
+    title(s, "Type 2: 机制证据版更干净但更保守", "with MD 后，2M recall 上升；2B recall 暴露出真正需要动态 GOF 证据的缺口。");
     s.charts.add("bar", {
       position: pos(70, 160, 520, 330),
       categories: ["2A", "2B", "2M", "2N"],
@@ -195,10 +195,10 @@ async function main() {
     metric(s, "2M precision", "89.3%", pos(960, 155, 220, 120), C.green, "判出来仍较干净");
     addBox(s, pos(670, 338, 490, 130), { fill: C.light, line: C.mid });
     bulletList(s, [
-      "2B: recall 明显下降 = 之前确实依赖位置先验",
-      "2M: recall 小幅上升 = G1324R/A1377V 不再被位置先验截走",
+      "2B: recall 偏低 = 仍缺少直接动态 GOF 证据",
+      "2M: recall 小幅上升 = MD LOF 证据开始产生收益",
       "2N: recall 还行，但 precision 低 = 很多 2A 被吸到 2N",
-      "no-hotspot 版本降低循环证据和标签记忆风险",
+      "当前版本降低循环证据和标签记忆风险",
     ], pos(695, 365, 440, 84), { size: 17 });
     foot(s, "Precision from current Type 2 confusion matrix: predicted-class purity; recall from true-label recovery.");
   }
@@ -242,7 +242,7 @@ async function main() {
     arrow(s, { x: 458, y: 211 }, { x: 500, y: 211 });
     arrow(s, { x: 682, y: 211 }, { x: 724, y: 211 });
     arrow(s, { x: 906, y: 211 }, { x: 948, y: 211 });
-    addText(s, "aa_change=L1276P\nA1 domain, pos=1276\nno position prior", pos(66, 198, 154, 58), { size: 13 });
+    addText(s, "aa_change=L1276P\nA1 domain, pos=1276\nmechanism features", pos(66, 198, 154, 58), { size: 13 });
     addText(s, "fb z=+0.25\nheparan z=+1.16\naim static=-0.50", pos(290, 198, 154, 58), { size: 13 });
     addText(s, "no MD:\nA1 方向证据弱\n→ uncertain", pos(514, 198, 154, 58), { size: 13 });
     addText(s, "AIM-A1 contacts\n0-5ns: 146.8\n40-50ns: 112.8\nloss=34.0", pos(738, 190, 154, 72), { size: 12 });
@@ -251,20 +251,20 @@ async function main() {
     smallTable(s, ["指标", "怎么算", "本 case 含义"], [
       ["fb_binding_zscore", "Boltz A1+GPIb complex primary score 的变体-同轴分布 z-score", "+0.25：不支持明显 GPIb 结合丢失"],
       ["heparan_zscore", "Boltz A1+heparan model 同法转 z-score", "+1.16：静态表面轴不支持 LOF"],
-      ["position prior", "已从分类器移除；不再用 recurrent residue 直接判 2B", "避免标签记忆/审稿质疑"],
+      ["label guard", "分类时不读取 true subtype；只读取机制特征", "避免标签记忆/循环证据"],
       ["md_face_destab", "(0-5ns contacts − 40-50ns contacts) / 20", "1.701：tail 接触显著下降，支持 2M LOF"],
     ], pos(58, 322, 1110, 208), [190, 480, 440], { rowH: 43, size: 13 });
     addText(s, "MD 补的盲区：Boltz 给的是静态复合体置信/结合 proxy，不能看到 closed-state A1 结合面在水环境中是否随时间塌陷；equilibrium MD 用 tail window 观察接触网络保留，给出动态稳定性证据。", pos(86, 552, 1030, 42), { size: 17, bold: true, color: C.ink });
-    foot(s, "Position/recurrent-residue prior removed after leakage-risk audit. Sources for mechanism context only: ASH/ISTH/NHF/WFH 2021; PDB 7A6O/Nat Commun 2021.");
+    foot(s, "Classification uses mechanism features only; subtype labels are used only after prediction for Eval. Sources: ASH/ISTH/NHF/WFH 2021; PDB 7A6O/Nat Commun 2021.");
   }
 
   // 7
   {
     const s = deck.slides.add(); s.background.fill = "#FFFFFF";
-    title(s, "Case 负例：V1316M 显示 equilibrium MD 的歧义", "去掉 hotspot 后，不再位置记忆；但单一 equilibrium MD LOF 轴会误伤部分真实 2B。");
+    title(s, "Case 负例：V1316M 显示 equilibrium MD 的歧义", "当前只靠 equilibrium MD LOF 轴，仍会误伤部分真实 2B。");
     smallTable(s, ["字段", "值", "解释"], [
       ["输入", "V1316M, A1", "true label = 2B"],
-      ["位置先验", "已移除", "不再因为 recurrent residue 直接判 2B"],
+      ["分类防护", "分类时不读取 true subtype", "只由机制特征触发 subtype 输出"],
       ["Boltz 轴", "fb=-0.92, hep=-0.05", "未达到联合 LOF 阈值"],
       ["MD 轴", "destab=1.158", "tail 接触下降，触发 2M soft evidence"],
       ["当前输出", "2M, conf=0.55", "说明 equilibrium MD face-destab 不是纯 2M 特异"],
@@ -277,8 +277,8 @@ async function main() {
       "需要 SMD/force-release 轴",
       "2M soft evidence 需加保护条件",
     ], pos(940, 258, 170, 118), { size: 16 });
-    addText(s, "优化方向：A1 判断需要 2B_score 与 2M_score 证据竞争。2B_score 不能来自位置记忆，应来自 force-release/SMD、GPIb retained/increased 或独立 GOF 证据。", pos(112, 520, 980, 48), { size: 21, bold: true, color: C.ink });
-    foot(s, "No-hotspot Eval: V1316M becomes true 2B → predicted 2M, exposing the need for a directional GOF dynamics axis.");
+    addText(s, "优化方向：A1 判断需要 2B_score 与 2M_score 证据竞争。2B_score 应来自 force-release/SMD、GPIb retained/increased 或独立 GOF 证据。", pos(112, 520, 980, 48), { size: 21, bold: true, color: C.ink });
+    foot(s, "Current Eval: V1316M is true 2B → predicted 2M, exposing the need for a directional GOF dynamics axis.");
   }
 
   // 8
@@ -308,6 +308,23 @@ async function main() {
   // 9
   {
     const s = deck.slides.add(); s.background.fill = "#FFFFFF";
+    title(s, "分类器阈值怎么设定", "当前不是黑箱训练模型；阈值来自分布自适应、校准集和机制保护三类来源。");
+    smallTable(s, ["阈值层", "当前实现", "设定依据"], [
+      ["AG RNA / splice", "RNA 低阈值=本批 25th percentile；splice 高阈值=75th percentile；score>0.7 才触发", "避免固定 cut-off；让不同批次 AG 输出先归一到本批分布"],
+      ["A1 Boltz LOF", "mean(fb_z, heparan_z) ≤ -0.75 → 2M；fb-only fallback ≤ -1.5", "calibrate_2b2m v2：A1 clean set 2B=36, 2M=37；选择 precision-oriented 点"],
+      ["A1 equilibrium MD", "md_face_destab ≥ 1.0 → 2M soft evidence", "7A6O WT+8×2B+3×2M：2M>2B AUC≈0.83；仅作 tie-breaker"],
+      ["AIM-A1 salt bridge", "retained_z ≥ 0.6 保护 2B-compatible；≤ -0.7 只作 2M 旁证", "小样本校准，避免单独用 MD 盐桥硬判 subtype"],
+      ["结构稳定性", "pLDDT damage=(90-pLDDT)/30；>0.5 为高损伤；PAE/10 归一", "工程归一化 + 机制规则；用于 2A/2N/A1 辅助，不替代功能轴"],
+    ], pos(48, 152, 1160, 350), [190, 470, 500], { rowH: 62, size: 13 });
+    addBox(s, pos(92, 540, 1030, 58), { fill: "#F7FFF8", line: "#BBE7C4" });
+    addText(s, "审稿回答", pos(126, 558, 150, 26), { size: 22, bold: true, color: C.green });
+    addText(s, "先按机制轴定义方向，再用独立/参考校准集选择保守工作点；高风险轴只作为 soft evidence。", pos(292, 558, 790, 28), { size: 18 });
+    foot(s, "Code refs: scripts/agentic_vwf_classifier.py; calibrate_2b2m_thresholds.py notes in classifier comments; latest Eval remains label-heldout after prediction.");
+  }
+
+  // 10
+  {
+    const s = deck.slides.add(); s.background.fill = "#FFFFFF";
     title(s, "Boltz 特征怎么来：输入复合体，输出静态结构置信", "Boltz 不是 MD，它预测一个静态复合体及相关 confidence/score。");
     smallTable(s, ["Boltz 轴", "我们输入什么", "Boltz 输出什么", "我们计算什么"], [
       ["A1-GPIb", "WT/variant A1 + GPIbα 片段", "complex prediction；iPTM/pTM/pLDDT 等", "primary score 与 WT/同轴分布比较 → fb_binding_zscore"],
@@ -321,7 +338,7 @@ async function main() {
     foot(s, "Sources: Boltz-2 project/technical report; AF3/Boltz confidence metrics used here as proxies, not calibrated binding constants.");
   }
 
-  // 10
+  // 11
   {
     const s = deck.slides.add(); s.background.fill = "#FFFFFF";
     title(s, "缺口图谱：哪些能用 AG，哪些不能只靠 AG", "repo 记录：内皮细胞 CL:0000115 有 6 个有效模态；全组织模式可补 5 个表观模态。");
@@ -336,10 +353,10 @@ async function main() {
     foot(s, "Repo refs: scripts/07e_god_mode_epigenome_crawler.py lines 12-13, 120-122, 494-502; scripts/03_run_alphagenome_inference.py uses CL:0000115 for endothelial RNA/splice.");
   }
 
-  // 11
+  // 12
   {
     const s = deck.slides.add(); s.background.fill = "#FFFFFF";
-    title(s, "A1 难点：2B 和 2M 都在同一结构域，但方向相反", "2B 是 gain-of-function；2M 是 loss-of-function。去掉位置先验后，这个难点被真实暴露。");
+    title(s, "A1 难点：2B 和 2M 都在同一结构域，但方向相反", "2B 是 gain-of-function；2M 是 loss-of-function；关键是补齐方向性机制证据。");
     smallTable(s, ["MD 指标", "直觉解释", "怎么算", "分类含义"], [
       ["saltbridge retention", "AIM-A1 的“锁/桥”是否还保留", "tail window 内关键 AIM-A1 salt bridge/contact 占有率，转 z-score", "高 z：面还在，anti-2M，支持 2B-compatible"],
       ["md_face_destab_score", "A1 结合面是否随时间变不稳", "(0-5ns AIM-A1 masking contacts − 40-50ns tail contacts) / 20", "高：接触面塌陷/不稳，支持 2M LOF"],
@@ -354,7 +371,7 @@ async function main() {
     foot(s, "Sources: ASH/ISTH/NHF/WFH 2021 VWD guideline; Deng Blood 2017 AIM masks A1; PDB 7A6O/Nat Commun 2021 AIM-A1; repo MD report TYPE2M_LOF_MD_FAST_VALIDATION_REPORT.md.");
   }
 
-  // 12
+  // 13
   {
     const s = deck.slides.add(); s.background.fill = "#FFFFFF";
     title(s, "MD 与 SMD：先把可用轴跑通", "SMD/force-MD 更接近受力释放机制，但需要慢拉、多重复和严格校准；短期不宜作为第一生产轴。");
@@ -369,7 +386,7 @@ async function main() {
     foot(s, "Sources: docs/7A6O_SMD_STATUS_HANDOFF_2026-06-21.md; docs/7A6O_SMD_WT_DIAGNOSIS_2026-06-21.md; GROMACS pull-code docs.");
   }
 
-  // 13
+  // 14
   {
     const s = deck.slides.add(); s.background.fill = "#FFFFFF";
     title(s, "三类动力学方法：成本与收益不同", "我们目前做的是第一类 equilibrium MD；SMD/PMF 只适合少量机制验证或高价值 case。");
@@ -389,7 +406,7 @@ async function main() {
     foot(s, "Local SMD record: 5 ns production replicate at 1 nm/ns, 3 reps/variant; GROMACS pull-code docs: non-equilibrium pulling requires path/repetition care.");
   }
 
-  // 14
+  // 15
   {
     const s = deck.slides.add(); s.background.fill = "#FFFFFF";
     title(s, "预期提升：保持保守，先追求 50-70% recall", "目前不应承诺 80-90%；先把每个分型稳定推入 50-70% 区间更可信。");
@@ -405,7 +422,7 @@ async function main() {
     foot(s, "Target bands are conservative planning estimates, not validated claims.");
   }
 
-  // 15
+  // 16
   {
     const s = deck.slides.add(); s.background.fill = "#FFFFFF";
     title(s, "研究定位：subtype mechanism", "现有 AI 变异工具多回答“是否有害”；我们的问题是“有害通过哪条 VWF 机制表现为哪个 subtype”。");
@@ -421,16 +438,16 @@ async function main() {
     foot(s, "Sources: ClinGen VWD VCEP / CSpec registry; AF3 Nature 2024; Boltz-2; AlphaMissense Science 2023.");
   }
 
-  // 16
+  // 17
   {
     const s = deck.slides.add(); s.background.fill = "#FFFFFF";
-    title(s, "Take-home", "无位置记忆后的结果更保守，也更能暴露真正的机制缺口。");
+    title(s, "Take-home", "机制证据版结果更保守，也更能暴露真正的机制缺口。");
     addBox(s, pos(80, 165, 1080, 85), { fill: "#F7FAFF", line: "#C7D7FE" });
     addText(s, "1. 命名可行", pos(112, 190, 180, 30), { size: 24, bold: true, color: C.blue });
     addText(s, "“机制驱动的 VWD 智能体辅助分型/诊断系统”符合项目实质；定位为 research prototype / decision support。", pos(310, 188, 790, 36), { size: 19 });
     addBox(s, pos(80, 285, 1080, 85), { fill: "#F7FFF8", line: "#BBE7C4" });
     addText(s, "2. 已有价值", pos(112, 310, 180, 30), { size: 24, bold: true, color: C.green });
-    addText(s, "删掉 hotspot 后系统更干净；2M MD rescue 更可信，但 2B recall 暴露出缺少 force-release/GOF 动态证据。", pos(310, 308, 790, 36), { size: 19 });
+    addText(s, "当前系统更干净；2M MD rescue 更可信，但 2B recall 暴露出缺少 force-release/GOF 动态证据。", pos(310, 308, 790, 36), { size: 19 });
     addBox(s, pos(80, 405, 1080, 85), { fill: "#FFF6F1", line: "#FFD3C2" });
     addText(s, "3. 下一步明确", pos(112, 430, 180, 30), { size: 24, bold: true, color: C.orange });
     addText(s, "补 Type 1/3、重构 A1 score fusion、扩大 2M LOF 与 2A/2N 机制特征，是提升 recall 的主路径。", pos(310, 428, 790, 36), { size: 19 });
