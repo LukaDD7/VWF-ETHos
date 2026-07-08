@@ -264,34 +264,38 @@ def compute_interface(
     ndx: Path,
     cutoff_nm: float,
     force: bool,
+    dt_ns: float | None,
 ) -> tuple[dict[str, float | int | None], list[dict]]:
     prefix = out_dir / "interface" / run.variant
     prefix.parent.mkdir(parents=True, exist_ok=True)
     mindist = prefix.with_name(f"{run.variant}_a1_gpiba_mindist.xvg")
     numcont = prefix.with_name(f"{run.variant}_a1_gpiba_numcont.xvg")
     if force or not (mindist.exists() and numcont.exists()):
+        cmd = [
+            gmx,
+            "mindist",
+            "-s",
+            str(run.tpr),
+            "-f",
+            str(traj),
+            "-n",
+            str(ndx),
+            "-od",
+            str(mindist),
+            "-on",
+            str(numcont),
+            "-d",
+            str(cutoff_nm),
+            "-group",
+            "-tu",
+            "ns",
+            "-xvg",
+            "none",
+        ]
+        if dt_ns is not None and dt_ns > 0:
+            cmd.extend(["-dt", str(dt_ns)])
         run_cmd(
-            [
-                gmx,
-                "mindist",
-                "-s",
-                str(run.tpr),
-                "-f",
-                str(traj),
-                "-n",
-                str(ndx),
-                "-od",
-                str(mindist),
-                "-on",
-                str(numcont),
-                "-d",
-                str(cutoff_nm),
-                "-group",
-                "-tu",
-                "ns",
-                "-xvg",
-                "none",
-            ],
+            cmd,
             cwd=ROOT,
             stdin="VWF_A1\nGPIBA\n",
             log=out_dir / "logs" / f"{run.variant}_mindist.log",
@@ -405,6 +409,7 @@ def main() -> int:
     parser.add_argument("--a1-selection", default=DEFAULT_A1_SELECTION)
     parser.add_argument("--gpiba-selection", default=DEFAULT_GPIBA_SELECTION)
     parser.add_argument("--contact-cutoff-nm", type=float, default=0.45)
+    parser.add_argument("--dt-ns", type=float, default=None, help="optional trajectory sampling interval for gmx mindist, in ns")
     parser.add_argument(
         "--loss-scale-contacts",
         type=float,
@@ -443,7 +448,7 @@ def main() -> int:
         print(f"Analyzing {run.variant} ({run.label})")
         traj, check = concat_and_check(gmx, run, out_dir, args.force)
         ndx = make_index(gmx, run, out_dir, args.a1_selection, args.gpiba_selection, args.force)
-        iface, ts = compute_interface(gmx, run, traj, out_dir, ndx, args.contact_cutoff_nm, args.force)
+        iface, ts = compute_interface(gmx, run, traj, out_dir, ndx, args.contact_cutoff_nm, args.force, args.dt_ns)
         summary_rows.append({
             "variant": run.variant,
             "label": run.label,

@@ -1,0 +1,9 @@
+dataset,label,subset,n,correct,recall,uncertain,called_2b,called_2m
+a1_2b2m_no_md,2B,all,31,5,0.161,24,5,2
+a1_2b2m_no_md,2B,md_available,20,3,0.15,16,3,1
+a1_2b2m_no_md,2M,all,42,10,0.238,32,0,10
+a1_2b2m_no_md,2M,md_available,1,0,0.0,1,0,0
+a1_2b2m_with_existing_md,2B,all,31,15,0.484,13,15,3
+a1_2b2m_with_existing_md,2B,md_available,20,13,0.65,5,13,2
+a1_2b2m_with_existing_md,2M,all,42,26,0.619,16,0,26
+a1_2b2m_with_existing_md,2M,md_available,1,0,0.0,1,0,0

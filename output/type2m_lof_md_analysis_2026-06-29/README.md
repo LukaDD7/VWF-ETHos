@@ -22,3 +22,7 @@ Files:
 - `combined_completed_and_running_summary.csv`: combined view.
 - `a1_gpiba_completed_qc/`: GROMACS RMSD QC for 37 completed A1-GPIb runs.
 - `7a6o_completed_qc/`: GROMACS RMSD and AIM-A1 contact QC for 31 completed 7A6O closed-state runs.
+
+Additional classifier-facing analyses:
+- `a1_gpiba_interface_qc_dt1/`: A1-GPIb interface/contact-retention features for 37 completed runs, computed with 1 ns trajectory sampling via `analyze_a1_gpiba_completed_md.py --dt-ns 1`. Classifier-facing table: `a1_gpiba_classifier_features.csv`.
+- `../type2m_lof_md_fast_validation_2026-07-08/`: 7A6O closed-state fast MD validation against the classifier using the 31 completed closed-state runs.
