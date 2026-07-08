@@ -48,6 +48,7 @@ def main() -> int:
     parser.add_argument("--min-free-mib", type=int, default=12000)
     parser.add_argument("--poll-seconds", type=int, default=30)
     parser.add_argument("--retry-seconds", type=int, default=300)
+    parser.add_argument("--max-attempts", type=int, default=5)
     parser.add_argument("--ns", type=int, default=50)
     parser.add_argument("--nvt-ps", type=int, default=50)
     parser.add_argument("--npt-ps", type=int, default=200)
@@ -109,6 +110,12 @@ def main() -> int:
             del active[gpu]
             if rc == 0 and md_done(out_root, variant):
                 log(f"complete {variant} on GPU {gpu}")
+            elif attempts.get(variant, 0) >= args.max_attempts:
+                failed = out_root / f"{variant}_md_direct.failed"
+                failed.write_text(
+                    f"{time.strftime('%F %T')} rc={rc} attempts={attempts.get(variant, 0)}\n"
+                )
+                log(f"FAILED {variant}: rc={rc}, attempts={attempts.get(variant, 0)}; not retrying")
             else:
                 retry_after[variant] = time.time() + args.retry_seconds
                 pending.append(variant)

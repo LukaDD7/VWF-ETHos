@@ -1,0 +1,4 @@
+system,variant,status,reason,recommendation
+a1_gpiba,L1276R,failed_or_withheld,NVT hang/retry without completed md_prod.gro,exclude from current classifier and feature validation
+a1_gpiba,R1315G,failed_or_withheld,repeated NVT/GROMACS CUDA illegal memory access failures without completed md_prod.gro,exclude from current classifier and feature validation
+7a6o_closed_state,R1374S,failed_or_withheld,repeated NVT failures/hangs without completed md_prod.gro,exclude from current classifier and feature validation
