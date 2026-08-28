@@ -61,6 +61,10 @@ def summary_row(state: dict[str, Any]) -> dict[str, Any]:
         ),
         "act_ag_ratio": state.get("vwf_act_ag_ratio"),
         "recommended_second_level": "; ".join(action["action_code"] for action in state.get("recommended_actions", [])),
+        "subtype_tendencies": "; ".join(
+            f"{item['subtype_label']}({item['score']},{item['confidence']})"
+            for item in state.get("subtype_tendencies", [])
+        ),
         "conflicts": "; ".join(conflict["conflict_id"] for conflict in state.get("evidence_conflicts", [])),
         "acmg_hints": "; ".join(state.get("acmg_evidence_hints", [])),
         **{key: "; ".join(items) for key, items in values.items()},
@@ -70,7 +74,7 @@ def summary_row(state: dict[str, Any]) -> dict[str, Any]:
 
 def markdown_table(rows: list[dict[str, Any]]) -> str:
     keys = [
-        "patient_id", "variants", "act_ag_ratio", "domain", "gnomad_exome_af", "gnomad_genome_af",
+        "patient_id", "variants", "act_ag_ratio", "domain", "subtype_tendencies", "gnomad_exome_af", "gnomad_genome_af",
         "clinvar", "clingen", "revel", "cadd", "alphamissense", "recommended_second_level",
         "conflicts", "acmg_hints", "expert_review_required",
     ]

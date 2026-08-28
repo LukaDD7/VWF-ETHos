@@ -18,6 +18,8 @@ from src.vwd_clinical_agent.tools.fhir import FHIRBundle, observation
 from src.vwd_clinical_agent.evidence_analysis import analyze_evidence_conflicts
 from src.vwd_clinical_agent.run_archive import RunArchive
 from src.vwd_clinical_agent.tools.full_text import PubMedFullTextSearchTool
+from src.vwd_clinical_agent.tools.variant_context import VWFDomainAnnotator
+from src.vwd_clinical_agent.subtype_tendency import infer_subtype_tendency
 from src.vwd_clinical_agent.azure import DeterministicLLMProvider
 from src.vwd_clinical_agent.graph import build_workflow
 from src.vwd_clinical_agent.workbook import LocalWorkbookProvider
@@ -221,3 +223,51 @@ def test_full_text_search_extracts_diverse_clinical_excerpts() -> None:
     terms = {excerpt["term"].casefold() for excerpt in excerpts}
     assert {"ristocetin", "multimer", "ddavp"}.issubset(terms)
     assert all(len(excerpt["text"]) > 20 for excerpt in excerpts)
+
+
+def test_canonical_uniprot_domain_annotation_resolves_boundaries() -> None:
+    def domain_for(hgvs_p: str) -> str:
+        request = ToolRequest(
+            operation="annotate_domain",
+            patient_id="CASE_TEST",
+            variant_id="CASE_TEST",
+            parameters={"hgvs_p": hgvs_p},
+        )
+        response = VWFDomainAnnotator().invoke(request)
+        observation = response.output.resources("Observation")[0]
+        return next(component["valueString"] for component in observation["component"] if component["code"]["text"] == "domain")
+
+    assert domain_for("p.Val1316Met") == "VWFA1"
+    assert domain_for("p.Ala1500Val") == "VWFA2"
+    assert domain_for("p.Ser1506Leu") == "VWFA2"
+    assert domain_for("p.Arg1205His") == "TIL4-VWFA1 linker"
+    assert domain_for("p.Ala1461Asp") == "VWFA1-VWFA2 linker"
+    assert domain_for("p.Asp2449Asn") == "VWFC2"
+
+
+def test_subtype_tendency_uses_variant_specific_literature_and_domain() -> None:
+    bundle = FHIRBundle.of(
+        [
+            observation(
+                observation_id="domain",
+                patient_id="CASE_TEST",
+                display="VWF mature-protein domain and variant class",
+                value="p.Test1316Test; VWFA1; missense",
+                components=[{"code": {"text": "domain"}, "valueString": "VWFA1"}],
+            ),
+            observation(
+                observation_id="ripa",
+                patient_id="CASE_TEST",
+                display="Literature RIPA evidence",
+                value="enhanced",
+                components=[{"code": {"text": "variant_specific"}, "valueBoolean": True}],
+            ),
+        ]
+    )
+    tendencies = infer_subtype_tendency(
+        fhir_bundle=bundle,
+        ratio=0.45,
+        candidate_subtypes=["type_2_candidate"],
+    )
+    assert tendencies[0].subtype_label == "type_2B"
+    assert tendencies[0].confidence == "moderate"

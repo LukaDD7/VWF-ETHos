@@ -36,6 +36,12 @@ class DeterministicLLMProvider:
         )
         if actions:
             summary += "The evidence-constrained second-level plan prioritizes " + ", ".join(actions) + ". "
+        tendencies = state.get("subtype_tendencies", [])
+        if tendencies:
+            tendency_text = ", ".join(
+                f"{item['subtype_label']} (score {item['score']}, {item['confidence']})" for item in tendencies
+            )
+            summary += "Current subtype tendencies are " + tendency_text + ". "
         if state.get("second_level_status") == "not_available":
             summary += (
                 "All requested second-level tests were explicitly unavailable in this retrospective environment; "

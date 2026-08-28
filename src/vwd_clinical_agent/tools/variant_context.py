@@ -7,18 +7,27 @@ from .base import BaseBiomedicalTool, ToolRequest
 from .fhir import FHIRResource, observation, operation_outcome
 
 
-# Mature VWF domain boundaries are approximate mature-protein intervals used only
-# as a display/explanation aid, not as a structural predictor.
+# Canonical UniProt P04275 feature coordinates. HGVS p. positions and these
+# coordinates both use prepro-VWF numbering; no mature-protein conversion is applied.
 DOMAINS: list[tuple[int, int, str]] = [
-    (1, 763, "D1-D2 propeptide"),
-    (764, 1244, "D'-D3"),
-    (1245, 1671, "A1"),
-    (1672, 1875, "A2"),
-    (1876, 2255, "A3"),
-    (2256, 2571, "D4"),
-    (2572, 2813, "C1-C6"),
-    (2814, 2820, "CK"),
+    (1, 33, "VWFD1"),
+    (295, 348, "TIL1"),
+    (386, 560, "VWFD2"),
+    (652, 707, "TIL2"),
+    (776, 827, "TIL3"),
+    (865, 1032, "VWFD3"),
+    (1146, 1196, "TIL4"),
+    (1277, 1453, "VWFA1"),
+    (1498, 1665, "VWFA2"),
+    (1691, 1871, "VWFA3"),
+    (1948, 2124, "VWFD4"),
+    (2255, 2328, "VWFC1"),
+    (2429, 2495, "VWFC2"),
+    (2580, 2645, "VWFC3"),
+    (2724, 2812, "CTCK"),
 ]
+
+DOMAIN_ORDER = [name for _, _, name in DOMAINS]
 
 
 class VWFDomainAnnotator(BaseBiomedicalTool):
@@ -35,7 +44,9 @@ class VWFDomainAnnotator(BaseBiomedicalTool):
             return [operation_outcome("information", "not-found", f"Could not parse protein position from {hgvs_p}")], "not_found"
         raw_ref, position_text, raw_alt = match.groups()
         position = int(position_text)
-        domain = next((name for start, end, name in DOMAINS if start <= position <= end), "outside_annotated_domains")
+        domain = next((name for start, end, name in DOMAINS if start <= position <= end), "")
+        if not domain:
+            domain = _interdomain_label(position)
         if "*" in raw_alt or raw_alt.lower().startswith("x"):
             variant_type = "nonsense"
         elif "=" in raw_alt or raw_alt == "=":
@@ -56,7 +67,17 @@ class VWFDomainAnnotator(BaseBiomedicalTool):
                 {"code": {"text": "protein_position"}, "valueQuantity": {"value": position}},
                 {"code": {"text": "domain"}, "valueString": domain},
                 {"code": {"text": "variant_class"}, "valueString": variant_type},
-                {"code": {"text": "boundary_precision"}, "valueString": "approximate_display_only"},
+                {"code": {"text": "boundary_precision"}, "valueString": "canonical_feature_boundary"},
+                {"code": {"text": "coordinate_system"}, "valueString": "UniProt_P04275_prepro_numbering"},
+                {"code": {"text": "source"}, "valueString": "UniProt P04275 canonical features"},
             ],
         )
         return [resource, self.provenance_for(f"Observation/{resource.id}", request, {"hgvs_p": hgvs_p, "domain": domain, "variant_type": variant_type})], "success"
+
+
+def _interdomain_label(position: int) -> str:
+    previous = next((name for start, end, name in reversed(DOMAINS) if start <= position), None)
+    following = next((name for start, end, name in DOMAINS if position <= start), None)
+    if previous and following:
+        return f"{previous}-{following} linker"
+    return "outside_annotated_domains"

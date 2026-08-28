@@ -12,6 +12,7 @@ from .tools.fhir import FHIRBundle
 from .tools.matrix import EvidenceToolMatrix
 from .tools.second_level import SECOND_LEVEL_ACTIONS, SecondLevelFHIRStore
 from .evidence_analysis import analyze_evidence_conflicts
+from .subtype_tendency import infer_subtype_tendency
 from .schemas import (
     ClinicalAction,
     EvidenceItem,
@@ -453,6 +454,21 @@ def apply_type2_clingen_acmg(state: VWDWorkflowState) -> dict[str, Any]:
     }
 
 
+def infer_subtype_tendency_node(state: VWDWorkflowState) -> dict[str, Any]:
+    bundle = state.get("fhir_evidence_bundle")
+    if not isinstance(bundle, FHIRBundle):
+        bundle = FHIRBundle()
+    tendencies = infer_subtype_tendency(
+        fhir_bundle=bundle,
+        ratio=state.get("vwf_act_ag_ratio"),
+        candidate_subtypes=state.get("candidate_subtypes", ["unresolved"]),
+    )
+    return {
+        "subtype_tendencies": tendencies,
+        "trace": [_trace(state, "infer_subtype_tendency", tendencies=[item.model_dump() for item in tendencies])],
+    }
+
+
 def synthesize_opinion(state: VWDWorkflowState, llm_provider: LLMProvider) -> dict[str, Any]:
     system_prompt = (
         "You are a retrospective VWD research summarizer. Return only JSON with keys "
@@ -474,6 +490,7 @@ def synthesize_opinion(state: VWDWorkflowState, llm_provider: LLMProvider) -> di
             "evidence_conflicts": [conflict.model_dump() for conflict in state.get("evidence_conflicts", [])],
             "evidence_missing": state.get("evidence_missing", []),
             "acmg_evidence_hints": state.get("acmg_evidence_hints", []),
+            "subtype_tendencies": [item.model_dump() for item in state.get("subtype_tendencies", [])],
         },
         ensure_ascii=False,
     )
@@ -582,6 +599,7 @@ def package_final_opinion(state: VWDWorkflowState) -> dict[str, Any]:
         abstention=True,
         expert_review_required=True,
         recommended_actions=actions,
+        subtype_tendencies=state.get("subtype_tendencies", []),
         supporting_evidence=[item.source_record_id for item in state.get("evidence_items", [])] + fhir_resource_ids,
         contradicting_evidence=[
             f"{conflict.description} Evidence: {', '.join(conflict.evidence_refs)}"
@@ -634,6 +652,7 @@ def build_workflow(
         graph.add_node("run_fhir_evidence_tools", lambda state: run_fhir_evidence_tools(state, evidence_tool_matrix))
     graph.add_node("integrate_patient_variant_evidence", integrate_patient_variant_evidence)
     graph.add_node("analyze_evidence", analyze_evidence)
+    graph.add_node("infer_subtype_tendency", infer_subtype_tendency_node)
     graph.add_node("apply_type2_clingen_acmg", apply_type2_clingen_acmg)
     graph.add_node("synthesize_opinion", lambda state: synthesize_opinion(state, llm_provider))
     graph.add_node("safety_conflict_gate", safety_conflict_gate)
@@ -656,7 +675,8 @@ def build_workflow(
     else:
         graph.add_edge("run_evidence_providers", "integrate_patient_variant_evidence")
     graph.add_edge("integrate_patient_variant_evidence", "analyze_evidence")
-    graph.add_edge("analyze_evidence", "apply_type2_clingen_acmg")
+    graph.add_edge("analyze_evidence", "infer_subtype_tendency")
+    graph.add_edge("infer_subtype_tendency", "apply_type2_clingen_acmg")
     graph.add_edge("apply_type2_clingen_acmg", "recommend_second_level")
     graph.add_edge("recommend_second_level", "check_lab_availability")
     graph.add_edge("check_lab_availability", "ingest_second_level_results")

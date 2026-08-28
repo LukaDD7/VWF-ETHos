@@ -108,6 +108,7 @@ class FinalClinicalPackage(BaseModel):
     abstention: bool
     expert_review_required: bool
     recommended_actions: list[ClinicalAction]
+    subtype_tendencies: list["SubtypeTendency"]
     supporting_evidence: list[str]
     contradicting_evidence: list[str]
     missing_information: list[str]
@@ -129,6 +130,17 @@ class EvidenceConflict(BaseModel):
     description: str
     explanation: str
     recommended_action: Literal["expert_review", "additional_evidence", "accept_uncertainty"]
+
+
+class SubtypeTendency(BaseModel):
+    subtype_label: str
+    score: float
+    confidence: Literal["low", "moderate"]
+    rationale: str
+    evidence_refs: list[str]
+
+
+FinalClinicalPackage.model_rebuild()
 
 
 class TraceEvent(BaseModel):
@@ -162,6 +174,7 @@ class VWDWorkflowState(TypedDict, total=False):
     evidence_missing: list[str]
     evidence_conflict_summary: str
     acmg_evidence_hints: list[str]
+    subtype_tendencies: list[SubtypeTendency]
     candidate_subtypes: list[str]
     safety_flags: list[SafetyFlag]
     llm_summary: Optional[str]

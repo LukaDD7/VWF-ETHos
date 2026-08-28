@@ -170,7 +170,16 @@ class OpenCravatAnnotator(HTTPMixin, BaseBiomedicalTool):
                     _component("module_version", module_versions.get(key) or {}),
                     _component("gene", crx.get("hugo")),
                     _component("protein_change", crx.get("achange")),
-                ],
+                ]
+                + (
+                    [
+                        _component("disease_names", clinvar.get("disease_names")),
+                        _component("review_status", clinvar.get("rev_stat")),
+                        _component("clinvar_hgvs", clinvar.get("hgvs")),
+                    ]
+                    if key == "clinvar"
+                    else []
+                ),
             )
             resources.append(resource)
             resources.append(self.provenance_for(f"Observation/{resource.id}", request, payload))
@@ -299,6 +308,16 @@ class PubMedSearchProvider(HTTPMixin, BaseBiomedicalTool):
                 pmc_id = self._elink_pmc(uid)
                 if pmc_id:
                     full_text = self._efetch_pmc_full_text(pmc_id)
+            variant_terms = [
+                str(value)
+                for key, value in request.parameters.items()
+                if key in {"hgvs_p", "hgvs_c", "rsid"} and value
+            ]
+            searchable_text = " ".join(
+                [article.get("title", ""), article.get("abstract", ""), full_text or ""]
+            ).casefold()
+            matched_terms = [term for term in variant_terms if term.casefold() in searchable_text]
+            variant_specific = bool(matched_terms)
             resource = FHIRResource(
                 resourceType="DocumentReference",
                 id=f"pubmed-{uid}",
@@ -315,6 +334,8 @@ class PubMedSearchProvider(HTTPMixin, BaseBiomedicalTool):
                     {"url": "https://vwf-ethos.org/StructureDefinition/pub-doi", "valueString": article.get("doi", "")},
                     {"url": "https://vwf-ethos.org/StructureDefinition/pub-full-text", "valueString": full_text or ""},
                     {"url": "https://vwf-ethos.org/StructureDefinition/pub-pmc-id", "valueString": pmc_id or ""},
+                    {"url": "https://vwf-ethos.org/StructureDefinition/pub-variant-specific", "valueBoolean": variant_specific},
+                    {"url": "https://vwf-ethos.org/StructureDefinition/pub-matched-terms", "valueString": "; ".join(matched_terms)},
                 ],
             )
             resources.append(resource)

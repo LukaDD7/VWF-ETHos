@@ -15,6 +15,10 @@ PATTERNS: list[tuple[str, re.Pattern[str]]] = [
     ("RIPA", re.compile(r"(?:ristocetin[- ]induced platelet aggregation|RIPA)[^.\n]{0,180}?(normal|increased|enhanced|reduced|absent|abnormal)", re.I)),
     ("VWF multimer", re.compile(r"(?:multimer|multimers)[^.\n]{0,180}?(normal|absent|reduced|abnormal|loss[^.\n]{0,40}high[- ]molecular[- ]weight)", re.I)),
     ("Secretion", re.compile(r"(?:secretion|secreted)[^.\n]{0,180}?(normal|unaffected|reduced|impaired|no significant[^.\n]{0,30}effect)", re.I)),
+    ("Recombinant expression", re.compile(r"(?:recombinant[^.\n]{0,100}expression|expressed[^.\n]{0,80}recombinant)[^.\n]{0,180}?(normal|unaffected|reduced|impaired|no significant[^.\n]{0,30}effect)", re.I)),
+    ("Stimulated release", re.compile(r"(?:stimulated[^.\n]{0,80}release|release[^.\n]{0,100}stimul\w+)[^.\n]{0,180}?(normal|unaffected|reduced|impaired|no significant[^.\n]{0,30}effect)", re.I)),
+    ("Storage", re.compile(r"(?:storage|Weibel[- ]Palade bodies)[^.\n]{0,180}?(normal|unaffected|reduced|impaired|absent)", re.I)),
+    ("Structural change", re.compile(r"(?:structure|structural|conformation)[^.\n]{0,220}?(no significant[^.\n]{0,40}(?:change|rearrangement)|minor|subtle|marked|large)", re.I)),
     ("Dominant-negative effect", re.compile(r"(?:dominant[- ]negative)[^.\n]{0,180}?(absent|not[^.\n]{0,30}observed|present|observed)", re.I)),
     ("DDAVP response", re.compile(r"(?:DDAVP|desmopressin)[^.\n]{0,220}?(normal|partial|increased|reduced|no response|clearance)", re.I)),
     ("ABO effect", re.compile(r"\bABO\b[^.\n]{0,220}?(blood group|genotype|clearance|level|expression)", re.I)),
@@ -41,6 +45,14 @@ class LiteraturePhenotypeExtractor(BaseBiomedicalTool):
                 for extension in document.get("extension", [])
                 if "pub-full-text" in extension.get("url", "")
             )
+            variant_specific = next(
+                (
+                    extension.get("valueBoolean", False)
+                    for extension in document.get("extension", [])
+                    if "pub-variant-specific" in extension.get("url", "")
+                ),
+                False,
+            )
             for label, pattern in PATTERNS:
                 matches = list(pattern.finditer(text))[:2]
                 for index, match in enumerate(matches):
@@ -57,6 +69,7 @@ class LiteraturePhenotypeExtractor(BaseBiomedicalTool):
                         components=[
                             {"code": {"text": "excerpt"}, "valueString": excerpt},
                             {"code": {"text": "source_document"}, "valueString": document["id"]},
+                            {"code": {"text": "variant_specific"}, "valueBoolean": variant_specific},
                         ],
                     )
                     resources.append(resource)
