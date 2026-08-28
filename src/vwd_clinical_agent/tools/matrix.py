@@ -195,6 +195,9 @@ class EvidenceToolMatrix:
                     "query": self._pubmed_query(hgvs_c, hgvs_p, normalized.get("rsid")),
                     "retmax": 5,
                     "include_full_text": bool((local_parameters or {}).get("include_pubmed_full_text", False)),
+                    "hgvs_c": hgvs_c,
+                    "hgvs_p": hgvs_p,
+                    "rsid": normalized.get("rsid"),
                 },
             ),
         )
@@ -202,6 +205,7 @@ class EvidenceToolMatrix:
             any("pub-full-text" in extension.get("url", "") for extension in resource.get("extension", []))
             for resource in pubmed_response.output.resources("DocumentReference")
         ):
+            variant_terms = [term for term in (hgvs_c, hgvs_p, normalized.get("rsid")) if term]
             full_text_bundle = FHIRBundle.of(
                 [
                     FHIRResource.model_validate(resource)
@@ -215,6 +219,12 @@ class EvidenceToolMatrix:
                     patient_id=patient_id,
                     variant_id=variant_id,
                     input=full_text_bundle,
+                    parameters={
+                        "variant_terms": variant_terms,
+                        "context_before_chars": 600,
+                        "context_after_chars": 900,
+                        "variant_link_radius": 1500,
+                    },
                 ),
             )
             invoke(
@@ -224,6 +234,12 @@ class EvidenceToolMatrix:
                     patient_id=patient_id,
                     variant_id=variant_id,
                     input=full_text_bundle,
+                    parameters={
+                        "variant_terms": variant_terms,
+                        "context_before_chars": 500,
+                        "context_after_chars": 700,
+                        "variant_link_radius": 1200,
+                    },
                 ),
             )
         invoke("hgmd", ToolRequest(operation="licensed_classification", patient_id=patient_id, variant_id=variant_id))

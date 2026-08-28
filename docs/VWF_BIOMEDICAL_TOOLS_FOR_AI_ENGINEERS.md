@@ -37,6 +37,7 @@ The Agent's job is not to "vote" freely. It must:
 | AlphaMissense | What is the model's pathogenicity probability? | 0–1 probability | Can be ambiguous; not a clinical classifier |
 | SpliceAI | Does this variant affect splicing? | Delta scores | Only relevant when splicing is plausible; no score is not no effect |
 | PubMed | What case reports, phenotypes, and functional studies exist? | PMID, title, journal, year, DOI, abstract | Absence of an exact article is missing evidence, not benign evidence |
+| PubMed Central full text | What does the complete article say around a keyword? | Bounded context window, matched term, nearest variant term, link distance | Generic background sentences are not attributed to the patient’s variant unless they are close to an explicit variant mention |
 | HGMD | Are there published disease variants? | DM/classification metadata | Requires institutional license; no public API in this deployment |
 | Local score snapshots | Can the system run offline? | versioned local lookup | Only a fallback; local snapshots are smaller than the full live databases |
 

@@ -318,6 +318,7 @@ class PubMedSearchProvider(HTTPMixin, BaseBiomedicalTool):
             ).casefold()
             matched_terms = [term for term in variant_terms if term.casefold() in searchable_text]
             variant_specific = bool(matched_terms)
+            search_strategy = "exact_variant" if query_used == str(query) else "gene_disease_subtype_fallback"
             resource = FHIRResource(
                 resourceType="DocumentReference",
                 id=f"pubmed-{uid}",
@@ -336,6 +337,8 @@ class PubMedSearchProvider(HTTPMixin, BaseBiomedicalTool):
                     {"url": "https://vwf-ethos.org/StructureDefinition/pub-pmc-id", "valueString": pmc_id or ""},
                     {"url": "https://vwf-ethos.org/StructureDefinition/pub-variant-specific", "valueBoolean": variant_specific},
                     {"url": "https://vwf-ethos.org/StructureDefinition/pub-matched-terms", "valueString": "; ".join(matched_terms)},
+                    {"url": "https://vwf-ethos.org/StructureDefinition/pub-search-strategy", "valueString": search_strategy},
+                    {"url": "https://vwf-ethos.org/StructureDefinition/pub-query-used", "valueString": query_used},
                 ],
             )
             resources.append(resource)

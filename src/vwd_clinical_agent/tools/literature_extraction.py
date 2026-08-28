@@ -4,6 +4,7 @@ import re
 from typing import Any
 
 from .base import BaseBiomedicalTool, ToolRequest
+from .context_utils import best_match_near_variant, build_contextual_excerpt
 from .fhir import FHIRResource, observation, operation_outcome
 
 
@@ -39,6 +40,10 @@ class LiteraturePhenotypeExtractor(BaseBiomedicalTool):
         if not documents:
             return [operation_outcome("information", "not-found", "No PMC full text was available for phenotype extraction")], "not_found"
         resources: list[FHIRResource] = []
+        variant_terms = [str(term) for term in request.parameters.get("variant_terms", []) if term]
+        context_before_chars = int(request.parameters.get("context_before_chars", 500))
+        context_after_chars = int(request.parameters.get("context_after_chars", 700))
+        variant_link_radius = int(request.parameters.get("variant_link_radius", 1200))
         for document in documents:
             text = next(
                 extension.get("valueString", "")
@@ -54,11 +59,28 @@ class LiteraturePhenotypeExtractor(BaseBiomedicalTool):
                 False,
             )
             for label, pattern in PATTERNS:
-                matches = list(pattern.finditer(text))[:2]
-                for index, match in enumerate(matches):
-                    start = max(0, match.start() - 220)
-                    end = min(len(text), match.end() + 420)
-                    excerpt = re.sub(r"\s+", " ", text[start:end]).strip()
+                matches = list(pattern.finditer(text))
+                if not matches:
+                    continue
+                matches.sort(
+                    key=lambda match: (
+                        _nearest_variant_distance(text, match.start(), match.end(), variant_terms),
+                        match.start(),
+                    )
+                )
+                for index, match in enumerate(matches[:2]):
+                    start, end = match.start(), match.end()
+                    contextual = build_contextual_excerpt(
+                        text=text,
+                        start=start,
+                        end=end,
+                        term=label,
+                        variant_terms=variant_terms,
+                        context_before_chars=context_before_chars,
+                        context_after_chars=context_after_chars,
+                        variant_link_radius=variant_link_radius,
+                    )
+                    excerpt = contextual.text
                     value = next((group for group in match.groups() if group is not None), "")
                     resource = observation(
                         observation_id=f"lit-{label.lower().replace(':','-').replace(' ','-')}-{document['id']}-{index}",
@@ -70,6 +92,19 @@ class LiteraturePhenotypeExtractor(BaseBiomedicalTool):
                             {"code": {"text": "excerpt"}, "valueString": excerpt},
                             {"code": {"text": "source_document"}, "valueString": document["id"]},
                             {"code": {"text": "variant_specific"}, "valueBoolean": variant_specific},
+                            {"code": {"text": "context_before"}, "valueString": contextual.before},
+                            {"code": {"text": "context_after"}, "valueString": contextual.after},
+                            {
+                                "code": {"text": "nearest_variant_term"},
+                                "valueString": contextual.nearest_variant_term or "",
+                            },
+                            {
+                                "code": {"text": "nearest_variant_distance"},
+                                "valueInteger": contextual.nearest_variant_distance
+                                if contextual.nearest_variant_distance is not None
+                                else -1,
+                            },
+                            {"code": {"text": "variant_linked"}, "valueBoolean": contextual.variant_linked},
                         ],
                     )
                     resources.append(resource)
@@ -77,3 +112,15 @@ class LiteraturePhenotypeExtractor(BaseBiomedicalTool):
         if not resources:
             return [operation_outcome("information", "not-found", "No phenotype statements matched the extraction patterns")], "not_found"
         return resources, "success"
+
+
+def _nearest_variant_distance(
+    text: str,
+    start: int,
+    end: int,
+    variant_terms: list[str],
+) -> int:
+    from .context_utils import nearest_variant_position
+
+    _, distance, _ = nearest_variant_position(text, start, end, variant_terms)
+    return distance if distance is not None else 10**9

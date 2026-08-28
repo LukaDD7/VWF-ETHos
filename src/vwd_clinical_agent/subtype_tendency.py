@@ -40,7 +40,10 @@ def infer_subtype_tendency(
         }
         value = observation.get("valueString") or str((observation.get("valueQuantity") or {}).get("value") or "")
         value_lower = value.casefold()
-        literature_specific = str(components.get("variant_specific", "")).casefold() == "true"
+        literature_specific = (
+            str(components.get("variant_specific", "")).casefold() == "true"
+            and str(components.get("variant_linked", "")).casefold() == "true"
+        )
         if name.startswith("Literature ") and name in seen_literature:
             continue
         if name.startswith("Literature "):

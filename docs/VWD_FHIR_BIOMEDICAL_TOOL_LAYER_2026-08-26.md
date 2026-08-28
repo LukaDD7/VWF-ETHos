@@ -104,6 +104,34 @@ After retrieval, `pubmed_full_text_search` performs code-as-search over the stor
 
 The LLM does not receive the entire full text. It receives typed excerpt Observations with provenance, preventing context overflow and reducing unsupported paraphrasing.
 
+### Context-window and ambiguity controls
+
+Each full-text excerpt now contains:
+
+- a bounded context window;
+- the matched keyword;
+- the nearest explicit variant term;
+- the distance to that variant term;
+- a `variant_linked` flag;
+- the document-level `variant_specific` flag.
+
+Default context sizes are:
+
+```text
+full-text keyword search: 600 characters before + 900 characters after
+phenotype extraction:     500 characters before + 700 characters after
+variant-link radius:      1200–1500 characters
+```
+
+The subtype-tendency node only uses literature observations when both:
+
+```text
+variant_specific = true
+variant_linked   = true
+```
+
+This prevents a generic review-article sentence such as “multimers are often reduced in type 2A” from being misattributed to the patient’s specific variant when the nearest explicit variant mention is thousands of characters away.
+
 The final LLM synthesis node now receives the structured FHIR evidence bundle and is required to cite FHIR resource IDs for factual statements. Uncited or unsupported statements are not allowed by the synthesis contract.
 
 ## Code-as-search enforcement

@@ -219,10 +219,57 @@ def _run_archive_assertions(tmp_path: str) -> None:
 def test_full_text_search_extracts_diverse_clinical_excerpts() -> None:
     tool = PubMedFullTextSearchTool()
     text = "Ristocetin induced platelet aggregation was abnormal. Multimer analysis showed loss of high molecular weight bands. DDAVP response was partial."
-    excerpts = tool._extract_excerpts(text, ["ristocetin", "RIPA", "multimer", "DDAVP"], 4)
+    excerpts = tool._extract_excerpts(
+        text,
+        ["ristocetin", "RIPA", "multimer", "DDAVP"],
+        4,
+        variant_terms=["p.Test1316Test"],
+        context_before_chars=20,
+        context_after_chars=30,
+        variant_link_radius=100,
+    )
     terms = {excerpt["term"].casefold() for excerpt in excerpts}
     assert {"ristocetin", "multimer", "ddavp"}.issubset(terms)
     assert all(len(excerpt["text"]) > 20 for excerpt in excerpts)
+
+
+def test_full_text_context_is_variant_linked_and_bounded() -> None:
+    tool = PubMedFullTextSearchTool()
+    filler = "Background text. " * 80
+    text = (
+        f"{filler} p.Val1316Met causes enhanced RIPA and reduced high-molecular-weight multimers. "
+        f"{filler}"
+    )
+    excerpts = tool._extract_excerpts(
+        text,
+        ["RIPA", "multimer"],
+        2,
+        variant_terms=["p.Val1316Met"],
+        context_before_chars=80,
+        context_after_chars=120,
+        variant_link_radius=200,
+    )
+    assert excerpts
+    assert all(excerpt["variant_linked"] for excerpt in excerpts)
+    assert all(excerpt["nearest_variant_term"] == "p.Val1316Met" for excerpt in excerpts)
+    assert all(100 <= len(excerpt["text"]) <= 500 for excerpt in excerpts)
+
+
+def test_full_text_context_rejects_distant_generic_keyword() -> None:
+    tool = PubMedFullTextSearchTool()
+    text = "p.Val1316Met is described at the start. " + ("Unrelated background. " * 200) + "Multimers are discussed generically."
+    excerpts = tool._extract_excerpts(
+        text,
+        ["multimer"],
+        1,
+        variant_terms=["p.Val1316Met"],
+        context_before_chars=100,
+        context_after_chars=100,
+        variant_link_radius=200,
+    )
+    assert excerpts
+    assert excerpts[0]["variant_linked"] is False
+    assert excerpts[0]["nearest_variant_distance"] > 200
 
 
 def test_canonical_uniprot_domain_annotation_resolves_boundaries() -> None:
@@ -260,7 +307,10 @@ def test_subtype_tendency_uses_variant_specific_literature_and_domain() -> None:
                 patient_id="CASE_TEST",
                 display="Literature RIPA evidence",
                 value="enhanced",
-                components=[{"code": {"text": "variant_specific"}, "valueBoolean": True}],
+                components=[
+                    {"code": {"text": "variant_specific"}, "valueBoolean": True},
+                    {"code": {"text": "variant_linked"}, "valueBoolean": True},
+                ],
             ),
         ]
     )
@@ -271,3 +321,27 @@ def test_subtype_tendency_uses_variant_specific_literature_and_domain() -> None:
     )
     assert tendencies[0].subtype_label == "type_2B"
     assert tendencies[0].confidence == "moderate"
+
+
+def test_subtype_tendency_ignores_distant_literature_keyword() -> None:
+    bundle = FHIRBundle.of(
+        [
+            observation(
+                observation_id="ripa-unlinked",
+                patient_id="CASE_TEST",
+                display="Literature RIPA evidence",
+                value="enhanced",
+                components=[
+                    {"code": {"text": "variant_specific"}, "valueBoolean": True},
+                    {"code": {"text": "variant_linked"}, "valueBoolean": False},
+                ],
+            )
+        ]
+    )
+    tendencies = infer_subtype_tendency(
+        fhir_bundle=bundle,
+        ratio=0.45,
+        candidate_subtypes=["type_2_candidate"],
+    )
+    assert tendencies[0].subtype_label == "type_2_vwd"
+    assert all(item.subtype_label != "type_2B" for item in tendencies)
