@@ -1,0 +1,131 @@
+{
+  "patient_id": "CASE_021",
+  "candidate_subtypes": [
+    "type_2_candidate",
+    "platelet_type_vwd_candidate",
+    "multi_variant_unresolved"
+  ],
+  "confidence": "low",
+  "opinion": "Retrospective review integrated 40 FHIR evidence resources, identified 1 structured evidence issue(s), and found 6 missing evidence item(s). Current subtype tendencies are type_2_vwd (score 2.0, moderate). All second-level tests were unavailable; no values were imputed. Expert review is required.",
+  "abstention": true,
+  "expert_review_required": true,
+  "recommended_actions": [
+    {
+      "action_code": "RIPA",
+      "rank": 1,
+      "status": "recommended",
+      "availability": "unknown",
+      "clinical_hypothesis": [
+        "type_2_candidate",
+        "platelet_type_vwd_candidate",
+        "multi_variant_unresolved"
+      ],
+      "expected_discriminator": "Distinguish enhanced platelet-dependent binding (type 2B or platelet-type VWD).",
+      "rationale": "Case CASE_021: first-level Ag=57.6, Act=12.8, ratio=0.22222222222222224; missing=[]; hypotheses=['type_2_candidate', 'platelet_type_vwd_candidate', 'multi_variant_unresolved']. Evidence summary: 1 structured evidence issue(s); 6 missing evidence item(s)..",
+      "requires_human_confirmation": true,
+      "provenance": [
+        "policy:vwd_second_level_actions_v0@2026-08-25"
+      ]
+    },
+    {
+      "action_code": "VWF_MULTIMER",
+      "rank": 2,
+      "status": "recommended",
+      "availability": "unknown",
+      "clinical_hypothesis": [
+        "type_2_candidate",
+        "platelet_type_vwd_candidate",
+        "multi_variant_unresolved"
+      ],
+      "expected_discriminator": "Distinguish loss of high-molecular-weight multimers from quantitative deficiency.",
+      "rationale": "Case CASE_021: first-level Ag=57.6, Act=12.8, ratio=0.22222222222222224; missing=[]; hypotheses=['type_2_candidate', 'platelet_type_vwd_candidate', 'multi_variant_unresolved']. Evidence summary: 1 structured evidence issue(s); 6 missing evidence item(s)..",
+      "requires_human_confirmation": true,
+      "provenance": [
+        "policy:vwd_second_level_actions_v0@2026-08-25"
+      ]
+    }
+  ],
+  "subtype_tendencies": [
+    {
+      "subtype_label": "type_2_vwd",
+      "score": 2.0,
+      "confidence": "moderate",
+      "rationale": "VWF:Act/VWF:Ag ratio below 0.70",
+      "evidence_refs": []
+    }
+  ],
+  "supporting_evidence": [
+    "CASE_021_VARIANT_1",
+    "CASE_021_VARIANT_2_BENIGN",
+    "Observation/variant-normalized-4e0a3ecf54ef9a1a1ad7",
+    "Observation/vwf-domain-1461-A-D",
+    "Observation/ocravat-clinvar-CASE_021-chr12-6019036-G-T",
+    "Observation/ocravat-revel-CASE_021-chr12-6019036-G-T",
+    "Observation/ocravat-cadd-CASE_021-chr12-6019036-G-T",
+    "Observation/ocravat-alphamissense-CASE_021-chr12-6019036-G-T",
+    "Observation/variant-normalized-be55f35f36108b35a7b9",
+    "Observation/vwf-domain-2449-D-N",
+    "Observation/gnomad-exome-12-5976203-C-T",
+    "Observation/gnomad-genome-12-5976203-C-T",
+    "Observation/ocravat-gnomad-CASE_021-chr12-5976203-C-T",
+    "Observation/ocravat-revel-CASE_021-chr12-5976203-C-T",
+    "Observation/ocravat-cadd-CASE_021-chr12-5976203-C-T",
+    "Observation/ocravat-alphamissense-CASE_021-chr12-5976203-C-T",
+    "Observation/pmc-excerpt-pubmed-21289515-0",
+    "Observation/pmc-excerpt-pubmed-21289515-1",
+    "Observation/pmc-excerpt-pubmed-21289515-2",
+    "Observation/pmc-excerpt-pubmed-26986123-0",
+    "Observation/pmc-excerpt-pubmed-26986123-1",
+    "Observation/pmc-excerpt-pubmed-26986123-2",
+    "Observation/lit-vwf-ag-pubmed-21289515-0",
+    "Observation/lit-vwf-ag-pubmed-21289515-1",
+    "Observation/lit-vwf-rco-pubmed-21289515-0",
+    "Observation/lit-vwf-rco-pubmed-21289515-1",
+    "Observation/lit-fviii-c-pubmed-21289515-0",
+    "Observation/lit-fviii-c-pubmed-21289515-1",
+    "Observation/lit-ripa-pubmed-21289515-0",
+    "Observation/lit-vwf-multimer-pubmed-21289515-0",
+    "Observation/lit-vwf-multimer-pubmed-21289515-1",
+    "Observation/lit-structural-change-pubmed-21289515-0",
+    "Observation/lit-abo-effect-pubmed-21289515-0",
+    "Observation/lit-abo-effect-pubmed-21289515-1",
+    "Observation/lit-vwf-ag-pubmed-26986123-0",
+    "Observation/lit-vwf-multimer-pubmed-26986123-0",
+    "Observation/lit-vwf-multimer-pubmed-26986123-1",
+    "DocumentReference/pubmed-24337418",
+    "DocumentReference/pubmed-33497541",
+    "DocumentReference/pubmed-21289515",
+    "DocumentReference/pubmed-33405380",
+    "DocumentReference/pubmed-26986123"
+  ],
+  "contradicting_evidence": [
+    "Type 2 candidate exists, but all second-level discriminators are unavailable. Evidence: "
+  ],
+  "missing_information": [
+    "RIPA",
+    "VWF_MULTIMER",
+    "VWF_CB",
+    "VWF_FVIIIB",
+    "VWF_PP",
+    "DDAVP_0_1_4H"
+  ],
+  "limitations": [
+    "gnomad_graphql returned error; this is not benign evidence.",
+    "clingen_erepo returned not_found; this is not benign evidence.",
+    "pubmed_full_text_search returned not_found; this is not benign evidence.",
+    "literature_phenotype_extractor returned not_found; this is not benign evidence.",
+    "clingen_erepo returned not_found; this is not benign evidence.",
+    "ClinGen/ACMG type-2 rule provider is not enabled in V0 offline mode.",
+    "Units, reference ranges, assay methods, and collection times are absent.",
+    "Second-level tests were explicitly unavailable; absence of results is not evidence against type 2 VWD.",
+    "Multiple variants are present and phase is unknown; compound mechanism cannot be inferred.",
+    "The evidence cannot distinguish type 2 subtypes or exclude qualitative VWF defects.",
+    "ACMG hint: PM2_supporting_candidate: allele is absent or very rare in available gnomAD annotation",
+    "ACMG hint: PP3_supporting_candidate: at least two computational predictors indicate deleterious missense effect"
+  ],
+  "provenance": [
+    "policy:vwd_first_level_v0@2026-08-25",
+    "policy:vwd_second_level_actions_v0@2026-08-25",
+    "llm:deterministic_policy"
+  ]
+}

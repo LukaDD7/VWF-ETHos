@@ -1,0 +1,16 @@
+{
+  "run_id": "6ba89abc-ba75-4e7a-ab29-ca733e4f0d49",
+  "created_at": "2026-08-28T06:44:17.978112+00:00",
+  "case_ids": [
+    "CASE_001",
+    "CASE_011",
+    "CASE_015",
+    "CASE_017",
+    "CASE_021"
+  ],
+  "llm_provider": "deterministic_policy",
+  "llm_provider_version": "v0",
+  "biomedical_tools_enabled": true,
+  "second_level_environment": "auto_unavailable",
+  "checkpoint_db": "/inspire/hdd/global_user/mengweicheng-240108120092/lzy/projects/VWF-ETHos/output/vwd_langgraph_v0/batch5_report_20260828_subtype/run_archive/6ba89abc-ba75-4e7a-ab29-ca733e4f0d49/checkpoints.sqlite"
+}

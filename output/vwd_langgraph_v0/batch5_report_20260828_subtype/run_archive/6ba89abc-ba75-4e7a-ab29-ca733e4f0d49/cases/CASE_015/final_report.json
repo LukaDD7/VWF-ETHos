@@ -1,0 +1,112 @@
+{
+  "patient_id": "CASE_015",
+  "candidate_subtypes": [
+    "type_2_candidate"
+  ],
+  "confidence": "low",
+  "opinion": "Retrospective review integrated 14 FHIR evidence resources, identified 1 structured evidence issue(s), and found 6 missing evidence item(s). Current subtype tendencies are type_2_vwd (score 2.0, moderate), pathogenic_variant (score 1.0, low), type_2A (score 0.8, low). All second-level tests were unavailable; no values were imputed. Expert review is required.",
+  "abstention": true,
+  "expert_review_required": true,
+  "recommended_actions": [
+    {
+      "action_code": "VWF_MULTIMER",
+      "rank": 1,
+      "status": "recommended",
+      "availability": "unknown",
+      "clinical_hypothesis": [
+        "type_2_candidate"
+      ],
+      "expected_discriminator": "Distinguish loss of high-molecular-weight multimers from quantitative deficiency.",
+      "rationale": "Case CASE_015: first-level Ag=42.2, Act=12.6, ratio=0.2985781990521327; missing=[]; hypotheses=['type_2_candidate']. Evidence summary: 1 structured evidence issue(s); 6 missing evidence item(s)..",
+      "requires_human_confirmation": true,
+      "provenance": [
+        "policy:vwd_second_level_actions_v0@2026-08-25"
+      ]
+    },
+    {
+      "action_code": "VWF_CB",
+      "rank": 2,
+      "status": "recommended",
+      "availability": "unknown",
+      "clinical_hypothesis": [
+        "type_2_candidate"
+      ],
+      "expected_discriminator": "Provide a functional binding readout that can expose a qualitative VWF defect.",
+      "rationale": "Case CASE_015: first-level Ag=42.2, Act=12.6, ratio=0.2985781990521327; missing=[]; hypotheses=['type_2_candidate']. Evidence summary: 1 structured evidence issue(s); 6 missing evidence item(s)..",
+      "requires_human_confirmation": true,
+      "provenance": [
+        "policy:vwd_second_level_actions_v0@2026-08-25"
+      ]
+    }
+  ],
+  "subtype_tendencies": [
+    {
+      "subtype_label": "type_2_vwd",
+      "score": 2.0,
+      "confidence": "moderate",
+      "rationale": "VWF:Act/VWF:Ag ratio below 0.70",
+      "evidence_refs": []
+    },
+    {
+      "subtype_label": "pathogenic_variant",
+      "score": 1.0,
+      "confidence": "low",
+      "rationale": "Curated database classification is pathogenic or likely pathogenic",
+      "evidence_refs": [
+        "Observation/ocravat-clinvar-CASE_015-chr12-6018901-G-A"
+      ]
+    },
+    {
+      "subtype_label": "type_2A",
+      "score": 0.8,
+      "confidence": "low",
+      "rationale": "Variant lies in VWFA2, where multimer processing defects are typical",
+      "evidence_refs": [
+        "Observation/vwf-domain-1506-Ser-Leu"
+      ]
+    }
+  ],
+  "supporting_evidence": [
+    "CASE_015",
+    "Observation/variant-normalized-efbc8a7008850290f269",
+    "Observation/vwf-domain-1506-Ser-Leu",
+    "Observation/gnomad-exome-12-6018901-G-A",
+    "Observation/gnomad-genome-12-6018901-G-A",
+    "Observation/ocravat-clinvar-CASE_015-chr12-6018901-G-A",
+    "Observation/ocravat-revel-CASE_015-chr12-6018901-G-A",
+    "Observation/ocravat-cadd-CASE_015-chr12-6018901-G-A",
+    "Observation/ocravat-alphamissense-CASE_015-chr12-6018901-G-A",
+    "Observation/pmc-excerpt-pubmed-36226571-0",
+    "Observation/pmc-excerpt-pubmed-36226571-1",
+    "Observation/pmc-excerpt-pubmed-36226571-2",
+    "DocumentReference/pubmed-36226571",
+    "DocumentReference/pubmed-31939074",
+    "DocumentReference/pubmed-28536718"
+  ],
+  "contradicting_evidence": [
+    "Type 2 candidate exists, but all second-level discriminators are unavailable. Evidence: "
+  ],
+  "missing_information": [
+    "RIPA",
+    "VWF_MULTIMER",
+    "VWF_CB",
+    "VWF_FVIIIB",
+    "VWF_PP",
+    "DDAVP_0_1_4H"
+  ],
+  "limitations": [
+    "clingen_erepo returned not_found; this is not benign evidence.",
+    "literature_phenotype_extractor returned not_found; this is not benign evidence.",
+    "ClinGen/ACMG type-2 rule provider is not enabled in V0 offline mode.",
+    "Units, reference ranges, assay methods, and collection times are absent.",
+    "Second-level tests were explicitly unavailable; absence of results is not evidence against type 2 VWD.",
+    "The evidence cannot distinguish type 2 subtypes or exclude qualitative VWF defects.",
+    "ACMG hint: PM2_supporting_candidate: allele is absent or very rare in available gnomAD annotation",
+    "ACMG hint: PP3_supporting_candidate: at least two computational predictors indicate deleterious missense effect"
+  ],
+  "provenance": [
+    "policy:vwd_first_level_v0@2026-08-25",
+    "policy:vwd_second_level_actions_v0@2026-08-25",
+    "llm:deterministic_policy"
+  ]
+}

@@ -1,0 +1,6 @@
+patient_id,status,pre_genetic_route,hypotheses,top_action,action_count,missing_fields,variant_count,expert_review_required,abstention,fabricated_second_level_results
+CASE_001,completed,wait_genetics,['type_2_candidate'],VWF_MULTIMER,2,[],1,True,True,0
+CASE_011,completed,wait_genetics,['type_2_candidate'],VWF_MULTIMER,3,[],1,True,True,0
+CASE_015,completed,wait_genetics,['type_2_candidate'],VWF_MULTIMER,2,[],1,True,True,0
+CASE_017,completed,wait_genetics,"['type_2_candidate', 'platelet_type_vwd_candidate']",RIPA,2,[],1,True,True,0
+CASE_021,completed,wait_genetics,"['type_2_candidate', 'platelet_type_vwd_candidate']",RIPA,2,[],2,True,True,0

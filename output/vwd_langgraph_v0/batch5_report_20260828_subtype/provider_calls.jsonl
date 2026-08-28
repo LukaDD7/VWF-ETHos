@@ -1,0 +1,64 @@
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_001", "status": "ok", "items_returned": 1}
+{"provider": "ensembl_variant_recoder", "operation": "normalize_variant", "case_id": "CASE_001", "variant_id": "CASE_001", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "vwf_domain_annotator", "operation": "annotate_domain", "case_id": "CASE_001", "variant_id": "CASE_001", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "gnomad_graphql", "operation": "population_frequency", "case_id": "CASE_001", "variant_id": "CASE_001", "status": "error", "cache_hit": false, "diagnostics": ["gnomAD returned HTTP 429: {'raw': '<!doctype html><meta charset=\"utf-8\"><meta name=viewport content=\"width=device-width, initial-scale=1\"><title>429</title>429 Too Many Requests'}"]}
+{"provider": "open_cravat", "operation": "variant_annotation", "case_id": "CASE_001", "variant_id": "CASE_001", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "clingen_erepo", "operation": "expert_classification", "case_id": "CASE_001", "variant_id": "CASE_001", "status": "not_found", "cache_hit": false, "diagnostics": []}
+{"provider": "pubmed_eutils", "operation": "literature_search", "case_id": "CASE_001", "variant_id": "CASE_001", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "pubmed_full_text_search", "operation": "full_text_search", "case_id": "CASE_001", "variant_id": "CASE_001", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "literature_phenotype_extractor", "operation": "extract_phenotype", "case_id": "CASE_001", "variant_id": "CASE_001", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "hgmd", "operation": "licensed_classification", "case_id": "CASE_001", "variant_id": "CASE_001", "status": "disabled", "cache_hit": false, "diagnostics": []}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_001", "status": "ok", "json_mode_valid": true}
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_011", "status": "ok", "items_returned": 1}
+{"provider": "ensembl_variant_recoder", "operation": "normalize_variant", "case_id": "CASE_011", "variant_id": "CASE_011", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "vwf_domain_annotator", "operation": "annotate_domain", "case_id": "CASE_011", "variant_id": "CASE_011", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "gnomad_graphql", "operation": "population_frequency", "case_id": "CASE_011", "variant_id": "CASE_011", "status": "error", "cache_hit": false, "diagnostics": ["gnomAD returned HTTP 429: {'raw': '<!doctype html><meta charset=\"utf-8\"><meta name=viewport content=\"width=device-width, initial-scale=1\"><title>429</title>429 Too Many Requests'}"]}
+{"provider": "open_cravat", "operation": "variant_annotation", "case_id": "CASE_011", "variant_id": "CASE_011", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "clingen_erepo", "operation": "expert_classification", "case_id": "CASE_011", "variant_id": "CASE_011", "status": "not_found", "cache_hit": false, "diagnostics": []}
+{"provider": "pubmed_eutils", "operation": "literature_search", "case_id": "CASE_011", "variant_id": "CASE_011", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "pubmed_full_text_search", "operation": "full_text_search", "case_id": "CASE_011", "variant_id": "CASE_011", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "literature_phenotype_extractor", "operation": "extract_phenotype", "case_id": "CASE_011", "variant_id": "CASE_011", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "hgmd", "operation": "licensed_classification", "case_id": "CASE_011", "variant_id": "CASE_011", "status": "disabled", "cache_hit": false, "diagnostics": []}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_011", "status": "ok", "json_mode_valid": true}
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_015", "status": "ok", "items_returned": 1}
+{"provider": "ensembl_variant_recoder", "operation": "normalize_variant", "case_id": "CASE_015", "variant_id": "CASE_015", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "vwf_domain_annotator", "operation": "annotate_domain", "case_id": "CASE_015", "variant_id": "CASE_015", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "gnomad_graphql", "operation": "population_frequency", "case_id": "CASE_015", "variant_id": "CASE_015", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "open_cravat", "operation": "variant_annotation", "case_id": "CASE_015", "variant_id": "CASE_015", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "clingen_erepo", "operation": "expert_classification", "case_id": "CASE_015", "variant_id": "CASE_015", "status": "not_found", "cache_hit": false, "diagnostics": []}
+{"provider": "pubmed_eutils", "operation": "literature_search", "case_id": "CASE_015", "variant_id": "CASE_015", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "pubmed_full_text_search", "operation": "full_text_search", "case_id": "CASE_015", "variant_id": "CASE_015", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "literature_phenotype_extractor", "operation": "extract_phenotype", "case_id": "CASE_015", "variant_id": "CASE_015", "status": "not_found", "cache_hit": false, "diagnostics": []}
+{"provider": "hgmd", "operation": "licensed_classification", "case_id": "CASE_015", "variant_id": "CASE_015", "status": "disabled", "cache_hit": false, "diagnostics": []}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_015", "status": "ok", "json_mode_valid": true}
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_017", "status": "ok", "items_returned": 1}
+{"provider": "ensembl_variant_recoder", "operation": "normalize_variant", "case_id": "CASE_017", "variant_id": "CASE_017", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "vwf_domain_annotator", "operation": "annotate_domain", "case_id": "CASE_017", "variant_id": "CASE_017", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "gnomad_graphql", "operation": "population_frequency", "case_id": "CASE_017", "variant_id": "CASE_017", "status": "error", "cache_hit": false, "diagnostics": ["gnomAD returned HTTP 200: {'errors': [{'message': 'Variant not found'}], 'data': {'variant': None}}"]}
+{"provider": "open_cravat", "operation": "variant_annotation", "case_id": "CASE_017", "variant_id": "CASE_017", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "clingen_erepo", "operation": "expert_classification", "case_id": "CASE_017", "variant_id": "CASE_017", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "pubmed_eutils", "operation": "literature_search", "case_id": "CASE_017", "variant_id": "CASE_017", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "pubmed_full_text_search", "operation": "full_text_search", "case_id": "CASE_017", "variant_id": "CASE_017", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "literature_phenotype_extractor", "operation": "extract_phenotype", "case_id": "CASE_017", "variant_id": "CASE_017", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "hgmd", "operation": "licensed_classification", "case_id": "CASE_017", "variant_id": "CASE_017", "status": "disabled", "cache_hit": false, "diagnostics": []}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_017", "status": "ok", "json_mode_valid": true}
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_021", "status": "ok", "items_returned": 2}
+{"provider": "ensembl_variant_recoder", "operation": "normalize_variant", "case_id": "CASE_021", "variant_id": "CASE_021_VARIANT_1", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "vwf_domain_annotator", "operation": "annotate_domain", "case_id": "CASE_021", "variant_id": "CASE_021_VARIANT_1", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "gnomad_graphql", "operation": "population_frequency", "case_id": "CASE_021", "variant_id": "CASE_021_VARIANT_1", "status": "error", "cache_hit": false, "diagnostics": ["gnomAD returned HTTP 200: {'errors': [{'message': 'Variant not found'}], 'data': {'variant': None}}"]}
+{"provider": "open_cravat", "operation": "variant_annotation", "case_id": "CASE_021", "variant_id": "CASE_021_VARIANT_1", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "clingen_erepo", "operation": "expert_classification", "case_id": "CASE_021", "variant_id": "CASE_021_VARIANT_1", "status": "not_found", "cache_hit": false, "diagnostics": []}
+{"provider": "pubmed_eutils", "operation": "literature_search", "case_id": "CASE_021", "variant_id": "CASE_021_VARIANT_1", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "pubmed_full_text_search", "operation": "full_text_search", "case_id": "CASE_021", "variant_id": "CASE_021_VARIANT_1", "status": "not_found", "cache_hit": false, "diagnostics": []}
+{"provider": "literature_phenotype_extractor", "operation": "extract_phenotype", "case_id": "CASE_021", "variant_id": "CASE_021_VARIANT_1", "status": "not_found", "cache_hit": false, "diagnostics": []}
+{"provider": "hgmd", "operation": "licensed_classification", "case_id": "CASE_021", "variant_id": "CASE_021_VARIANT_1", "status": "disabled", "cache_hit": false, "diagnostics": []}
+{"provider": "ensembl_variant_recoder", "operation": "normalize_variant", "case_id": "CASE_021", "variant_id": "CASE_021_VARIANT_2_BENIGN", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "vwf_domain_annotator", "operation": "annotate_domain", "case_id": "CASE_021", "variant_id": "CASE_021_VARIANT_2_BENIGN", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "gnomad_graphql", "operation": "population_frequency", "case_id": "CASE_021", "variant_id": "CASE_021_VARIANT_2_BENIGN", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "open_cravat", "operation": "variant_annotation", "case_id": "CASE_021", "variant_id": "CASE_021_VARIANT_2_BENIGN", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "clingen_erepo", "operation": "expert_classification", "case_id": "CASE_021", "variant_id": "CASE_021_VARIANT_2_BENIGN", "status": "not_found", "cache_hit": false, "diagnostics": []}
+{"provider": "pubmed_eutils", "operation": "literature_search", "case_id": "CASE_021", "variant_id": "CASE_021_VARIANT_2_BENIGN", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "pubmed_full_text_search", "operation": "full_text_search", "case_id": "CASE_021", "variant_id": "CASE_021_VARIANT_2_BENIGN", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "literature_phenotype_extractor", "operation": "extract_phenotype", "case_id": "CASE_021", "variant_id": "CASE_021_VARIANT_2_BENIGN", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "hgmd", "operation": "licensed_classification", "case_id": "CASE_021", "variant_id": "CASE_021_VARIANT_2_BENIGN", "status": "disabled", "cache_hit": false, "diagnostics": []}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_021", "status": "ok", "json_mode_valid": true}

@@ -1,0 +1,22 @@
+{
+  "run_id": "6ba89abc-ba75-4e7a-ab29-ca733e4f0d49",
+  "created_at": "2026-08-28T06:44:18.002410+00:00",
+  "mode": "retrospective",
+  "provider_profile": "offline",
+  "llm_provider": "deterministic_policy",
+  "llm_provider_version": "v0",
+  "workbook_audit": {
+    "workbook_path": "/inspire/hdd/global_user/mengweicheng-240108120092/lzy/projects/VWF-ETHos/data/clinical_agent_pilot/vwd_agentic_workflow_deidentified_v3.xlsx",
+    "workbook_sha256": "f9575dde823a4871b8986ed860ef6383598a81a5122fdb880a096ab0d3fddc6f",
+    "first_level_rows": 59,
+    "variant_rows": 59,
+    "unique_patients": 47,
+    "multi_variant_patients": 10
+  },
+  "graph": "vwd_clinical_agent.graph/build_workflow",
+  "policies": [
+    "vwd_first_level_v0@2026-08-25",
+    "vwd_second_level_actions_v0@2026-08-25"
+  ],
+  "privacy": "Research-only de-identified workbook; no original identifiers or reversible mapping are stored."
+}

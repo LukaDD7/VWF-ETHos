@@ -1,0 +1,119 @@
+{
+  "patient_id": "CASE_001",
+  "candidate_subtypes": [
+    "type_2_candidate"
+  ],
+  "confidence": "low",
+  "opinion": "Retrospective review integrated 32 FHIR evidence resources, identified 1 structured evidence issue(s), and found 6 missing evidence item(s). Current subtype tendencies are type_2_vwd (score 2.0, moderate), type_2A (score 0.8, low). All second-level tests were unavailable; no values were imputed. Expert review is required.",
+  "abstention": true,
+  "expert_review_required": true,
+  "recommended_actions": [
+    {
+      "action_code": "VWF_MULTIMER",
+      "rank": 1,
+      "status": "recommended",
+      "availability": "unknown",
+      "clinical_hypothesis": [
+        "type_2_candidate"
+      ],
+      "expected_discriminator": "Distinguish loss of high-molecular-weight multimers from quantitative deficiency.",
+      "rationale": "Case CASE_001: first-level Ag=31.4, Act=19, ratio=0.6050955414012739; missing=[]; hypotheses=['type_2_candidate']. Evidence summary: 1 structured evidence issue(s); 6 missing evidence item(s)..",
+      "requires_human_confirmation": true,
+      "provenance": [
+        "policy:vwd_second_level_actions_v0@2026-08-25"
+      ]
+    },
+    {
+      "action_code": "VWF_CB",
+      "rank": 2,
+      "status": "recommended",
+      "availability": "unknown",
+      "clinical_hypothesis": [
+        "type_2_candidate"
+      ],
+      "expected_discriminator": "Provide a functional binding readout that can expose a qualitative VWF defect.",
+      "rationale": "Case CASE_001: first-level Ag=31.4, Act=19, ratio=0.6050955414012739; missing=[]; hypotheses=['type_2_candidate']. Evidence summary: 1 structured evidence issue(s); 6 missing evidence item(s)..",
+      "requires_human_confirmation": true,
+      "provenance": [
+        "policy:vwd_second_level_actions_v0@2026-08-25"
+      ]
+    }
+  ],
+  "subtype_tendencies": [
+    {
+      "subtype_label": "type_2_vwd",
+      "score": 2.0,
+      "confidence": "moderate",
+      "rationale": "VWF:Act/VWF:Ag ratio below 0.70",
+      "evidence_refs": []
+    },
+    {
+      "subtype_label": "type_2A",
+      "score": 0.8,
+      "confidence": "low",
+      "rationale": "Variant lies in VWFA2, where multimer processing defects are typical",
+      "evidence_refs": [
+        "Observation/vwf-domain-1500-Ala-Val"
+      ]
+    }
+  ],
+  "supporting_evidence": [
+    "CASE_001",
+    "Observation/variant-normalized-fbe5f6f4a92219719ad8",
+    "Observation/vwf-domain-1500-Ala-Val",
+    "Observation/ocravat-gnomad-CASE_001-chr12-6018919-G-A",
+    "Observation/ocravat-clinvar-CASE_001-chr12-6018919-G-A",
+    "Observation/ocravat-revel-CASE_001-chr12-6018919-G-A",
+    "Observation/ocravat-cadd-CASE_001-chr12-6018919-G-A",
+    "Observation/ocravat-alphamissense-CASE_001-chr12-6018919-G-A",
+    "Observation/pmc-excerpt-pubmed-21289515-0",
+    "Observation/pmc-excerpt-pubmed-21289515-1",
+    "Observation/pmc-excerpt-pubmed-21289515-2",
+    "Observation/pmc-excerpt-pubmed-26986123-0",
+    "Observation/pmc-excerpt-pubmed-26986123-1",
+    "Observation/pmc-excerpt-pubmed-26986123-2",
+    "Observation/lit-vwf-ag-pubmed-21289515-0",
+    "Observation/lit-vwf-ag-pubmed-21289515-1",
+    "Observation/lit-vwf-rco-pubmed-21289515-0",
+    "Observation/lit-vwf-rco-pubmed-21289515-1",
+    "Observation/lit-fviii-c-pubmed-21289515-0",
+    "Observation/lit-fviii-c-pubmed-21289515-1",
+    "Observation/lit-ripa-pubmed-21289515-0",
+    "Observation/lit-vwf-multimer-pubmed-21289515-0",
+    "Observation/lit-vwf-multimer-pubmed-21289515-1",
+    "Observation/lit-structural-change-pubmed-21289515-0",
+    "Observation/lit-abo-effect-pubmed-21289515-0",
+    "Observation/lit-abo-effect-pubmed-21289515-1",
+    "Observation/lit-vwf-ag-pubmed-26986123-0",
+    "Observation/lit-vwf-multimer-pubmed-26986123-0",
+    "Observation/lit-vwf-multimer-pubmed-26986123-1",
+    "DocumentReference/pubmed-33497541",
+    "DocumentReference/pubmed-21289515",
+    "DocumentReference/pubmed-33405380",
+    "DocumentReference/pubmed-26986123"
+  ],
+  "contradicting_evidence": [
+    "Type 2 candidate exists, but all second-level discriminators are unavailable. Evidence: "
+  ],
+  "missing_information": [
+    "RIPA",
+    "VWF_MULTIMER",
+    "VWF_CB",
+    "VWF_FVIIIB",
+    "VWF_PP",
+    "DDAVP_0_1_4H"
+  ],
+  "limitations": [
+    "gnomad_graphql returned error; this is not benign evidence.",
+    "clingen_erepo returned not_found; this is not benign evidence.",
+    "ClinGen/ACMG type-2 rule provider is not enabled in V0 offline mode.",
+    "Units, reference ranges, assay methods, and collection times are absent.",
+    "Second-level tests were explicitly unavailable; absence of results is not evidence against type 2 VWD.",
+    "The evidence cannot distinguish type 2 subtypes or exclude qualitative VWF defects."
+  ],
+  "provenance": [
+    "policy:vwd_first_level_v0@2026-08-25",
+    "policy:vwd_second_level_actions_v0@2026-08-25",
+    "llm:deterministic_policy"
+  ]
+}
