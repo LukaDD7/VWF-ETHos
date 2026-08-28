@@ -28,6 +28,8 @@ Thumbs.db
 .vscode/
 .idea/
 *.iml
+.env
+.env.*
 
 # 项目大文件和结果目录
 07_VCF_AlphaGenome_Results*.pkl

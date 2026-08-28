@@ -1,0 +1,36 @@
+{
+  "policy_id": "vwd_second_level_actions_v0",
+  "version": "2026-08-25",
+  "allowed_actions": [
+    "COMPLETE_FIRST_LEVEL",
+    "RIPA",
+    "VWF_MULTIMER",
+    "VWF_CB",
+    "VWF_FVIIIB",
+    "VWF_PP",
+    "DDAVP_0_1_4H",
+    "WAIT_SECOND_LEVEL_RESULTS",
+    "WAIT_GENETICS",
+    "EXPERT_REVIEW"
+  ],
+  "default_ranking": [
+    "VWF_MULTIMER",
+    "VWF_CB",
+    "RIPA",
+    "VWF_PP",
+    "VWF_FVIIIB",
+    "DDAVP_0_1_4H"
+  ],
+  "discriminators": {
+    "COMPLETE_FIRST_LEVEL": "Complete the missing first-level result before interpretation.",
+    "RIPA": "Distinguish enhanced platelet-dependent binding (type 2B or platelet-type VWD).",
+    "VWF_MULTIMER": "Distinguish loss of high-molecular-weight multimers from quantitative deficiency.",
+    "VWF_CB": "Provide a functional binding readout that can expose a qualitative VWF defect.",
+    "VWF_FVIIIB": "Assess FVIII-binding capacity when type 2N is plausible.",
+    "VWF_PP": "Distinguish secretion defects from clearance phenotypes.",
+    "DDAVP_0_1_4H": "Characterize the diagnostic response at 0, 1, and 4 hours; V0 does not provide treatment advice.",
+    "WAIT_SECOND_LEVEL_RESULTS": "Wait for real second-level observations; do not synthesize or impute results.",
+    "WAIT_GENETICS": "Hold the provisional pre-genetic assessment until the genetic report is available.",
+    "EXPERT_REVIEW": "Escalate incomplete, conflicting, or out-of-scope evidence to a VWD expert."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "policy_id": "vwd_first_level_v0",
+  "version": "2026-08-25",
+  "act_ag_ratio_threshold": 0.70,
+  "type1_candidate_max_lab": 50.0,
+  "type3_candidate_max_vwf": 5.0,
+  "type3_candidate_max_fviii": 10.0,
+  "normal_platelet_min": 150.0,
+  "rules": {
+    "ratio_below_threshold": "cannot_exclude_type_2",
+    "missing_ratio": "unresolved",
+    "severe_quantitative_deficit": "type_3_candidate",
+    "concordant_low_labs": "type_1_candidate_provisional"
+  },
+  "limitations": [
+    "The workbook does not include units, reference ranges, collection times, or assay methods.",
+    "All subtype labels remain provisional research hypotheses and require clinician confirmation."
+  ]
+}

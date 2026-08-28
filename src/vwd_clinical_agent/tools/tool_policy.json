@@ -1,0 +1,22 @@
+{
+  "policy_id": "vwd_code_as_search_tool_policy",
+  "version": "2026-08-27",
+  "execution_model": "python_tool_registry_only",
+  "llm_direct_tool_calling": false,
+  "allowed_tools": {
+    "ensembl_variant_recoder": ["normalize_variant"],
+    "gnomad_graphql": ["population_frequency"],
+    "open_cravat": ["variant_annotation"],
+    "clingen_erepo": ["expert_classification"],
+    "pubmed_eutils": ["literature_search"],
+    "pubmed_full_text_search": ["full_text_search"],
+    "literature_phenotype_extractor": ["extract_phenotype"],
+    "vwf_domain_annotator": ["annotate_domain"],
+    "hgmd": ["licensed_classification"],
+    "local_score_store": ["local_score"],
+    "local_clingen_snapshot": ["local_expert_classification"],
+    "local_clinvar_snapshot": ["local_clinical_classification"],
+    "repo_mechanism": ["mechanism_artifacts"],
+    "local_guideline": ["apply_guideline"]
+  }
+}
