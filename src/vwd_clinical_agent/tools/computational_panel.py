@@ -55,12 +55,14 @@ class LocalComputationalPanelProvider:
         returned_frames = [pd.read_csv(path) for path in self.returned_paths if path.exists()]
         self.returned = pd.concat(returned_frames, ignore_index=True, sort=False) if returned_frames else pd.DataFrame()
         self.mechanism_tool: Any | None = None
-        try:
-            from scripts.clinical_agent.tools import MechanismClassifierTool
-
-            self.mechanism_tool = MechanismClassifierTool(self.repo_root)
-        except Exception:
-            self.mechanism_tool = None
+        mechanism_path = self.repo_root / "output/eval_v2_with_type2m_lof_hf/eval_v2_predictions.csv"
+        self.mechanism_predictions = (
+            pd.read_csv(mechanism_path)[
+                ["aa_change", "pred_with_md", "confidence_with_md", "reasoning_with_md"]
+            ]
+            if mechanism_path.exists()
+            else pd.DataFrame()
+        )
 
     def collect(self, *, patient_id: str, variant: VariantContext) -> tuple[list[EvidenceItem], dict[str, Any]]:
         items: list[EvidenceItem] = []
@@ -189,12 +191,15 @@ class LocalComputationalPanelProvider:
         variant: VariantContext,
         compact: str | None,
     ) -> EvidenceItem | None:
-        if compact is None or self.mechanism_tool is None or not getattr(self.mechanism_tool, "available", False):
+        if compact is None or self.mechanism_predictions.empty:
             return None
-        result = self.mechanism_tool.run(compact)
-        if result is None:
+        matches = self.mechanism_predictions[self.mechanism_predictions["aa_change"].astype(str).eq(compact)]
+        if matches.empty:
             return None
-        predicted = str(result.details.get("predicted_subtype", "uncertain"))
+        row = matches.iloc[0]
+        predicted = str(row.get("pred_with_md", "uncertain"))
+        confidence = _float(row.get("confidence_with_md"))
+        reasoning = str(row.get("reasoning_with_md", ""))
         supports = [] if predicted == "uncertain" else [predicted]
         return EvidenceItem(
             source="boltz_mechanism_classifier",
@@ -203,13 +208,13 @@ class LocalComputationalPanelProvider:
             retrieved_at=utc_now(),
             source_version="agentic_vwf_classifier+boltz2_vwd_functional_panel",
             supports=supports,
-            conclusion=result.conclusion + f"; {result.details.get('reasoning', '')}",
-            confidence=_float(result.confidence),
+            conclusion=f"Prior AgenticVWFClassifier prediction: {predicted}" + (f"; {reasoning}" if reasoning else ""),
+            confidence=confidence,
             evidence_level="mechanism_model",
             limitations=[
                 "Research-only mechanism evidence; it cannot establish clinical pathogenicity.",
                 "Boltz/AF3 confidence metrics are structural proxies and require assay or clinical confirmation.",
-            ] + list(result.details.get("warnings", [])),
+            ],
             raw_excerpt_locator="output/boltz2_vwd_functional_panel/evidence_matrix.csv",
         )
 

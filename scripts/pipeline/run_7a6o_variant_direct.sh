@@ -2,7 +2,14 @@
 set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
 OUT_ROOT="$ROOT_DIR/output/gromacs_md_autoinhib"
-GMX="$ROOT_DIR/envs/gromacs/bin.AVX2_256/gmx"
+GMX="${GMX:-}"
+if [ -z "$GMX" ]; then
+    if [ -x "$ROOT_DIR/envs/gromacs/bin.AVX2_256/gmx" ]; then
+        GMX="$ROOT_DIR/envs/gromacs/bin.AVX2_256/gmx"
+    else
+        GMX="/lzy/envs/gromacs/bin.AVX2_256/gmx"
+    fi
+fi
 variant="${1:?variant required}"
 gpu="${2:?gpu id required}"
 ns="${NS:-50}"

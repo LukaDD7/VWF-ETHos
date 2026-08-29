@@ -374,7 +374,25 @@ def main() -> int:
             record = {"case_id": case_id, "status": "failed", "finished_at": utc_now(), "error": str(exc)}
         with checkpoint.open("a", encoding="utf-8") as handle:
             handle.write(json.dumps(record, ensure_ascii=False) + "\n")
-        print(json.dumps(record, ensure_ascii=False))
+        print(json.dumps(record, ensure_ascii=False), flush=True)
+
+    successful_cases: set[str] = set()
+    failed_cases: list[dict[str, Any]] = []
+    if checkpoint.exists():
+        for line in checkpoint.read_text(encoding="utf-8").splitlines():
+            record = json.loads(line)
+            if record.get("status") == "success":
+                successful_cases.add(str(record.get("case_id")))
+            else:
+                failed_cases.append(record)
+    missing_cases = sorted(set(requests["case_id"].astype(str)) - successful_cases)
+    if missing_cases or failed_cases:
+        raise RuntimeError(
+            json.dumps(
+                {"missing_cases": missing_cases, "failed_cases": failed_cases},
+                ensure_ascii=False,
+            )
+        )
 
     _finalize(args.output_dir, requests, scorer_keys)
     manifest = {

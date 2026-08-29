@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-08-29T03:03:56.710847+00:00",
+  "request_sha256": "28a1cc00d9dcd28ccb221f77a0d73e1981fab915de260502e3adb26c6172718a",
+  "case_count": 9,
+  "raw_output_count": 11,
+  "raw_outputs": [
+    "ATAC",
+    "CAGE",
+    "DNASE",
+    "RNA_SEQ",
+    "CHIP_HISTONE",
+    "CHIP_TF",
+    "SPLICE_SITES",
+    "SPLICE_SITE_USAGE",
+    "SPLICE_JUNCTIONS",
+    "CONTACT_MAPS",
+    "PROCAP"
+  ],
+  "expected_raw_case_output_pairs": 99,
+  "credential_source": "ALPHAGENOME_API_KEY environment variable"
+}
