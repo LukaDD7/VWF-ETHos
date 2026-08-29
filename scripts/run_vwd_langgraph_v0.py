@@ -80,6 +80,17 @@ def main() -> int:
     )
     parser.add_argument("--snapshot-dir", type=Path, default=ROOT / "data/external/vwf_biomedical_snapshots")
     parser.add_argument("--pubmed-full-text", action="store_true")
+    parser.add_argument(
+        "--mechanism-matrix",
+        type=Path,
+        help="Optional AlphaGenome/Boltz/MD feature table with aa_change or hgvs_c keys.",
+    )
+    parser.add_argument(
+        "--mechanism-classifier",
+        type=Path,
+        default=ROOT / "scripts/agentic_vwf_classifier.py",
+        help="Path to the AgenticVWFClassifier implementation.",
+    )
     args = parser.parse_args()
 
     if args.mode == "interactive":
@@ -109,6 +120,8 @@ def main() -> int:
         EvidenceToolMatrix(
             cache_dir=str(args.output_dir / "tool_cache"),
             snapshot_dir=str(args.snapshot_dir),
+            mechanism_matrix_path=args.mechanism_matrix,
+            mechanism_classifier_path=args.mechanism_classifier,
         )
         if args.biomedical_tools
         else None

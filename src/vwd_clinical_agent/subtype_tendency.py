@@ -59,6 +59,18 @@ def infer_subtype_tendency(
             elif domain in {"VWFD3", "TIL4", "TIL3"}:
                 add("type_2N", 0.4, "Variant lies in the D/D3 region, where FVIII-binding defects can occur", ref)
 
+        if name == "Agentic VWF mechanism classifier":
+            prediction = value_lower
+            confidence = _component_float(components.get("confidence"))
+            if prediction in {"2a", "2b", "2m", "2n"}:
+                amount = 1.5 if confidence is not None and confidence >= 0.7 else 0.6
+                add(
+                    f"type_{prediction.upper()}",
+                    amount,
+                    f"Mechanism model predicts type {prediction.upper()} with confidence {confidence if confidence is not None else 'unknown'}",
+                    ref,
+                )
+
         if name in {"ClinVar clinical significance", "ClinGen expert variant classification"}:
             condition = str(components.get("condition", "")).casefold()
             for subtype in ("2a", "2b", "2m", "2n"):
@@ -113,3 +125,16 @@ def _component_value(component: dict) -> object:
         if key in component:
             return component[key]
     return None
+
+
+def _component_float(value: object) -> float | None:
+    if isinstance(value, dict):
+        raw = value.get("value")
+        try:
+            return float(raw) if raw is not None else None
+        except (TypeError, ValueError):
+            return None
+    try:
+        return float(value) if value is not None else None
+    except (TypeError, ValueError):
+        return None

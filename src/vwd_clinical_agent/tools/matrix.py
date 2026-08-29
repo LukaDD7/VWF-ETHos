@@ -17,6 +17,7 @@ from .local import (
 )
 from .full_text import PubMedFullTextSearchTool
 from .literature_extraction import LiteraturePhenotypeExtractor
+from .mechanism import MechanismClassifierTool
 from .variant_context import VWFDomainAnnotator
 from .online import (
     ClinGenERepoProvider,
@@ -49,7 +50,13 @@ class EvidenceToolMatrixResult:
 class EvidenceToolMatrix:
     """Dependency-aware, FHIR-native code-as-search executor."""
 
-    def __init__(self, cache_dir: str | None = None, snapshot_dir: str | None = None):
+    def __init__(
+        self,
+        cache_dir: str | None = None,
+        snapshot_dir: str | None = None,
+        mechanism_matrix_path: str | Path | None = None,
+        mechanism_classifier_path: str | Path | None = None,
+    ):
         self.registry = ToolRegistry(
             [
                 EnsemblVariantNormalizer(),
@@ -66,10 +73,16 @@ class EvidenceToolMatrix:
                 LocalClinVarSnapshotTool(),
                 RepoMechanismTool(),
                 LocalGuidelineTool(),
+                MechanismClassifierTool(),
             ],
             cache_dir=cache_dir,
         )
         self.snapshot_dir = Path(snapshot_dir) if snapshot_dir else None
+        self.mechanism_matrix_path = Path(mechanism_matrix_path) if mechanism_matrix_path else None
+        default_classifier = Path(__file__).resolve().parents[3] / "scripts/agentic_vwf_classifier.py"
+        self.mechanism_classifier_path = (
+            Path(mechanism_classifier_path) if mechanism_classifier_path else default_classifier
+        )
         self.include_pubmed_full_text = False
 
     def run(
@@ -84,7 +97,16 @@ class EvidenceToolMatrix:
         allow_pre_second_level: bool = False,
         local_parameters: dict[str, Any] | None = None,
     ) -> EvidenceToolMatrixResult:
-        local_parameters = {**(local_parameters or {}), "include_pubmed_full_text": self.include_pubmed_full_text}
+        local_parameters = {
+            **(local_parameters or {}),
+            "include_pubmed_full_text": self.include_pubmed_full_text,
+            "mechanism_matrix_path": (local_parameters or {}).get(
+                "mechanism_matrix_path", self.mechanism_matrix_path
+            ),
+            "mechanism_classifier_path": (local_parameters or {}).get(
+                "mechanism_classifier_path", self.mechanism_classifier_path
+            ),
+        }
         if not self._second_level_complete(second_level_bundle) and not allow_research_bypass and not allow_pre_second_level:
             bundle = FHIRBundle.of(
                 [
@@ -283,6 +305,21 @@ class EvidenceToolMatrix:
                     patient_id=patient_id,
                     variant_id=variant_id,
                     parameters={"artifact_paths": local_parameters["artifact_paths"]},
+                ),
+            )
+        if local_parameters.get("mechanism_matrix_path"):
+            invoke(
+                "mechanism_classifier",
+                ToolRequest(
+                    operation="predict_subtype",
+                    patient_id=patient_id,
+                    variant_id=variant_id,
+                    parameters={
+                        "matrix_path": local_parameters["mechanism_matrix_path"],
+                        "classifier_path": local_parameters.get("mechanism_classifier_path"),
+                        "hgvs_c": hgvs_c,
+                        "hgvs_p": hgvs_p,
+                    },
                 ),
             )
 

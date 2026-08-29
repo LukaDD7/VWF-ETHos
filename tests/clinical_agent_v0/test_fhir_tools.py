@@ -18,6 +18,7 @@ from src.vwd_clinical_agent.tools.fhir import FHIRBundle, observation
 from src.vwd_clinical_agent.evidence_analysis import analyze_evidence_conflicts
 from src.vwd_clinical_agent.run_archive import RunArchive
 from src.vwd_clinical_agent.tools.full_text import PubMedFullTextSearchTool
+from src.vwd_clinical_agent.tools.mechanism import MechanismClassifierTool
 from src.vwd_clinical_agent.tools.variant_context import VWFDomainAnnotator
 from src.vwd_clinical_agent.subtype_tendency import infer_subtype_tendency
 from src.vwd_clinical_agent.azure import DeterministicLLMProvider
@@ -123,6 +124,49 @@ def test_code_as_search_policy_rejects_unapproved_operation() -> None:
     )
     assert response.status == "error"
     assert "not allowed" in response.diagnostics[0]
+
+
+def test_mechanism_classifier_emits_fhir_evidence_without_label_leak(tmp_path) -> None:
+    import pandas as pd
+
+    matrix_path = tmp_path / "mechanism.csv"
+    pd.DataFrame(
+        [
+            {
+                "aa_change": "A1500V",
+                "hgvs_c": "c.4499C>T",
+                "protein_pos": 1500,
+                "ref_aa": "A",
+                "alt_aa": "V",
+                "domain": "A2",
+                "ag_rna_delta": -3.0,
+                "ag_splice_delta": 0.1,
+                "true_label": "2A",
+            }
+        ]
+    ).to_csv(matrix_path, index=False)
+    tool = MechanismClassifierTool()
+    response = tool.invoke(
+        ToolRequest(
+            operation="predict_subtype",
+            patient_id="CASE_TEST",
+            variant_id="CASE_TEST",
+            parameters={
+                "matrix_path": matrix_path,
+                "classifier_path": ROOT / "scripts/agentic_vwf_classifier.py",
+                "hgvs_c": "NM_000552.5:c.4499C>T",
+                "hgvs_p": "p.Ala1500Val",
+            },
+        )
+    )
+    assert response.status == "success"
+    observations = response.output.resources("Observation")
+    assert observations[0]["valueString"] in {"2A", "2B", "2M", "2N", "uncertain"}
+    components = {(item["code"]["text"]): item for item in observations[0]["component"]}
+    assert components["matched_variant"]["valueString"] == "A1500V"
+    assert components["clinical_override"]["valueBoolean"] is False
+    provenance = response.output.resources("Provenance")
+    assert provenance[0]["target"][0]["reference"] == "Observation/" + observations[0]["id"]
 
 
 def test_pubmed_efetch_xml_parser_extracts_abstract_and_doi() -> None:

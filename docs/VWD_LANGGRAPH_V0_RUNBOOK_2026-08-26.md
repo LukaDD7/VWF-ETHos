@@ -64,6 +64,30 @@ python scripts/run_vwd_langgraph_v0.py \
 
 The Azure adapter calls the Chat Completions REST endpoint directly and requests JSON mode. `SUBAGENT_MODEL_NAME=azure/gpt-5.4-nano` is normalized to the Azure deployment `gpt-5.4-nano`, and the request uses `max_completion_tokens` for newer GPT models. The model is only used for structured retrospective summaries; clinical routing and action selection remain policy-controlled.
 
+## Embedded repository mechanism model
+
+The LangGraph runner can consume the previous `AgenticVWFClassifier` feature
+matrix as read-only mechanism evidence. The matrix must be keyed by `aa_change`
+or `hgvs_c` and can contain AlphaGenome, Boltz, AF3/FoldX, and MD feature
+columns. Labels such as `true_label` or `type2_subtype` are ignored at
+inference time.
+
+```bash
+python scripts/run_vwd_langgraph_v0.py \
+  --mode retrospective \
+  --provider-profile offline \
+  --llm-provider deterministic \
+  --biomedical-tools \
+  --mechanism-matrix output/path/to/mechanism_features.csv \
+  --mechanism-classifier scripts/agentic_vwf_classifier.py \
+  --output-dir output/vwd_langgraph_v0/new_samples
+```
+
+The adapter emits a FHIR `Observation` named `Agentic VWF mechanism classifier`
+with prediction, confidence, alternatives, reasoning, matched variant,
+feature provenance, and `clinical_override=false`. It contributes only a
+bounded subtype tendency and never bypasses expert review.
+
 ## Evaluation
 
 For the FHIR tool layer, see [VWD_FHIR_BIOMEDICAL_TOOL_LAYER_2026-08-26.md](./VWD_FHIR_BIOMEDICAL_TOOL_LAYER_2026-08-26.md).

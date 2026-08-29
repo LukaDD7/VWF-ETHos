@@ -17,6 +17,7 @@
     "local_clingen_snapshot": ["local_expert_classification"],
     "local_clinvar_snapshot": ["local_clinical_classification"],
     "repo_mechanism": ["mechanism_artifacts"],
-    "local_guideline": ["apply_guideline"]
+    "local_guideline": ["apply_guideline"],
+    "mechanism_classifier": ["predict_subtype"]
   }
 }
