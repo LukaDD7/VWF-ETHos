@@ -4,11 +4,23 @@ ROOT_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
 OUT_ROOT="$ROOT_DIR/output/gromacs_md_autoinhib"
 GMX="${GMX:-}"
 if [ -z "$GMX" ]; then
-    if [ -x "$ROOT_DIR/envs/gromacs/bin.AVX2_256/gmx" ]; then
-        GMX="$ROOT_DIR/envs/gromacs/bin.AVX2_256/gmx"
-    else
-        GMX="/lzy/envs/gromacs/bin.AVX2_256/gmx"
-    fi
+    for candidate in \
+        "$ROOT_DIR/envs/gromacs/bin.AVX2_256/gmx" \
+        "$ROOT_DIR/envs/gromacs/bin/gmx" \
+        "$ROOT_DIR/../envs/gromacs/bin.AVX2_256/gmx" \
+        "$ROOT_DIR/../envs/gromacs/bin/gmx" \
+        "$ROOT_DIR/../../envs/gromacs/bin.AVX2_256/gmx" \
+        "$ROOT_DIR/../../envs/gromacs/bin/gmx" \
+        "/lzy/envs/gromacs/bin.AVX2_256/gmx" \
+        "/lzy/envs/gromacs/bin/gmx" \
+        "/inspire/hdd/global_user/mengweicheng-240108120092/lzy/envs/gromacs/bin.AVX2_256/gmx" \
+        "/inspire/hdd/global_user/mengweicheng-240108120092/lzy/envs/gromacs/bin/gmx" \
+        "$(command -v gmx 2>/dev/null || true)"; do
+        if [ -n "$candidate" ] && [ -x "$candidate" ]; then
+            GMX="$candidate"
+            break
+        fi
+    done
 fi
 variant="${1:?variant required}"
 gpu="${2:?gpu id required}"

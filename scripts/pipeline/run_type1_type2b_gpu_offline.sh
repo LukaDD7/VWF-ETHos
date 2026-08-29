@@ -20,7 +20,52 @@ MD_OUT="$OUT_DIR/md"
 GPUS="${GPUS:-7}"
 GPU_IDS="${GPU_IDS:-}"
 
-export GMX="${GMX:-/lzy/envs/gromacs/bin.AVX2_256/gmx}"
+first_existing_executable() {
+    local candidate
+    for candidate in "$@"; do
+        if [ -n "$candidate" ] && [ -x "$candidate" ]; then
+            printf '%s\n' "$candidate"
+            return 0
+        fi
+    done
+    return 1
+}
+
+first_existing_directory() {
+    local candidate
+    for candidate in "$@"; do
+        if [ -n "$candidate" ] && [ -d "$candidate" ]; then
+            printf '%s\n' "$candidate"
+            return 0
+        fi
+    done
+    return 1
+}
+
+NFS_ROOT="${ROOT_DIR%/projects/*}"
+if [ "$NFS_ROOT" = "$ROOT_DIR" ]; then
+    NFS_ROOT="/inspire/hdd/global_user/mengweicheng-240108120092/lzy"
+fi
+GMX_CANDIDATES=(
+    "${GMX:-}"
+    "$ROOT_DIR/envs/gromacs/bin.AVX2_256/gmx"
+    "$ROOT_DIR/envs/gromacs/bin/gmx"
+    "$ROOT_DIR/../envs/gromacs/bin.AVX2_256/gmx"
+    "$ROOT_DIR/../envs/gromacs/bin/gmx"
+    "$ROOT_DIR/../../envs/gromacs/bin.AVX2_256/gmx"
+    "$ROOT_DIR/../../envs/gromacs/bin/gmx"
+    "/lzy/envs/gromacs/bin.AVX2_256/gmx"
+    "/lzy/envs/gromacs/bin/gmx"
+    "$NFS_ROOT/envs/gromacs/bin.AVX2_256/gmx"
+    "$NFS_ROOT/envs/gromacs/bin/gmx"
+    "$(command -v gmx 2>/dev/null || true)"
+)
+GMX="$(first_existing_executable "${GMX_CANDIDATES[@]}")" || {
+    echo "[FATAL] GROMACS executable not found. Tried:" >&2
+    printf '  %s\n' "${GMX_CANDIDATES[@]}" >&2
+    echo "Set GMX=/absolute/path/to/gmx and rerun." >&2
+    exit 2
+}
 export GMXLIB="${GMXLIB:-$ROOT_DIR/force_fields}"
 export CC="${CC:-$(command -v gcc || true)}"
 
@@ -28,9 +73,44 @@ log() {
     printf '[%s] %s\n' "$(date '+%F %T')" "$*"
 }
 
-if [ ! -x "$GMX" ]; then
-    echo "[FATAL] GROMACS executable not found: $GMX" >&2
+BOLTZ_COMMAND="$(command -v boltz 2>/dev/null || true)"
+BOLTZ_ENV_CANDIDATES=("$ROOT_DIR/envs/boltz2" "/lzy/envs/boltz2" "$NFS_ROOT/envs/boltz2")
+BOLTZ_ENV_CANDIDATES+=("$ROOT_DIR/../envs/boltz2" "$ROOT_DIR/../../envs/boltz2")
+if [ -n "$BOLTZ_COMMAND" ]; then
+    BOLTZ_ENV_CANDIDATES=("$(dirname "$(dirname "$BOLTZ_COMMAND")")" "${BOLTZ_ENV_CANDIDATES[@]}")
+fi
+BOLTZ_ENV="$(first_existing_directory "${BOLTZ_ENV_CANDIDATES[@]}")" || {
+    echo "[FATAL] Boltz-2 environment not found. Set PATH to its bin directory and rerun." >&2
     exit 2
+}
+
+TOOLS_PYTHON_CANDIDATES=(
+    "$ROOT_DIR/envs/tools/bin/python"
+    "$ROOT_DIR/../envs/tools/bin/python"
+    "$ROOT_DIR/../../envs/tools/bin/python"
+    "$ROOT_DIR/miniconda3/envs/tools/bin/python"
+    "$ROOT_DIR/../miniconda3/envs/tools/bin/python"
+    "$ROOT_DIR/../../miniconda3/envs/tools/bin/python"
+    "/lzy/envs/tools/bin/python"
+    "/lzy/miniconda3/envs/tools/bin/python"
+    "$NFS_ROOT/envs/tools/bin/python"
+    "$NFS_ROOT/miniconda3/envs/tools/bin/python"
+    "$BOLTZ_ENV/bin/python"
+    "$(command -v python 2>/dev/null || true)"
+    "$(command -v python3 2>/dev/null || true)"
+)
+TOOLS_PYTHON="$(first_existing_executable "${TOOLS_PYTHON_CANDIDATES[@]}")" || {
+    echo "[FATAL] Python environment not found. Set PATH to a Python environment with pandas/langgraph." >&2
+    exit 2
+}
+TOOLS_ENV="$(dirname "$(dirname "$TOOLS_PYTHON")")"
+
+log "Using GROMACS: $GMX"
+log "Using Boltz environment: $BOLTZ_ENV"
+log "Using Python environment: $TOOLS_ENV"
+if [ "${CHECK_ENV:-0}" = "1" ]; then
+    log "Environment check passed"
+    exit 0
 fi
 
 mkdir -p "$BOLTZ_YAML" "$BOLTZ_RAW" "$MD_OUT"
@@ -47,7 +127,7 @@ fi
 
 # 2. Run Boltz once for both panels. The runner is incremental and skips .done jobs.
 log "Running combined Boltz-2 panel with $GPUS GPU worker(s)"
-export PATH="/lzy/envs/boltz2/bin:$PATH"
+export PATH="$BOLTZ_ENV/bin:$PATH"
 BOLTZ_ARGS=(
     --input-dir "$BOLTZ_YAML"
     --out-dir "$BOLTZ_RAW"
@@ -60,13 +140,8 @@ bash "$ROOT_DIR/scripts/pipeline/run_vwd_functional_boltz2_panel.sh" "${BOLTZ_AR
 
 # 3. Parse the shared raw output once for each batch manifest.
 log "Parsing Boltz-2 results"
-for python_bin in /lzy/envs/tools/bin/python /lzy/envs/boltz2/bin/python python3; do
-    if command -v "$python_bin" >/dev/null 2>&1; then
-        PYTHON_BIN="$python_bin"
-        break
-    fi
-done
-export PATH="/lzy/envs/tools/bin:/lzy/envs/boltz2/bin:$PATH"
+PYTHON_BIN="$TOOLS_PYTHON"
+export PATH="$TOOLS_ENV/bin:$BOLTZ_ENV/bin:$PATH"
 
 "$PYTHON_BIN" "$ROOT_DIR/scripts/pipeline/parse_vwd_functional_boltz2_results.py" \
     --results-dir "$BOLTZ_RAW" \
