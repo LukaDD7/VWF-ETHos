@@ -1,0 +1,11 @@
+patient_id,required_missing_information,preferred_actions,acceptable_actions,inappropriate_actions,must_not_miss_actions,pre_genetic_subtype_set,final_subtype_set_if_available,abstention_expected,rationale
+CASE_T1_001,,,,,,,,,
+CASE_T1_002,,,,,,,,,
+CASE_T1_003,,,,,,,,,
+CASE_T1_004,,,,,,,,,
+CASE_T1_005,,,,,,,,,
+CASE_T1_006,,,,,,,,,
+CASE_T1_007,,,,,,,,,
+CASE_T1_008,,,,,,,,,
+CASE_T1_009,,,,,,,,,
+CASE_T1_010,,,,,,,,,

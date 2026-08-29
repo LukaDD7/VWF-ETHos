@@ -28,11 +28,29 @@ def alpha_rows(features_path: Path, expected_cases: int | None = None) -> list[d
     if expected_cases is not None and (len(frame) != expected_cases or frame["case_id"].nunique() != expected_cases):
         raise ValueError(f"AlphaGenome return must contain {expected_cases} unique requests; found {len(frame)} rows")
     feature_cols = [column for column in frame if column.startswith("ag_") and column.endswith("_abs_max")]
+    splice_cols = [
+        column
+        for column in (
+            "ag_splice_sites_abs_max",
+            "ag_splice_site_usage_abs_max",
+            "ag_splice_junctions_abs_max",
+        )
+        if column in frame.columns
+    ]
     rows: list[dict[str, Any]] = []
     for _, item in frame.iterrows():
         values = pd.to_numeric(item[feature_cols], errors="coerce").dropna()
         ranked = values.sort_values(ascending=False).head(5)
         top = ", ".join(f"{name}={compact_number(value)}" for name, value in ranked.items()) or "no selected-track score returned"
+        splice_values = pd.to_numeric(item[splice_cols], errors="coerce").dropna() if splice_cols else pd.Series(dtype=float)
+        splice_text = ""
+        if not splice_values.empty and float(splice_values.max()) >= 0.5:
+            splice_ranked = splice_values.sort_values(ascending=False)
+            splice_text = (
+                " Splice-axis signal: "
+                + ", ".join(f"{name}={compact_number(value)}" for name, value in splice_ranked.items())
+                + "."
+            )
         patient_id = item.get("patient_id", item["case_id"])
         rows.append({
             "case_id": patient_id,
@@ -44,7 +62,10 @@ def alpha_rows(features_path: Path, expected_cases: int | None = None) -> list[d
             "supports": "",
             "refutes": "",
             "confidence": np.nan,
-            "conclusion": f"AlphaGenome complete-profile selected-track scores; top absolute views: {top}.",
+            "conclusion": (
+                f"AlphaGenome complete-profile selected-track scores; top absolute views: {top}."
+                f"{splice_text}"
+            ),
             "limitations": json.dumps([
                 "Research-only regulatory and splicing effect scores; they are not clinical pathogenicity classifications.",
                 "Cell selection follows the returned output_metadata plan; unavailable VWF-relevant tracks remain missing rather than using unrelated biosamples.",

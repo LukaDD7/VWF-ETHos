@@ -1,0 +1,75 @@
+{
+  "patient_id": "CASE_T1_003",
+  "candidate_subtypes": [
+    "type_1_candidate_provisional"
+  ],
+  "confidence": "low",
+  "opinion": "### 1. 临床与实验室表型\nVWF:Ag=36.4, VWF:Act=28.5, FVIII:C=68.6, 血小板计数=未提供。\nVWF:Act/VWF:Ag 比值未显示明显不成比例的功能下降。\n\n### 2. 变异与功能域\n- c.7464C>T / p.Gly2488=（VWFC2）。\n\n### 3. AI 机制证据\n- alphagenome_full_profile: AlphaGenome complete-profile selected-track scores; top absolute views: ag_chip_histone_active_abs_max=8920, ag_chip_tf_active_abs_max=1248, ag_cage_active_abs_max=98.19, ag_dnase_active_abs_max=31.19, ag_rna_seq_active_abs_max=16.34. Splice-axis signal: ag_splice_junctions_abs_max=6.375, ag_splice_sites_abs_max=0.9793, ag_splice_site_usage_abs_max=0.7578.\n\n### 4. 机制解释\nAlphaGenome 提示剪接相关信号，需考虑变异通过转录/剪接异常导致 VWF 表达或分泌下降，而不一定直接改变蛋白结构。\n\n### 5. 分型鉴别与不确定性\nHGMD/ClinVar 的致病性评级本身不能直接给出 VWD 亚型方向；即使标注为致病或 uncertain，也必须结合实验室检查、出血表型和机制证据综合判断。\n当前倾向：type_1_or_low_vwf（low）。\n建议优先补充：VWF_PP, DDAVP_0_1_4H。",
+  "abstention": true,
+  "expert_review_required": true,
+  "recommended_actions": [
+    {
+      "action_code": "VWF_PP",
+      "rank": 1,
+      "status": "recommended",
+      "availability": "unknown",
+      "clinical_hypothesis": [
+        "type_1_candidate_provisional"
+      ],
+      "expected_discriminator": "Distinguish secretion defects from clearance phenotypes.",
+      "rationale": "Case CASE_T1_003: first-level Ag=36.4, Act=28.5, ratio=0.782967032967033; missing=[]; hypotheses=['type_1_candidate_provisional']. Evidence summary: 1 structured evidence issue(s); 6 missing evidence item(s)..",
+      "requires_human_confirmation": true,
+      "provenance": [
+        "policy:vwd_second_level_actions_v0@2026-08-25"
+      ]
+    },
+    {
+      "action_code": "DDAVP_0_1_4H",
+      "rank": 2,
+      "status": "recommended",
+      "availability": "unknown",
+      "clinical_hypothesis": [
+        "type_1_candidate_provisional"
+      ],
+      "expected_discriminator": "Characterize the diagnostic response at 0, 1, and 4 hours; V0 does not provide treatment advice.",
+      "rationale": "Case CASE_T1_003: first-level Ag=36.4, Act=28.5, ratio=0.782967032967033; missing=[]; hypotheses=['type_1_candidate_provisional']. Evidence summary: 1 structured evidence issue(s); 6 missing evidence item(s)..",
+      "requires_human_confirmation": true,
+      "provenance": [
+        "policy:vwd_second_level_actions_v0@2026-08-25"
+      ]
+    }
+  ],
+  "subtype_tendencies": [
+    {
+      "subtype_label": "type_1_or_low_vwf",
+      "score": 1.0,
+      "confidence": "low",
+      "rationale": "Concordantly reduced VWF:Ag and VWF:Act",
+      "evidence_refs": []
+    }
+  ],
+  "supporting_evidence": [
+    "CASE_T1_003",
+    "CASE_T1_003:alphagenome-full-profile"
+  ],
+  "contradicting_evidence": [
+    "No hard conflict, but required evidence is incomplete. Evidence: "
+  ],
+  "missing_information": [
+    "expert_variant_classification",
+    "population_frequency",
+    "pathogenicity_prediction",
+    "variant_specific_literature",
+    "ABO_blood_group_genotype",
+    "VWF_clearance_context"
+  ],
+  "limitations": [
+    "Second-level tests were explicitly unavailable; absence of results is not evidence against type 2 VWD.",
+    "The remaining uncertainty is due to missing evidence rather than contradictory evidence."
+  ],
+  "provenance": [
+    "policy:vwd_first_level_v0@2026-08-25",
+    "policy:vwd_second_level_actions_v0@2026-08-25",
+    "llm:deterministic_policy"
+  ]
+}

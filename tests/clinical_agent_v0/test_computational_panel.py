@@ -27,13 +27,13 @@ def test_existing_alphagenome_and_boltz_evidence_are_embedded() -> None:
     )
     items, status = provider.collect(patient_id="CASE_T1_001", variant=variant)
     assert {item.source for item in items} == {
-        "alphagenome_existing_panel",
-        "boltz_mechanism_classifier",
+        "alphagenome_full_profile",
+        "boltz2_functional_panel",
     }
-    assert status["alphagenome"] == "existing_result_matched"
-    assert status["boltz"] == "existing_result_interpreted"
-    alpha = next(item for item in items if item.source == "alphagenome_existing_panel")
-    assert any("not signed" in limitation for limitation in alpha.limitations)
+    assert status["alphagenome"] == "returned_full_profile_embedded"
+    assert status["boltz"] == "returned_panel_embedded"
+    alpha = next(item for item in items if item.source == "alphagenome_full_profile")
+    assert any("research-only" in limitation.casefold() for limitation in alpha.limitations)
 
 
 def test_case_t1_007_vwf_splice_variant_is_model_ready_despite_f8_comorbidity() -> None:
@@ -52,8 +52,8 @@ def test_case_t1_007_vwf_splice_variant_is_model_ready_despite_f8_comorbidity() 
         boltz_request_status="NOT_APPLICABLE_NON_MISSENSE",
     )
     items, status = provider.collect(patient_id="CASE_T1_007", variant=variant)
-    assert [item.source for item in items] == ["alphagenome_existing_panel"]
-    assert status["alphagenome"] == "existing_result_matched"
+    assert [item.source for item in items] == ["alphagenome_full_profile"]
+    assert status["alphagenome"] == "returned_full_profile_embedded"
     assert status["boltz"] == "NOT_APPLICABLE_NON_MISSENSE"
 
 

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 import json
+import re
 from typing import Any
 from uuid import uuid4
 
@@ -11,6 +12,7 @@ from .azure import LLMProvider
 from .tools.fhir import FHIRBundle
 from .tools.matrix import EvidenceToolMatrix
 from .tools.computational_panel import LocalComputationalPanelProvider
+from .tools.variant_context import DOMAINS
 from .tools.second_level import SECOND_LEVEL_ACTIONS, SecondLevelFHIRStore
 from .evidence_analysis import analyze_evidence_conflicts
 from .subtype_tendency import infer_subtype_tendency
@@ -56,6 +58,153 @@ def _lab_summary(case: PatientCase) -> dict[str, Any]:
 
 def _clinical_context_summary(case: PatientCase) -> dict[str, Any]:
     return case.clinical_context.model_dump(mode="json")
+
+
+def _variant_domain(variant: Any) -> str:
+    """Return the canonical VWF domain for a variant, if it can be parsed."""
+    if not variant.hgvs_p:
+        return ""
+    match = re.search(r"p\.[A-Za-z]+(\d+)", variant.hgvs_p or "")
+    if not match:
+        return ""
+    position = int(match.group(1))
+    for start, end, name in DOMAINS:
+        if start <= position <= end:
+            return name
+    nearest_name, nearest_distance = min(
+        ((name, min(abs(position - start), abs(position - end))) for start, end, name in DOMAINS),
+        key=lambda item: item[1],
+    )
+    if nearest_distance <= 20:
+        return f"near {nearest_name}"
+    return ""
+
+
+def _mechanism_analysis(state: VWDWorkflowState) -> str:
+    """Build a doctor-facing mechanism chain from labs, variants, and AI evidence."""
+    case: PatientCase = state["case"]
+    variants = state.get("variants", [])
+    labs = case.first_level
+    ratio = state.get("vwf_act_ag_ratio")
+    context = case.clinical_context
+    evidence_items = state.get("evidence_items", [])
+    tendencies = state.get("subtype_tendencies", [])
+    actions = state.get("recommended_actions", [])
+    missing = state.get("evidence_missing", [])
+
+    lines: list[str] = []
+    lines.append("### 1. 临床与实验室表型")
+    ag = labs.vwf_ag.value if labs.vwf_ag.observed else None
+    act = labs.vwf_act.value if labs.vwf_act.observed else None
+    fviii = labs.fviii_c.value if labs.fviii_c.observed else None
+    platelets = labs.platelet_count.value if labs.platelet_count.observed else None
+    lines.append(
+        f"VWF:Ag={ag if ag is not None else '未提供'}, "
+        f"VWF:Act={act if act is not None else '未提供'}, "
+        f"FVIII:C={fviii if fviii is not None else '未提供'}, "
+        f"血小板计数={platelets if platelets is not None else '未提供'}。"
+    )
+    if ratio is not None and ratio < 0.7:
+        lines.append(
+            f"VWF:Act/VWF:Ag 比值为 {ratio:.3f}，低于 0.70，提示存在不成比例的功能性 VWF 缺陷。"
+        )
+    else:
+        lines.append("VWF:Act/VWF:Ag 比值未显示明显不成比例的功能下降。")
+    clinical_text = " ".join(
+        [
+            context.symptoms or "",
+            context.disease_course or "",
+            " ".join(context.interpretation_constraints or []),
+        ]
+    )
+    if platelets is not None and platelets < 150 or "血小板减少" in clinical_text:
+        lines.append("临床背景中存在血小板减少线索，需与 2B/血小板型 VWD 鉴别。")
+
+    lines.append("")
+    lines.append("### 2. 变异与功能域")
+    if not variants:
+        lines.append("未提供 VWF 变异。")
+    for variant in variants:
+        domain = _variant_domain(variant)
+        lines.append(
+            f"- {variant.hgvs_c or variant.source_row_id} / {variant.hgvs_p or '无蛋白改变'}"
+            f"（{domain or '未能映射到已知功能域'}）。"
+        )
+
+    lines.append("")
+    lines.append("### 3. AI 机制证据")
+    computational_sources = {
+        "alphagenome_existing_panel",
+        "alphagenome_full_profile",
+        "boltz_mechanism_classifier",
+        "boltz2_type1_panel",
+        "boltz2_functional_panel",
+        "md_type1_panel",
+        "md_targeted_panel",
+    }
+    computational_items = [item for item in evidence_items if item.source in computational_sources]
+    if not computational_items:
+        lines.append("当前未获得可用的 AlphaGenome、Boltz 或 MD 机制证据。")
+    for item in computational_items:
+        lines.append(f"- {item.source}: {item.conclusion}")
+
+    lines.append("")
+    lines.append("### 4. 机制解释")
+    domains = {_variant_domain(variant) for variant in variants}
+    if any("VWFA1" in domain for domain in domains):
+        lines.append(
+            "该变异位于 A1 功能域，A1 参与 GPIb 结合并受 AIM 自抑制调控；"
+            "该区域的错义变异可能通过改变自抑制界面、A1 暴露或表面电荷，影响血小板结合功能。"
+        )
+        if any(item.source == "md_targeted_panel" for item in computational_items):
+            lines.append(
+                "MD 结果提示 AIM-A1 接触动力学发生改变，可作为自抑制释放或 A1 功能面暴露的动态证据。"
+            )
+        if any(item.source == "boltz2_functional_panel" for item in computational_items):
+            lines.append(
+                "静态 Boltz 结果提示相关结构轴发生扰动，但静态置信度不等于结合自由能，需与 MD 和功能实验联合解释。"
+            )
+    if any("VWFA2" in domain for domain in domains):
+        lines.append(
+            "该变异位于 A2 功能域，A2 与多聚体加工和 ADAMTS13 易感性相关；"
+            "该区域变异可能通过影响折叠稳定性或切割敏感性，导致高危分子量多聚体缺失。"
+        )
+    if any(domain in {"VWFD3", "TIL4", "TIL3"} or "VWFD3" in domain or "TIL4" in domain or "TIL3" in domain for domain in domains):
+        lines.append(
+            "该变异位于 D'/D3 相关区域，该区域参与 FVIII 结合并影响 2N 轴；"
+            "若 FVIII:C 与 VWF:Ag 不成比例下降，应进一步评估 FVIII 结合功能。"
+        )
+    if any("splice" in item.conclusion.lower() for item in computational_items):
+        lines.append(
+            "AlphaGenome 提示剪接相关信号，需考虑变异通过转录/剪接异常导致 VWF 表达或分泌下降，"
+            "而不一定直接改变蛋白结构。"
+        )
+    if ratio is not None and ratio < 0.7:
+        lines.append(
+            "实验室表型与功能性 VWF 缺陷方向一致；若同时存在高危分子量多聚体缺失，更支持 2A/2B 样机制。"
+        )
+
+    lines.append("")
+    lines.append("### 5. 分型鉴别与不确定性")
+    lines.append(
+        "HGMD/ClinVar 的致病性评级本身不能直接给出 VWD 亚型方向；"
+        "即使标注为致病或 uncertain，也必须结合实验室检查、出血表型和机制证据综合判断。"
+    )
+    if tendencies:
+        tendency_text = "; ".join(
+            f"{item.subtype_label}（{item.confidence}）" for item in tendencies
+        )
+        lines.append(f"当前倾向：{tendency_text}。")
+    if "VWF_MULTIMER" in missing or "VWF_CB" in missing:
+        lines.append(
+            "VWF 多聚体分析和 VWF:CB/Ag 比值是区分 2A、2B 和 2M-A1 轴的关键检查；"
+            "当前结果缺失，不能仅凭 AI 模型确定亚型。"
+        )
+    if actions:
+        action_text = ", ".join(action.action_code for action in actions)
+        lines.append(f"建议优先补充：{action_text}。")
+
+    return "\n".join(lines)
 
 
 def _fhir_evidence_summary(state: VWDWorkflowState) -> list[dict[str, Any]]:
@@ -556,10 +705,13 @@ def infer_subtype_tendency_node(state: VWDWorkflowState) -> dict[str, Any]:
 
 
 def synthesize_opinion(state: VWDWorkflowState, llm_provider: LLMProvider) -> dict[str, Any]:
+    mechanism_analysis = _mechanism_analysis(state)
     system_prompt = (
         "You are a retrospective VWD research summarizer. Return only JSON with keys "
-        "summary, abstention, expert_review_required, candidate_subtypes. Do not diagnose, "
-        "do not invent laboratory results or evidence, and do not give treatment advice. "
+        "summary, abstention, expert_review_required, candidate_subtypes. "
+        "The summary must be a doctor-facing mechanism analysis that integrates clinical phenotype, "
+        "variant domain, AI model evidence, and uncertainty; do not reduce it to a short checklist. "
+        "Do not diagnose, do not invent laboratory results or evidence, and do not give treatment advice. "
         "Every factual statement must cite a FHIR resource ID from the provided evidence list; "
         "if no evidence supports a statement, omit it."
     )
@@ -591,6 +743,7 @@ def synthesize_opinion(state: VWDWorkflowState, llm_provider: LLMProvider) -> di
             "evidence_missing": state.get("evidence_missing", []),
             "acmg_evidence_hints": state.get("acmg_evidence_hints", []),
             "subtype_tendencies": [item.model_dump() for item in state.get("subtype_tendencies", [])],
+            "mechanism_analysis": mechanism_analysis,
         },
         ensure_ascii=False,
     )

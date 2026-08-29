@@ -1,0 +1,982 @@
+{
+  "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+  "case": {
+    "patient_id": "CASE_T1_006",
+    "episode_id": "CASE_T1_006_EPISODE_1",
+    "source_row_ids": [
+      "CASE_T1_006"
+    ],
+    "first_level": {
+      "vwf_ag": {
+        "value": 47.6,
+        "raw": "47.6",
+        "observed": true,
+        "unit": "%",
+        "reference_range": "来源表：O型42.0-140.8%；非O型66.1-79.9%（需核对原实验室）",
+        "missing_reason": null
+      },
+      "vwf_act": {
+        "value": 34.1,
+        "raw": "34.1",
+        "observed": true,
+        "unit": "%",
+        "reference_range": "来源表：O型40.3-125.9%；非O型48.8-163.4%",
+        "missing_reason": null
+      },
+      "fviii_c": {
+        "value": 78.7,
+        "raw": "78.7",
+        "observed": true,
+        "unit": "%",
+        "reference_range": "50-150%",
+        "missing_reason": null
+      },
+      "platelet_count": {
+        "value": null,
+        "raw": "NA",
+        "observed": false,
+        "unit": "10^9/L",
+        "reference_range": "未提供",
+        "missing_reason": "not_available"
+      }
+    },
+    "variants": [
+      {
+        "source_row_id": "CASE_T1_006",
+        "variant_index": 1,
+        "hgvs_c": "c.7219dup",
+        "hgvs_p": "p.Leu2407ProfsTer11",
+        "chromosomal_position": "chr12:6091019-6091020",
+        "gene": "VWF",
+        "variant_type": "移码",
+        "zygosity": "杂合",
+        "reported_phase": null,
+        "reported_acmg": "Pathogenic",
+        "genome_build": "GRCh38",
+        "hg38_chromosome": "chr12",
+        "hg38_position": 5981854,
+        "hg38_ref": "G",
+        "hg38_alt": "GG",
+        "alphagenome_request_status": "READY",
+        "boltz_request_status": "NOT_APPLICABLE_NON_MISSENSE",
+        "benign_reported": false,
+        "phase_status": "single"
+      }
+    ],
+    "clinical_context": {
+      "sex": "男",
+      "age_text": "5岁",
+      "disease_course": "5年",
+      "symptoms": "间断鼻衄5年",
+      "family_history": "阴性",
+      "isth_bat": {
+        "value": 0.0,
+        "raw": "0",
+        "observed": true,
+        "unit": null,
+        "reference_range": null,
+        "missing_reason": null
+      },
+      "high_dose_ristocetin": {
+        "value": 93.3,
+        "raw": "93.3",
+        "observed": true,
+        "unit": "%",
+        "reference_range": null,
+        "missing_reason": null
+      },
+      "ddavp": {
+        "vwf_ag_pre": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "vwf_ag_0_5h": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "vwf_ag_1h": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "vwf_ag_4h": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "vwf_act_pre": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "vwf_act_0_5h": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "vwf_act_1h": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "vwf_act_4h": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "fviii_c_pre": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "fviii_c_0_5h": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "fviii_c_1h": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "fviii_c_4h": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "reported_response": null
+      },
+      "prior_treatment": "无",
+      "comorbidity": null,
+      "interpretation_constraints": []
+    }
+  },
+  "mode": "retrospective",
+  "decision_time": "2026-08-29T17:54:01.443633+00:00",
+  "first_level": {
+    "vwf_ag": {
+      "value": 47.6,
+      "raw": "47.6",
+      "observed": true,
+      "unit": "%",
+      "reference_range": "来源表：O型42.0-140.8%；非O型66.1-79.9%（需核对原实验室）",
+      "missing_reason": null
+    },
+    "vwf_act": {
+      "value": 34.1,
+      "raw": "34.1",
+      "observed": true,
+      "unit": "%",
+      "reference_range": "来源表：O型40.3-125.9%；非O型48.8-163.4%",
+      "missing_reason": null
+    },
+    "fviii_c": {
+      "value": 78.7,
+      "raw": "78.7",
+      "observed": true,
+      "unit": "%",
+      "reference_range": "50-150%",
+      "missing_reason": null
+    },
+    "platelet_count": {
+      "value": null,
+      "raw": "NA",
+      "observed": false,
+      "unit": "10^9/L",
+      "reference_range": "未提供",
+      "missing_reason": "not_available"
+    }
+  },
+  "variants": [
+    {
+      "source_row_id": "CASE_T1_006",
+      "variant_index": 1,
+      "hgvs_c": "c.7219dup",
+      "hgvs_p": "p.Leu2407ProfsTer11",
+      "chromosomal_position": "chr12:6091019-6091020",
+      "gene": "VWF",
+      "variant_type": "移码",
+      "zygosity": "杂合",
+      "reported_phase": null,
+      "reported_acmg": "Pathogenic",
+      "genome_build": "GRCh38",
+      "hg38_chromosome": "chr12",
+      "hg38_position": 5981854,
+      "hg38_ref": "G",
+      "hg38_alt": "GG",
+      "alphagenome_request_status": "READY",
+      "boltz_request_status": "NOT_APPLICABLE_NON_MISSENSE",
+      "benign_reported": false,
+      "phase_status": "single"
+    }
+  ],
+  "vwf_act_ag_ratio": 0.7163865546218487,
+  "missing_critical_fields": [],
+  "pre_genetic_hypotheses": [
+    "type_1_candidate_provisional"
+  ],
+  "pre_genetic_route": "wait_genetics",
+  "recommended_actions": [
+    {
+      "action_code": "VWF_PP",
+      "rank": 1,
+      "status": "recommended",
+      "availability": "unknown",
+      "clinical_hypothesis": [
+        "type_1_candidate_provisional"
+      ],
+      "expected_discriminator": "Distinguish secretion defects from clearance phenotypes.",
+      "rationale": "Case CASE_T1_006: first-level Ag=47.6, Act=34.1, ratio=0.7163865546218487; missing=[]; hypotheses=['type_1_candidate_provisional']. Evidence summary: 1 structured evidence issue(s); 6 missing evidence item(s)..",
+      "requires_human_confirmation": true,
+      "provenance": [
+        "policy:vwd_second_level_actions_v0@2026-08-25"
+      ]
+    },
+    {
+      "action_code": "DDAVP_0_1_4H",
+      "rank": 2,
+      "status": "recommended",
+      "availability": "unknown",
+      "clinical_hypothesis": [
+        "type_1_candidate_provisional"
+      ],
+      "expected_discriminator": "Characterize the diagnostic response at 0, 1, and 4 hours; V0 does not provide treatment advice.",
+      "rationale": "Case CASE_T1_006: first-level Ag=47.6, Act=34.1, ratio=0.7163865546218487; missing=[]; hypotheses=['type_1_candidate_provisional']. Evidence summary: 1 structured evidence issue(s); 6 missing evidence item(s)..",
+      "requires_human_confirmation": true,
+      "provenance": [
+        "policy:vwd_second_level_actions_v0@2026-08-25"
+      ]
+    }
+  ],
+  "second_level_environment": "auto_unavailable",
+  "second_level_status": "not_available",
+  "evidence_plan": [
+    {
+      "provider": "local_workbook",
+      "query": {
+        "patient_id": "CASE_T1_006",
+        "variant": "c.7219dup"
+      }
+    },
+    {
+      "provider": "alphagenome_existing_panel",
+      "query": "CASE_T1_006"
+    },
+    {
+      "provider": "boltz_mechanism_classifier",
+      "query": "p.Leu2407ProfsTer11"
+    }
+  ],
+  "evidence_items": [
+    {
+      "source": "local_workbook",
+      "source_record_id": "CASE_T1_006",
+      "query": "c.7219dup",
+      "retrieved_at": "2026-08-29T17:54:01.459584+00:00",
+      "source_version": "deidentified_v3",
+      "supports": [],
+      "refutes": [],
+      "conclusion": "Genetic report row was recorded; V0 performs no external variant interpretation.",
+      "confidence": null,
+      "evidence_level": "research_input",
+      "provenance_url": null,
+      "citation": null,
+      "raw_payload_hash": null,
+      "limitations": [
+        "No gnomAD, ClinVar, HGMD, predictor, or guideline lookup was run in the offline profile."
+      ],
+      "raw_excerpt_locator": "2.基因后!CASE_T1_006"
+    },
+    {
+      "source": "alphagenome_full_profile",
+      "source_record_id": "CASE_T1_006:alphagenome-full-profile",
+      "query": "chr12:5981854:G>GG",
+      "retrieved_at": "2026-08-29T15:02:19.768375+00:00",
+      "source_version": "alphagenome_agent_features.csv",
+      "supports": [],
+      "refutes": [],
+      "conclusion": "AlphaGenome complete-profile selected-track scores; top absolute views: ag_chip_histone_active_abs_max=8438, ag_chip_tf_active_abs_max=1255, ag_cage_active_abs_max=440, ag_dnase_active_abs_max=28.18, ag_rna_seq_active_abs_max=16.11.",
+      "confidence": null,
+      "evidence_level": "mechanism_model",
+      "provenance_url": null,
+      "citation": null,
+      "raw_payload_hash": null,
+      "limitations": [
+        "Research-only regulatory and splicing effect scores; they are not clinical pathogenicity classifications.",
+        "Cell selection follows the returned output_metadata plan; unavailable VWF-relevant tracks remain missing rather than using unrelated biosamples."
+      ],
+      "raw_excerpt_locator": "/inspire/hdd/global_user/mengweicheng-240108120092/lzy/projects/VWF-ETHos/outputs/type1_panel_agent_20260828/server_bundle/results/alphagenome/alphagenome_agent_features.csv"
+    }
+  ],
+  "provider_calls": [
+    {
+      "provider": "local_workbook",
+      "version": "deidentified_v3",
+      "case_id": "CASE_T1_006",
+      "status": "ok",
+      "items_returned": 1
+    },
+    {
+      "provider": "local_computational_panels",
+      "version": "v1",
+      "case_id": "CASE_T1_006",
+      "status": "ok",
+      "items_returned": 1,
+      "variant_statuses": [
+        {
+          "variant_id": "CASE_T1_006",
+          "alphagenome": "returned_full_profile_embedded",
+          "boltz": "NOT_APPLICABLE_NON_MISSENSE"
+        }
+      ]
+    },
+    {
+      "provider": "deterministic_policy",
+      "version": "v0",
+      "deployment": null,
+      "case_id": "CASE_T1_006",
+      "status": "ok",
+      "json_mode_valid": true
+    }
+  ],
+  "second_level_bundle": {
+    "resourceType": "Bundle",
+    "id": "5a68b5e5-58b1-4c91-a6f1-608df2d962cb",
+    "type": "document",
+    "timestamp": "2026-08-29T17:54:01.477416+00:00",
+    "entry": [
+      {
+        "fullUrl": "urn:uuid:sr-34956180833e95c455df",
+        "resource": {
+          "resourceType": "ServiceRequest",
+          "id": "sr-34956180833e95c455df",
+          "meta": null,
+          "status": "revoked",
+          "intent": "plan",
+          "category": [
+            {
+              "coding": [],
+              "text": "VWD second-level diagnostic workup"
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/vwd-second-level-action",
+                "code": "VWF_PP",
+                "display": "Vwf Pp"
+              }
+            ],
+            "text": "VWF_PP"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_006",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/action-rationale",
+              "valueString": "Automated retrospective environment feedback: requested second-level tests are unavailable."
+            }
+          ],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:sr-5b96447358ab89028a23",
+        "resource": {
+          "resourceType": "ServiceRequest",
+          "id": "sr-5b96447358ab89028a23",
+          "meta": null,
+          "status": "revoked",
+          "intent": "plan",
+          "category": [
+            {
+              "coding": [],
+              "text": "VWD second-level diagnostic workup"
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/vwd-second-level-action",
+                "code": "DDAVP_0_1_4H",
+                "display": "Ddavp 0 1 4H"
+              }
+            ],
+            "text": "DDAVP_0_1_4H"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_006",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/action-rationale",
+              "valueString": "Automated retrospective environment feedback: requested second-level tests are unavailable."
+            }
+          ],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:sl-task-2a7cfaaf77c547a4c190",
+        "resource": {
+          "resourceType": "Task",
+          "id": "sl-task-2a7cfaaf77c547a4c190",
+          "meta": null,
+          "status": "rejected",
+          "intent": "plan",
+          "category": [],
+          "code": {
+            "coding": [],
+            "text": "VWF_PP"
+          },
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null,
+          "focus": {
+            "reference": "ServiceRequest/sr-34956180833e95c455df"
+          },
+          "for_": {
+            "reference": "Patient/CASE_T1_006"
+          },
+          "statusReason": {
+            "text": "environment feedback: not available"
+          }
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:sl-task-8bb0501c03a1ff760f59",
+        "resource": {
+          "resourceType": "Task",
+          "id": "sl-task-8bb0501c03a1ff760f59",
+          "meta": null,
+          "status": "rejected",
+          "intent": "plan",
+          "category": [],
+          "code": {
+            "coding": [],
+            "text": "DDAVP_0_1_4H"
+          },
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null,
+          "focus": {
+            "reference": "ServiceRequest/sr-5b96447358ab89028a23"
+          },
+          "for_": {
+            "reference": "Patient/CASE_T1_006"
+          },
+          "statusReason": {
+            "text": "environment feedback: not available"
+          }
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:sl-report-50c3d4bd316d8c960985",
+        "resource": {
+          "resourceType": "DiagnosticReport",
+          "id": "sl-report-50c3d4bd316d8c960985",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [],
+            "text": "VWD second-level workup"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_006",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": "2026-08-29T17:54:01.477600+00:00",
+          "issued": "2026-08-29T17:54:01.477604+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null,
+          "conclusion": "All requested second-level tests were returned as unavailable by the automated retrospective environment; no values were imputed."
+        }
+      }
+    ],
+    "extension": []
+  },
+  "evidence_conflicts": [
+    {
+      "conflict_id": "insufficient_evidence",
+      "conflict_type": "insufficient_evidence",
+      "severity": "warning",
+      "evidence_refs": [],
+      "description": "No hard conflict, but required evidence is incomplete.",
+      "explanation": "The remaining uncertainty is due to missing evidence rather than contradictory evidence.",
+      "recommended_action": "additional_evidence"
+    }
+  ],
+  "evidence_missing": [
+    "expert_variant_classification",
+    "population_frequency",
+    "pathogenicity_prediction",
+    "variant_specific_literature",
+    "ABO_blood_group_genotype",
+    "VWF_clearance_context"
+  ],
+  "evidence_conflict_summary": "1 structured evidence issue(s); 6 missing evidence item(s).",
+  "acmg_evidence_hints": [],
+  "subtype_tendencies": [
+    {
+      "subtype_label": "type_1_or_low_vwf",
+      "score": 1.0,
+      "confidence": "low",
+      "rationale": "Concordantly reduced VWF:Ag and VWF:Act",
+      "evidence_refs": []
+    }
+  ],
+  "candidate_subtypes": [
+    "type_1_candidate_provisional"
+  ],
+  "safety_flags": [
+    {
+      "code": "second_level_unavailable",
+      "severity": "warning",
+      "message": "Second-level tests were explicitly unavailable; absence of results is not evidence against type 2 VWD.",
+      "requires_expert_review": true
+    }
+  ],
+  "llm_summary": "### 1. 临床与实验室表型\nVWF:Ag=47.6, VWF:Act=34.1, FVIII:C=78.7, 血小板计数=未提供。\nVWF:Act/VWF:Ag 比值未显示明显不成比例的功能下降。\n\n### 2. 变异与功能域\n- c.7219dup / p.Leu2407ProfsTer11（未能映射到已知功能域）。\n\n### 3. AI 机制证据\n- alphagenome_full_profile: AlphaGenome complete-profile selected-track scores; top absolute views: ag_chip_histone_active_abs_max=8438, ag_chip_tf_active_abs_max=1255, ag_cage_active_abs_max=440, ag_dnase_active_abs_max=28.18, ag_rna_seq_active_abs_max=16.11.\n\n### 4. 机制解释\n\n### 5. 分型鉴别与不确定性\nHGMD/ClinVar 的致病性评级本身不能直接给出 VWD 亚型方向；即使标注为致病或 uncertain，也必须结合实验室检查、出血表型和机制证据综合判断。\n当前倾向：type_1_or_low_vwf（low）。\n建议优先补充：VWF_PP, DDAVP_0_1_4H。",
+  "llm_provider": "deterministic_policy",
+  "final_opinion": {
+    "patient_id": "CASE_T1_006",
+    "candidate_subtypes": [
+      "type_1_candidate_provisional"
+    ],
+    "confidence": "low",
+    "opinion": "### 1. 临床与实验室表型\nVWF:Ag=47.6, VWF:Act=34.1, FVIII:C=78.7, 血小板计数=未提供。\nVWF:Act/VWF:Ag 比值未显示明显不成比例的功能下降。\n\n### 2. 变异与功能域\n- c.7219dup / p.Leu2407ProfsTer11（未能映射到已知功能域）。\n\n### 3. AI 机制证据\n- alphagenome_full_profile: AlphaGenome complete-profile selected-track scores; top absolute views: ag_chip_histone_active_abs_max=8438, ag_chip_tf_active_abs_max=1255, ag_cage_active_abs_max=440, ag_dnase_active_abs_max=28.18, ag_rna_seq_active_abs_max=16.11.\n\n### 4. 机制解释\n\n### 5. 分型鉴别与不确定性\nHGMD/ClinVar 的致病性评级本身不能直接给出 VWD 亚型方向；即使标注为致病或 uncertain，也必须结合实验室检查、出血表型和机制证据综合判断。\n当前倾向：type_1_or_low_vwf（low）。\n建议优先补充：VWF_PP, DDAVP_0_1_4H。",
+    "abstention": true,
+    "expert_review_required": true,
+    "recommended_actions": [
+      {
+        "action_code": "VWF_PP",
+        "rank": 1,
+        "status": "recommended",
+        "availability": "unknown",
+        "clinical_hypothesis": [
+          "type_1_candidate_provisional"
+        ],
+        "expected_discriminator": "Distinguish secretion defects from clearance phenotypes.",
+        "rationale": "Case CASE_T1_006: first-level Ag=47.6, Act=34.1, ratio=0.7163865546218487; missing=[]; hypotheses=['type_1_candidate_provisional']. Evidence summary: 1 structured evidence issue(s); 6 missing evidence item(s)..",
+        "requires_human_confirmation": true,
+        "provenance": [
+          "policy:vwd_second_level_actions_v0@2026-08-25"
+        ]
+      },
+      {
+        "action_code": "DDAVP_0_1_4H",
+        "rank": 2,
+        "status": "recommended",
+        "availability": "unknown",
+        "clinical_hypothesis": [
+          "type_1_candidate_provisional"
+        ],
+        "expected_discriminator": "Characterize the diagnostic response at 0, 1, and 4 hours; V0 does not provide treatment advice.",
+        "rationale": "Case CASE_T1_006: first-level Ag=47.6, Act=34.1, ratio=0.7163865546218487; missing=[]; hypotheses=['type_1_candidate_provisional']. Evidence summary: 1 structured evidence issue(s); 6 missing evidence item(s)..",
+        "requires_human_confirmation": true,
+        "provenance": [
+          "policy:vwd_second_level_actions_v0@2026-08-25"
+        ]
+      }
+    ],
+    "subtype_tendencies": [
+      {
+        "subtype_label": "type_1_or_low_vwf",
+        "score": 1.0,
+        "confidence": "low",
+        "rationale": "Concordantly reduced VWF:Ag and VWF:Act",
+        "evidence_refs": []
+      }
+    ],
+    "supporting_evidence": [
+      "CASE_T1_006",
+      "CASE_T1_006:alphagenome-full-profile"
+    ],
+    "contradicting_evidence": [
+      "No hard conflict, but required evidence is incomplete. Evidence: "
+    ],
+    "missing_information": [
+      "expert_variant_classification",
+      "population_frequency",
+      "pathogenicity_prediction",
+      "variant_specific_literature",
+      "ABO_blood_group_genotype",
+      "VWF_clearance_context"
+    ],
+    "limitations": [
+      "Second-level tests were explicitly unavailable; absence of results is not evidence against type 2 VWD.",
+      "The remaining uncertainty is due to missing evidence rather than contradictory evidence."
+    ],
+    "provenance": [
+      "policy:vwd_first_level_v0@2026-08-25",
+      "policy:vwd_second_level_actions_v0@2026-08-25",
+      "llm:deterministic_policy"
+    ]
+  },
+  "status": "completed",
+  "trace": [
+    {
+      "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+      "case_id": "CASE_T1_006",
+      "node": "load_case",
+      "timestamp": "2026-08-29T17:54:01.449687+00:00",
+      "detail": {
+        "source_rows": [
+          "CASE_T1_006"
+        ]
+      }
+    },
+    {
+      "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+      "case_id": "CASE_T1_006",
+      "node": "validate_first_level",
+      "timestamp": "2026-08-29T17:54:01.450975+00:00",
+      "detail": {
+        "missing": [],
+        "ratio": 0.7163865546218487
+      }
+    },
+    {
+      "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+      "case_id": "CASE_T1_006",
+      "node": "pre_genetic_triage",
+      "timestamp": "2026-08-29T17:54:01.452563+00:00",
+      "detail": {
+        "hypotheses": [
+          "type_1_candidate_provisional"
+        ],
+        "route": "wait_genetics"
+      }
+    },
+    {
+      "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+      "case_id": "CASE_T1_006",
+      "node": "wait_genetics",
+      "timestamp": "2026-08-29T17:54:01.454054+00:00",
+      "detail": {
+        "variants": 1
+      }
+    },
+    {
+      "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+      "case_id": "CASE_T1_006",
+      "node": "normalize_variants",
+      "timestamp": "2026-08-29T17:54:01.456019+00:00",
+      "detail": {
+        "variants": [
+          {
+            "source_row_id": "CASE_T1_006",
+            "variant_index": 1,
+            "hgvs_c": "c.7219dup",
+            "hgvs_p": "p.Leu2407ProfsTer11",
+            "chromosomal_position": "chr12:6091019-6091020",
+            "gene": "VWF",
+            "variant_type": "移码",
+            "zygosity": "杂合",
+            "reported_phase": null,
+            "reported_acmg": "Pathogenic",
+            "genome_build": "GRCh38",
+            "hg38_chromosome": "chr12",
+            "hg38_position": 5981854,
+            "hg38_ref": "G",
+            "hg38_alt": "GG",
+            "alphagenome_request_status": "READY",
+            "boltz_request_status": "NOT_APPLICABLE_NON_MISSENSE",
+            "benign_reported": false,
+            "phase_status": "single"
+          }
+        ],
+        "phase_inferred": false
+      }
+    },
+    {
+      "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+      "case_id": "CASE_T1_006",
+      "node": "plan_evidence_calls",
+      "timestamp": "2026-08-29T17:54:01.457615+00:00",
+      "detail": {
+        "planned_calls": 3
+      }
+    },
+    {
+      "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+      "case_id": "CASE_T1_006",
+      "node": "run_evidence_providers",
+      "timestamp": "2026-08-29T17:54:01.459608+00:00",
+      "detail": {
+        "evidence_items": 1
+      }
+    },
+    {
+      "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+      "case_id": "CASE_T1_006",
+      "node": "run_computational_panels",
+      "timestamp": "2026-08-29T17:54:01.462896+00:00",
+      "detail": {
+        "evidence_items_added": 1,
+        "statuses": [
+          {
+            "variant_id": "CASE_T1_006",
+            "alphagenome": "returned_full_profile_embedded",
+            "boltz": "NOT_APPLICABLE_NON_MISSENSE"
+          }
+        ]
+      }
+    },
+    {
+      "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+      "case_id": "CASE_T1_006",
+      "node": "integrate_patient_variant_evidence",
+      "timestamp": "2026-08-29T17:54:01.464786+00:00",
+      "detail": {
+        "candidates": [
+          "type_1_candidate_provisional"
+        ]
+      }
+    },
+    {
+      "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+      "case_id": "CASE_T1_006",
+      "node": "analyze_evidence",
+      "timestamp": "2026-08-29T17:54:01.469294+00:00",
+      "detail": {
+        "conflict_count": 1,
+        "missing_count": 6
+      }
+    },
+    {
+      "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+      "case_id": "CASE_T1_006",
+      "node": "infer_subtype_tendency",
+      "timestamp": "2026-08-29T17:54:01.471132+00:00",
+      "detail": {
+        "tendencies": [
+          {
+            "subtype_label": "type_1_or_low_vwf",
+            "score": 1.0,
+            "confidence": "low",
+            "rationale": "Concordantly reduced VWF:Ag and VWF:Act",
+            "evidence_refs": []
+          }
+        ]
+      }
+    },
+    {
+      "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+      "case_id": "CASE_T1_006",
+      "node": "apply_type2_clingen_acmg",
+      "timestamp": "2026-08-29T17:54:01.473247+00:00",
+      "detail": {
+        "enabled": false
+      }
+    },
+    {
+      "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+      "case_id": "CASE_T1_006",
+      "node": "recommend_second_level",
+      "timestamp": "2026-08-29T17:54:01.475368+00:00",
+      "detail": {
+        "actions": [
+          "VWF_PP",
+          "DDAVP_0_1_4H"
+        ]
+      }
+    },
+    {
+      "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+      "case_id": "CASE_T1_006",
+      "node": "check_lab_availability",
+      "timestamp": "2026-08-29T17:54:01.477625+00:00",
+      "detail": {
+        "environment": "auto_unavailable",
+        "unavailable_actions": [
+          "VWF_PP",
+          "DDAVP_0_1_4H"
+        ],
+        "observed_results": 0,
+        "imputed_results": 0
+      }
+    },
+    {
+      "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+      "case_id": "CASE_T1_006",
+      "node": "ingest_second_level_results",
+      "timestamp": "2026-08-29T17:54:01.482794+00:00",
+      "detail": {
+        "fabricated_results": 0,
+        "unavailable_tests": true
+      }
+    },
+    {
+      "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+      "case_id": "CASE_T1_006",
+      "node": "update_post_evidence_assessment",
+      "timestamp": "2026-08-29T17:54:01.484955+00:00",
+      "detail": {
+        "second_level": "not_available"
+      }
+    },
+    {
+      "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+      "case_id": "CASE_T1_006",
+      "node": "synthesize_opinion",
+      "timestamp": "2026-08-29T17:54:01.487404+00:00",
+      "detail": {
+        "provider": "deterministic_policy",
+        "abstention": true,
+        "expert_review": true
+      }
+    },
+    {
+      "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+      "case_id": "CASE_T1_006",
+      "node": "safety_conflict_gate",
+      "timestamp": "2026-08-29T17:54:01.492015+00:00",
+      "detail": {
+        "flags": [
+          "second_level_unavailable"
+        ]
+      }
+    },
+    {
+      "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+      "case_id": "CASE_T1_006",
+      "node": "expert_review",
+      "timestamp": "2026-08-29T17:54:01.494204+00:00",
+      "detail": {
+        "reason": "safety gate triggered"
+      }
+    },
+    {
+      "run_id": "aa0fbc0e-8101-459d-831f-85a99e88dd70",
+      "case_id": "CASE_T1_006",
+      "node": "package_final_opinion",
+      "timestamp": "2026-08-29T17:54:01.496820+00:00",
+      "detail": {
+        "abstention": true,
+        "expert_review_required": true
+      }
+    }
+  ]
+}

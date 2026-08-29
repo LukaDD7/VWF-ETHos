@@ -29,11 +29,21 @@ class DeterministicLLMProvider:
         missing = state.get("evidence_missing", [])
         actions = state.get("recommended_actions", [])
         variants = state.get("variants", [])
-        summary = (
-            f"Retrospective review integrated {len(evidence)} FHIR evidence resources across "
-            f"{len(variants)} reported variant(s), identified {len(conflicts)} structured evidence issue(s), "
-            f"and found {len(missing)} missing evidence item(s). "
-        )
+        mechanism_analysis = state.get("mechanism_analysis")
+        if mechanism_analysis:
+            summary = str(mechanism_analysis)
+            return {
+                "summary": summary,
+                "abstention": True,
+                "expert_review_required": True,
+                "candidate_subtypes": [],
+            }
+        else:
+            summary = (
+                f"Retrospective review integrated {len(evidence)} FHIR evidence resources across "
+                f"{len(variants)} reported variant(s), identified {len(conflicts)} structured evidence issue(s), "
+                f"and found {len(missing)} missing evidence item(s). "
+            )
         if actions:
             summary += "The evidence-constrained second-level plan prioritizes " + ", ".join(actions) + ". "
         tendencies = state.get("subtype_tendencies", [])

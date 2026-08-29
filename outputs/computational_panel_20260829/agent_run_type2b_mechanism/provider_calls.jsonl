@@ -1,0 +1,18 @@
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_T2B_001", "status": "ok", "items_returned": 1}
+{"provider": "local_computational_panels", "version": "v1", "case_id": "CASE_T2B_001", "status": "ok", "items_returned": 3, "variant_statuses": [{"variant_id": "CASE_T2B_001", "alphagenome": "returned_full_profile_embedded", "boltz": "returned_panel_embedded"}]}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_T2B_001", "status": "ok", "json_mode_valid": true}
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_T2B_002", "status": "ok", "items_returned": 1}
+{"provider": "local_computational_panels", "version": "v1", "case_id": "CASE_T2B_002", "status": "ok", "items_returned": 3, "variant_statuses": [{"variant_id": "CASE_T2B_002", "alphagenome": "returned_full_profile_embedded", "boltz": "returned_panel_embedded"}]}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_T2B_002", "status": "ok", "json_mode_valid": true}
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_T2B_003", "status": "ok", "items_returned": 1}
+{"provider": "local_computational_panels", "version": "v1", "case_id": "CASE_T2B_003", "status": "ok", "items_returned": 3, "variant_statuses": [{"variant_id": "CASE_T2B_003", "alphagenome": "returned_full_profile_embedded", "boltz": "returned_panel_embedded"}]}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_T2B_003", "status": "ok", "json_mode_valid": true}
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_T2B_004", "status": "ok", "items_returned": 1}
+{"provider": "local_computational_panels", "version": "v1", "case_id": "CASE_T2B_004", "status": "ok", "items_returned": 3, "variant_statuses": [{"variant_id": "CASE_T2B_004", "alphagenome": "returned_full_profile_embedded", "boltz": "returned_panel_embedded"}]}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_T2B_004", "status": "ok", "json_mode_valid": true}
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_T2B_005", "status": "ok", "items_returned": 2}
+{"provider": "local_computational_panels", "version": "v1", "case_id": "CASE_T2B_005", "status": "ok", "items_returned": 5, "variant_statuses": [{"variant_id": "CASE_T2B_005_VARIANT_1", "alphagenome": "returned_full_profile_embedded", "boltz": "returned_panel_embedded"}, {"variant_id": "CASE_T2B_005_VARIANT_2_BENIGN", "alphagenome": "returned_full_profile_embedded", "boltz": "returned_panel_embedded"}]}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_T2B_005", "status": "ok", "json_mode_valid": true}
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_T2B_006", "status": "ok", "items_returned": 1}
+{"provider": "local_computational_panels", "version": "v1", "case_id": "CASE_T2B_006", "status": "ok", "items_returned": 3, "variant_statuses": [{"variant_id": "CASE_T2B_006", "alphagenome": "returned_full_profile_embedded", "boltz": "returned_panel_embedded"}]}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_T2B_006", "status": "ok", "json_mode_valid": true}

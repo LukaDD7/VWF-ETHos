@@ -1,0 +1,18 @@
+{
+  "run_id": "fb38bc63-fc80-4de1-a09a-933bdba39c4c",
+  "created_at": "2026-08-29T17:54:01.708092+00:00",
+  "case_ids": [
+    "CASE_T2B_001",
+    "CASE_T2B_002",
+    "CASE_T2B_003",
+    "CASE_T2B_004",
+    "CASE_T2B_005",
+    "CASE_T2B_006"
+  ],
+  "llm_provider": "deterministic_policy",
+  "llm_provider_version": "v0",
+  "biomedical_tools_enabled": false,
+  "computational_panels_enabled": true,
+  "second_level_environment": "auto_unavailable",
+  "checkpoint_db": "/inspire/hdd/global_user/mengweicheng-240108120092/lzy/projects/VWF-ETHos/outputs/computational_panel_20260829/agent_run_type2b_mechanism/run_archive/fb38bc63-fc80-4de1-a09a-933bdba39c4c/checkpoints.sqlite"
+}

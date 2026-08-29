@@ -22,14 +22,19 @@ AA3_TO_1 = {
 def compact_missense(hgvs_p: str | None) -> str | None:
     if not hgvs_p:
         return None
+    text = hgvs_p.strip()
+    three_letter = "|".join(AA3_TO_1)
+    one_letter = "".join(AA3_TO_1.values())
     match = re.fullmatch(
-        r"p\.(" + "|".join(AA3_TO_1) + r")(\d+)(" + "|".join(AA3_TO_1) + r")",
-        hgvs_p.strip(),
+        rf"p\.({three_letter}|[{one_letter}])(\d+)({three_letter}|[{one_letter}])",
+        text,
     )
     if not match:
         return None
     ref, position, alt = match.groups()
-    return f"{AA3_TO_1[ref]}{position}{AA3_TO_1[alt]}"
+    ref_one = AA3_TO_1.get(ref, ref)
+    alt_one = AA3_TO_1.get(alt, alt)
+    return f"{ref_one}{position}{alt_one}"
 
 
 class LocalComputationalPanelProvider:
