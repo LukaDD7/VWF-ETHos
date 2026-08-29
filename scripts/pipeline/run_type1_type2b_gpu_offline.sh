@@ -178,11 +178,12 @@ MD_VARIANTS=(PANEL_WT_MATCHED P1413L R1308C S1310F V1316M R1341W A1461D)
 for variant in "${MD_VARIANTS[@]}"; do
     pdb="$ROOT_DIR/structures/7a6o_mutants/${variant}.pdb"
     relaxed="$ROOT_DIR/output/gromacs_md_autoinhib/${variant}/relax_pdb/solv_ions_em_refined.gro"
+    relaxed_fallback="$ROOT_DIR/output/gromacs_md_autoinhib/${variant}/relax_pdb/solv_ions_em.gro"
     if [ ! -f "$pdb" ]; then
         echo "[FATAL] Missing prebuilt mutant structure: $pdb" >&2
         exit 2
     fi
-    if [ ! -f "$relaxed" ]; then
+    if [ ! -f "$relaxed" ] && [ ! -f "$relaxed_fallback" ]; then
         log "Relaxing $variant"
         bash "$ROOT_DIR/scripts/pipeline/relax_autoinhib_structure.sh" \
             --pdb "$pdb" --variant "$variant" --skip-vacuum --gmx "$GMX"
