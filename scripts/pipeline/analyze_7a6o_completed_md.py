@@ -235,6 +235,7 @@ def main() -> int:
     parser.add_argument("--output", default=None, help="analysis output dir")
     parser.add_argument("--gmx", default="envs/gromacs/bin.AVX2_256/gmx", help="GROMACS executable")
     parser.add_argument("--variants", default=None, help="comma-separated variants; default WT + known 14")
+    parser.add_argument("--wt-variant", default="WT", help="Variant name used as the matched WT baseline")
     parser.add_argument("--force", action="store_true", help="rebuild intermediate trajectory/contact files")
     args = parser.parse_args()
 
@@ -281,7 +282,7 @@ def main() -> int:
         contact_timeseries_rows.extend(ts)
 
     if contact_summary_rows:
-        wt = next((row for row in contact_summary_rows if row["variant"] == "WT"), None)
+        wt = next((row for row in contact_summary_rows if row["variant"] == args.wt_variant), None)
         if wt:
             for row in contact_summary_rows:
                 for key in SELECTIONS:

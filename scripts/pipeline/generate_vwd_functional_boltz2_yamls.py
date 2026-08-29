@@ -500,8 +500,8 @@ def yaml_for_job(job_name: str, sequences: list[dict[str, str]], comments: dict[
         )
     lines.append(f"# job: {job_name}")
     for key, value in comments.items():
-        safe_value = str(value).replace("\n", " ")
-        lines.append(f"# {key}: {safe_value}")
+        safe_value = str(value).replace("\n", " ").rstrip()
+        lines.append(f"# {key}: {safe_value}" if safe_value else f"# {key}:")
     lines.append("")
     return "\n".join(lines)
 
@@ -532,6 +532,7 @@ def generate_panel(
     write_json_batches: bool,
     batch_size: int,
     limit_variants: int | None,
+    minimal_wt_baselines: bool = False,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     output_dir.mkdir(parents=True, exist_ok=True)
     yaml_dir = output_dir / "yamls"
@@ -546,8 +547,24 @@ def generate_panel(
     json_jobs: list[dict[str, object]] = []
     seen_jobs: set[str] = set()
 
-    # WT baselines are necessary for per-assay delta metrics.
+    required_wt_assays: set[str] = set()
+    if minimal_wt_baselines:
+        for _, row in variants.iterrows():
+            ref = str(row["wt_aa"])
+            pos = int(row["position"])
+            alt = str(row["mut_aa"])
+            _, mutation_status = apply_mutation(wt_seq, ref, pos, alt)
+            if mutation_status != "ok":
+                continue
+            required_wt_assays.update(
+                assay.key for assay in ASSAYS if variant_overlaps_assay(pos, assay)
+            )
+
+    # WT baselines are necessary for per-assay delta metrics.  For a focused
+    # batch, emit only the WT assays that have at least one variant job.
     for assay in ASSAYS:
+        if minimal_wt_baselines and assay.key not in required_wt_assays:
+            continue
         job_name = f"VWF_WT__{assay.key}"
         sequences = build_sequences(wt_seq, assay)
         yaml_path = yaml_dir / f"{job_name}.yaml"
@@ -766,6 +783,11 @@ def main() -> None:
     )
     parser.add_argument("--limit-variants", type=int, default=None, help="Optional quick-test limit.")
     parser.add_argument("--write-json-batches", action="store_true", help="Also write JSON batches.")
+    parser.add_argument(
+        "--minimal-wt-baselines",
+        action="store_true",
+        help="Emit WT baselines only for assays used by this variant batch.",
+    )
     parser.add_argument("--batch-size", type=int, default=30, help="Jobs per JSON batch.")
     parser.add_argument("--variants-csv", type=Path, default=None,
                         help="Load variants from a clean CSV (aa_change/wt_aa/position/mut_aa"
@@ -792,6 +814,7 @@ def main() -> None:
         write_json_batches=args.write_json_batches,
         batch_size=args.batch_size,
         limit_variants=args.limit_variants,
+        minimal_wt_baselines=args.minimal_wt_baselines,
     )
     print_summary(variants_out, panel_out, manifest_out, args.output_dir)
 

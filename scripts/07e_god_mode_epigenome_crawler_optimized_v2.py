@@ -47,7 +47,7 @@ OUTPUT_CSV = RESULTS_DIR / "07e_GodMode_Epigenome_Peaks.csv"
 CHECKPOINT_JSONL = RESULTS_DIR / "07e_godmode_checkpoint.jsonl"
 
 # API 配置
-API_KEY = "AIzaSyC25qItDVDM6jJJFqNDSvEyhR4P56E0CtY"
+API_KEY = os.environ.get("ALPHAGENOME_API_KEY", "")
 ONTOLOGY_TERMS = None  # 所有组织/细胞系
 
 # 网络容错配置 - 流量保护版

@@ -1,0 +1,6 @@
+variant_id,wt_aa,position,mut_aa,aa_change_3letter,source_labels,source_files,source_rows,source_domains,inferred_domain,wt_validation_status,domain_source_agrees_with_inferred
+VWF_R1205H,R,1205,H,Arg1205His,unknown,boltz_variants.csv,,nan,D3,ok,False
+VWF_P1413L,P,1413,L,Pro1413Leu,unknown,boltz_variants.csv,,nan,A1,ok,False
+VWF_A1500V,A,1500,V,Ala1500Val,unknown,boltz_variants.csv,,nan,A2,ok,False
+VWF_R1943C,R,1943,C,Arg1943Cys,unknown,boltz_variants.csv,,nan,D4,ok,False
+VWF_C1950Y,C,1950,Y,Cys1950Tyr,unknown,boltz_variants.csv,,nan,D4,ok,False

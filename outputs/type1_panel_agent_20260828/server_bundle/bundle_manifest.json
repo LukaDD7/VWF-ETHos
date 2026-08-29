@@ -1,0 +1,10 @@
+{
+  "alphagenome_cases": 9,
+  "alphagenome_raw_outputs": 11,
+  "boltz_variants": 5,
+  "boltz_variant_jobs": 8,
+  "boltz_wt_baselines": 7,
+  "boltz_total_jobs": 15,
+  "md_pairs": 1,
+  "bundle": "/Users/lucachangretta/Agent_Workspace/VWF-ETHos/outputs/type1_panel_agent_20260828/server_bundle"
+}

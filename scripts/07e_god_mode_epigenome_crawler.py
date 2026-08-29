@@ -53,7 +53,7 @@ OUTPUT_CSV = RESULTS_DIR / "07e_GodMode_Epigenome_Peaks.csv"
 CHECKPOINT_JSONL = RESULTS_DIR / "07e_godmode_checkpoint.jsonl"
 
 # API 配置
-API_KEY = "AIzaSyC25qItDVDM6jJJFqNDSvEyhR4P56E0CtY"
+API_KEY = os.environ.get("ALPHAGENOME_API_KEY", "")
 # 07e 核心逻辑：用全组织数据(None)补充内皮细胞缺失的5种模态
 ONTOLOGY_TERMS = None  # 所有组织/细胞系，获取完整的11模态
 

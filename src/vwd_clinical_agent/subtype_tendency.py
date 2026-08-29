@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-from .schemas import SubtypeTendency
+from .schemas import EvidenceItem, SubtypeTendency
 from .tools.fhir import FHIRBundle
 
 
@@ -11,6 +11,7 @@ def infer_subtype_tendency(
     fhir_bundle: FHIRBundle,
     ratio: float | None,
     candidate_subtypes: list[str],
+    evidence_items: list[EvidenceItem] | None = None,
 ) -> list[SubtypeTendency]:
     scores: dict[str, float] = defaultdict(float)
     refs: dict[str, set[str]] = defaultdict(set)
@@ -24,12 +25,33 @@ def infer_subtype_tendency(
             refs[label].add(ref)
 
     candidates = set(candidate_subtypes)
+    if "non_vwf_case_out_of_scope" in candidates:
+        return []
     if "type_3_candidate" in candidates:
         add("type_3", 3.0, "Severe quantitative first-level deficit")
     if ratio is not None and ratio < 0.7:
         add("type_2_vwd", 2.0, "VWF:Act/VWF:Ag ratio below 0.70")
     elif "type_1_candidate_provisional" in candidates:
         add("type_1_or_low_vwf", 1.0, "Concordantly reduced VWF:Ag and VWF:Act")
+
+    for item in evidence_items or []:
+        if item.source != "boltz_mechanism_classifier":
+            continue
+        for label in item.supports:
+            subtype = {
+                "1": "type_1_or_low_vwf",
+                "2A": "type_2A",
+                "2B": "type_2B",
+                "2M": "type_2M",
+                "2N": "type_2N",
+            }.get(label)
+            if subtype:
+                add(
+                    subtype,
+                    1.0,
+                    "Boltz/structure mechanism classifier provides research-only directional support",
+                    item.source_record_id,
+                )
 
     for observation in fhir_bundle.resources("Observation"):
         name = (observation.get("code") or {}).get("text", "")

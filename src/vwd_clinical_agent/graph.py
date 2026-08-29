@@ -10,6 +10,7 @@ from langgraph.graph import END, START, StateGraph
 from .azure import LLMProvider
 from .tools.fhir import FHIRBundle
 from .tools.matrix import EvidenceToolMatrix
+from .tools.computational_panel import LocalComputationalPanelProvider
 from .tools.second_level import SECOND_LEVEL_ACTIONS, SecondLevelFHIRStore
 from .evidence_analysis import analyze_evidence_conflicts
 from .subtype_tendency import infer_subtype_tendency
@@ -51,6 +52,10 @@ def _lab_summary(case: PatientCase) -> dict[str, Any]:
         "FVIII:C": labs.fviii_c.model_dump(),
         "platelet_count": labs.platelet_count.model_dump(),
     }
+
+
+def _clinical_context_summary(case: PatientCase) -> dict[str, Any]:
+    return case.clinical_context.model_dump(mode="json")
 
 
 def _fhir_evidence_summary(state: VWDWorkflowState) -> list[dict[str, Any]]:
@@ -123,6 +128,14 @@ def validate_first_level(state: VWDWorkflowState) -> dict[str, Any]:
 
 def pre_genetic_triage(state: VWDWorkflowState) -> dict[str, Any]:
     policy = _load_policy("first_level_v0.json")
+    genes = {variant.gene.upper() for variant in state["case"].variants}
+    if genes and "VWF" not in genes:
+        hypotheses = ["non_vwf_case_out_of_scope"]
+        return {
+            "pre_genetic_hypotheses": hypotheses,
+            "pre_genetic_route": "wait_genetics",
+            "trace": [_trace(state, "pre_genetic_triage", hypotheses=hypotheses, route="wait_genetics")],
+        }
     labs = state["case"].first_level
     ratio = state.get("vwf_act_ag_ratio")
     ag = labs.vwf_ag.value if labs.vwf_ag.observed else None
@@ -150,8 +163,7 @@ def pre_genetic_triage(state: VWDWorkflowState) -> dict[str, Any]:
         and ratio >= policy["act_ag_ratio_threshold"]
         and ag is not None
         and act is not None
-        and fviii is not None
-        and max(ag, act, fviii) <= policy["type1_candidate_max_lab"]
+        and max(ag, act) <= policy["type1_candidate_max_lab"]
         and (platelets is None or platelets >= policy["normal_platelet_min"])
     ):
         hypotheses = ["type_1_candidate_provisional"]
@@ -171,7 +183,9 @@ def recommend_second_level(state: VWDWorkflowState) -> dict[str, Any]:
     candidates = set(state.get("candidate_subtypes", []))
     hypotheses = state.get("candidate_subtypes", state.get("pre_genetic_hypotheses", ["unresolved"]))
     codes: list[str] = []
-    if "platelet_type_vwd_candidate" in candidates or (
+    if "non_vwf_case_out_of_scope" in candidates:
+        codes.append("EXPERT_REVIEW")
+    elif "platelet_type_vwd_candidate" in candidates or (
         labs.platelet_count.observed and labs.platelet_count.value is not None and labs.platelet_count.value < 150
     ):
         codes.extend(["RIPA", "VWF_MULTIMER"])
@@ -233,6 +247,21 @@ def check_lab_availability(state: VWDWorkflowState) -> dict[str, Any]:
             for action in state.get("recommended_actions", [])
             if action.action_code in SECOND_LEVEL_ACTIONS
         ]
+        if not actions:
+            return {
+                "second_level_status": "not_available",
+                "trace": [
+                    _trace(
+                        state,
+                        "check_lab_availability",
+                        environment="auto_unavailable",
+                        unavailable_actions=[],
+                        observed_results=0,
+                        imputed_results=0,
+                        reason="no in-scope second-level VWF action",
+                    )
+                ],
+            }
         store = SecondLevelFHIRStore.from_actions(
             state["case"].patient_id,
             actions,
@@ -307,16 +336,24 @@ def normalize_variants(state: VWDWorkflowState) -> dict[str, Any]:
 
 
 def plan_evidence_calls(state: VWDWorkflowState) -> dict[str, Any]:
-    plan = [
-        {
-            "provider": "local_workbook",
-            "query": {
-                "patient_id": state["case"].patient_id,
-                "variant": variant.hgvs_c or variant.source_row_id,
-            },
-        }
-        for variant in state.get("variants", [])
-    ]
+    plan = []
+    for variant in state.get("variants", []):
+        plan.append(
+            {
+                "provider": "local_workbook",
+                "query": {
+                    "patient_id": state["case"].patient_id,
+                    "variant": variant.hgvs_c or variant.source_row_id,
+                },
+            }
+        )
+        if variant.gene.upper() == "VWF":
+            plan.extend(
+                [
+                    {"provider": "alphagenome_existing_panel", "query": variant.source_row_id},
+                    {"provider": "boltz_mechanism_classifier", "query": variant.hgvs_p or variant.source_row_id},
+                ]
+            )
     return {
         "evidence_plan": plan,
         "trace": [_trace(state, "plan_evidence_calls", planned_calls=len(plan))],
@@ -352,6 +389,34 @@ def run_evidence_providers(state: VWDWorkflowState) -> dict[str, Any]:
         "evidence_items": items,
         "provider_calls": provider_calls,
         "trace": [_trace(state, "run_evidence_providers", evidence_items=len(items))],
+    }
+
+
+def run_computational_panels(
+    state: VWDWorkflowState,
+    provider: LocalComputationalPanelProvider,
+) -> dict[str, Any]:
+    items = list(state.get("evidence_items", []))
+    statuses: list[dict[str, Any]] = []
+    added = 0
+    for variant in state.get("variants", []):
+        variant_items, status = provider.collect(patient_id=state["case"].patient_id, variant=variant)
+        items.extend(variant_items)
+        statuses.append(status)
+        added += len(variant_items)
+    return {
+        "evidence_items": items,
+        "provider_calls": [
+            {
+                "provider": provider.name,
+                "version": provider.version,
+                "case_id": state["case"].patient_id,
+                "status": "ok",
+                "items_returned": added,
+                "variant_statuses": statuses,
+            }
+        ],
+        "trace": [_trace(state, "run_computational_panels", evidence_items_added=added, statuses=statuses)],
     }
 
 
@@ -405,8 +470,28 @@ def run_fhir_evidence_tools(state: VWDWorkflowState, matrix: EvidenceToolMatrix)
 
 def integrate_patient_variant_evidence(state: VWDWorkflowState) -> dict[str, Any]:
     candidates = list(state.get("pre_genetic_hypotheses", ["unresolved"]))
+    if "non_vwf_case_out_of_scope" in candidates:
+        return {
+            "candidate_subtypes": candidates,
+            "trace": [_trace(state, "integrate_patient_variant_evidence", candidates=candidates, out_of_scope=True)],
+        }
     if len(state.get("variants", [])) > 1:
         candidates.append("multi_variant_unresolved")
+    for item in state.get("evidence_items", []):
+        if item.source != "boltz_mechanism_classifier":
+            continue
+        for label in item.supports:
+            normalized = {
+                "1": "type_1_candidate_provisional",
+                "2A": "type_2A_candidate",
+                "2B": "type_2B_candidate",
+                "2M": "type_2M_candidate",
+                "2N": "type_2N_candidate",
+            }.get(label)
+            if normalized and normalized not in candidates:
+                candidates.append(normalized)
+            if label.startswith("2") and "type_2_candidate" not in candidates:
+                candidates.append("type_2_candidate")
     return {
         "candidate_subtypes": candidates,
         "trace": [_trace(state, "integrate_patient_variant_evidence", candidates=candidates)],
@@ -462,6 +547,7 @@ def infer_subtype_tendency_node(state: VWDWorkflowState) -> dict[str, Any]:
         fhir_bundle=bundle,
         ratio=state.get("vwf_act_ag_ratio"),
         candidate_subtypes=state.get("candidate_subtypes", ["unresolved"]),
+        evidence_items=state.get("evidence_items", []),
     )
     return {
         "subtype_tendencies": tendencies,
@@ -481,12 +567,26 @@ def synthesize_opinion(state: VWDWorkflowState, llm_provider: LLMProvider) -> di
         {
             "patient_id": state["case"].patient_id,
             "first_level": _lab_summary(state["case"]),
+            "clinical_context": _clinical_context_summary(state["case"]),
             "act_ag_ratio": state.get("vwf_act_ag_ratio"),
             "pre_genetic_hypotheses": state.get("pre_genetic_hypotheses", []),
             "recommended_actions": [a.action_code for a in state.get("recommended_actions", [])],
             "variants": [v.model_dump() for v in state.get("variants", [])],
             "second_level_status": state.get("second_level_status"),
             "evidence": _fhir_evidence_summary(state),
+            "computational_evidence": [
+                item.model_dump(mode="json")
+                for item in state.get("evidence_items", [])
+                if item.source in {
+                    "alphagenome_existing_panel",
+                    "alphagenome_full_profile",
+                    "boltz_mechanism_classifier",
+                    "boltz2_type1_panel",
+                    "md_type1_panel",
+                    "boltz2_functional_panel",
+                    "md_targeted_panel",
+                }
+            ],
             "evidence_conflicts": [conflict.model_dump() for conflict in state.get("evidence_conflicts", [])],
             "evidence_missing": state.get("evidence_missing", []),
             "acmg_evidence_hints": state.get("acmg_evidence_hints", []),
@@ -524,13 +624,24 @@ def safety_conflict_gate(state: VWDWorkflowState) -> dict[str, Any]:
                 message=f"Missing critical fields: {', '.join(state['missing_critical_fields'])}.",
             )
         )
-    flags.append(
-        SafetyFlag(
-            code="first_level_metadata_missing",
-            severity="warning",
-            message="Units, reference ranges, assay methods, and collection times are absent.",
+    labs = state["case"].first_level
+    if any(not item.unit or not item.reference_range for item in (labs.vwf_ag, labs.vwf_act, labs.fviii_c)):
+        flags.append(
+            SafetyFlag(
+                code="first_level_metadata_missing",
+                severity="warning",
+                message="Some units, reference ranges, assay methods, or collection times are absent.",
+            )
         )
-    )
+    non_vwf_genes = sorted({variant.gene for variant in state.get("variants", []) if variant.gene.upper() != "VWF"})
+    if non_vwf_genes:
+        flags.append(
+            SafetyFlag(
+                code="non_vwf_gene_out_of_scope",
+                severity="critical",
+                message=f"Reported gene(s) {', '.join(non_vwf_genes)} are outside the VWF mechanism model; no VWF-panel inference is allowed.",
+            )
+        )
     if state.get("second_level_status") == "not_observed":
         flags.append(
             SafetyFlag(
@@ -553,6 +664,39 @@ def safety_conflict_gate(state: VWDWorkflowState) -> dict[str, Any]:
                 code="multi_variant_phase_unknown",
                 severity="critical",
                 message="Multiple variants are present and phase is unknown; compound mechanism cannot be inferred.",
+            )
+        )
+    if len(state.get("variants", [])) == 1 and any(
+        "复合" in (variant.zygosity or "") for variant in state.get("variants", [])
+    ):
+        flags.append(
+            SafetyFlag(
+                code="compound_heterozygous_report_incomplete",
+                severity="critical",
+                message="The report says compound heterozygous, but only one allele is represented; phase and the second allele must not be inferred.",
+            )
+        )
+    if any(
+        variant.gene.upper() == "VWF" and variant.alphagenome_request_status not in {None, "READY"}
+        for variant in state.get("variants", [])
+    ):
+        flags.append(
+            SafetyFlag(
+                code="computational_request_not_modelable",
+                severity="warning",
+                message="At least one VWF variant lacks a model-ready normalized request; missing computational output is not negative evidence.",
+            )
+        )
+    context = state["case"].clinical_context
+    if (
+        "hemophilia a" in (context.comorbidity or "").casefold()
+        or any("fviii" in item.casefold() and "confound" in item.casefold() for item in context.interpretation_constraints)
+    ):
+        flags.append(
+            SafetyFlag(
+                code="fviii_confounded_by_hemophilia_a",
+                severity="critical",
+                message="Coexisting hemophilia A confounds FVIII:C; FVIII:C must not be used to support or refute VWD type 2N.",
             )
         )
     return {
@@ -633,6 +777,7 @@ def terminal_waiting(state: VWDWorkflowState) -> dict[str, Any]:
 def build_workflow(
     llm_provider: LLMProvider,
     evidence_tool_matrix: EvidenceToolMatrix | None = None,
+    computational_panel_provider: LocalComputationalPanelProvider | None = None,
     checkpointer: Any | None = None,
 ) -> Any:
     graph = StateGraph(VWDWorkflowState)
@@ -648,6 +793,11 @@ def build_workflow(
     graph.add_node("normalize_variants", normalize_variants)
     graph.add_node("plan_evidence_calls", plan_evidence_calls)
     graph.add_node("run_evidence_providers", run_evidence_providers)
+    if computational_panel_provider is not None:
+        graph.add_node(
+            "run_computational_panels",
+            lambda state: run_computational_panels(state, computational_panel_provider),
+        )
     if evidence_tool_matrix is not None:
         graph.add_node("run_fhir_evidence_tools", lambda state: run_fhir_evidence_tools(state, evidence_tool_matrix))
     graph.add_node("integrate_patient_variant_evidence", integrate_patient_variant_evidence)
@@ -669,11 +819,15 @@ def build_workflow(
     )
     graph.add_edge("normalize_variants", "plan_evidence_calls")
     graph.add_edge("plan_evidence_calls", "run_evidence_providers")
+    evidence_start = "run_evidence_providers"
+    if computational_panel_provider is not None:
+        graph.add_edge("run_evidence_providers", "run_computational_panels")
+        evidence_start = "run_computational_panels"
     if evidence_tool_matrix is not None:
-        graph.add_edge("run_evidence_providers", "run_fhir_evidence_tools")
+        graph.add_edge(evidence_start, "run_fhir_evidence_tools")
         graph.add_edge("run_fhir_evidence_tools", "integrate_patient_variant_evidence")
     else:
-        graph.add_edge("run_evidence_providers", "integrate_patient_variant_evidence")
+        graph.add_edge(evidence_start, "integrate_patient_variant_evidence")
     graph.add_edge("integrate_patient_variant_evidence", "analyze_evidence")
     graph.add_edge("analyze_evidence", "infer_subtype_tendency")
     graph.add_edge("infer_subtype_tendency", "apply_type2_clingen_acmg")

@@ -19,6 +19,7 @@ from src.vwd_clinical_agent.azure import AzureOpenAIProvider, DeterministicLLMPr
 from src.vwd_clinical_agent.graph import build_workflow
 from src.vwd_clinical_agent.tools.fhir import FHIRBundle
 from src.vwd_clinical_agent.tools.matrix import EvidenceToolMatrix
+from src.vwd_clinical_agent.tools.computational_panel import LocalComputationalPanelProvider
 from src.vwd_clinical_agent.run_archive import RunArchive
 from src.vwd_clinical_agent.schemas import PatientCase
 from src.vwd_clinical_agent.workbook import LocalWorkbookProvider
@@ -58,6 +59,8 @@ def case_summary(result: dict[str, Any]) -> dict[str, Any]:
         "expert_review_required": bool(result.get("final_opinion") and result["final_opinion"].expert_review_required),
         "abstention": bool(result.get("final_opinion") and result["final_opinion"].abstention),
         "fabricated_second_level_results": 0,
+        "alphagenome_evidence_count": sum(item.source.startswith("alphagenome_") for item in result.get("evidence_items", [])),
+        "boltz_evidence_count": sum(item.source in {"boltz_mechanism_classifier", "boltz2_type1_panel", "md_type1_panel", "boltz2_functional_panel", "md_targeted_panel"} for item in result.get("evidence_items", [])),
     }
 
 
@@ -71,6 +74,11 @@ def main() -> int:
     parser.add_argument("--case-id", help="Run one patient ID or a comma-separated list, for example CASE_001,CASE_002")
     parser.add_argument("--limit", type=int, help="Run only the first N cases")
     parser.add_argument("--biomedical-tools", action="store_true")
+    parser.add_argument(
+        "--computational-panels",
+        action="store_true",
+        help="Embed already-computed local AlphaGenome and Boltz/mechanism evidence; never launches new jobs.",
+    )
     parser.add_argument("--second-level-bundle", type=Path)
     parser.add_argument(
         "--second-level-environment",
@@ -115,6 +123,7 @@ def main() -> int:
     )
     if evidence_matrix is not None:
         evidence_matrix.include_pubmed_full_text = args.pubmed_full_text
+    computational_panel = LocalComputationalPanelProvider(ROOT) if args.computational_panels else None
     run_id = str(uuid4())
     output_dir = args.output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -126,7 +135,12 @@ def main() -> int:
     from langgraph.checkpoint.sqlite import SqliteSaver
 
     with SqliteSaver.from_conn_string(str(archive.checkpoint_db)) as checkpointer:
-        graph = build_workflow(provider, evidence_matrix, checkpointer=checkpointer)
+        graph = build_workflow(
+            provider,
+            evidence_matrix,
+            computational_panel_provider=computational_panel,
+            checkpointer=checkpointer,
+        )
         for case in cases:
             thread_id = f"case_{case.patient_id}"
             config = {"configurable": {"thread_id": thread_id}}
@@ -166,6 +180,7 @@ def main() -> int:
             "llm_provider": provider.name,
             "llm_provider_version": provider.version,
             "biomedical_tools_enabled": args.biomedical_tools,
+            "computational_panels_enabled": args.computational_panels,
             "second_level_environment": args.second_level_environment,
             "checkpoint_db": str(archive.checkpoint_db),
         }
@@ -217,6 +232,14 @@ def main() -> int:
             for action in result.get("recommended_actions", [])
         ),
         "fabricated_second_level_results": 0,
+        "alphagenome_evidence_items": sum(
+            item.source.startswith("alphagenome_")
+            for result in results for item in result.get("evidence_items", [])
+        ),
+        "boltz_evidence_items": sum(
+            item.source in {"boltz_mechanism_classifier", "boltz2_type1_panel", "md_type1_panel", "boltz2_functional_panel", "md_targeted_panel"}
+            for result in results for item in result.get("evidence_items", [])
+        ),
         "multi_variant_cases_with_unknown_phase": sum(
             len(result.get("variants", [])) > 1 and all(variant.phase_status == "unknown" for variant in result.get("variants", []))
             for result in results
@@ -233,6 +256,7 @@ def main() -> int:
         "provider_profile": args.provider_profile,
         "llm_provider": provider.name,
         "llm_provider_version": provider.version,
+        "computational_panels_enabled": args.computational_panels,
         "workbook_audit": audit,
         "graph": "vwd_clinical_agent.graph/build_workflow",
         "policies": [

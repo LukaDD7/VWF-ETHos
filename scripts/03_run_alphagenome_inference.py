@@ -18,6 +18,7 @@
 """
 
 import logging
+import os
 import pickle
 import sys
 import time
@@ -43,7 +44,7 @@ OUTPUT_CSV = RESULTS_DIR / "03_inference_results.csv"
 # 断点续传：临时保存文件（每次成功立即追加）
 CHECKPOINT_JSONL = RESULTS_DIR / "03_inference_checkpoint.jsonl"
 
-API_KEY = "AIzaSyC25qItDVDM6jJJFqNDSvEyhR4P56E0CtY"
+API_KEY = os.environ.get("ALPHAGENOME_API_KEY", "")
 
 # 请求的输出类型
 REQUESTED_OUTPUTS = ["RNA_SEQ", "SPLICE_SITES"]
@@ -104,6 +105,8 @@ def initialize_alphagenome_client():
     from alphagenome.data import genome
     from alphagenome.models import dna_client
 
+    if not API_KEY:
+        raise RuntimeError("ALPHAGENOME_API_KEY environment variable is required")
     logger.info("正在连接 AlphaGenome API...")
     model = dna_client.create(API_KEY)
     logger.info("AlphaGenome API 连接成功！")
