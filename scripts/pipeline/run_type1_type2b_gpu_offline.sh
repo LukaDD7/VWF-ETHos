@@ -115,13 +115,15 @@ fi
 
 mkdir -p "$BOLTZ_YAML" "$BOLTZ_RAW" "$MD_OUT"
 
-# 1. Combine the two pre-generated Boltz YAML panels (15 + 20 = 35 jobs).
+# 1. Combine the two pre-generated Boltz YAML panels. The manifests contain 35
+# job references, but three A1 WT baselines are shared by both panels, so the
+# deduplicated offline workload is 32 unique Boltz jobs.
 log "Preparing combined Boltz YAML panel"
 cp -f "$ROOT_DIR"/outputs/type1_panel_agent_20260828/server_bundle/boltz/yamls/*.yaml "$BOLTZ_YAML"/
 cp -f "$ROOT_DIR"/outputs/type2b_panel_agent_20260829/server_bundle/boltz/yamls/*.yaml "$BOLTZ_YAML"/
 N_YAML=$(find "$BOLTZ_YAML" -maxdepth 1 -name '*.yaml' | wc -l)
-if [ "$N_YAML" -ne 35 ]; then
-    echo "[FATAL] Expected 35 Boltz YAML files; found $N_YAML" >&2
+if [ "$N_YAML" -ne 32 ]; then
+    echo "[FATAL] Expected 32 unique Boltz YAML files; found $N_YAML" >&2
     exit 2
 fi
 

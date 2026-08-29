@@ -64,7 +64,9 @@ The script uses the shared environments:
 
 ## Workload
 
-- Combined Boltz-2: 15 Type-1 jobs + 20 Type-2B jobs = 35 jobs.
+- Combined Boltz-2: 15 Type-1 jobs + 20 Type-2B jobs = 35 manifest references.
+  Three A1 WT baselines are shared by both panels, so the deduplicated offline
+  workload is 32 unique jobs.
 - Targeted MD: one shared WT plus P1413L, R1308C, S1310F, V1316M, R1341W, and
   A1461D = seven 50-ns trajectories.
 - Agent ingestion and rerun are executed automatically after Boltz and MD pass
