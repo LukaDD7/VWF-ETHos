@@ -1,0 +1,13 @@
+{
+  "patients": 6,
+  "variant_records": 7,
+  "alphagenome_requests": 7,
+  "alphagenome_raw_outputs": 11,
+  "boltz_unique_variants": 6,
+  "boltz_variant_jobs": 16,
+  "boltz_wt_baselines": 4,
+  "boltz_total_jobs": 20,
+  "md_variant_jobs": 5,
+  "md_wt_jobs": 1,
+  "bundle": "/Users/lucachangretta/Agent_Workspace/VWF-ETHos/outputs/type2b_panel_agent_20260829/server_bundle"
+}

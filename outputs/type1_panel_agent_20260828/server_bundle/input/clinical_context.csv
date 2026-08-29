@@ -1,0 +1,11 @@
+研究病例ID,性别,年龄,病程,主要症状,家族史,ISTH-BAT,高浓度瑞斯托霉素血小板聚集,DDAVP_VWF:Ag_输注前,DDAVP_VWF:Ag_0.5h,DDAVP_VWF:Ag_1h,DDAVP_VWF:Ag_4h,DDAVP_VWF:Act_输注前,DDAVP_VWF:Act_0.5h,DDAVP_VWF:Act_1h,DDAVP_VWF:Act_4h,DDAVP_FVIII:C_输注前,DDAVP_FVIII:C_0.5h,DDAVP_FVIII:C_1h,DDAVP_FVIII:C_4h,DDAVP报告反应性,既往治疗,共病,解释限制
+CASE_T1_001,男,5岁,2年,APTT延长，FV:C减低，vWF FVIII未查,阴性,0.0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,无,NA,NA
+CASE_T1_002,女,15岁,8年,发现缺铁性贫血，伴有鼻出血多，初潮后月经多,阴性,4.0,90.9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,无,NA,NA
+CASE_T1_003,男,4岁,9月,3岁10月鼻衄，量偏大，诊断过敏性鼻炎，治疗有好转。鼻衄每月1-2次。孕39周胎盘早剥,阴性,0.0,90.4,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,无,NA,NA
+CASE_T1_004,女,11岁,3年,大量月经出血伴失血性贫血、失血性休克,阴性,4.0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,无,NA,NA
+CASE_T1_005,女,3岁,10月,鼻衄,阴性,0.0,NA,10.4,NA,13.2,35.0,0.0,NA,7.5,0.0,31.7,NA,39.8,47.6,无效,2022年10月至2025年3月开始预防治疗，200单位每次，每14天1次，至今,NA,NA
+CASE_T1_006,男,5岁,5年,间断鼻衄5年,阴性,0.0,93.3,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,无,NA,NA
+CASE_T1_007,男,8月,半年,外伤后关节肿胀、皮肤出血、便中带血半年；FVIII:C<1%,有血友病家族史：患儿舅老爷为患者,4.0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,无,Hemophilia A,FVIII:C is confounded by coexisting hemophilia A and must not support or refute VWD type 2N.
+CASE_T1_008,女,5岁,1天,发现鼻出血，凝血功能异常,阳性患儿父亲鼻出血,0.0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,无,NA,NA
+CASE_T1_009,女,10岁,4年,发现FVIII活性减低4年，阑尾炎诊断1周,阳性患儿父亲 鼻出血病史,0.0,94.3,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,无,NA,NA
+CASE_T1_010,女,12岁,10年,生后反复鼻出血，目前月经量大,可疑阳性患儿母亲月经量大,3.0,87.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,无,NA,NA

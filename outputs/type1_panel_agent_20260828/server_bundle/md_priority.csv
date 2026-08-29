@@ -1,0 +1,2 @@
+case_id,aa_change,system,matched_wt,production_ns,priority,reason
+CASE_T1_008,P1413L,7A6O AIM-A1 closed-state equilibrium MD,TYPE1_WT_MATCHED,50,P0,Only A1 missense in this batch; targeted MD can assess A1/AIM contact integrity after assay-matched Boltz.

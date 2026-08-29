@@ -1,0 +1,6 @@
+aa_change,system,matched_wt,production_ns,priority
+R1308C,7A6O AIM-A1 closed-state equilibrium MD,TYPE2B_WT_MATCHED,50,P0
+S1310F,7A6O AIM-A1 closed-state equilibrium MD,TYPE2B_WT_MATCHED,50,P0
+V1316M,7A6O AIM-A1 closed-state equilibrium MD,TYPE2B_WT_MATCHED,50,P0
+R1341W,7A6O AIM-A1 closed-state equilibrium MD,TYPE2B_WT_MATCHED,50,P0
+A1461D,7A6O AIM-A1 closed-state equilibrium MD,TYPE2B_WT_MATCHED,50,P0

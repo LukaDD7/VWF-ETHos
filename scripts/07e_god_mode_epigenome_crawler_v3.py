@@ -64,7 +64,7 @@ CHECKPOINT_JSONL = RESULTS_DIR / "07e_godmode_checkpoint.jsonl"
 STATUS_FILE = RESULTS_DIR / "07e_proxy_status.json"  # 代理状态文件
 
 # API 配置
-API_KEY = "AIzaSyC25qItDVDM6jJJFqNDSvEyhR4P56E0CtY"
+API_KEY = os.environ.get("ALPHAGENOME_API_KEY", "")
 ONTOLOGY_TERMS = None  # 所有组织/细胞系
 API_ADDRESS = "gdmscience.googleapis.com:443"  # AlphaGenome 实际端点
 

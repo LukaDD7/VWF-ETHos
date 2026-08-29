@@ -45,12 +45,54 @@ class FirstLevelLabs(BaseModel):
     platelet_count: ObservedValue
 
 
+class DDAVPSeries(BaseModel):
+    vwf_ag_pre: ObservedValue = Field(default_factory=ObservedValue)
+    vwf_ag_0_5h: ObservedValue = Field(default_factory=ObservedValue)
+    vwf_ag_1h: ObservedValue = Field(default_factory=ObservedValue)
+    vwf_ag_4h: ObservedValue = Field(default_factory=ObservedValue)
+    vwf_act_pre: ObservedValue = Field(default_factory=ObservedValue)
+    vwf_act_0_5h: ObservedValue = Field(default_factory=ObservedValue)
+    vwf_act_1h: ObservedValue = Field(default_factory=ObservedValue)
+    vwf_act_4h: ObservedValue = Field(default_factory=ObservedValue)
+    fviii_c_pre: ObservedValue = Field(default_factory=ObservedValue)
+    fviii_c_0_5h: ObservedValue = Field(default_factory=ObservedValue)
+    fviii_c_1h: ObservedValue = Field(default_factory=ObservedValue)
+    fviii_c_4h: ObservedValue = Field(default_factory=ObservedValue)
+    reported_response: Optional[str] = None
+
+
+class ClinicalContext(BaseModel):
+    sex: Optional[str] = None
+    age_text: Optional[str] = None
+    disease_course: Optional[str] = None
+    symptoms: Optional[str] = None
+    family_history: Optional[str] = None
+    isth_bat: ObservedValue = Field(default_factory=ObservedValue)
+    high_dose_ristocetin: ObservedValue = Field(default_factory=ObservedValue)
+    ddavp: DDAVPSeries = Field(default_factory=DDAVPSeries)
+    prior_treatment: Optional[str] = None
+    comorbidity: Optional[str] = None
+    interpretation_constraints: list[str] = Field(default_factory=list)
+
+
 class VariantContext(BaseModel):
     source_row_id: str
     variant_index: int
     hgvs_c: Optional[str] = None
     hgvs_p: Optional[str] = None
     chromosomal_position: Optional[str] = None
+    gene: str = "VWF"
+    variant_type: Optional[str] = None
+    zygosity: Optional[str] = None
+    reported_phase: Optional[str] = None
+    reported_acmg: Optional[str] = None
+    genome_build: Optional[str] = None
+    hg38_chromosome: Optional[str] = None
+    hg38_position: Optional[int] = None
+    hg38_ref: Optional[str] = None
+    hg38_alt: Optional[str] = None
+    alphagenome_request_status: Optional[str] = None
+    boltz_request_status: Optional[str] = None
     benign_reported: bool = False
     phase_status: Literal["single", "unknown", "not_applicable"] = "single"
 
@@ -61,6 +103,7 @@ class PatientCase(BaseModel):
     source_row_ids: list[str]
     first_level: FirstLevelLabs
     variants: list[VariantContext]
+    clinical_context: ClinicalContext = Field(default_factory=ClinicalContext)
 
 
 class ClinicalAction(BaseModel):

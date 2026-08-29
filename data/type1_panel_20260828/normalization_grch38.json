@@ -1,0 +1,16 @@
+{
+  "source": "Ensembl REST VEP human HGVS, GRCh38; genomic alleles expressed on forward strand",
+  "transcript": "NM_000552.5",
+  "retrieved_at": "2026-08-28",
+  "records": {
+    "c.4499C>T": {"chromosome": "chr12", "position": 6018919, "ref": "G", "alt": "A", "consequence": "missense_variant"},
+    "c.5849G>A": {"chromosome": "chr12", "position": 5996216, "ref": "C", "alt": "T", "consequence": "missense_variant"},
+    "c.7464C>T": {"chromosome": "chr12", "position": 5971683, "ref": "G", "alt": "A", "consequence": "synonymous_variant"},
+    "c.2964C>A": {"chromosome": "chr12", "position": 6029345, "ref": "G", "alt": "T", "consequence": "stop_gained"},
+    "c.7219dup": {"chromosome": "chr12", "position": 5981854, "ref": "G", "alt": "GG", "consequence": "frameshift_variant", "note": "VCF-anchored insertion for VEP -/C on the reverse transcript; local GRCh38 context verified via UCSC sequence API"},
+    "c.3379+1G>A": {"chromosome": "chr12", "position": 6023630, "ref": "C", "alt": "T", "consequence": "splice_donor_variant", "note": "Source row gene label F8 describes the coexisting hemophilia A diagnosis; HGVS and chr12 coordinate identify NM_000552.5(VWF):c.3379+1G>A"},
+    "c.4238C>T": {"chromosome": "chr12", "position": 6019180, "ref": "G", "alt": "A", "consequence": "missense_variant"},
+    "c.3614G>A": {"chromosome": "chr12", "position": 6021960, "ref": "C", "alt": "T", "consequence": "missense_variant"},
+    "c.5827C>T": {"chromosome": "chr12", "position": 6011632, "ref": "G", "alt": "A", "consequence": "missense_variant"}
+  }
+}

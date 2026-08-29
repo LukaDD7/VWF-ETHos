@@ -10,6 +10,7 @@
 """
 
 import logging
+import os
 import sys
 import time
 import pickle
@@ -34,7 +35,7 @@ OUTPUT_CSV = RESULTS_DIR / "07_VCF_AlphaGenome_Results.csv"
 OUTPUT_PKL = RESULTS_DIR / "07_VCF_AlphaGenome_Results.pkl"
 CHECKPOINT_JSONL = RESULTS_DIR / "07_checkpoint.jsonl"  # 断点续传文件
 
-API_KEY = "AIzaSyC25qItDVDM6jJJFqNDSvEyhR4P56E0CtY"
+API_KEY = os.environ.get("ALPHAGENOME_API_KEY", "")
 ONTOLOGY_TERMS = ['CL:0000115']  # 内皮细胞
 CHECKPOINT_INTERVAL = 50
 
@@ -104,6 +105,8 @@ def liftover_to_hg38(df, chain_path):
     return df_valid
 
 def init_alphagenome():
+    if not API_KEY:
+        raise RuntimeError("ALPHAGENOME_API_KEY environment variable is required")
     from alphagenome.data import genome
     from alphagenome.models import dna_client
     model = dna_client.create(API_KEY)

@@ -1,0 +1,13 @@
+{
+  "source": "Ensembl REST VEP human HGVS, GRCh38; genomic alleles expressed on forward strand",
+  "transcript": "NM_000552.5",
+  "retrieved_at": "2026-08-29",
+  "records": {
+    "c.3946G>A": {"chromosome": "chr12", "position": 6019472, "ref": "C", "alt": "T", "consequence": "missense_variant"},
+    "c.3929C>T": {"chromosome": "chr12", "position": 6019489, "ref": "G", "alt": "A", "consequence": "missense_variant"},
+    "c.3922C>T": {"chromosome": "chr12", "position": 6019496, "ref": "G", "alt": "A", "consequence": "missense_variant"},
+    "c.4382C>A": {"chromosome": "chr12", "position": 6019036, "ref": "G", "alt": "T", "consequence": "missense_variant"},
+    "c.7345G>A": {"chromosome": "chr12", "position": 5976203, "ref": "C", "alt": "T", "consequence": "missense_variant"},
+    "c.4021C>T": {"chromosome": "chr12", "position": 6019397, "ref": "G", "alt": "A", "consequence": "missense_variant", "note": "Source workbook uses lowercase c in c.4021c>T; normalized to HGVS uppercase C"}
+  }
+}
