@@ -48,6 +48,16 @@ if [ "$NFS_ROOT" = "$ROOT_DIR" ]; then
 fi
 GMX_CANDIDATES=(
     "${GMX:-}"
+    "$ROOT_DIR/envs/gromacs-cuda/bin.AVX2_256/gmx"
+    "$ROOT_DIR/envs/gromacs-cuda/bin/gmx"
+    "$ROOT_DIR/../envs/gromacs-cuda/bin.AVX2_256/gmx"
+    "$ROOT_DIR/../envs/gromacs-cuda/bin/gmx"
+    "$ROOT_DIR/../../envs/gromacs-cuda/bin.AVX2_256/gmx"
+    "$ROOT_DIR/../../envs/gromacs-cuda/bin/gmx"
+    "/lzy/envs/gromacs-cuda/bin.AVX2_256/gmx"
+    "/lzy/envs/gromacs-cuda/bin/gmx"
+    "$NFS_ROOT/envs/gromacs-cuda/bin.AVX2_256/gmx"
+    "$NFS_ROOT/envs/gromacs-cuda/bin/gmx"
     "$ROOT_DIR/envs/gromacs/bin.AVX2_256/gmx"
     "$ROOT_DIR/envs/gromacs/bin/gmx"
     "$ROOT_DIR/../envs/gromacs/bin.AVX2_256/gmx"

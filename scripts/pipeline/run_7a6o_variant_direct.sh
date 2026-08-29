@@ -5,6 +5,16 @@ OUT_ROOT="$ROOT_DIR/output/gromacs_md_autoinhib"
 GMX="${GMX:-}"
 if [ -z "$GMX" ]; then
     for candidate in \
+        "$ROOT_DIR/envs/gromacs-cuda/bin.AVX2_256/gmx" \
+        "$ROOT_DIR/envs/gromacs-cuda/bin/gmx" \
+        "$ROOT_DIR/../envs/gromacs-cuda/bin.AVX2_256/gmx" \
+        "$ROOT_DIR/../envs/gromacs-cuda/bin/gmx" \
+        "$ROOT_DIR/../../envs/gromacs-cuda/bin.AVX2_256/gmx" \
+        "$ROOT_DIR/../../envs/gromacs-cuda/bin/gmx" \
+        "/lzy/envs/gromacs-cuda/bin.AVX2_256/gmx" \
+        "/lzy/envs/gromacs-cuda/bin/gmx" \
+        "/inspire/hdd/global_user/mengweicheng-240108120092/lzy/envs/gromacs-cuda/bin.AVX2_256/gmx" \
+        "/inspire/hdd/global_user/mengweicheng-240108120092/lzy/envs/gromacs-cuda/bin/gmx" \
         "$ROOT_DIR/envs/gromacs/bin.AVX2_256/gmx" \
         "$ROOT_DIR/envs/gromacs/bin/gmx" \
         "$ROOT_DIR/../envs/gromacs/bin.AVX2_256/gmx" \
