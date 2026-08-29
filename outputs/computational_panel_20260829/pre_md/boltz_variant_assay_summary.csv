@@ -1,0 +1,25 @@
+panel,variant,aa_change,assay_key,clinical_axis,primary_value,delta_vs_wt,z_within_assay
+type1,R1205H,R1205H,dprime_d3_fviii_binding,FVIII carrier function / Type 2N axis,0.11484,-0.01469999999999999,
+type1,P1413L,P1413L,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,0.41728,0.07857999999999998,
+type1,P1413L,P1413L,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,0.39606,-0.12314999999999993,
+type1,P1413L,P1413L,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,0.50499,-0.13696999999999993,
+type1,A1500V,A1500V,a2_folded_stability,A2 fold stability / Type 2A axis,0.60661,0.135,
+type1,A1500V,A1500V,a2_adamts13_folded_complex,A2 ADAMTS13 docking / Type 2A axis,0.16615,0.04680999999999999,
+type1,R1943C,R1943C,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,0.23432,0.02987999999999999,-1.0
+type1,C1950Y,C1950Y,d4_assembly_context,secretion and multimer assembly / quantitative VWD axis,0.23498,0.030539999999999984,1.0
+type2b,R1308C,R1308C,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,0.33815,-0.0005499999999999949,1.041894899832318
+type2b,S1310F,S1310F,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,0.29671,-0.04199000000000003,-0.2608666911715827
+type2b,V1316M,V1316M,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,0.24786,-0.09084,-1.7965786535398371
+type2b,R1341W,R1341W,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,0.31394,-0.024760000000000004,0.2807979375204352
+type2b,A1461D,A1461D,a1_gpiba_forced_binding,platelet GPIb alpha binding / Type 2B and 2M-A1 axis,0.32838,-0.010319999999999996,0.7347525073586669
+type2b,R1308C,R1308C,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,0.6052,0.08599000000000001,1.3897248121690777
+type2b,S1310F,S1310F,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,0.50749,-0.011719999999999953,0.18074663060387375
+type2b,V1316M,V1316M,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,0.46654,-0.05266999999999994,-0.3259328959041101
+type2b,R1341W,R1341W,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,0.52649,0.007280000000000064,0.41583603240245015
+type2b,A1461D,A1461D,a1_heparan_sulfate_binding,A1 heparan-sulfate / charge-modulation axis,0.35869,-0.16051999999999994,-1.6603745792712914
+type2b,R1308C,R1308C,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,0.52676,-0.11519999999999997,-0.30718016860716163
+type2b,S1310F,S1310F,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,0.60288,-0.039080000000000004,1.7186866165580708
+type2b,V1316M,V1316M,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,0.55535,-0.08660999999999996,0.4537175112125182
+type2b,R1341W,R1341W,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,0.50538,-0.13657999999999992,-0.8761900459959241
+type2b,A1461D,A1461D,a1_aim_autoinhibition_context,A1 autoinhibition and conformational exposure / Type 2B vs 2M-A1 axis,0.50114,-0.14081999999999995,-0.9890339131675036
+type2b,D2449N,D2449N,c_domain_assembly_context,"C-domain assembly, dimer packing, secretion / quantitative VWD axis",0.35073,-0.0015700000000000158,

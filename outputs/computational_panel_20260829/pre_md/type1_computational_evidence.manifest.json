@@ -1,0 +1,10 @@
+{
+  "created_at": "2026-08-29T13:28:53.592084+00:00",
+  "evidence_rows": 14,
+  "case_count": 9,
+  "source_counts": {
+    "alphagenome_full_profile": 9,
+    "boltz2_functional_panel": 5
+  },
+  "output": "outputs/computational_panel_20260829/pre_md/type1_computational_evidence.csv"
+}

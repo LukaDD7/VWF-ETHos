@@ -1,0 +1,17 @@
+panel,case_id,hgvs_c,hgvs_p,available_scorers,top_feature,top_abs_max,top_abs_z
+type1,CASE_T1_001,c.4499C>T,p.Ala1500Val,15,ag_procap_active_abs_max,27.119125,2.0134316857846923
+type1,CASE_T1_002,c.5849G>A,p.Cys1950Tyr,15,ag_chip_histone_active_abs_max,7334.0,1.3144617637246492
+type1,CASE_T1_003,c.7464C>T,p.Gly2488=,15,ag_cage_abs_max,1.718293,2.8134766593353824
+type1,CASE_T1_005,c.2964C>A,p.Tyr988Ter,15,ag_dnase_active_abs_max,20.642141,1.5502082219609665
+type1,CASE_T1_006,c.7219dup,p.Leu2407ProfsTer11,15,ag_rna_seq_active_abs_max,16.108469,1.6107130305909616
+type1,CASE_T1_007,c.3379+1G>A,,15,ag_chip_histone_abs_max,0.07509136,2.397685612502293
+type1,CASE_T1_008,c.4238C>T,p.Pro1413Leu,15,ag_cage_active_abs_max,623.2002,1.7918226902156158
+type1,CASE_T1_009,c.3614G>A,p.Arg1205His,15,ag_rna_seq_active_abs_max,16.80587,1.8763466396480653
+type1,CASE_T1_010,c.5827C>T,p.Arg1943Cys,15,ag_rna_seq_abs_max,0.001633048,0.6043780270627785
+type2b,CASE_T2B_001,c.3946G>A,p.Val1316Met,15,ag_splice_sites_abs_max,0.0078125,0.7542980209814948
+type2b,CASE_T2B_002,c.3946G>A,p.V1316M,15,ag_splice_sites_abs_max,0.0078125,0.7542980209814948
+type2b,CASE_T2B_003,c.3929C>T,p.S1310F,15,ag_splice_site_usage_abs_max,0.00390625,2.4494897427831783
+type2b,CASE_T2B_004,c.3922C>T,p.R1308C,15,ag_rna_seq_abs_max,0.00137496,1.7250657602668686
+type2b,CASE_T2B_005_VARIANT_1,c.4382C>A,p.A1461D,15,ag_dnase_active_abs_max,41.11125,2.1736469856243628
+type2b,CASE_T2B_005_VARIANT_2_BENIGN,c.7345G>A,p.D2449N,15,ag_chip_tf_active_abs_max,1284.0,2.4311228807258125
+type2b,CASE_T2B_006,c.4021C>T,p.Arg1341Trp,15,ag_splice_junctions_abs_max,0.34301758,2.431355495230725
