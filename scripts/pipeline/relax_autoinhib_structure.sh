@@ -98,6 +98,10 @@ fi
 
 # ---- 2. pdb2gmx --------------------------------------------------------------
 echo "[2] pdb2gmx (charmm36m + force_fields patch)"
+# The conda GROMACS installation also contains a charmm36m directory. Put the
+# repository's patched copy in the current directory so pdb2gmx resolves it
+# unambiguously instead of seeing duplicate force-field names via GMXLIB.
+ln -sfn "$ROOT_DIR/force_fields/charmm36m.ff" "$WORK/charmm36m.ff"
 echo 1 | "$GMX" pdb2gmx -f raw.pdb -o conf.gro -p topol.top -i posre.itp \
     -water tip3p -ff charmm36m -ignh > pdb2gmx.log 2>&1 \
     || { echo "[FATAL] pdb2gmx 失败, 看 $WORK/pdb2gmx.log (多半 1MET/端基, 确认 GMXLIB)"; exit 1; }
