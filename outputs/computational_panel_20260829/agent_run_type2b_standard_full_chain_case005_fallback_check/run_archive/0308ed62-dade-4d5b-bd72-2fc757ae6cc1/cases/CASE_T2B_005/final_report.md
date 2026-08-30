@@ -1,0 +1,100 @@
+# VWD Research Report — CASE_T2B_005
+
+- Status: low
+- Abstention: True
+- Expert review required: True
+
+## Opinion
+
+### 1. 临床与实验室表型
+VWF:Ag=57.6, VWF:Act=12.8, FVIII:C=41.0, 血小板计数=35.0。
+VWF:Act/VWF:Ag 比值为 0.222，低于 0.70，提示存在不成比例的功能性 VWF 缺陷。
+临床背景中存在血小板减少线索，需与 2B/血小板型 VWD 鉴别。
+
+### 2. 变异与功能域
+- c.4382C>A / p.A1461D（near VWFA1）。
+- c.7345G>A / p.D2449N（VWFC2）。
+
+### 3. AI 机制证据
+- alphagenome_full_profile: AlphaGenome complete-profile selected-track scores; top absolute views: ag_chip_histone_active_abs_max=1.172e+04, ag_chip_tf_active_abs_max=1836, ag_cage_active_abs_max=515.1, ag_dnase_active_abs_max=41.11, ag_procap_active_abs_max=23.4.
+- boltz2_functional_panel: Assay-matched Boltz-2 structural deltas: a1_aim_autoinhibition_context delta_vs_WT=-0.1408; a1_gpiba_forced_binding delta_vs_WT=-0.01032; a1_heparan_sulfate_binding delta_vs_WT=-0.1605.
+- md_targeted_panel: Targeted MD features: AIM_all_contacts_frames=501, AIM_all_contacts_mean=95.66, AIM_all_contacts_first0_5=128.3, AIM_all_contacts_mid20_30=71.49, AIM_all_contacts_tail40_50=69.6, AIM_all_contacts_final=42, AIM_all_contacts_min=42, AIM_all_contacts_max=178, AIM_all_contacts_tail_minus_first=-58.73, N_AIM_contacts_frames=501, N_AIM_contacts_mean=70.8, N_AIM_contacts_first0_5=108.4, N_AIM_contacts_mid20_30=47.55, N_AIM_contacts_tail40_50=43.21, N_AIM_contacts_final=26, N_AIM_contacts_min=26, N_AIM_contacts_max=152, N_AIM_contacts_tail_minus_first=-65.18, C_AIM_contacts_frames=501, C_AIM_contacts_mean=24.86, C_AIM_contacts_first0_5=19.94, C_AIM_contacts_mid20_30=23.93, C_AIM_contacts_tail40_50=26.4, C_AIM_contacts_final=16, C_AIM_contacts_min=0, C_AIM_contacts_max=55, C_AIM_contacts_tail_minus_first=6.455, AIM_all_contacts_delta_tail_vs_WT=-43.15, N_AIM_contacts_delta_tail_vs_WT=-16.37, C_AIM_contacts_delta_tail_vs_WT=-27.11.
+- alphagenome_full_profile: AlphaGenome complete-profile selected-track scores; top absolute views: ag_chip_histone_active_abs_max=7197, ag_chip_tf_active_abs_max=1284, ag_cage_active_abs_max=194.9, ag_dnase_active_abs_max=29.56, ag_procap_active_abs_max=17.99.
+- boltz2_functional_panel: Assay-matched Boltz-2 structural deltas: c_domain_assembly_context delta_vs_WT=-0.00157.
+
+### 4. 机制解释
+该变异位于 A1 功能域，A1 参与 GPIb 结合并受 AIM 自抑制调控；该区域的错义变异可能通过改变自抑制界面、A1 暴露或表面电荷，影响血小板结合功能。
+MD 结果提示 AIM-A1 接触动力学发生改变，可作为自抑制释放或 A1 功能面暴露的动态证据。
+静态 Boltz 结果提示相关结构轴发生扰动，但静态置信度不等于结合自由能，需与 MD 和功能实验联合解释。
+实验室表型与功能性 VWF 缺陷方向一致；若同时存在高危分子量多聚体缺失，更支持 2A/2B 样机制。
+
+### 5. 分型鉴别与不确定性
+HGMD/ClinVar 的致病性评级本身不能直接给出 VWD 亚型方向；即使标注为致病或 uncertain，也必须结合实验室检查、出血表型和机制证据综合判断。
+当前倾向：type_2_vwd（moderate）。
+VWF 多聚体分析和 VWF:CB/Ag 比值是区分 2A、2B 和 2M-A1 轴的关键检查；当前结果缺失，不能仅凭 AI 模型确定亚型。
+建议优先补充：RIPA, VWF_MULTIMER。
+
+## Candidate subtypes
+
+type_2_candidate, platelet_type_vwd_candidate, multi_variant_unresolved
+
+## Supporting evidence
+
+- CASE_T2B_005_VARIANT_1
+- CASE_T2B_005_VARIANT_2_BENIGN
+- CASE_T2B_005_VARIANT_1:alphagenome-full-profile
+- CASE_T2B_005:VWF_A1461D:boltz2-functional-panel
+- CASE_T2B_005:A1461D:targeted-md
+- CASE_T2B_005_VARIANT_2_BENIGN:alphagenome-full-profile
+- CASE_T2B_005:VWF_D2449N:boltz2-functional-panel
+- Observation/context-vwf-antigen
+- Observation/context-vwf-activity
+- Observation/context-factor-viii-activity
+- Observation/context-platelet-count
+- Observation/context-isth-bleeding-assessment-tool-score
+- Observation/context-high-dose-ristocetin-platelet-aggregation
+- Observation/context-reported-symptoms
+- Observation/context-family-history
+- Observation/context-prior-treatment
+- Observation/context-comorbidity
+- Observation/context-interpretation-constraints
+- Observation/context-ddavp-reported-response
+- Observation/computational-result-81a3f9f38b14db757f71
+- Observation/computational-result-89a0023934c27cfbe1d5
+- Observation/computational-result-8bf2cc3ca16627ffb335
+- Observation/computational-result-e9dfcca0a96461e258ac
+- Observation/computational-result-eb8ea0c9626144b02d12
+- Observation/vwf-domain-1461-A-D
+- Observation/vwf-domain-2449-D-N
+
+## Missing information
+
+- RIPA
+- VWF_MULTIMER
+- VWF_CB
+- VWF_FVIIIB
+- VWF_PP
+- DDAVP_0_1_4H
+- expert_variant_classification
+- population_frequency
+- pathogenicity_prediction
+- variant_specific_literature
+
+## Limitations
+
+- ensembl_variant_recoder returned error; this is not benign evidence.
+- coordinate_dependent_tools returned error; this is not benign evidence.
+- local_clinvar_snapshot returned not_found; this is not benign evidence.
+- clingen_erepo returned error; this is not benign evidence.
+- pubmed_eutils returned error; this is not benign evidence.
+- local_clingen_snapshot returned not_found; this is not benign evidence.
+- ensembl_variant_recoder returned error; this is not benign evidence.
+- coordinate_dependent_tools returned error; this is not benign evidence.
+- local_clinvar_snapshot returned not_found; this is not benign evidence.
+- clingen_erepo returned error; this is not benign evidence.
+- pubmed_eutils returned error; this is not benign evidence.
+- local_clingen_snapshot returned not_found; this is not benign evidence.
+- ClinGen/ACMG type-2 rule provider is not enabled in V0 offline mode.
+- Second-level tests were explicitly unavailable; absence of results is not evidence against type 2 VWD.
+- Multiple variants are present and phase is unknown; compound mechanism cannot be inferred.
+- The evidence cannot distinguish type 2 subtypes or exclude qualitative VWF defects.

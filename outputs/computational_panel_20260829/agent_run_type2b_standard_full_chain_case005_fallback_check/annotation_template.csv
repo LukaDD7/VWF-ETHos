@@ -1,0 +1,2 @@
+patient_id,required_missing_information,preferred_actions,acceptable_actions,inappropriate_actions,must_not_miss_actions,pre_genetic_subtype_set,final_subtype_set_if_available,abstention_expected,rationale
+CASE_T2B_005,,,,,,,,,

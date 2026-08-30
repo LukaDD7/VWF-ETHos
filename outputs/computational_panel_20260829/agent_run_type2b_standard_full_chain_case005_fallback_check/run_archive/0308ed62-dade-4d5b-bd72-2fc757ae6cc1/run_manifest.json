@@ -1,0 +1,13 @@
+{
+  "run_id": "0308ed62-dade-4d5b-bd72-2fc757ae6cc1",
+  "created_at": "2026-08-30T03:54:34.776601+00:00",
+  "case_ids": [
+    "CASE_T2B_005"
+  ],
+  "llm_provider": "deterministic_policy",
+  "llm_provider_version": "v0",
+  "biomedical_tools_enabled": true,
+  "computational_panels_enabled": true,
+  "second_level_environment": "auto_unavailable",
+  "checkpoint_db": "/inspire/hdd/global_user/mengweicheng-240108120092/lzy/projects/VWF-ETHos/outputs/computational_panel_20260829/agent_run_type2b_standard_full_chain_case005_fallback_check/run_archive/0308ed62-dade-4d5b-bd72-2fc757ae6cc1/checkpoints.sqlite"
+}

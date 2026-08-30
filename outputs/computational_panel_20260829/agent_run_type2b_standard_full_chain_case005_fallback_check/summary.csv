@@ -1,0 +1,2 @@
+patient_id,status,pre_genetic_route,hypotheses,top_action,action_count,missing_fields,variant_count,expert_review_required,abstention,fabricated_second_level_results,alphagenome_evidence_count,boltz_evidence_count
+CASE_T2B_005,completed,wait_genetics,"['type_2_candidate', 'platelet_type_vwd_candidate']",RIPA,2,[],2,True,True,0,2,3

@@ -1,0 +1,56 @@
+{
+  "tool": "local_clinvar_snapshot",
+  "operation": "local_clinical_classification",
+  "status": "not_found",
+  "output": {
+    "resourceType": "Bundle",
+    "id": "3972f1c6-81f7-49ad-931d-e598c226a0b7",
+    "type": "collection",
+    "timestamp": "2026-08-30T03:53:24.211975+00:00",
+    "entry": [
+      {
+        "fullUrl": "urn:uuid:oo-04be204c3b9c40ff0fc5",
+        "resource": {
+          "resourceType": "OperationOutcome",
+          "id": "oo-04be204c3b9c40ff0fc5",
+          "meta": null,
+          "status": null,
+          "intent": null,
+          "category": [],
+          "code": null,
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null,
+          "issue": [
+            {
+              "severity": "information",
+              "code": "not-found",
+              "diagnostics": "Variant absent from local ClinVar VWF snapshot"
+            }
+          ]
+        }
+      }
+    ],
+    "extension": []
+  },
+  "diagnostics": [],
+  "retry_count": 0,
+  "latency_ms": 83,
+  "cache_hit": false
+}
