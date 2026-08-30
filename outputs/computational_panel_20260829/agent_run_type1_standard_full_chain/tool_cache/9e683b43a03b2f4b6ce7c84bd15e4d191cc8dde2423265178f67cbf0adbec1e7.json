@@ -1,0 +1,167 @@
+{
+  "tool": "vwf_domain_annotator",
+  "operation": "annotate_domain",
+  "status": "success",
+  "output": {
+    "resourceType": "Bundle",
+    "id": "5e9bb34d-b905-404f-a943-542ef0cb5d70",
+    "type": "collection",
+    "timestamp": "2026-08-30T03:40:54.925824+00:00",
+    "entry": [
+      {
+        "fullUrl": "urn:uuid:vwf-domain-2407-Leu-ProfsTer",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "vwf-domain-2407-Leu-ProfsTer",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                "code": "code-fc7e1ad8f0b75a44c695",
+                "display": "VWF mature-protein domain and variant class"
+              }
+            ],
+            "text": "VWF mature-protein domain and variant class"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_006",
+            "display": null
+          },
+          "basedOn": [
+            {
+              "reference": "Observation/CASE_T1_006",
+              "display": null
+            }
+          ],
+          "effectiveDateTime": "2026-08-30T03:40:54.925687+00:00",
+          "issued": "2026-08-30T03:40:54.925692+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": "p.Leu2407ProfsTer; VWFC1-VWFC2 linker; frameshift_or_indel",
+          "valueBoolean": null,
+          "component": [
+            {
+              "code": {
+                "text": "protein_position"
+              },
+              "valueQuantity": {
+                "value": 2407
+              }
+            },
+            {
+              "code": {
+                "text": "domain"
+              },
+              "valueString": "VWFC1-VWFC2 linker"
+            },
+            {
+              "code": {
+                "text": "variant_class"
+              },
+              "valueString": "frameshift_or_indel"
+            },
+            {
+              "code": {
+                "text": "boundary_precision"
+              },
+              "valueString": "canonical_feature_boundary"
+            },
+            {
+              "code": {
+                "text": "coordinate_system"
+              },
+              "valueString": "UniProt_P04275_prepro_numbering"
+            },
+            {
+              "code": {
+                "text": "source"
+              },
+              "valueString": "UniProt P04275 canonical features"
+            }
+          ],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:prov-801cfa52974cc5b4f514",
+        "resource": {
+          "resourceType": "Provenance",
+          "id": "prov-801cfa52974cc5b4f514",
+          "meta": null,
+          "status": null,
+          "intent": null,
+          "category": [],
+          "code": null,
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/request-hash",
+              "valueString": "301621d74145608c5aaad1991001002decb0df3e699c10fe51e735f67dfe9cde"
+            },
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/response-hash",
+              "valueString": "26bc5558eac8374e6f0d8a9150a02b414aa79b4122f245693de76db76de8fc41"
+            }
+          ],
+          "target": [
+            {
+              "reference": "Observation/vwf-domain-2407-Leu-ProfsTer",
+              "display": null
+            }
+          ],
+          "occurredDateTime": "2026-08-30T03:40:54.925734+00:00",
+          "recorded": "2026-08-30T03:40:54.925755+00:00",
+          "agent": [
+            {
+              "type": {
+                "coding": [
+                  {
+                    "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                    "code": "vwf_domain_annotator"
+                  }
+                ]
+              },
+              "who": {
+                "display": "vwf_domain_annotator"
+              },
+              "onBehalfOf": {
+                "display": "local://vwf-domain-map"
+              }
+            }
+          ],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      }
+    ],
+    "extension": []
+  },
+  "diagnostics": [],
+  "retry_count": 0,
+  "latency_ms": 0,
+  "cache_hit": false
+}

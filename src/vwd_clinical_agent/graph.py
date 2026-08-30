@@ -12,6 +12,8 @@ from .azure import LLMProvider
 from .tools.fhir import FHIRBundle
 from .tools.matrix import EvidenceToolMatrix
 from .tools.computational_panel import LocalComputationalPanelProvider
+from .tools.computational_fhir import ComputationalPanelFHIRProvider
+from .tools.patient_context import PatientContextFHIRProvider
 from .tools.variant_context import DOMAINS
 from .tools.second_level import SECOND_LEVEL_ACTIONS, SecondLevelFHIRStore
 from .evidence_analysis import analyze_evidence_conflicts
@@ -541,6 +543,30 @@ def run_evidence_providers(state: VWDWorkflowState) -> dict[str, Any]:
     }
 
 
+def run_patient_context_fhir(state: VWDWorkflowState) -> dict[str, Any]:
+    provider = PatientContextFHIRProvider()
+    bundle = provider.collect(state["case"])
+    return {
+        "fhir_evidence_bundle": bundle,
+        "provider_calls": [
+            {
+                "provider": provider.name,
+                "version": provider.version,
+                "case_id": state["case"].patient_id,
+                "status": "ok",
+                "items_returned": len(bundle.entry),
+            }
+        ],
+        "trace": [
+            _trace(
+                state,
+                "run_patient_context_fhir",
+                resources=len(bundle.entry),
+            )
+        ],
+    }
+
+
 def run_computational_panels(
     state: VWDWorkflowState,
     provider: LocalComputationalPanelProvider,
@@ -548,13 +574,24 @@ def run_computational_panels(
     items = list(state.get("evidence_items", []))
     statuses: list[dict[str, Any]] = []
     added = 0
+    fhir_provider = ComputationalPanelFHIRProvider()
+    existing_bundle = state.get("fhir_evidence_bundle")
+    bundle = existing_bundle if isinstance(existing_bundle, FHIRBundle) else FHIRBundle()
     for variant in state.get("variants", []):
         variant_items, status = provider.collect(patient_id=state["case"].patient_id, variant=variant)
         items.extend(variant_items)
         statuses.append(status)
         added += len(variant_items)
+        computational_bundle = fhir_provider.collect(
+            patient_id=state["case"].patient_id,
+            variant=variant,
+            items=variant_items,
+            statuses=status,
+        )
+        bundle.entry.extend(computational_bundle.entry)
     return {
         "evidence_items": items,
+        "fhir_evidence_bundle": bundle,
         "provider_calls": [
             {
                 "provider": provider.name,
@@ -573,7 +610,8 @@ def run_fhir_evidence_tools(state: VWDWorkflowState, matrix: EvidenceToolMatrix)
     second_level = state.get("second_level_bundle")
     if not isinstance(second_level, FHIRBundle):
         second_level = FHIRBundle()
-    merged = FHIRBundle(type="collection")
+    existing_bundle = state.get("fhir_evidence_bundle")
+    merged = existing_bundle if isinstance(existing_bundle, FHIRBundle) else FHIRBundle(type="collection")
     calls: list[dict[str, Any]] = []
     flags: list[SafetyFlag] = []
     for variant in state.get("variants", []):
@@ -946,6 +984,7 @@ def build_workflow(
     graph.add_node("normalize_variants", normalize_variants)
     graph.add_node("plan_evidence_calls", plan_evidence_calls)
     graph.add_node("run_evidence_providers", run_evidence_providers)
+    graph.add_node("run_patient_context_fhir", run_patient_context_fhir)
     if computational_panel_provider is not None:
         graph.add_node(
             "run_computational_panels",
@@ -972,9 +1011,10 @@ def build_workflow(
     )
     graph.add_edge("normalize_variants", "plan_evidence_calls")
     graph.add_edge("plan_evidence_calls", "run_evidence_providers")
-    evidence_start = "run_evidence_providers"
+    graph.add_edge("run_evidence_providers", "run_patient_context_fhir")
+    evidence_start = "run_patient_context_fhir"
     if computational_panel_provider is not None:
-        graph.add_edge("run_evidence_providers", "run_computational_panels")
+        graph.add_edge("run_patient_context_fhir", "run_computational_panels")
         evidence_start = "run_computational_panels"
     if evidence_tool_matrix is not None:
         graph.add_edge(evidence_start, "run_fhir_evidence_tools")

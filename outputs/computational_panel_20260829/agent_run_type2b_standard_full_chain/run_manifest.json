@@ -1,0 +1,24 @@
+{
+  "run_id": "311e3bdb-69a8-4cdf-a781-c2f868dad51b",
+  "created_at": "2026-08-30T03:27:41.744967+00:00",
+  "mode": "retrospective",
+  "provider_profile": "offline",
+  "llm_provider": "deterministic_policy",
+  "llm_provider_version": "v0",
+  "computational_panels_enabled": true,
+  "workbook_audit": {
+    "workbook_path": "outputs/type2b_panel_agent_20260829/type2b_panel_agent_package.xlsx",
+    "workbook_sha256": "4ce93136748d53a5216da6f073b53afa13aa8b39ccd9203e8deda6209cea9137",
+    "first_level_rows": 6,
+    "variant_rows": 7,
+    "unique_patients": 6,
+    "multi_variant_patients": 1,
+    "clinical_context_rows": 6
+  },
+  "graph": "vwd_clinical_agent.graph/build_workflow",
+  "policies": [
+    "vwd_first_level_v0@2026-08-25",
+    "vwd_second_level_actions_v0@2026-08-25"
+  ],
+  "privacy": "Research-only de-identified workbook; no original identifiers or reversible mapping are stored."
+}

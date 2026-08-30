@@ -75,6 +75,7 @@ class LocalComputationalPanelProvider:
             "variant_id": variant.source_row_id,
             "alphagenome": "not_applicable",
             "boltz": "not_applicable",
+            "md": "not_applicable",
         }
         if variant.gene.upper() != "VWF":
             statuses["reason"] = f"gene={variant.gene}; VWF panels not applicable"
@@ -83,7 +84,11 @@ class LocalComputationalPanelProvider:
         returned_items = self._returned_items(patient_id, variant)
         items.extend(returned_items)
         returned_ag = any(item.source == "alphagenome_full_profile" for item in returned_items)
-        returned_boltz = any(item.source in {"boltz2_type1_panel", "md_type1_panel", "boltz2_functional_panel", "md_targeted_panel"} for item in returned_items)
+        returned_boltz = any(
+            item.source in {"boltz2_type1_panel", "boltz2_functional_panel", "boltz_mechanism_classifier"}
+            for item in returned_items
+        )
+        returned_md = any(item.source in {"md_type1_panel", "md_targeted_panel"} for item in returned_items)
 
         ag_item = None if returned_ag else self._alphagenome_item(patient_id, variant)
         if returned_ag:
@@ -107,6 +112,12 @@ class LocalComputationalPanelProvider:
             statuses["boltz"] = "request_pending"
         else:
             statuses["boltz"] = variant.boltz_request_status or "not_modelable"
+        if returned_md:
+            statuses["md"] = "returned_panel_embedded"
+        elif variant.boltz_request_status == "READY":
+            statuses["md"] = "request_pending"
+        else:
+            statuses["md"] = "not_modelable"
         return items, statuses
 
     def _returned_items(self, patient_id: str, variant: VariantContext) -> list[EvidenceItem]:

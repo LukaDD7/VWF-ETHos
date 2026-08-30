@@ -1,0 +1,167 @@
+{
+  "tool": "vwf_domain_annotator",
+  "operation": "annotate_domain",
+  "status": "success",
+  "output": {
+    "resourceType": "Bundle",
+    "id": "f849c4e7-9671-41dc-8d36-1c8ceea64b2e",
+    "type": "collection",
+    "timestamp": "2026-08-30T03:39:13.892260+00:00",
+    "entry": [
+      {
+        "fullUrl": "urn:uuid:vwf-domain-2488-Gly-=",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "vwf-domain-2488-Gly-=",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                "code": "code-fc7e1ad8f0b75a44c695",
+                "display": "VWF mature-protein domain and variant class"
+              }
+            ],
+            "text": "VWF mature-protein domain and variant class"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_003",
+            "display": null
+          },
+          "basedOn": [
+            {
+              "reference": "Observation/CASE_T1_003",
+              "display": null
+            }
+          ],
+          "effectiveDateTime": "2026-08-30T03:39:13.892118+00:00",
+          "issued": "2026-08-30T03:39:13.892123+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": "p.Gly2488=; VWFC2; synonymous",
+          "valueBoolean": null,
+          "component": [
+            {
+              "code": {
+                "text": "protein_position"
+              },
+              "valueQuantity": {
+                "value": 2488
+              }
+            },
+            {
+              "code": {
+                "text": "domain"
+              },
+              "valueString": "VWFC2"
+            },
+            {
+              "code": {
+                "text": "variant_class"
+              },
+              "valueString": "synonymous"
+            },
+            {
+              "code": {
+                "text": "boundary_precision"
+              },
+              "valueString": "canonical_feature_boundary"
+            },
+            {
+              "code": {
+                "text": "coordinate_system"
+              },
+              "valueString": "UniProt_P04275_prepro_numbering"
+            },
+            {
+              "code": {
+                "text": "source"
+              },
+              "valueString": "UniProt P04275 canonical features"
+            }
+          ],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:prov-a2ad80d5db0aae459a4c",
+        "resource": {
+          "resourceType": "Provenance",
+          "id": "prov-a2ad80d5db0aae459a4c",
+          "meta": null,
+          "status": null,
+          "intent": null,
+          "category": [],
+          "code": null,
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/request-hash",
+              "valueString": "f07ff1e485512ed79261ad1bfa19de1ce918f5b348dc2955ac44a2b3ebfddc1d"
+            },
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/response-hash",
+              "valueString": "de5a484f0b9d284260b546ac1c83c68f0720981910aa8fa891dfe358d798a240"
+            }
+          ],
+          "target": [
+            {
+              "reference": "Observation/vwf-domain-2488-Gly-=",
+              "display": null
+            }
+          ],
+          "occurredDateTime": "2026-08-30T03:39:13.892166+00:00",
+          "recorded": "2026-08-30T03:39:13.892190+00:00",
+          "agent": [
+            {
+              "type": {
+                "coding": [
+                  {
+                    "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                    "code": "vwf_domain_annotator"
+                  }
+                ]
+              },
+              "who": {
+                "display": "vwf_domain_annotator"
+              },
+              "onBehalfOf": {
+                "display": "local://vwf-domain-map"
+              }
+            }
+          ],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      }
+    ],
+    "extension": []
+  },
+  "diagnostics": [],
+  "retry_count": 0,
+  "latency_ms": 0,
+  "cache_hit": false
+}

@@ -1,0 +1,56 @@
+{
+  "tool": "local_clingen_snapshot",
+  "operation": "local_expert_classification",
+  "status": "not_found",
+  "output": {
+    "resourceType": "Bundle",
+    "id": "dc1867bb-486b-48d9-a391-2de90f9733db",
+    "type": "collection",
+    "timestamp": "2026-08-30T03:43:29.663129+00:00",
+    "entry": [
+      {
+        "fullUrl": "urn:uuid:oo-bd567c87e15b647171b0",
+        "resource": {
+          "resourceType": "OperationOutcome",
+          "id": "oo-bd567c87e15b647171b0",
+          "meta": null,
+          "status": null,
+          "intent": null,
+          "category": [],
+          "code": null,
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null,
+          "issue": [
+            {
+              "severity": "information",
+              "code": "not-found",
+              "diagnostics": "Variant absent from local ClinGen VWF snapshot"
+            }
+          ]
+        }
+      }
+    ],
+    "extension": []
+  },
+  "diagnostics": [],
+  "retry_count": 0,
+  "latency_ms": 2,
+  "cache_hit": false
+}

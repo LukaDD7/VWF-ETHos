@@ -1,0 +1,167 @@
+{
+  "tool": "vwf_domain_annotator",
+  "operation": "annotate_domain",
+  "status": "success",
+  "output": {
+    "resourceType": "Bundle",
+    "id": "59452eda-bb9f-4162-bcca-7571bc9c84ec",
+    "type": "collection",
+    "timestamp": "2026-08-30T03:25:06.825991+00:00",
+    "entry": [
+      {
+        "fullUrl": "urn:uuid:vwf-domain-1308-R-C",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "vwf-domain-1308-R-C",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                "code": "code-fc7e1ad8f0b75a44c695",
+                "display": "VWF mature-protein domain and variant class"
+              }
+            ],
+            "text": "VWF mature-protein domain and variant class"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T2B_004",
+            "display": null
+          },
+          "basedOn": [
+            {
+              "reference": "Observation/CASE_T2B_004",
+              "display": null
+            }
+          ],
+          "effectiveDateTime": "2026-08-30T03:25:06.825853+00:00",
+          "issued": "2026-08-30T03:25:06.825859+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": "p.R1308C; VWFA1; missense",
+          "valueBoolean": null,
+          "component": [
+            {
+              "code": {
+                "text": "protein_position"
+              },
+              "valueQuantity": {
+                "value": 1308
+              }
+            },
+            {
+              "code": {
+                "text": "domain"
+              },
+              "valueString": "VWFA1"
+            },
+            {
+              "code": {
+                "text": "variant_class"
+              },
+              "valueString": "missense"
+            },
+            {
+              "code": {
+                "text": "boundary_precision"
+              },
+              "valueString": "canonical_feature_boundary"
+            },
+            {
+              "code": {
+                "text": "coordinate_system"
+              },
+              "valueString": "UniProt_P04275_prepro_numbering"
+            },
+            {
+              "code": {
+                "text": "source"
+              },
+              "valueString": "UniProt P04275 canonical features"
+            }
+          ],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:prov-445f640f0ef38466c062",
+        "resource": {
+          "resourceType": "Provenance",
+          "id": "prov-445f640f0ef38466c062",
+          "meta": null,
+          "status": null,
+          "intent": null,
+          "category": [],
+          "code": null,
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/request-hash",
+              "valueString": "6db85fd780d8593ba611860ff10b592f8dc972beb62fa438ccd56f1b56a3f609"
+            },
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/response-hash",
+              "valueString": "990e49055927e9471513f1a9d8e4e184797a6dd2a5323be0ab9730a557317550"
+            }
+          ],
+          "target": [
+            {
+              "reference": "Observation/vwf-domain-1308-R-C",
+              "display": null
+            }
+          ],
+          "occurredDateTime": "2026-08-30T03:25:06.825901+00:00",
+          "recorded": "2026-08-30T03:25:06.825922+00:00",
+          "agent": [
+            {
+              "type": {
+                "coding": [
+                  {
+                    "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                    "code": "vwf_domain_annotator"
+                  }
+                ]
+              },
+              "who": {
+                "display": "vwf_domain_annotator"
+              },
+              "onBehalfOf": {
+                "display": "local://vwf-domain-map"
+              }
+            }
+          ],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      }
+    ],
+    "extension": []
+  },
+  "diagnostics": [],
+  "retry_count": 0,
+  "latency_ms": 0,
+  "cache_hit": false
+}

@@ -1,0 +1,56 @@
+{
+  "tool": "hgmd",
+  "operation": "licensed_classification",
+  "status": "disabled",
+  "output": {
+    "resourceType": "Bundle",
+    "id": "39f4bdd0-fc96-47a6-a7f6-3563aed9d5c8",
+    "type": "collection",
+    "timestamp": "2026-08-30T03:23:28.038173+00:00",
+    "entry": [
+      {
+        "fullUrl": "urn:uuid:oo-3a7956ef71106eb7580f",
+        "resource": {
+          "resourceType": "OperationOutcome",
+          "id": "oo-3a7956ef71106eb7580f",
+          "meta": null,
+          "status": null,
+          "intent": null,
+          "category": [],
+          "code": null,
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null,
+          "issue": [
+            {
+              "severity": "warning",
+              "code": "license-required",
+              "diagnostics": "HGMD has no public API and requires an institutional license; provider remains disabled rather than treating absence as benign."
+            }
+          ]
+        }
+      }
+    ],
+    "extension": []
+  },
+  "diagnostics": [],
+  "retry_count": 0,
+  "latency_ms": 0,
+  "cache_hit": false
+}

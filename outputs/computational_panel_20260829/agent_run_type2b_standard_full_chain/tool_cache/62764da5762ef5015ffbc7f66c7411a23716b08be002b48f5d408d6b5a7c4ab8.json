@@ -1,0 +1,153 @@
+{
+  "tool": "local_clingen_snapshot",
+  "operation": "local_expert_classification",
+  "status": "success",
+  "output": {
+    "resourceType": "Bundle",
+    "id": "25741761-5ebe-4600-bf28-d5628c80c527",
+    "type": "collection",
+    "timestamp": "2026-08-30T03:25:34.850030+00:00",
+    "entry": [
+      {
+        "fullUrl": "urn:uuid:local-clingen-0-289",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "local-clingen-0-289",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                "code": "code-fb8a0e68e7b5f6a85169",
+                "display": "Local ClinGen VWF classification snapshot"
+              }
+            ],
+            "text": "Local ClinGen VWF classification snapshot"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T2B_004",
+            "display": null
+          },
+          "basedOn": [
+            {
+              "reference": "Observation/CASE_T2B_004",
+              "display": null
+            }
+          ],
+          "effectiveDateTime": "2026-08-30T03:25:34.849577+00:00",
+          "issued": "2026-08-30T03:25:34.849587+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": "Pathogenic",
+          "valueBoolean": null,
+          "component": [
+            {
+              "code": {
+                "text": "snapshot_path"
+              },
+              "valueString": "/inspire/hdd/global_user/mengweicheng-240108120092/lzy/projects/VWF-ETHos/data/external/vwf_biomedical_snapshots/clingen_vwf_erepo.json"
+            },
+            {
+              "code": {
+                "text": "caid"
+              },
+              "valueString": "CAR:CA114125"
+            },
+            {
+              "code": {
+                "text": "condition"
+              },
+              "valueString": "von Willebrand disease type 2B"
+            },
+            {
+              "code": {
+                "text": "expert_panel"
+              },
+              "valueString": "ClinGen von Willebrand Disease  Expert Panel Specifications to the ACMG/AMP Variant Interpretation Guidelines for VWF Version 1.0.0"
+            }
+          ],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:prov-d0fe04ac5563acf5a928",
+        "resource": {
+          "resourceType": "Provenance",
+          "id": "prov-d0fe04ac5563acf5a928",
+          "meta": null,
+          "status": null,
+          "intent": null,
+          "category": [],
+          "code": null,
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/request-hash",
+              "valueString": "e04f25ddc3c7af5621b64e3b7c2cb6c0016da9cbf28d5b73ea4d55b97c0be29e"
+            },
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/response-hash",
+              "valueString": "02052fa5f0b4a58fce8dedd0971bf97918552c13d5127bc1360b1788a9cd2157"
+            }
+          ],
+          "target": [
+            {
+              "reference": "Observation/local-clingen-0-289",
+              "display": null
+            }
+          ],
+          "occurredDateTime": "2026-08-30T03:25:34.849648+00:00",
+          "recorded": "2026-08-30T03:25:34.849723+00:00",
+          "agent": [
+            {
+              "type": {
+                "coding": [
+                  {
+                    "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                    "code": "local_clingen_snapshot"
+                  }
+                ]
+              },
+              "who": {
+                "display": "local_clingen_snapshot"
+              },
+              "onBehalfOf": {
+                "display": "local://clingen-vwf-snapshot"
+              }
+            }
+          ],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      }
+    ],
+    "extension": []
+  },
+  "diagnostics": [],
+  "retry_count": 0,
+  "latency_ms": 3,
+  "cache_hit": false
+}

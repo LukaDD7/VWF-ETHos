@@ -1,0 +1,2695 @@
+{
+  "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+  "case": {
+    "patient_id": "CASE_T1_001",
+    "episode_id": "CASE_T1_001_EPISODE_1",
+    "source_row_ids": [
+      "CASE_T1_001"
+    ],
+    "first_level": {
+      "vwf_ag": {
+        "value": 31.4,
+        "raw": "31.4",
+        "observed": true,
+        "unit": "%",
+        "reference_range": "来源表：O型42.0-140.8%；非O型66.1-79.9%（需核对原实验室）",
+        "missing_reason": null
+      },
+      "vwf_act": {
+        "value": 19.0,
+        "raw": "19.0",
+        "observed": true,
+        "unit": "%",
+        "reference_range": "来源表：O型40.3-125.9%；非O型48.8-163.4%",
+        "missing_reason": null
+      },
+      "fviii_c": {
+        "value": 72.5,
+        "raw": "72.5",
+        "observed": true,
+        "unit": "%",
+        "reference_range": "50-150%",
+        "missing_reason": null
+      },
+      "platelet_count": {
+        "value": null,
+        "raw": "NA",
+        "observed": false,
+        "unit": "10^9/L",
+        "reference_range": "未提供",
+        "missing_reason": "not_available"
+      }
+    },
+    "variants": [
+      {
+        "source_row_id": "CASE_T1_001",
+        "variant_index": 1,
+        "hgvs_c": "c.4499C>T",
+        "hgvs_p": "p.Ala1500Val",
+        "chromosomal_position": "chr12:6128085",
+        "gene": "VWF",
+        "variant_type": "错义",
+        "zygosity": "杂合",
+        "reported_phase": null,
+        "reported_acmg": "Uncertain",
+        "genome_build": "GRCh38",
+        "hg38_chromosome": "chr12",
+        "hg38_position": 6018919,
+        "hg38_ref": "G",
+        "hg38_alt": "A",
+        "alphagenome_request_status": "READY",
+        "boltz_request_status": "READY",
+        "benign_reported": false,
+        "phase_status": "single"
+      }
+    ],
+    "clinical_context": {
+      "sex": "男",
+      "age_text": "5岁",
+      "disease_course": "2年",
+      "symptoms": "APTT延长，FV:C减低，vWF FVIII未查",
+      "family_history": "阴性",
+      "isth_bat": {
+        "value": 0.0,
+        "raw": "0",
+        "observed": true,
+        "unit": null,
+        "reference_range": null,
+        "missing_reason": null
+      },
+      "high_dose_ristocetin": {
+        "value": null,
+        "raw": "NA",
+        "observed": false,
+        "unit": "%",
+        "reference_range": null,
+        "missing_reason": "not_available"
+      },
+      "ddavp": {
+        "vwf_ag_pre": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "vwf_ag_0_5h": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "vwf_ag_1h": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "vwf_ag_4h": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "vwf_act_pre": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "vwf_act_0_5h": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "vwf_act_1h": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "vwf_act_4h": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "fviii_c_pre": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "fviii_c_0_5h": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "fviii_c_1h": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "fviii_c_4h": {
+          "value": null,
+          "raw": "NA",
+          "observed": false,
+          "unit": null,
+          "reference_range": null,
+          "missing_reason": "not_available"
+        },
+        "reported_response": null
+      },
+      "prior_treatment": "无",
+      "comorbidity": null,
+      "interpretation_constraints": []
+    }
+  },
+  "mode": "retrospective",
+  "decision_time": "2026-08-30T03:37:35.078519+00:00",
+  "first_level": {
+    "vwf_ag": {
+      "value": 31.4,
+      "raw": "31.4",
+      "observed": true,
+      "unit": "%",
+      "reference_range": "来源表：O型42.0-140.8%；非O型66.1-79.9%（需核对原实验室）",
+      "missing_reason": null
+    },
+    "vwf_act": {
+      "value": 19.0,
+      "raw": "19.0",
+      "observed": true,
+      "unit": "%",
+      "reference_range": "来源表：O型40.3-125.9%；非O型48.8-163.4%",
+      "missing_reason": null
+    },
+    "fviii_c": {
+      "value": 72.5,
+      "raw": "72.5",
+      "observed": true,
+      "unit": "%",
+      "reference_range": "50-150%",
+      "missing_reason": null
+    },
+    "platelet_count": {
+      "value": null,
+      "raw": "NA",
+      "observed": false,
+      "unit": "10^9/L",
+      "reference_range": "未提供",
+      "missing_reason": "not_available"
+    }
+  },
+  "variants": [
+    {
+      "source_row_id": "CASE_T1_001",
+      "variant_index": 1,
+      "hgvs_c": "c.4499C>T",
+      "hgvs_p": "p.Ala1500Val",
+      "chromosomal_position": "chr12:6128085",
+      "gene": "VWF",
+      "variant_type": "错义",
+      "zygosity": "杂合",
+      "reported_phase": null,
+      "reported_acmg": "Uncertain",
+      "genome_build": "GRCh38",
+      "hg38_chromosome": "chr12",
+      "hg38_position": 6018919,
+      "hg38_ref": "G",
+      "hg38_alt": "A",
+      "alphagenome_request_status": "READY",
+      "boltz_request_status": "READY",
+      "benign_reported": false,
+      "phase_status": "single"
+    }
+  ],
+  "vwf_act_ag_ratio": 0.6050955414012739,
+  "missing_critical_fields": [],
+  "pre_genetic_hypotheses": [
+    "type_2_candidate"
+  ],
+  "pre_genetic_route": "wait_genetics",
+  "recommended_actions": [
+    {
+      "action_code": "VWF_MULTIMER",
+      "rank": 1,
+      "status": "recommended",
+      "availability": "unknown",
+      "clinical_hypothesis": [
+        "type_2_candidate"
+      ],
+      "expected_discriminator": "Distinguish loss of high-molecular-weight multimers from quantitative deficiency.",
+      "rationale": "Case CASE_T1_001: first-level Ag=31.4, Act=19.0, ratio=0.6050955414012739; missing=[]; hypotheses=['type_2_candidate']. Evidence summary: 1 structured evidence issue(s); 10 missing evidence item(s)..",
+      "requires_human_confirmation": true,
+      "provenance": [
+        "policy:vwd_second_level_actions_v0@2026-08-25"
+      ]
+    },
+    {
+      "action_code": "VWF_CB",
+      "rank": 2,
+      "status": "recommended",
+      "availability": "unknown",
+      "clinical_hypothesis": [
+        "type_2_candidate"
+      ],
+      "expected_discriminator": "Provide a functional binding readout that can expose a qualitative VWF defect.",
+      "rationale": "Case CASE_T1_001: first-level Ag=31.4, Act=19.0, ratio=0.6050955414012739; missing=[]; hypotheses=['type_2_candidate']. Evidence summary: 1 structured evidence issue(s); 10 missing evidence item(s)..",
+      "requires_human_confirmation": true,
+      "provenance": [
+        "policy:vwd_second_level_actions_v0@2026-08-25"
+      ]
+    }
+  ],
+  "second_level_environment": "auto_unavailable",
+  "second_level_status": "not_available",
+  "evidence_plan": [
+    {
+      "provider": "local_workbook",
+      "query": {
+        "patient_id": "CASE_T1_001",
+        "variant": "c.4499C>T"
+      }
+    },
+    {
+      "provider": "alphagenome_existing_panel",
+      "query": "CASE_T1_001"
+    },
+    {
+      "provider": "boltz_mechanism_classifier",
+      "query": "p.Ala1500Val"
+    }
+  ],
+  "evidence_items": [
+    {
+      "source": "local_workbook",
+      "source_record_id": "CASE_T1_001",
+      "query": "c.4499C>T",
+      "retrieved_at": "2026-08-30T03:37:35.401410+00:00",
+      "source_version": "deidentified_v3",
+      "supports": [],
+      "refutes": [],
+      "conclusion": "Genetic report row was recorded; V0 performs no external variant interpretation.",
+      "confidence": null,
+      "evidence_level": "research_input",
+      "provenance_url": null,
+      "citation": null,
+      "raw_payload_hash": null,
+      "limitations": [
+        "No gnomAD, ClinVar, HGMD, predictor, or guideline lookup was run in the offline profile."
+      ],
+      "raw_excerpt_locator": "2.基因后!CASE_T1_001"
+    },
+    {
+      "source": "alphagenome_full_profile",
+      "source_record_id": "CASE_T1_001:alphagenome-full-profile",
+      "query": "chr12:6018919:G>A",
+      "retrieved_at": "2026-08-29T18:11:53.275725+00:00",
+      "source_version": "alphagenome_agent_features.csv",
+      "supports": [],
+      "refutes": [],
+      "conclusion": "AlphaGenome complete-profile selected-track scores; top absolute views: ag_chip_histone_active_abs_max=1.177e+04, ag_chip_tf_active_abs_max=1948, ag_cage_active_abs_max=546.4, ag_dnase_active_abs_max=43.05, ag_procap_active_abs_max=27.12.",
+      "confidence": null,
+      "evidence_level": "mechanism_model",
+      "provenance_url": null,
+      "citation": null,
+      "raw_payload_hash": null,
+      "limitations": [
+        "Research-only regulatory and splicing effect scores; they are not clinical pathogenicity classifications.",
+        "Cell selection follows the returned output_metadata plan; unavailable VWF-relevant tracks remain missing rather than using unrelated biosamples."
+      ],
+      "raw_excerpt_locator": "outputs/type1_panel_agent_20260828/server_bundle/results/alphagenome/alphagenome_agent_features.csv"
+    },
+    {
+      "source": "boltz2_functional_panel",
+      "source_record_id": "CASE_T1_001:VWF_A1500V:boltz2-functional-panel",
+      "query": "A1500V",
+      "retrieved_at": "2026-08-29T18:11:53.342960+00:00",
+      "source_version": "boltz_results_summary.csv",
+      "supports": [],
+      "refutes": [],
+      "conclusion": "Assay-matched Boltz-2 structural deltas: a2_adamts13_folded_complex delta_vs_WT=0.04681; a2_folded_stability delta_vs_WT=0.135.",
+      "confidence": null,
+      "evidence_level": "mechanism_model",
+      "provenance_url": null,
+      "citation": null,
+      "raw_payload_hash": null,
+      "limitations": [
+        "Boltz confidence metrics are structural proxies, not binding free energies or clinical classifications.",
+        "Every delta uses the WT baseline from the same assay construct."
+      ],
+      "raw_excerpt_locator": "outputs/type1_panel_agent_20260828/server_bundle/results/boltz/boltz_results_summary.csv"
+    }
+  ],
+  "provider_calls": [
+    {
+      "provider": "local_workbook",
+      "version": "deidentified_v3",
+      "case_id": "CASE_T1_001",
+      "status": "ok",
+      "items_returned": 1
+    },
+    {
+      "provider": "patient_context_fhir",
+      "version": "v1",
+      "case_id": "CASE_T1_001",
+      "status": "ok",
+      "items_returned": 13
+    },
+    {
+      "provider": "local_computational_panels",
+      "version": "v1",
+      "case_id": "CASE_T1_001",
+      "status": "ok",
+      "items_returned": 2,
+      "variant_statuses": [
+        {
+          "variant_id": "CASE_T1_001",
+          "alphagenome": "returned_full_profile_embedded",
+          "boltz": "returned_panel_embedded",
+          "md": "request_pending"
+        }
+      ]
+    },
+    {
+      "provider": "ensembl_variant_recoder",
+      "operation": "normalize_variant",
+      "case_id": "CASE_T1_001",
+      "variant_id": "CASE_T1_001",
+      "status": "error",
+      "cache_hit": false,
+      "diagnostics": [
+        "[Errno -3] Temporary failure in name resolution"
+      ]
+    },
+    {
+      "provider": "vwf_domain_annotator",
+      "operation": "annotate_domain",
+      "case_id": "CASE_T1_001",
+      "variant_id": "CASE_T1_001",
+      "status": "success",
+      "cache_hit": false,
+      "diagnostics": []
+    },
+    {
+      "provider": "coordinate_dependent_tools",
+      "operation": "dependency_guard",
+      "case_id": "CASE_T1_001",
+      "variant_id": "CASE_T1_001",
+      "status": "error",
+      "cache_hit": false,
+      "diagnostics": [
+        "[Errno -3] Temporary failure in name resolution"
+      ]
+    },
+    {
+      "provider": "clingen_erepo",
+      "operation": "expert_classification",
+      "case_id": "CASE_T1_001",
+      "variant_id": "CASE_T1_001",
+      "status": "error",
+      "cache_hit": false,
+      "diagnostics": [
+        "[Errno -3] Temporary failure in name resolution"
+      ]
+    },
+    {
+      "provider": "pubmed_eutils",
+      "operation": "literature_search",
+      "case_id": "CASE_T1_001",
+      "variant_id": "CASE_T1_001",
+      "status": "error",
+      "cache_hit": false,
+      "diagnostics": [
+        "[Errno -3] Temporary failure in name resolution"
+      ]
+    },
+    {
+      "provider": "hgmd",
+      "operation": "licensed_classification",
+      "case_id": "CASE_T1_001",
+      "variant_id": "CASE_T1_001",
+      "status": "disabled",
+      "cache_hit": false,
+      "diagnostics": []
+    },
+    {
+      "provider": "local_clingen_snapshot",
+      "operation": "local_expert_classification",
+      "case_id": "CASE_T1_001",
+      "variant_id": "CASE_T1_001",
+      "status": "not_found",
+      "cache_hit": false,
+      "diagnostics": []
+    },
+    {
+      "provider": "deterministic_policy",
+      "version": "v0",
+      "deployment": null,
+      "case_id": "CASE_T1_001",
+      "status": "ok",
+      "json_mode_valid": true
+    }
+  ],
+  "second_level_bundle": {
+    "resourceType": "Bundle",
+    "id": "6197785c-4ce5-432a-a136-2be059c73308",
+    "type": "document",
+    "timestamp": "2026-08-30T03:38:17.527112+00:00",
+    "entry": [
+      {
+        "fullUrl": "urn:uuid:sr-349bdb6df6fc57cf7ce4",
+        "resource": {
+          "resourceType": "ServiceRequest",
+          "id": "sr-349bdb6df6fc57cf7ce4",
+          "meta": null,
+          "status": "revoked",
+          "intent": "plan",
+          "category": [
+            {
+              "coding": [],
+              "text": "VWD second-level diagnostic workup"
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/vwd-second-level-action",
+                "code": "VWF_MULTIMER",
+                "display": "Vwf Multimer"
+              }
+            ],
+            "text": "VWF_MULTIMER"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/action-rationale",
+              "valueString": "Automated retrospective environment feedback: requested second-level tests are unavailable."
+            }
+          ],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:sr-fa83d2d6328a4cb66b46",
+        "resource": {
+          "resourceType": "ServiceRequest",
+          "id": "sr-fa83d2d6328a4cb66b46",
+          "meta": null,
+          "status": "revoked",
+          "intent": "plan",
+          "category": [
+            {
+              "coding": [],
+              "text": "VWD second-level diagnostic workup"
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/vwd-second-level-action",
+                "code": "VWF_CB",
+                "display": "Vwf Cb"
+              }
+            ],
+            "text": "VWF_CB"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/action-rationale",
+              "valueString": "Automated retrospective environment feedback: requested second-level tests are unavailable."
+            }
+          ],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:sl-task-497590fb9681277972f6",
+        "resource": {
+          "resourceType": "Task",
+          "id": "sl-task-497590fb9681277972f6",
+          "meta": null,
+          "status": "rejected",
+          "intent": "plan",
+          "category": [],
+          "code": {
+            "coding": [],
+            "text": "VWF_MULTIMER"
+          },
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null,
+          "focus": {
+            "reference": "ServiceRequest/sr-349bdb6df6fc57cf7ce4"
+          },
+          "for_": {
+            "reference": "Patient/CASE_T1_001"
+          },
+          "statusReason": {
+            "text": "environment feedback: not available"
+          }
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:sl-task-e4df29f59e036c8ce457",
+        "resource": {
+          "resourceType": "Task",
+          "id": "sl-task-e4df29f59e036c8ce457",
+          "meta": null,
+          "status": "rejected",
+          "intent": "plan",
+          "category": [],
+          "code": {
+            "coding": [],
+            "text": "VWF_CB"
+          },
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null,
+          "focus": {
+            "reference": "ServiceRequest/sr-fa83d2d6328a4cb66b46"
+          },
+          "for_": {
+            "reference": "Patient/CASE_T1_001"
+          },
+          "statusReason": {
+            "text": "environment feedback: not available"
+          }
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:sl-report-5119074d12fa1902e632",
+        "resource": {
+          "resourceType": "DiagnosticReport",
+          "id": "sl-report-5119074d12fa1902e632",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [],
+            "text": "VWD second-level workup"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": "2026-08-30T03:38:17.527383+00:00",
+          "issued": "2026-08-30T03:38:17.527389+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null,
+          "conclusion": "All requested second-level tests were returned as unavailable by the automated retrospective environment; no values were imputed."
+        }
+      }
+    ],
+    "extension": []
+  },
+  "fhir_evidence_bundle": {
+    "resourceType": "Bundle",
+    "id": "3b0b5bbf-b24c-452f-bc87-5c0f0487c432",
+    "type": "collection",
+    "timestamp": "2026-08-30T03:37:35.404008+00:00",
+    "entry": [
+      {
+        "fullUrl": "urn:uuid:CASE_T1_001",
+        "resource": {
+          "resourceType": "Patient",
+          "id": "CASE_T1_001",
+          "meta": null,
+          "status": null,
+          "intent": null,
+          "category": [],
+          "code": null,
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null,
+          "gender": "male"
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:context-vwf-antigen",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "context-vwf-antigen",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                "code": "code-413f43be9845c2fdd404",
+                "display": "VWF antigen"
+              }
+            ],
+            "text": "VWF antigen"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": "2026-08-30T03:37:35.403541+00:00",
+          "issued": "2026-08-30T03:37:35.403548+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": {
+            "value": 31.4,
+            "unit": "%",
+            "system": null,
+            "code": "%"
+          },
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [
+            {
+              "code": {
+                "text": "unit"
+              },
+              "valueString": "%"
+            },
+            {
+              "code": {
+                "text": "reference_range"
+              },
+              "valueString": "来源表：O型42.0-140.8%；非O型66.1-79.9%（需核对原实验室）"
+            }
+          ],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:context-vwf-activity",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "context-vwf-activity",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                "code": "code-f78f0e44915f2941f18d",
+                "display": "VWF activity"
+              }
+            ],
+            "text": "VWF activity"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": "2026-08-30T03:37:35.403608+00:00",
+          "issued": "2026-08-30T03:37:35.403611+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": {
+            "value": 19.0,
+            "unit": "%",
+            "system": null,
+            "code": "%"
+          },
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [
+            {
+              "code": {
+                "text": "unit"
+              },
+              "valueString": "%"
+            },
+            {
+              "code": {
+                "text": "reference_range"
+              },
+              "valueString": "来源表：O型40.3-125.9%；非O型48.8-163.4%"
+            }
+          ],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:context-factor-viii-activity",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "context-factor-viii-activity",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                "code": "code-4154ce46e3cc4dd9850d",
+                "display": "Factor VIII activity"
+              }
+            ],
+            "text": "Factor VIII activity"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": "2026-08-30T03:37:35.403636+00:00",
+          "issued": "2026-08-30T03:37:35.403638+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": {
+            "value": 72.5,
+            "unit": "%",
+            "system": null,
+            "code": "%"
+          },
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [
+            {
+              "code": {
+                "text": "unit"
+              },
+              "valueString": "%"
+            },
+            {
+              "code": {
+                "text": "reference_range"
+              },
+              "valueString": "50-150%"
+            }
+          ],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:context-platelet-count",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "context-platelet-count",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                "code": "code-2967e70bad80508202b5",
+                "display": "Platelet count"
+              }
+            ],
+            "text": "Platelet count"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": "2026-08-30T03:37:35.403661+00:00",
+          "issued": "2026-08-30T03:37:35.403664+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": "not_available",
+          "valueBoolean": null,
+          "component": [
+            {
+              "code": {
+                "text": "unit"
+              },
+              "valueString": "10^9/L"
+            },
+            {
+              "code": {
+                "text": "reference_range"
+              },
+              "valueString": "未提供"
+            },
+            {
+              "code": {
+                "text": "missing_reason"
+              },
+              "valueString": "not_available"
+            }
+          ],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:context-isth-bleeding-assessment-tool-score",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "context-isth-bleeding-assessment-tool-score",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                "code": "code-2ee86fa127bfd4c421ee",
+                "display": "ISTH bleeding assessment tool score"
+              }
+            ],
+            "text": "ISTH bleeding assessment tool score"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": "2026-08-30T03:37:35.403692+00:00",
+          "issued": "2026-08-30T03:37:35.403694+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": {
+            "value": 0.0,
+            "unit": "proportion",
+            "system": null,
+            "code": null
+          },
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:context-high-dose-ristocetin-platelet-aggregation",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "context-high-dose-ristocetin-platelet-aggregation",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                "code": "code-e23004b11191e2a7b407",
+                "display": "High-dose ristocetin platelet aggregation"
+              }
+            ],
+            "text": "High-dose ristocetin platelet aggregation"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": "2026-08-30T03:37:35.403717+00:00",
+          "issued": "2026-08-30T03:37:35.403719+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": "not_available",
+          "valueBoolean": null,
+          "component": [
+            {
+              "code": {
+                "text": "unit"
+              },
+              "valueString": "%"
+            },
+            {
+              "code": {
+                "text": "missing_reason"
+              },
+              "valueString": "not_available"
+            }
+          ],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:context-reported-symptoms",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "context-reported-symptoms",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                "code": "code-3e6a2558ca5aa6048b94",
+                "display": "Reported symptoms"
+              }
+            ],
+            "text": "Reported symptoms"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": "2026-08-30T03:37:35.403738+00:00",
+          "issued": "2026-08-30T03:37:35.403740+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": "APTT延长，FV:C减低，vWF FVIII未查",
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:context-family-history",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "context-family-history",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                "code": "code-e546086dad2718a28642",
+                "display": "Family history"
+              }
+            ],
+            "text": "Family history"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": "2026-08-30T03:37:35.403764+00:00",
+          "issued": "2026-08-30T03:37:35.403766+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": "阴性",
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:context-prior-treatment",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "context-prior-treatment",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                "code": "code-d474af41469125f98c47",
+                "display": "Prior treatment"
+              }
+            ],
+            "text": "Prior treatment"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": "2026-08-30T03:37:35.403785+00:00",
+          "issued": "2026-08-30T03:37:35.403787+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": "无",
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:context-comorbidity",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "context-comorbidity",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                "code": "code-9e4933652381797d76fd",
+                "display": "Comorbidity"
+              }
+            ],
+            "text": "Comorbidity"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": "2026-08-30T03:37:35.403803+00:00",
+          "issued": "2026-08-30T03:37:35.403806+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": "not_recorded",
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:context-interpretation-constraints",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "context-interpretation-constraints",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                "code": "code-02248acea947ca98fa26",
+                "display": "Interpretation constraints"
+              }
+            ],
+            "text": "Interpretation constraints"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": "2026-08-30T03:37:35.403822+00:00",
+          "issued": "2026-08-30T03:37:35.403824+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": "not_recorded",
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:context-ddavp-reported-response",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "context-ddavp-reported-response",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                "code": "code-843c9fda61c748bd9055",
+                "display": "DDAVP reported response"
+              }
+            ],
+            "text": "DDAVP reported response"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": "2026-08-30T03:37:35.403840+00:00",
+          "issued": "2026-08-30T03:37:35.403841+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": "not_recorded",
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:computational-request-82eedf0a253931aeda7e",
+        "resource": {
+          "resourceType": "ServiceRequest",
+          "id": "computational-request-82eedf0a253931aeda7e",
+          "meta": null,
+          "status": "completed",
+          "intent": "order",
+          "category": [],
+          "code": {
+            "coding": [],
+            "text": "alphagenome computational analysis"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/variant-context",
+              "valueString": "c.4499C>T"
+            }
+          ],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:computational-result-ec6b28ed48774343e1d2",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "computational-result-ec6b28ed48774343e1d2",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                "code": "code-92311ad2185a1462313f",
+                "display": "alphagenome computational result"
+              }
+            ],
+            "text": "alphagenome computational result"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [
+            {
+              "reference": "ServiceRequest/computational-request-82eedf0a253931aeda7e",
+              "display": null
+            }
+          ],
+          "effectiveDateTime": "2026-08-30T03:37:35.415986+00:00",
+          "issued": "2026-08-30T03:37:35.415996+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": "AlphaGenome complete-profile selected-track scores; top absolute views: ag_chip_histone_active_abs_max=1.177e+04, ag_chip_tf_active_abs_max=1948, ag_cage_active_abs_max=546.4, ag_dnase_active_abs_max=43.05, ag_procap_active_abs_max=27.12.",
+          "valueBoolean": null,
+          "component": [
+            {
+              "code": {
+                "text": "query"
+              },
+              "valueString": "chr12:6018919:G>A"
+            },
+            {
+              "code": {
+                "text": "source_version"
+              },
+              "valueString": "alphagenome_agent_features.csv"
+            },
+            {
+              "code": {
+                "text": "evidence_level"
+              },
+              "valueString": "mechanism_model"
+            },
+            {
+              "code": {
+                "text": "supports"
+              },
+              "valueString": ""
+            },
+            {
+              "code": {
+                "text": "refutes"
+              },
+              "valueString": ""
+            },
+            {
+              "code": {
+                "text": "limitations"
+              },
+              "valueString": "Research-only regulatory and splicing effect scores; they are not clinical pathogenicity classifications.|Cell selection follows the returned output_metadata plan; unavailable VWF-relevant tracks remain missing rather than using unrelated biosamples."
+            },
+            {
+              "code": {
+                "text": "raw_excerpt_locator"
+              },
+              "valueString": "outputs/type1_panel_agent_20260828/server_bundle/results/alphagenome/alphagenome_agent_features.csv"
+            }
+          ],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:prov-3f9a638289be2ca824ba",
+        "resource": {
+          "resourceType": "Provenance",
+          "id": "prov-3f9a638289be2ca824ba",
+          "meta": null,
+          "status": null,
+          "intent": null,
+          "category": [],
+          "code": null,
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/request-hash",
+              "valueString": "9de79bc73c44e4de550a202a160f4e34f0a4f7138f74b399db61837fed059419"
+            },
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/response-hash",
+              "valueString": "666139f50c81176531c39cb5bed90e33ec5a14531a9c2261eab6502bbe9f53a5"
+            }
+          ],
+          "target": [
+            {
+              "reference": "Observation/computational-result-ec6b28ed48774343e1d2",
+              "display": null
+            }
+          ],
+          "occurredDateTime": "2026-08-30T03:37:35.416040+00:00",
+          "recorded": "2026-08-30T03:37:35.416073+00:00",
+          "agent": [
+            {
+              "type": {
+                "coding": [
+                  {
+                    "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                    "code": "alphagenome_full_profile"
+                  }
+                ]
+              },
+              "who": {
+                "display": "alphagenome_full_profile"
+              },
+              "onBehalfOf": {
+                "display": "local://alphagenome"
+              }
+            }
+          ],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:computational-request-38dfc68efc68b1a076f4",
+        "resource": {
+          "resourceType": "ServiceRequest",
+          "id": "computational-request-38dfc68efc68b1a076f4",
+          "meta": null,
+          "status": "completed",
+          "intent": "order",
+          "category": [],
+          "code": {
+            "coding": [],
+            "text": "boltz computational analysis"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/variant-context",
+              "valueString": "c.4499C>T"
+            }
+          ],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:computational-result-b504caad3974ee2a7a90",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "computational-result-b504caad3974ee2a7a90",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                "code": "code-6f1212b7ad16d3bdd9c7",
+                "display": "boltz computational result"
+              }
+            ],
+            "text": "boltz computational result"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [
+            {
+              "reference": "ServiceRequest/computational-request-38dfc68efc68b1a076f4",
+              "display": null
+            }
+          ],
+          "effectiveDateTime": "2026-08-30T03:37:35.416132+00:00",
+          "issued": "2026-08-30T03:37:35.416135+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": "Assay-matched Boltz-2 structural deltas: a2_adamts13_folded_complex delta_vs_WT=0.04681; a2_folded_stability delta_vs_WT=0.135.",
+          "valueBoolean": null,
+          "component": [
+            {
+              "code": {
+                "text": "query"
+              },
+              "valueString": "A1500V"
+            },
+            {
+              "code": {
+                "text": "source_version"
+              },
+              "valueString": "boltz_results_summary.csv"
+            },
+            {
+              "code": {
+                "text": "evidence_level"
+              },
+              "valueString": "mechanism_model"
+            },
+            {
+              "code": {
+                "text": "supports"
+              },
+              "valueString": ""
+            },
+            {
+              "code": {
+                "text": "refutes"
+              },
+              "valueString": ""
+            },
+            {
+              "code": {
+                "text": "limitations"
+              },
+              "valueString": "Boltz confidence metrics are structural proxies, not binding free energies or clinical classifications.|Every delta uses the WT baseline from the same assay construct."
+            },
+            {
+              "code": {
+                "text": "raw_excerpt_locator"
+              },
+              "valueString": "outputs/type1_panel_agent_20260828/server_bundle/results/boltz/boltz_results_summary.csv"
+            }
+          ],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:prov-545cc0fda23016ac2eb6",
+        "resource": {
+          "resourceType": "Provenance",
+          "id": "prov-545cc0fda23016ac2eb6",
+          "meta": null,
+          "status": null,
+          "intent": null,
+          "category": [],
+          "code": null,
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/request-hash",
+              "valueString": "9de79bc73c44e4de550a202a160f4e34f0a4f7138f74b399db61837fed059419"
+            },
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/response-hash",
+              "valueString": "5bc88a904770724097ced6f6d3faf302008d7702db5ea74b1bad8a0ec1a43a50"
+            }
+          ],
+          "target": [
+            {
+              "reference": "Observation/computational-result-b504caad3974ee2a7a90",
+              "display": null
+            }
+          ],
+          "occurredDateTime": "2026-08-30T03:37:35.416164+00:00",
+          "recorded": "2026-08-30T03:37:35.416187+00:00",
+          "agent": [
+            {
+              "type": {
+                "coding": [
+                  {
+                    "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                    "code": "boltz2_functional_panel"
+                  }
+                ]
+              },
+              "who": {
+                "display": "boltz2_functional_panel"
+              },
+              "onBehalfOf": {
+                "display": "local://boltz"
+              }
+            }
+          ],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:computational-request-3b73f29a6abd26181cf5",
+        "resource": {
+          "resourceType": "ServiceRequest",
+          "id": "computational-request-3b73f29a6abd26181cf5",
+          "meta": null,
+          "status": "completed",
+          "intent": "order",
+          "category": [],
+          "code": {
+            "coding": [],
+            "text": "md computational analysis"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/variant-context",
+              "valueString": "c.4499C>T"
+            }
+          ],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:oo-7bd89e3d89265700e59c",
+        "resource": {
+          "resourceType": "OperationOutcome",
+          "id": "oo-7bd89e3d89265700e59c",
+          "meta": null,
+          "status": null,
+          "intent": null,
+          "category": [],
+          "code": null,
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null,
+          "issue": [
+            {
+              "severity": "warning",
+              "code": "not-available",
+              "diagnostics": "md result unavailable for CASE_T1_001: request_pending"
+            }
+          ]
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:oo-3346201a6ed015260a93",
+        "resource": {
+          "resourceType": "OperationOutcome",
+          "id": "oo-3346201a6ed015260a93",
+          "meta": null,
+          "status": null,
+          "intent": null,
+          "category": [],
+          "code": null,
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null,
+          "issue": [
+            {
+              "severity": "error",
+              "code": "exception",
+              "diagnostics": "[Errno -3] Temporary failure in name resolution"
+            }
+          ]
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:vwf-domain-1500-Ala-Val",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "vwf-domain-1500-Ala-Val",
+          "meta": null,
+          "status": "final",
+          "intent": null,
+          "category": [],
+          "code": {
+            "coding": [
+              {
+                "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                "code": "code-fc7e1ad8f0b75a44c695",
+                "display": "VWF mature-protein domain and variant class"
+              }
+            ],
+            "text": "VWF mature-protein domain and variant class"
+          },
+          "subject": {
+            "reference": "Patient/CASE_T1_001",
+            "display": null
+          },
+          "basedOn": [
+            {
+              "reference": "Observation/CASE_T1_001",
+              "display": null
+            }
+          ],
+          "effectiveDateTime": "2026-08-30T03:37:49.451615+00:00",
+          "issued": "2026-08-30T03:37:49.451621+00:00",
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": "p.Ala1500Val; VWFA2; missense",
+          "valueBoolean": null,
+          "component": [
+            {
+              "code": {
+                "text": "protein_position"
+              },
+              "valueQuantity": {
+                "value": 1500
+              }
+            },
+            {
+              "code": {
+                "text": "domain"
+              },
+              "valueString": "VWFA2"
+            },
+            {
+              "code": {
+                "text": "variant_class"
+              },
+              "valueString": "missense"
+            },
+            {
+              "code": {
+                "text": "boundary_precision"
+              },
+              "valueString": "canonical_feature_boundary"
+            },
+            {
+              "code": {
+                "text": "coordinate_system"
+              },
+              "valueString": "UniProt_P04275_prepro_numbering"
+            },
+            {
+              "code": {
+                "text": "source"
+              },
+              "valueString": "UniProt P04275 canonical features"
+            }
+          ],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:prov-8c0d0eba78668fdafdd1",
+        "resource": {
+          "resourceType": "Provenance",
+          "id": "prov-8c0d0eba78668fdafdd1",
+          "meta": null,
+          "status": null,
+          "intent": null,
+          "category": [],
+          "code": null,
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/request-hash",
+              "valueString": "d99af313a0ac734adadce88a0e1d318b34f72be6e4c2d624d34cb86b20d1e2a1"
+            },
+            {
+              "url": "https://vwf-ethos.org/StructureDefinition/response-hash",
+              "valueString": "391cbc8eefc113e14b9d9cfae3c8472893579f34167717f9e795c9fc1bb9060f"
+            }
+          ],
+          "target": [
+            {
+              "reference": "Observation/vwf-domain-1500-Ala-Val",
+              "display": null
+            }
+          ],
+          "occurredDateTime": "2026-08-30T03:37:49.451666+00:00",
+          "recorded": "2026-08-30T03:37:49.451688+00:00",
+          "agent": [
+            {
+              "type": {
+                "coding": [
+                  {
+                    "system": "https://vwf-ethos.org/CodeSystem/biomedical-evidence-tool",
+                    "code": "vwf_domain_annotator"
+                  }
+                ]
+              },
+              "who": {
+                "display": "vwf_domain_annotator"
+              },
+              "onBehalfOf": {
+                "display": "local://vwf-domain-map"
+              }
+            }
+          ],
+          "type": null,
+          "entry": [],
+          "total": null
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:oo-7c630d5e6c2ca59b9c1b",
+        "resource": {
+          "resourceType": "OperationOutcome",
+          "id": "oo-7c630d5e6c2ca59b9c1b",
+          "meta": null,
+          "status": null,
+          "intent": null,
+          "category": [],
+          "code": null,
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null,
+          "issue": [
+            {
+              "severity": "error",
+              "code": "dependency-failed",
+              "diagnostics": "Variant normalization failed; coordinate-dependent tools were not called and this is not benign evidence."
+            }
+          ]
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:oo-3346201a6ed015260a93",
+        "resource": {
+          "resourceType": "OperationOutcome",
+          "id": "oo-3346201a6ed015260a93",
+          "meta": null,
+          "status": null,
+          "intent": null,
+          "category": [],
+          "code": null,
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null,
+          "issue": [
+            {
+              "severity": "error",
+              "code": "exception",
+              "diagnostics": "[Errno -3] Temporary failure in name resolution"
+            }
+          ]
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:oo-3346201a6ed015260a93",
+        "resource": {
+          "resourceType": "OperationOutcome",
+          "id": "oo-3346201a6ed015260a93",
+          "meta": null,
+          "status": null,
+          "intent": null,
+          "category": [],
+          "code": null,
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null,
+          "issue": [
+            {
+              "severity": "error",
+              "code": "exception",
+              "diagnostics": "[Errno -3] Temporary failure in name resolution"
+            }
+          ]
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:oo-3a7956ef71106eb7580f",
+        "resource": {
+          "resourceType": "OperationOutcome",
+          "id": "oo-3a7956ef71106eb7580f",
+          "meta": null,
+          "status": null,
+          "intent": null,
+          "category": [],
+          "code": null,
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null,
+          "issue": [
+            {
+              "severity": "warning",
+              "code": "license-required",
+              "diagnostics": "HGMD has no public API and requires an institutional license; provider remains disabled rather than treating absence as benign."
+            }
+          ]
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:oo-bd567c87e15b647171b0",
+        "resource": {
+          "resourceType": "OperationOutcome",
+          "id": "oo-bd567c87e15b647171b0",
+          "meta": null,
+          "status": null,
+          "intent": null,
+          "category": [],
+          "code": null,
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null,
+          "issue": [
+            {
+              "severity": "information",
+              "code": "not-found",
+              "diagnostics": "Variant absent from local ClinGen VWF snapshot"
+            }
+          ]
+        }
+      }
+    ],
+    "extension": []
+  },
+  "evidence_conflicts": [
+    {
+      "conflict_id": "type2_discriminator_unavailable",
+      "conflict_type": "missing_discriminator",
+      "severity": "critical",
+      "evidence_refs": [],
+      "description": "Type 2 candidate exists, but all second-level discriminators are unavailable.",
+      "explanation": "The evidence cannot distinguish type 2 subtypes or exclude qualitative VWF defects.",
+      "recommended_action": "accept_uncertainty"
+    }
+  ],
+  "evidence_missing": [
+    "RIPA",
+    "VWF_MULTIMER",
+    "VWF_CB",
+    "VWF_FVIIIB",
+    "VWF_PP",
+    "DDAVP_0_1_4H",
+    "expert_variant_classification",
+    "population_frequency",
+    "pathogenicity_prediction",
+    "variant_specific_literature"
+  ],
+  "evidence_conflict_summary": "1 structured evidence issue(s); 10 missing evidence item(s).",
+  "acmg_evidence_hints": [],
+  "subtype_tendencies": [
+    {
+      "subtype_label": "type_2_vwd",
+      "score": 2.0,
+      "confidence": "moderate",
+      "rationale": "VWF:Act/VWF:Ag ratio below 0.70",
+      "evidence_refs": []
+    },
+    {
+      "subtype_label": "type_2A",
+      "score": 0.8,
+      "confidence": "low",
+      "rationale": "Variant lies in VWFA2, where multimer processing defects are typical",
+      "evidence_refs": [
+        "Observation/vwf-domain-1500-Ala-Val"
+      ]
+    }
+  ],
+  "candidate_subtypes": [
+    "type_2_candidate"
+  ],
+  "safety_flags": [
+    {
+      "code": "tool_ensembl_variant_recoder_error",
+      "severity": "critical",
+      "message": "ensembl_variant_recoder returned error; this is not benign evidence.",
+      "requires_expert_review": true
+    },
+    {
+      "code": "tool_coordinate_dependent_tools_error",
+      "severity": "critical",
+      "message": "coordinate_dependent_tools returned error; this is not benign evidence.",
+      "requires_expert_review": true
+    },
+    {
+      "code": "tool_clingen_erepo_error",
+      "severity": "critical",
+      "message": "clingen_erepo returned error; this is not benign evidence.",
+      "requires_expert_review": true
+    },
+    {
+      "code": "tool_pubmed_eutils_error",
+      "severity": "critical",
+      "message": "pubmed_eutils returned error; this is not benign evidence.",
+      "requires_expert_review": true
+    },
+    {
+      "code": "tool_local_clingen_snapshot_not_found",
+      "severity": "warning",
+      "message": "local_clingen_snapshot returned not_found; this is not benign evidence.",
+      "requires_expert_review": true
+    },
+    {
+      "code": "type2_guideline_provider_not_enabled",
+      "severity": "critical",
+      "message": "ClinGen/ACMG type-2 rule provider is not enabled in V0 offline mode.",
+      "requires_expert_review": true
+    },
+    {
+      "code": "second_level_unavailable",
+      "severity": "warning",
+      "message": "Second-level tests were explicitly unavailable; absence of results is not evidence against type 2 VWD.",
+      "requires_expert_review": true
+    }
+  ],
+  "llm_summary": "### 1. 临床与实验室表型\nVWF:Ag=31.4, VWF:Act=19.0, FVIII:C=72.5, 血小板计数=未提供。\nVWF:Act/VWF:Ag 比值为 0.605，低于 0.70，提示存在不成比例的功能性 VWF 缺陷。\n\n### 2. 变异与功能域\n- c.4499C>T / p.Ala1500Val（VWFA2）。\n\n### 3. AI 机制证据\n- alphagenome_full_profile: AlphaGenome complete-profile selected-track scores; top absolute views: ag_chip_histone_active_abs_max=1.177e+04, ag_chip_tf_active_abs_max=1948, ag_cage_active_abs_max=546.4, ag_dnase_active_abs_max=43.05, ag_procap_active_abs_max=27.12.\n- boltz2_functional_panel: Assay-matched Boltz-2 structural deltas: a2_adamts13_folded_complex delta_vs_WT=0.04681; a2_folded_stability delta_vs_WT=0.135.\n\n### 4. 机制解释\n该变异位于 A2 功能域，A2 与多聚体加工和 ADAMTS13 易感性相关；该区域变异可能通过影响折叠稳定性或切割敏感性，导致高危分子量多聚体缺失。\n实验室表型与功能性 VWF 缺陷方向一致；若同时存在高危分子量多聚体缺失，更支持 2A/2B 样机制。\n\n### 5. 分型鉴别与不确定性\nHGMD/ClinVar 的致病性评级本身不能直接给出 VWD 亚型方向；即使标注为致病或 uncertain，也必须结合实验室检查、出血表型和机制证据综合判断。\n当前倾向：type_2_vwd（moderate）; type_2A（low）。\nVWF 多聚体分析和 VWF:CB/Ag 比值是区分 2A、2B 和 2M-A1 轴的关键检查；当前结果缺失，不能仅凭 AI 模型确定亚型。\n建议优先补充：VWF_MULTIMER, VWF_CB。",
+  "llm_provider": "deterministic_policy",
+  "final_opinion": {
+    "patient_id": "CASE_T1_001",
+    "candidate_subtypes": [
+      "type_2_candidate"
+    ],
+    "confidence": "low",
+    "opinion": "### 1. 临床与实验室表型\nVWF:Ag=31.4, VWF:Act=19.0, FVIII:C=72.5, 血小板计数=未提供。\nVWF:Act/VWF:Ag 比值为 0.605，低于 0.70，提示存在不成比例的功能性 VWF 缺陷。\n\n### 2. 变异与功能域\n- c.4499C>T / p.Ala1500Val（VWFA2）。\n\n### 3. AI 机制证据\n- alphagenome_full_profile: AlphaGenome complete-profile selected-track scores; top absolute views: ag_chip_histone_active_abs_max=1.177e+04, ag_chip_tf_active_abs_max=1948, ag_cage_active_abs_max=546.4, ag_dnase_active_abs_max=43.05, ag_procap_active_abs_max=27.12.\n- boltz2_functional_panel: Assay-matched Boltz-2 structural deltas: a2_adamts13_folded_complex delta_vs_WT=0.04681; a2_folded_stability delta_vs_WT=0.135.\n\n### 4. 机制解释\n该变异位于 A2 功能域，A2 与多聚体加工和 ADAMTS13 易感性相关；该区域变异可能通过影响折叠稳定性或切割敏感性，导致高危分子量多聚体缺失。\n实验室表型与功能性 VWF 缺陷方向一致；若同时存在高危分子量多聚体缺失，更支持 2A/2B 样机制。\n\n### 5. 分型鉴别与不确定性\nHGMD/ClinVar 的致病性评级本身不能直接给出 VWD 亚型方向；即使标注为致病或 uncertain，也必须结合实验室检查、出血表型和机制证据综合判断。\n当前倾向：type_2_vwd（moderate）; type_2A（low）。\nVWF 多聚体分析和 VWF:CB/Ag 比值是区分 2A、2B 和 2M-A1 轴的关键检查；当前结果缺失，不能仅凭 AI 模型确定亚型。\n建议优先补充：VWF_MULTIMER, VWF_CB。",
+    "abstention": true,
+    "expert_review_required": true,
+    "recommended_actions": [
+      {
+        "action_code": "VWF_MULTIMER",
+        "rank": 1,
+        "status": "recommended",
+        "availability": "unknown",
+        "clinical_hypothesis": [
+          "type_2_candidate"
+        ],
+        "expected_discriminator": "Distinguish loss of high-molecular-weight multimers from quantitative deficiency.",
+        "rationale": "Case CASE_T1_001: first-level Ag=31.4, Act=19.0, ratio=0.6050955414012739; missing=[]; hypotheses=['type_2_candidate']. Evidence summary: 1 structured evidence issue(s); 10 missing evidence item(s)..",
+        "requires_human_confirmation": true,
+        "provenance": [
+          "policy:vwd_second_level_actions_v0@2026-08-25"
+        ]
+      },
+      {
+        "action_code": "VWF_CB",
+        "rank": 2,
+        "status": "recommended",
+        "availability": "unknown",
+        "clinical_hypothesis": [
+          "type_2_candidate"
+        ],
+        "expected_discriminator": "Provide a functional binding readout that can expose a qualitative VWF defect.",
+        "rationale": "Case CASE_T1_001: first-level Ag=31.4, Act=19.0, ratio=0.6050955414012739; missing=[]; hypotheses=['type_2_candidate']. Evidence summary: 1 structured evidence issue(s); 10 missing evidence item(s)..",
+        "requires_human_confirmation": true,
+        "provenance": [
+          "policy:vwd_second_level_actions_v0@2026-08-25"
+        ]
+      }
+    ],
+    "subtype_tendencies": [
+      {
+        "subtype_label": "type_2_vwd",
+        "score": 2.0,
+        "confidence": "moderate",
+        "rationale": "VWF:Act/VWF:Ag ratio below 0.70",
+        "evidence_refs": []
+      },
+      {
+        "subtype_label": "type_2A",
+        "score": 0.8,
+        "confidence": "low",
+        "rationale": "Variant lies in VWFA2, where multimer processing defects are typical",
+        "evidence_refs": [
+          "Observation/vwf-domain-1500-Ala-Val"
+        ]
+      }
+    ],
+    "supporting_evidence": [
+      "CASE_T1_001",
+      "CASE_T1_001:alphagenome-full-profile",
+      "CASE_T1_001:VWF_A1500V:boltz2-functional-panel",
+      "Observation/context-vwf-antigen",
+      "Observation/context-vwf-activity",
+      "Observation/context-factor-viii-activity",
+      "Observation/context-platelet-count",
+      "Observation/context-isth-bleeding-assessment-tool-score",
+      "Observation/context-high-dose-ristocetin-platelet-aggregation",
+      "Observation/context-reported-symptoms",
+      "Observation/context-family-history",
+      "Observation/context-prior-treatment",
+      "Observation/context-comorbidity",
+      "Observation/context-interpretation-constraints",
+      "Observation/context-ddavp-reported-response",
+      "Observation/computational-result-ec6b28ed48774343e1d2",
+      "Observation/computational-result-b504caad3974ee2a7a90",
+      "Observation/vwf-domain-1500-Ala-Val"
+    ],
+    "contradicting_evidence": [
+      "Type 2 candidate exists, but all second-level discriminators are unavailable. Evidence: "
+    ],
+    "missing_information": [
+      "RIPA",
+      "VWF_MULTIMER",
+      "VWF_CB",
+      "VWF_FVIIIB",
+      "VWF_PP",
+      "DDAVP_0_1_4H",
+      "expert_variant_classification",
+      "population_frequency",
+      "pathogenicity_prediction",
+      "variant_specific_literature"
+    ],
+    "limitations": [
+      "ensembl_variant_recoder returned error; this is not benign evidence.",
+      "coordinate_dependent_tools returned error; this is not benign evidence.",
+      "clingen_erepo returned error; this is not benign evidence.",
+      "pubmed_eutils returned error; this is not benign evidence.",
+      "local_clingen_snapshot returned not_found; this is not benign evidence.",
+      "ClinGen/ACMG type-2 rule provider is not enabled in V0 offline mode.",
+      "Second-level tests were explicitly unavailable; absence of results is not evidence against type 2 VWD.",
+      "The evidence cannot distinguish type 2 subtypes or exclude qualitative VWF defects."
+    ],
+    "provenance": [
+      "policy:vwd_first_level_v0@2026-08-25",
+      "policy:vwd_second_level_actions_v0@2026-08-25",
+      "llm:deterministic_policy"
+    ]
+  },
+  "status": "completed",
+  "trace": [
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "load_case",
+      "timestamp": "2026-08-30T03:37:35.389812+00:00",
+      "detail": {
+        "source_rows": [
+          "CASE_T1_001"
+        ]
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "validate_first_level",
+      "timestamp": "2026-08-30T03:37:35.391410+00:00",
+      "detail": {
+        "missing": [],
+        "ratio": 0.6050955414012739
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "pre_genetic_triage",
+      "timestamp": "2026-08-30T03:37:35.393223+00:00",
+      "detail": {
+        "hypotheses": [
+          "type_2_candidate"
+        ],
+        "route": "wait_genetics"
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "wait_genetics",
+      "timestamp": "2026-08-30T03:37:35.394921+00:00",
+      "detail": {
+        "variants": 1
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "normalize_variants",
+      "timestamp": "2026-08-30T03:37:35.397126+00:00",
+      "detail": {
+        "variants": [
+          {
+            "source_row_id": "CASE_T1_001",
+            "variant_index": 1,
+            "hgvs_c": "c.4499C>T",
+            "hgvs_p": "p.Ala1500Val",
+            "chromosomal_position": "chr12:6128085",
+            "gene": "VWF",
+            "variant_type": "错义",
+            "zygosity": "杂合",
+            "reported_phase": null,
+            "reported_acmg": "Uncertain",
+            "genome_build": "GRCh38",
+            "hg38_chromosome": "chr12",
+            "hg38_position": 6018919,
+            "hg38_ref": "G",
+            "hg38_alt": "A",
+            "alphagenome_request_status": "READY",
+            "boltz_request_status": "READY",
+            "benign_reported": false,
+            "phase_status": "single"
+          }
+        ],
+        "phase_inferred": false
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "plan_evidence_calls",
+      "timestamp": "2026-08-30T03:37:35.399729+00:00",
+      "detail": {
+        "planned_calls": 3
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "run_evidence_providers",
+      "timestamp": "2026-08-30T03:37:35.401437+00:00",
+      "detail": {
+        "evidence_items": 1
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "run_patient_context_fhir",
+      "timestamp": "2026-08-30T03:37:35.404131+00:00",
+      "detail": {
+        "resources": 13
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "run_computational_panels",
+      "timestamp": "2026-08-30T03:37:35.416417+00:00",
+      "detail": {
+        "evidence_items_added": 2,
+        "statuses": [
+          {
+            "variant_id": "CASE_T1_001",
+            "alphagenome": "returned_full_profile_embedded",
+            "boltz": "returned_panel_embedded",
+            "md": "request_pending"
+          }
+        ]
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "run_fhir_evidence_tools",
+      "timestamp": "2026-08-30T03:38:17.478397+00:00",
+      "detail": {
+        "authorized": true,
+        "calls": 7
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "integrate_patient_variant_evidence",
+      "timestamp": "2026-08-30T03:38:17.488610+00:00",
+      "detail": {
+        "candidates": [
+          "type_2_candidate"
+        ]
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "analyze_evidence",
+      "timestamp": "2026-08-30T03:38:17.496429+00:00",
+      "detail": {
+        "conflict_count": 1,
+        "missing_count": 10
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "infer_subtype_tendency",
+      "timestamp": "2026-08-30T03:38:17.504679+00:00",
+      "detail": {
+        "tendencies": [
+          {
+            "subtype_label": "type_2_vwd",
+            "score": 2.0,
+            "confidence": "moderate",
+            "rationale": "VWF:Act/VWF:Ag ratio below 0.70",
+            "evidence_refs": []
+          },
+          {
+            "subtype_label": "type_2A",
+            "score": 0.8,
+            "confidence": "low",
+            "rationale": "Variant lies in VWFA2, where multimer processing defects are typical",
+            "evidence_refs": [
+              "Observation/vwf-domain-1500-Ala-Val"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "apply_type2_clingen_acmg",
+      "timestamp": "2026-08-30T03:38:17.510062+00:00",
+      "detail": {
+        "enabled": false
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "recommend_second_level",
+      "timestamp": "2026-08-30T03:38:17.518364+00:00",
+      "detail": {
+        "actions": [
+          "VWF_MULTIMER",
+          "VWF_CB"
+        ]
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "check_lab_availability",
+      "timestamp": "2026-08-30T03:38:17.527421+00:00",
+      "detail": {
+        "environment": "auto_unavailable",
+        "unavailable_actions": [
+          "VWF_MULTIMER",
+          "VWF_CB"
+        ],
+        "observed_results": 0,
+        "imputed_results": 0
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "ingest_second_level_results",
+      "timestamp": "2026-08-30T03:38:17.535459+00:00",
+      "detail": {
+        "fabricated_results": 0,
+        "unavailable_tests": true
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "update_post_evidence_assessment",
+      "timestamp": "2026-08-30T03:38:17.540529+00:00",
+      "detail": {
+        "second_level": "not_available"
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "synthesize_opinion",
+      "timestamp": "2026-08-30T03:38:17.549510+00:00",
+      "detail": {
+        "provider": "deterministic_policy",
+        "abstention": true,
+        "expert_review": true
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "safety_conflict_gate",
+      "timestamp": "2026-08-30T03:38:17.558560+00:00",
+      "detail": {
+        "flags": [
+          "tool_ensembl_variant_recoder_error",
+          "tool_coordinate_dependent_tools_error",
+          "tool_clingen_erepo_error",
+          "tool_pubmed_eutils_error",
+          "tool_local_clingen_snapshot_not_found",
+          "type2_guideline_provider_not_enabled",
+          "second_level_unavailable"
+        ]
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "expert_review",
+      "timestamp": "2026-08-30T03:38:17.564514+00:00",
+      "detail": {
+        "reason": "safety gate triggered"
+      }
+    },
+    {
+      "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+      "case_id": "CASE_T1_001",
+      "node": "package_final_opinion",
+      "timestamp": "2026-08-30T03:38:17.569344+00:00",
+      "detail": {
+        "abstention": true,
+        "expert_review_required": true
+      }
+    }
+  ]
+}

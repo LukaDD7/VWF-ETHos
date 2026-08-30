@@ -1,0 +1,14 @@
+{
+  "run_id": "6f2832dc-be68-4e4f-b2d2-b4217dd9a4a4",
+  "total_cases": 10,
+  "completed": 10,
+  "expert_review_required": 10,
+  "waiting": 0,
+  "actions_all_from_allowed_enum": true,
+  "fabricated_second_level_results": 0,
+  "alphagenome_evidence_items": 9,
+  "boltz_evidence_items": 6,
+  "multi_variant_cases_with_unknown_phase": 0,
+  "clinical_accuracy_reported": false,
+  "reason_no_accuracy": "No expert action/subtype gold set is available."
+}

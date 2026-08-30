@@ -1,0 +1,110 @@
+{
+  "patient_id": "CASE_T1_001",
+  "candidate_subtypes": [
+    "type_2_candidate"
+  ],
+  "confidence": "low",
+  "opinion": "### 1. 临床与实验室表型\nVWF:Ag=31.4, VWF:Act=19.0, FVIII:C=72.5, 血小板计数=未提供。\nVWF:Act/VWF:Ag 比值为 0.605，低于 0.70，提示存在不成比例的功能性 VWF 缺陷。\n\n### 2. 变异与功能域\n- c.4499C>T / p.Ala1500Val（VWFA2）。\n\n### 3. AI 机制证据\n- alphagenome_full_profile: AlphaGenome complete-profile selected-track scores; top absolute views: ag_chip_histone_active_abs_max=1.177e+04, ag_chip_tf_active_abs_max=1948, ag_cage_active_abs_max=546.4, ag_dnase_active_abs_max=43.05, ag_procap_active_abs_max=27.12.\n- boltz2_functional_panel: Assay-matched Boltz-2 structural deltas: a2_adamts13_folded_complex delta_vs_WT=0.04681; a2_folded_stability delta_vs_WT=0.135.\n\n### 4. 机制解释\n该变异位于 A2 功能域，A2 与多聚体加工和 ADAMTS13 易感性相关；该区域变异可能通过影响折叠稳定性或切割敏感性，导致高危分子量多聚体缺失。\n实验室表型与功能性 VWF 缺陷方向一致；若同时存在高危分子量多聚体缺失，更支持 2A/2B 样机制。\n\n### 5. 分型鉴别与不确定性\nHGMD/ClinVar 的致病性评级本身不能直接给出 VWD 亚型方向；即使标注为致病或 uncertain，也必须结合实验室检查、出血表型和机制证据综合判断。\n当前倾向：type_2_vwd（moderate）; type_2A（low）。\nVWF 多聚体分析和 VWF:CB/Ag 比值是区分 2A、2B 和 2M-A1 轴的关键检查；当前结果缺失，不能仅凭 AI 模型确定亚型。\n建议优先补充：VWF_MULTIMER, VWF_CB。",
+  "abstention": true,
+  "expert_review_required": true,
+  "recommended_actions": [
+    {
+      "action_code": "VWF_MULTIMER",
+      "rank": 1,
+      "status": "recommended",
+      "availability": "unknown",
+      "clinical_hypothesis": [
+        "type_2_candidate"
+      ],
+      "expected_discriminator": "Distinguish loss of high-molecular-weight multimers from quantitative deficiency.",
+      "rationale": "Case CASE_T1_001: first-level Ag=31.4, Act=19.0, ratio=0.6050955414012739; missing=[]; hypotheses=['type_2_candidate']. Evidence summary: 1 structured evidence issue(s); 10 missing evidence item(s)..",
+      "requires_human_confirmation": true,
+      "provenance": [
+        "policy:vwd_second_level_actions_v0@2026-08-25"
+      ]
+    },
+    {
+      "action_code": "VWF_CB",
+      "rank": 2,
+      "status": "recommended",
+      "availability": "unknown",
+      "clinical_hypothesis": [
+        "type_2_candidate"
+      ],
+      "expected_discriminator": "Provide a functional binding readout that can expose a qualitative VWF defect.",
+      "rationale": "Case CASE_T1_001: first-level Ag=31.4, Act=19.0, ratio=0.6050955414012739; missing=[]; hypotheses=['type_2_candidate']. Evidence summary: 1 structured evidence issue(s); 10 missing evidence item(s)..",
+      "requires_human_confirmation": true,
+      "provenance": [
+        "policy:vwd_second_level_actions_v0@2026-08-25"
+      ]
+    }
+  ],
+  "subtype_tendencies": [
+    {
+      "subtype_label": "type_2_vwd",
+      "score": 2.0,
+      "confidence": "moderate",
+      "rationale": "VWF:Act/VWF:Ag ratio below 0.70",
+      "evidence_refs": []
+    },
+    {
+      "subtype_label": "type_2A",
+      "score": 0.8,
+      "confidence": "low",
+      "rationale": "Variant lies in VWFA2, where multimer processing defects are typical",
+      "evidence_refs": [
+        "Observation/vwf-domain-1500-Ala-Val"
+      ]
+    }
+  ],
+  "supporting_evidence": [
+    "CASE_T1_001",
+    "CASE_T1_001:alphagenome-full-profile",
+    "CASE_T1_001:VWF_A1500V:boltz2-functional-panel",
+    "Observation/context-vwf-antigen",
+    "Observation/context-vwf-activity",
+    "Observation/context-factor-viii-activity",
+    "Observation/context-platelet-count",
+    "Observation/context-isth-bleeding-assessment-tool-score",
+    "Observation/context-high-dose-ristocetin-platelet-aggregation",
+    "Observation/context-reported-symptoms",
+    "Observation/context-family-history",
+    "Observation/context-prior-treatment",
+    "Observation/context-comorbidity",
+    "Observation/context-interpretation-constraints",
+    "Observation/context-ddavp-reported-response",
+    "Observation/computational-result-ec6b28ed48774343e1d2",
+    "Observation/computational-result-b504caad3974ee2a7a90",
+    "Observation/vwf-domain-1500-Ala-Val"
+  ],
+  "contradicting_evidence": [
+    "Type 2 candidate exists, but all second-level discriminators are unavailable. Evidence: "
+  ],
+  "missing_information": [
+    "RIPA",
+    "VWF_MULTIMER",
+    "VWF_CB",
+    "VWF_FVIIIB",
+    "VWF_PP",
+    "DDAVP_0_1_4H",
+    "expert_variant_classification",
+    "population_frequency",
+    "pathogenicity_prediction",
+    "variant_specific_literature"
+  ],
+  "limitations": [
+    "ensembl_variant_recoder returned error; this is not benign evidence.",
+    "coordinate_dependent_tools returned error; this is not benign evidence.",
+    "clingen_erepo returned error; this is not benign evidence.",
+    "pubmed_eutils returned error; this is not benign evidence.",
+    "local_clingen_snapshot returned not_found; this is not benign evidence.",
+    "ClinGen/ACMG type-2 rule provider is not enabled in V0 offline mode.",
+    "Second-level tests were explicitly unavailable; absence of results is not evidence against type 2 VWD.",
+    "The evidence cannot distinguish type 2 subtypes or exclude qualitative VWF defects."
+  ],
+  "provenance": [
+    "policy:vwd_first_level_v0@2026-08-25",
+    "policy:vwd_second_level_actions_v0@2026-08-25",
+    "llm:deterministic_policy"
+  ]
+}

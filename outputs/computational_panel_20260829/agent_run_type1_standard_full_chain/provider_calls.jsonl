@@ -1,0 +1,110 @@
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_T1_001", "status": "ok", "items_returned": 1}
+{"provider": "patient_context_fhir", "version": "v1", "case_id": "CASE_T1_001", "status": "ok", "items_returned": 13}
+{"provider": "local_computational_panels", "version": "v1", "case_id": "CASE_T1_001", "status": "ok", "items_returned": 2, "variant_statuses": [{"variant_id": "CASE_T1_001", "alphagenome": "returned_full_profile_embedded", "boltz": "returned_panel_embedded", "md": "request_pending"}]}
+{"provider": "ensembl_variant_recoder", "operation": "normalize_variant", "case_id": "CASE_T1_001", "variant_id": "CASE_T1_001", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "vwf_domain_annotator", "operation": "annotate_domain", "case_id": "CASE_T1_001", "variant_id": "CASE_T1_001", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "coordinate_dependent_tools", "operation": "dependency_guard", "case_id": "CASE_T1_001", "variant_id": "CASE_T1_001", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "clingen_erepo", "operation": "expert_classification", "case_id": "CASE_T1_001", "variant_id": "CASE_T1_001", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "pubmed_eutils", "operation": "literature_search", "case_id": "CASE_T1_001", "variant_id": "CASE_T1_001", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "hgmd", "operation": "licensed_classification", "case_id": "CASE_T1_001", "variant_id": "CASE_T1_001", "status": "disabled", "cache_hit": false, "diagnostics": []}
+{"provider": "local_clingen_snapshot", "operation": "local_expert_classification", "case_id": "CASE_T1_001", "variant_id": "CASE_T1_001", "status": "not_found", "cache_hit": false, "diagnostics": []}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_T1_001", "status": "ok", "json_mode_valid": true}
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_T1_002", "status": "ok", "items_returned": 1}
+{"provider": "patient_context_fhir", "version": "v1", "case_id": "CASE_T1_002", "status": "ok", "items_returned": 13}
+{"provider": "local_computational_panels", "version": "v1", "case_id": "CASE_T1_002", "status": "ok", "items_returned": 2, "variant_statuses": [{"variant_id": "CASE_T1_002", "alphagenome": "returned_full_profile_embedded", "boltz": "returned_panel_embedded", "md": "request_pending"}]}
+{"provider": "ensembl_variant_recoder", "operation": "normalize_variant", "case_id": "CASE_T1_002", "variant_id": "CASE_T1_002", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "vwf_domain_annotator", "operation": "annotate_domain", "case_id": "CASE_T1_002", "variant_id": "CASE_T1_002", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "coordinate_dependent_tools", "operation": "dependency_guard", "case_id": "CASE_T1_002", "variant_id": "CASE_T1_002", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "clingen_erepo", "operation": "expert_classification", "case_id": "CASE_T1_002", "variant_id": "CASE_T1_002", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "pubmed_eutils", "operation": "literature_search", "case_id": "CASE_T1_002", "variant_id": "CASE_T1_002", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "hgmd", "operation": "licensed_classification", "case_id": "CASE_T1_002", "variant_id": "CASE_T1_002", "status": "disabled", "cache_hit": false, "diagnostics": []}
+{"provider": "local_clingen_snapshot", "operation": "local_expert_classification", "case_id": "CASE_T1_002", "variant_id": "CASE_T1_002", "status": "not_found", "cache_hit": false, "diagnostics": []}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_T1_002", "status": "ok", "json_mode_valid": true}
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_T1_003", "status": "ok", "items_returned": 1}
+{"provider": "patient_context_fhir", "version": "v1", "case_id": "CASE_T1_003", "status": "ok", "items_returned": 13}
+{"provider": "local_computational_panels", "version": "v1", "case_id": "CASE_T1_003", "status": "ok", "items_returned": 1, "variant_statuses": [{"variant_id": "CASE_T1_003", "alphagenome": "returned_full_profile_embedded", "boltz": "NOT_APPLICABLE_NON_MISSENSE", "md": "not_modelable"}]}
+{"provider": "ensembl_variant_recoder", "operation": "normalize_variant", "case_id": "CASE_T1_003", "variant_id": "CASE_T1_003", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "vwf_domain_annotator", "operation": "annotate_domain", "case_id": "CASE_T1_003", "variant_id": "CASE_T1_003", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "coordinate_dependent_tools", "operation": "dependency_guard", "case_id": "CASE_T1_003", "variant_id": "CASE_T1_003", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "clingen_erepo", "operation": "expert_classification", "case_id": "CASE_T1_003", "variant_id": "CASE_T1_003", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "pubmed_eutils", "operation": "literature_search", "case_id": "CASE_T1_003", "variant_id": "CASE_T1_003", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "hgmd", "operation": "licensed_classification", "case_id": "CASE_T1_003", "variant_id": "CASE_T1_003", "status": "disabled", "cache_hit": false, "diagnostics": []}
+{"provider": "local_clingen_snapshot", "operation": "local_expert_classification", "case_id": "CASE_T1_003", "variant_id": "CASE_T1_003", "status": "not_found", "cache_hit": false, "diagnostics": []}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_T1_003", "status": "ok", "json_mode_valid": true}
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_T1_004", "status": "ok", "items_returned": 1}
+{"provider": "patient_context_fhir", "version": "v1", "case_id": "CASE_T1_004", "status": "ok", "items_returned": 13}
+{"provider": "local_computational_panels", "version": "v1", "case_id": "CASE_T1_004", "status": "ok", "items_returned": 0, "variant_statuses": [{"variant_id": "CASE_T1_004", "alphagenome": "NEEDS_HGVS_NORMALIZATION", "boltz": "NOT_APPLICABLE_NON_MISSENSE", "md": "not_modelable"}]}
+{"provider": "ensembl_variant_recoder", "operation": "normalize_variant", "case_id": "CASE_T1_004", "variant_id": "CASE_T1_004", "status": "error", "cache_hit": false, "diagnostics": ["hgvs_c is required"]}
+{"provider": "vwf_domain_annotator", "operation": "annotate_domain", "case_id": "CASE_T1_004", "variant_id": "CASE_T1_004", "status": "not_found", "cache_hit": false, "diagnostics": []}
+{"provider": "coordinate_dependent_tools", "operation": "dependency_guard", "case_id": "CASE_T1_004", "variant_id": "CASE_T1_004", "status": "error", "cache_hit": false, "diagnostics": ["hgvs_c is required"]}
+{"provider": "clingen_erepo", "operation": "expert_classification", "case_id": "CASE_T1_004", "variant_id": "CASE_T1_004", "status": "error", "cache_hit": false, "diagnostics": ["hgvsg or hgvs_c is required"]}
+{"provider": "pubmed_eutils", "operation": "literature_search", "case_id": "CASE_T1_004", "variant_id": "CASE_T1_004", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "hgmd", "operation": "licensed_classification", "case_id": "CASE_T1_004", "variant_id": "CASE_T1_004", "status": "disabled", "cache_hit": false, "diagnostics": []}
+{"provider": "local_clingen_snapshot", "operation": "local_expert_classification", "case_id": "CASE_T1_004", "variant_id": "CASE_T1_004", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_T1_004", "status": "ok", "json_mode_valid": true}
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_T1_005", "status": "ok", "items_returned": 1}
+{"provider": "patient_context_fhir", "version": "v1", "case_id": "CASE_T1_005", "status": "ok", "items_returned": 13}
+{"provider": "local_computational_panels", "version": "v1", "case_id": "CASE_T1_005", "status": "ok", "items_returned": 1, "variant_statuses": [{"variant_id": "CASE_T1_005", "alphagenome": "returned_full_profile_embedded", "boltz": "NOT_APPLICABLE_NON_MISSENSE", "md": "not_modelable"}]}
+{"provider": "ensembl_variant_recoder", "operation": "normalize_variant", "case_id": "CASE_T1_005", "variant_id": "CASE_T1_005", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "vwf_domain_annotator", "operation": "annotate_domain", "case_id": "CASE_T1_005", "variant_id": "CASE_T1_005", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "coordinate_dependent_tools", "operation": "dependency_guard", "case_id": "CASE_T1_005", "variant_id": "CASE_T1_005", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "clingen_erepo", "operation": "expert_classification", "case_id": "CASE_T1_005", "variant_id": "CASE_T1_005", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "pubmed_eutils", "operation": "literature_search", "case_id": "CASE_T1_005", "variant_id": "CASE_T1_005", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "hgmd", "operation": "licensed_classification", "case_id": "CASE_T1_005", "variant_id": "CASE_T1_005", "status": "disabled", "cache_hit": false, "diagnostics": []}
+{"provider": "local_clingen_snapshot", "operation": "local_expert_classification", "case_id": "CASE_T1_005", "variant_id": "CASE_T1_005", "status": "not_found", "cache_hit": false, "diagnostics": []}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_T1_005", "status": "ok", "json_mode_valid": true}
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_T1_006", "status": "ok", "items_returned": 1}
+{"provider": "patient_context_fhir", "version": "v1", "case_id": "CASE_T1_006", "status": "ok", "items_returned": 13}
+{"provider": "local_computational_panels", "version": "v1", "case_id": "CASE_T1_006", "status": "ok", "items_returned": 1, "variant_statuses": [{"variant_id": "CASE_T1_006", "alphagenome": "returned_full_profile_embedded", "boltz": "NOT_APPLICABLE_NON_MISSENSE", "md": "not_modelable"}]}
+{"provider": "ensembl_variant_recoder", "operation": "normalize_variant", "case_id": "CASE_T1_006", "variant_id": "CASE_T1_006", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "vwf_domain_annotator", "operation": "annotate_domain", "case_id": "CASE_T1_006", "variant_id": "CASE_T1_006", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "coordinate_dependent_tools", "operation": "dependency_guard", "case_id": "CASE_T1_006", "variant_id": "CASE_T1_006", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "clingen_erepo", "operation": "expert_classification", "case_id": "CASE_T1_006", "variant_id": "CASE_T1_006", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "pubmed_eutils", "operation": "literature_search", "case_id": "CASE_T1_006", "variant_id": "CASE_T1_006", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "hgmd", "operation": "licensed_classification", "case_id": "CASE_T1_006", "variant_id": "CASE_T1_006", "status": "disabled", "cache_hit": false, "diagnostics": []}
+{"provider": "local_clingen_snapshot", "operation": "local_expert_classification", "case_id": "CASE_T1_006", "variant_id": "CASE_T1_006", "status": "not_found", "cache_hit": false, "diagnostics": []}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_T1_006", "status": "ok", "json_mode_valid": true}
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_T1_007", "status": "ok", "items_returned": 1}
+{"provider": "patient_context_fhir", "version": "v1", "case_id": "CASE_T1_007", "status": "ok", "items_returned": 13}
+{"provider": "local_computational_panels", "version": "v1", "case_id": "CASE_T1_007", "status": "ok", "items_returned": 1, "variant_statuses": [{"variant_id": "CASE_T1_007", "alphagenome": "returned_full_profile_embedded", "boltz": "NOT_APPLICABLE_NON_MISSENSE", "md": "not_modelable"}]}
+{"provider": "ensembl_variant_recoder", "operation": "normalize_variant", "case_id": "CASE_T1_007", "variant_id": "CASE_T1_007", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "vwf_domain_annotator", "operation": "annotate_domain", "case_id": "CASE_T1_007", "variant_id": "CASE_T1_007", "status": "not_found", "cache_hit": false, "diagnostics": []}
+{"provider": "coordinate_dependent_tools", "operation": "dependency_guard", "case_id": "CASE_T1_007", "variant_id": "CASE_T1_007", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "clingen_erepo", "operation": "expert_classification", "case_id": "CASE_T1_007", "variant_id": "CASE_T1_007", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "pubmed_eutils", "operation": "literature_search", "case_id": "CASE_T1_007", "variant_id": "CASE_T1_007", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "hgmd", "operation": "licensed_classification", "case_id": "CASE_T1_007", "variant_id": "CASE_T1_007", "status": "disabled", "cache_hit": false, "diagnostics": []}
+{"provider": "local_clingen_snapshot", "operation": "local_expert_classification", "case_id": "CASE_T1_007", "variant_id": "CASE_T1_007", "status": "not_found", "cache_hit": false, "diagnostics": []}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_T1_007", "status": "ok", "json_mode_valid": true}
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_T1_008", "status": "ok", "items_returned": 1}
+{"provider": "patient_context_fhir", "version": "v1", "case_id": "CASE_T1_008", "status": "ok", "items_returned": 13}
+{"provider": "local_computational_panels", "version": "v1", "case_id": "CASE_T1_008", "status": "ok", "items_returned": 3, "variant_statuses": [{"variant_id": "CASE_T1_008", "alphagenome": "returned_full_profile_embedded", "boltz": "returned_panel_embedded", "md": "returned_panel_embedded"}]}
+{"provider": "ensembl_variant_recoder", "operation": "normalize_variant", "case_id": "CASE_T1_008", "variant_id": "CASE_T1_008", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "vwf_domain_annotator", "operation": "annotate_domain", "case_id": "CASE_T1_008", "variant_id": "CASE_T1_008", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "coordinate_dependent_tools", "operation": "dependency_guard", "case_id": "CASE_T1_008", "variant_id": "CASE_T1_008", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "clingen_erepo", "operation": "expert_classification", "case_id": "CASE_T1_008", "variant_id": "CASE_T1_008", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "pubmed_eutils", "operation": "literature_search", "case_id": "CASE_T1_008", "variant_id": "CASE_T1_008", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "hgmd", "operation": "licensed_classification", "case_id": "CASE_T1_008", "variant_id": "CASE_T1_008", "status": "disabled", "cache_hit": false, "diagnostics": []}
+{"provider": "local_clingen_snapshot", "operation": "local_expert_classification", "case_id": "CASE_T1_008", "variant_id": "CASE_T1_008", "status": "not_found", "cache_hit": false, "diagnostics": []}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_T1_008", "status": "ok", "json_mode_valid": true}
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_T1_009", "status": "ok", "items_returned": 1}
+{"provider": "patient_context_fhir", "version": "v1", "case_id": "CASE_T1_009", "status": "ok", "items_returned": 13}
+{"provider": "local_computational_panels", "version": "v1", "case_id": "CASE_T1_009", "status": "ok", "items_returned": 2, "variant_statuses": [{"variant_id": "CASE_T1_009", "alphagenome": "returned_full_profile_embedded", "boltz": "returned_panel_embedded", "md": "request_pending"}]}
+{"provider": "ensembl_variant_recoder", "operation": "normalize_variant", "case_id": "CASE_T1_009", "variant_id": "CASE_T1_009", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "vwf_domain_annotator", "operation": "annotate_domain", "case_id": "CASE_T1_009", "variant_id": "CASE_T1_009", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "coordinate_dependent_tools", "operation": "dependency_guard", "case_id": "CASE_T1_009", "variant_id": "CASE_T1_009", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "clingen_erepo", "operation": "expert_classification", "case_id": "CASE_T1_009", "variant_id": "CASE_T1_009", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "pubmed_eutils", "operation": "literature_search", "case_id": "CASE_T1_009", "variant_id": "CASE_T1_009", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "hgmd", "operation": "licensed_classification", "case_id": "CASE_T1_009", "variant_id": "CASE_T1_009", "status": "disabled", "cache_hit": false, "diagnostics": []}
+{"provider": "local_clingen_snapshot", "operation": "local_expert_classification", "case_id": "CASE_T1_009", "variant_id": "CASE_T1_009", "status": "not_found", "cache_hit": false, "diagnostics": []}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_T1_009", "status": "ok", "json_mode_valid": true}
+{"provider": "local_workbook", "version": "deidentified_v3", "case_id": "CASE_T1_010", "status": "ok", "items_returned": 1}
+{"provider": "patient_context_fhir", "version": "v1", "case_id": "CASE_T1_010", "status": "ok", "items_returned": 13}
+{"provider": "local_computational_panels", "version": "v1", "case_id": "CASE_T1_010", "status": "ok", "items_returned": 2, "variant_statuses": [{"variant_id": "CASE_T1_010", "alphagenome": "returned_full_profile_embedded", "boltz": "returned_panel_embedded", "md": "request_pending"}]}
+{"provider": "ensembl_variant_recoder", "operation": "normalize_variant", "case_id": "CASE_T1_010", "variant_id": "CASE_T1_010", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "vwf_domain_annotator", "operation": "annotate_domain", "case_id": "CASE_T1_010", "variant_id": "CASE_T1_010", "status": "success", "cache_hit": false, "diagnostics": []}
+{"provider": "coordinate_dependent_tools", "operation": "dependency_guard", "case_id": "CASE_T1_010", "variant_id": "CASE_T1_010", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "clingen_erepo", "operation": "expert_classification", "case_id": "CASE_T1_010", "variant_id": "CASE_T1_010", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "pubmed_eutils", "operation": "literature_search", "case_id": "CASE_T1_010", "variant_id": "CASE_T1_010", "status": "error", "cache_hit": false, "diagnostics": ["[Errno -3] Temporary failure in name resolution"]}
+{"provider": "hgmd", "operation": "licensed_classification", "case_id": "CASE_T1_010", "variant_id": "CASE_T1_010", "status": "disabled", "cache_hit": false, "diagnostics": []}
+{"provider": "local_clingen_snapshot", "operation": "local_expert_classification", "case_id": "CASE_T1_010", "variant_id": "CASE_T1_010", "status": "not_found", "cache_hit": false, "diagnostics": []}
+{"provider": "deterministic_policy", "version": "v0", "deployment": null, "case_id": "CASE_T1_010", "status": "ok", "json_mode_valid": true}

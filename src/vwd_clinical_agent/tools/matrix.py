@@ -176,6 +176,22 @@ class EvidenceToolMatrix:
                     diagnostics=normalizer.diagnostics,
                 )
             )
+            configured_snapshot = (local_parameters or {}).get("snapshot_dir") or self.snapshot_dir
+            snapshot_dir = Path(str(configured_snapshot or ""))
+            if snapshot_dir.exists():
+                invoke(
+                    "local_clinvar_snapshot",
+                    ToolRequest(
+                        operation="local_clinical_classification",
+                        patient_id=patient_id,
+                        variant_id=variant_id,
+                        parameters={
+                            "path": snapshot_dir / "clinvar_vwf_esummary.json",
+                            "hgvs_c": hgvs_c,
+                            "hgvs_p": hgvs_p,
+                        },
+                    ),
+                )
         else:
             invoke("gnomad_graphql", ToolRequest(operation="population_frequency", patient_id=patient_id, variant_id=variant_id, parameters=normalized))
             open_cravat_response = invoke(

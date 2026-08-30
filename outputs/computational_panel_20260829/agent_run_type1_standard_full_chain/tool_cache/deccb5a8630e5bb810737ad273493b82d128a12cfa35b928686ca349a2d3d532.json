@@ -1,0 +1,56 @@
+{
+  "tool": "vwf_domain_annotator",
+  "operation": "annotate_domain",
+  "status": "not_found",
+  "output": {
+    "resourceType": "Bundle",
+    "id": "d0238f82-3a82-4da4-850e-d21b1dce70bf",
+    "type": "collection",
+    "timestamp": "2026-08-30T03:39:42.385257+00:00",
+    "entry": [
+      {
+        "fullUrl": "urn:uuid:oo-8b83f0ae9a86bca2bf0e",
+        "resource": {
+          "resourceType": "OperationOutcome",
+          "id": "oo-8b83f0ae9a86bca2bf0e",
+          "meta": null,
+          "status": null,
+          "intent": null,
+          "category": [],
+          "code": null,
+          "subject": null,
+          "basedOn": [],
+          "effectiveDateTime": null,
+          "issued": null,
+          "valueCodeableConcept": null,
+          "valueQuantity": null,
+          "valueString": null,
+          "valueBoolean": null,
+          "component": [],
+          "result": [],
+          "contained": [],
+          "extension": [],
+          "target": [],
+          "occurredDateTime": null,
+          "recorded": null,
+          "agent": [],
+          "type": null,
+          "entry": [],
+          "total": null,
+          "issue": [
+            {
+              "severity": "information",
+              "code": "not-found",
+              "diagnostics": "No protein change was provided"
+            }
+          ]
+        }
+      }
+    ],
+    "extension": []
+  },
+  "diagnostics": [],
+  "retry_count": 0,
+  "latency_ms": 0,
+  "cache_hit": false
+}

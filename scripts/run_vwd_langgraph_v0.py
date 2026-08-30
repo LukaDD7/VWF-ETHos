@@ -66,6 +66,12 @@ def case_summary(result: dict[str, Any]) -> dict[str, Any]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run the research-only VWD LangGraph V0 workflow.")
+    parser.add_argument(
+        "--profile",
+        choices=["standard", "offline", "minimal"],
+        default="standard",
+        help="Standard runs the full local + online evidence chain; offline disables network tools; minimal keeps only local workbook/context.",
+    )
     parser.add_argument("--workbook", type=Path, default=ROOT / "data/clinical_agent_pilot/vwd_agentic_workflow_deidentified_v3.xlsx")
     parser.add_argument("--mode", choices=["retrospective", "interactive"], default="retrospective")
     parser.add_argument("--provider-profile", choices=["fixture", "offline"], default="offline")
@@ -73,10 +79,11 @@ def main() -> int:
     parser.add_argument("--output-dir", type=Path, default=ROOT / "output/vwd_langgraph_v0/smoke")
     parser.add_argument("--case-id", help="Run one patient ID or a comma-separated list, for example CASE_001,CASE_002")
     parser.add_argument("--limit", type=int, help="Run only the first N cases")
-    parser.add_argument("--biomedical-tools", action="store_true")
+    parser.add_argument("--biomedical-tools", action="store_true", default=None)
     parser.add_argument(
         "--computational-panels",
         action="store_true",
+        default=None,
         help="Embed already-computed local AlphaGenome and Boltz/mechanism evidence; never launches new jobs.",
     )
     parser.add_argument("--second-level-bundle", type=Path)
@@ -87,7 +94,7 @@ def main() -> int:
         help="Retrospective environment feedback for second-level tests.",
     )
     parser.add_argument("--snapshot-dir", type=Path, default=ROOT / "data/external/vwf_biomedical_snapshots")
-    parser.add_argument("--pubmed-full-text", action="store_true")
+    parser.add_argument("--pubmed-full-text", action="store_true", default=None)
     parser.add_argument(
         "--mechanism-matrix",
         type=Path,
@@ -100,6 +107,13 @@ def main() -> int:
         help="Path to the AgenticVWFClassifier implementation.",
     )
     args = parser.parse_args()
+
+    if args.biomedical_tools is None:
+        args.biomedical_tools = args.profile == "standard"
+    if args.computational_panels is None:
+        args.computational_panels = args.profile in {"standard", "offline"}
+    if args.pubmed_full_text is None:
+        args.pubmed_full_text = args.profile == "standard"
 
     if args.mode == "interactive":
         raise SystemExit("Interactive interrupt/resume is not enabled in this V0 smoke runner.")
