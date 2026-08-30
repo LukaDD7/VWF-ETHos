@@ -1,0 +1,7 @@
+patient_id,status,pre_genetic_route,hypotheses,top_action,action_count,missing_fields,variant_count,expert_review_required,abstention,fabricated_second_level_results,alphagenome_evidence_count,boltz_evidence_count
+CASE_T2B_001,completed,wait_genetics,"['type_2_candidate', 'platelet_type_vwd_candidate']",RIPA,2,[],1,True,True,0,1,2
+CASE_T2B_002,completed,wait_genetics,"['type_2_candidate', 'platelet_type_vwd_candidate']",RIPA,2,[],1,True,True,0,1,2
+CASE_T2B_003,completed,wait_genetics,"['type_2_candidate', 'platelet_type_vwd_candidate']",RIPA,2,[],1,True,True,0,1,2
+CASE_T2B_004,completed,wait_genetics,['type_2_candidate'],VWF_MULTIMER,3,[],1,True,True,0,1,2
+CASE_T2B_005,completed,wait_genetics,"['type_2_candidate', 'platelet_type_vwd_candidate']",RIPA,2,[],2,True,True,0,2,0
+CASE_T2B_006,completed,wait_genetics,['type_1_candidate_provisional'],VWF_PP,2,[],1,True,True,0,1,2

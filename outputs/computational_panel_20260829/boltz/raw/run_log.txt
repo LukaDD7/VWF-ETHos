@@ -1,0 +1,83 @@
+[06:39:31] ============================================================
+[06:39:31] VWD Functional Panel — Boltz-2 Parallel Run
+[06:39:31] Started: Sat Aug 29 06:39:31 UTC 2026
+[06:39:31] ============================================================
+[06:41:15] [OK] boltz found: unknown
+[06:41:17] [INFO] CUDA GPUs detected: 8
+[06:41:17] [INFO] Using explicit physical GPU ids: 4 5 6 7 (N_GPUS=4)
+[06:41:19] [OK] Input dir: /inspire/hdd/global_user/mengweicheng-240108120092/lzy/projects/VWF-ETHos/outputs/computational_panel_20260829/boltz/yamls (32 YAML files)
+[06:41:19] [INFO] Disk: available=1009536MB, estimated_needed=6400MB
+[06:41:19] [OK] gcc found: /inspire/hdd/global_user/mengweicheng-240108120092/lzy/envs/boltz2/bin/gcc
+[06:41:19] ------------------------------------------------------------
+[06:41:19] Config: N_GPUS=4 | recycling=3 | samples=5
+[06:41:19] Filter: all assays
+[06:41:19] ------------------------------------------------------------
+[06:41:19] Jobs: total=32  done=0  remaining=32
+[06:41:19]   (filtered by: none)
+[06:41:19] Distribution across 4 GPUs:
+[06:41:19]   GPU 0: 8 jobs
+[06:41:19]   GPU 1: 8 jobs
+[06:41:19]   GPU 2: 8 jobs
+[06:41:19]   GPU 3: 8 jobs
+[06:41:19] Launching 4 parallel GPU workers...
+[06:41:19]   Worker logical-0 -> physical GPU-4 started (PID=1587221, jobs=8)
+[06:41:19]   Worker logical-1 -> physical GPU-5 started (PID=1587226, jobs=8)
+[06:41:19]   Worker logical-2 -> physical GPU-6 started (PID=1587237, jobs=8)
+[06:41:19]   Worker logical-3 -> physical GPU-7 started (PID=1587248, jobs=8)
+[06:41:19] 
+[06:41:19] Workers running. Monitor with:
+[06:41:19]   watch -n 30 'find /inspire/hdd/global_user/mengweicheng-240108120092/lzy/projects/VWF-ETHos/outputs/computational_panel_20260829/boltz/raw -name .done | wc -l'
+[06:41:19]   tail -f /inspire/hdd/global_user/mengweicheng-240108120092/lzy/projects/VWF-ETHos/outputs/computational_panel_20260829/boltz/raw/worker_0.log
+[06:41:19] 
+[06:41:19] Estimated time: ~2h (32 jobs / 4 GPUs, ~20min/job)
+[06:41:19] 
+[06:49:27] 
+[06:49:27] ============================================================
+[06:49:27] Run finished: Sat Aug 29 06:49:27 UTC 2026
+[06:49:27]   Total YAML files : 32
+[06:49:27]   Completed (.done): 32
+[06:49:27]   Remaining        : 0
+[06:49:27]   Output dir       : /inspire/hdd/global_user/mengweicheng-240108120092/lzy/projects/VWF-ETHos/outputs/computational_panel_20260829/boltz/raw
+[06:49:27] ============================================================
+[06:49:27] SUCCESS: All jobs completed.
+[06:49:27] 
+[06:49:27] 下一步 — 解析结果:
+[06:49:27]   python3 scripts/pipeline/parse_vwd_functional_boltz2_results.py \
+[06:49:27]       --results-dir /inspire/hdd/global_user/mengweicheng-240108120092/lzy/projects/VWF-ETHos/outputs/computational_panel_20260829/boltz/raw \
+[06:49:27]       --manifest output/boltz2_vwd_functional_panel/job_manifest.csv
+[06:59:51] ============================================================
+[06:59:51] VWD Functional Panel — Boltz-2 Parallel Run
+[06:59:51] Started: Sat Aug 29 06:59:51 UTC 2026
+[06:59:51] ============================================================
+[07:00:06] [OK] boltz found: unknown
+[07:00:08] [INFO] CUDA GPUs detected: 8
+[07:00:08] [INFO] Using explicit physical GPU ids: 4 5 6 7 (N_GPUS=4)
+[07:00:09] [OK] Input dir: /inspire/hdd/global_user/mengweicheng-240108120092/lzy/projects/VWF-ETHos/outputs/computational_panel_20260829/boltz/yamls (32 YAML files)
+[07:00:09] [INFO] Disk: available=1009312MB, estimated_needed=6400MB
+[07:00:09] [OK] gcc found: /inspire/hdd/global_user/mengweicheng-240108120092/lzy/envs/boltz2/bin/gcc
+[07:00:09] ------------------------------------------------------------
+[07:00:09] Config: N_GPUS=4 | recycling=3 | samples=5
+[07:00:09] Filter: all assays
+[07:00:09] ------------------------------------------------------------
+[07:00:09] Jobs: total=32  done=32  remaining=0
+[07:00:09]   (filtered by: none)
+[07:00:09] All matching jobs already completed. Nothing to do.
+[07:00:09]   To re-run: rm -f /inspire/hdd/global_user/mengweicheng-240108120092/lzy/projects/VWF-ETHos/outputs/computational_panel_20260829/boltz/raw/<name>/.done
+[09:39:12] ============================================================
+[09:39:12] VWD Functional Panel — Boltz-2 Parallel Run
+[09:39:12] Started: Sat Aug 29 09:39:12 UTC 2026
+[09:39:12] ============================================================
+[09:39:34] [OK] boltz found: unknown
+[09:39:35] [INFO] CUDA GPUs detected: 8
+[09:39:35] [INFO] Using explicit physical GPU ids: 4 5 6 7 (N_GPUS=4)
+[09:39:38] [OK] Input dir: /inspire/hdd/global_user/mengweicheng-240108120092/lzy/projects/VWF-ETHos/outputs/computational_panel_20260829/boltz/yamls (32 YAML files)
+[09:39:38] [INFO] Disk: available=999216MB, estimated_needed=6400MB
+[09:39:38] [OK] gcc found: /inspire/hdd/global_user/mengweicheng-240108120092/lzy/envs/boltz2/bin/gcc
+[09:39:38] ------------------------------------------------------------
+[09:39:38] Config: N_GPUS=4 | recycling=3 | samples=5
+[09:39:38] Filter: all assays
+[09:39:38] ------------------------------------------------------------
+[09:39:38] Jobs: total=32  done=32  remaining=0
+[09:39:38]   (filtered by: none)
+[09:39:38] All matching jobs already completed. Nothing to do.
+[09:39:38]   To re-run: rm -f /inspire/hdd/global_user/mengweicheng-240108120092/lzy/projects/VWF-ETHos/outputs/computational_panel_20260829/boltz/raw/<name>/.done

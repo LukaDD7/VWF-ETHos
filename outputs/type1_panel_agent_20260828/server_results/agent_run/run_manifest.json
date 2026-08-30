@@ -1,0 +1,24 @@
+{
+  "run_id": "eaf9bba6-2ede-4680-b1ce-1141c53a32af",
+  "created_at": "2026-08-29T15:02:42.423241+00:00",
+  "mode": "retrospective",
+  "provider_profile": "offline",
+  "llm_provider": "deterministic_policy",
+  "llm_provider_version": "v0",
+  "computational_panels_enabled": true,
+  "workbook_audit": {
+    "workbook_path": "/inspire/hdd/global_user/mengweicheng-240108120092/lzy/projects/VWF-ETHos/outputs/type1_panel_agent_20260828/type1_panel_agent_package.xlsx",
+    "workbook_sha256": "e945cb55f83a318be8764274b1a42fd28b28b6782604b1b35a1daf40933d7b73",
+    "first_level_rows": 10,
+    "variant_rows": 10,
+    "unique_patients": 10,
+    "multi_variant_patients": 0,
+    "clinical_context_rows": 10
+  },
+  "graph": "vwd_clinical_agent.graph/build_workflow",
+  "policies": [
+    "vwd_first_level_v0@2026-08-25",
+    "vwd_second_level_actions_v0@2026-08-25"
+  ],
+  "privacy": "Research-only de-identified workbook; no original identifiers or reversible mapping are stored."
+}

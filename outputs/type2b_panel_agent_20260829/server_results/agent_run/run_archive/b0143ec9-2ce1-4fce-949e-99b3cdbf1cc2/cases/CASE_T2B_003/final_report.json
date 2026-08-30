@@ -1,0 +1,85 @@
+{
+  "patient_id": "CASE_T2B_003",
+  "candidate_subtypes": [
+    "type_2_candidate",
+    "platelet_type_vwd_candidate"
+  ],
+  "confidence": "low",
+  "opinion": "Retrospective review integrated 0 FHIR evidence resources across 1 reported variant(s), identified 1 structured evidence issue(s), and found 10 missing evidence item(s). The evidence-constrained second-level plan prioritizes RIPA, VWF_MULTIMER. Current subtype tendencies are type_2_vwd (score 2.0, moderate). All requested second-level tests were explicitly unavailable in this retrospective environment; no values were imputed. The system abstains from autonomous diagnosis and requires expert review.",
+  "abstention": true,
+  "expert_review_required": true,
+  "recommended_actions": [
+    {
+      "action_code": "RIPA",
+      "rank": 1,
+      "status": "recommended",
+      "availability": "unknown",
+      "clinical_hypothesis": [
+        "type_2_candidate",
+        "platelet_type_vwd_candidate"
+      ],
+      "expected_discriminator": "Distinguish enhanced platelet-dependent binding (type 2B or platelet-type VWD).",
+      "rationale": "Case CASE_T2B_003: first-level Ag=40.2, Act=14.6, ratio=0.36318407960199; missing=[]; hypotheses=['type_2_candidate', 'platelet_type_vwd_candidate']. Evidence summary: 1 structured evidence issue(s); 10 missing evidence item(s)..",
+      "requires_human_confirmation": true,
+      "provenance": [
+        "policy:vwd_second_level_actions_v0@2026-08-25"
+      ]
+    },
+    {
+      "action_code": "VWF_MULTIMER",
+      "rank": 2,
+      "status": "recommended",
+      "availability": "unknown",
+      "clinical_hypothesis": [
+        "type_2_candidate",
+        "platelet_type_vwd_candidate"
+      ],
+      "expected_discriminator": "Distinguish loss of high-molecular-weight multimers from quantitative deficiency.",
+      "rationale": "Case CASE_T2B_003: first-level Ag=40.2, Act=14.6, ratio=0.36318407960199; missing=[]; hypotheses=['type_2_candidate', 'platelet_type_vwd_candidate']. Evidence summary: 1 structured evidence issue(s); 10 missing evidence item(s)..",
+      "requires_human_confirmation": true,
+      "provenance": [
+        "policy:vwd_second_level_actions_v0@2026-08-25"
+      ]
+    }
+  ],
+  "subtype_tendencies": [
+    {
+      "subtype_label": "type_2_vwd",
+      "score": 2.0,
+      "confidence": "moderate",
+      "rationale": "VWF:Act/VWF:Ag ratio below 0.70",
+      "evidence_refs": []
+    }
+  ],
+  "supporting_evidence": [
+    "CASE_T2B_003",
+    "CASE_T2B_003:alphagenome-full-profile",
+    "CASE_T2B_003:VWF_S1310F:boltz2-functional-panel",
+    "CASE_T2B_003:S1310F:targeted-md"
+  ],
+  "contradicting_evidence": [
+    "Type 2 candidate exists, but all second-level discriminators are unavailable. Evidence: "
+  ],
+  "missing_information": [
+    "RIPA",
+    "VWF_MULTIMER",
+    "VWF_CB",
+    "VWF_FVIIIB",
+    "VWF_PP",
+    "DDAVP_0_1_4H",
+    "expert_variant_classification",
+    "population_frequency",
+    "pathogenicity_prediction",
+    "variant_specific_literature"
+  ],
+  "limitations": [
+    "ClinGen/ACMG type-2 rule provider is not enabled in V0 offline mode.",
+    "Second-level tests were explicitly unavailable; absence of results is not evidence against type 2 VWD.",
+    "The evidence cannot distinguish type 2 subtypes or exclude qualitative VWF defects."
+  ],
+  "provenance": [
+    "policy:vwd_first_level_v0@2026-08-25",
+    "policy:vwd_second_level_actions_v0@2026-08-25",
+    "llm:deterministic_policy"
+  ]
+}

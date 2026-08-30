@@ -1,0 +1,76 @@
+{
+  "patient_id": "CASE_T1_002",
+  "candidate_subtypes": [
+    "type_1_candidate_provisional"
+  ],
+  "confidence": "low",
+  "opinion": "Retrospective review integrated 0 FHIR evidence resources across 1 reported variant(s), identified 1 structured evidence issue(s), and found 6 missing evidence item(s). The evidence-constrained second-level plan prioritizes VWF_PP, DDAVP_0_1_4H. Current subtype tendencies are type_1_or_low_vwf (score 1.0, low). All requested second-level tests were explicitly unavailable in this retrospective environment; no values were imputed. The system abstains from autonomous diagnosis and requires expert review.",
+  "abstention": true,
+  "expert_review_required": true,
+  "recommended_actions": [
+    {
+      "action_code": "VWF_PP",
+      "rank": 1,
+      "status": "recommended",
+      "availability": "unknown",
+      "clinical_hypothesis": [
+        "type_1_candidate_provisional"
+      ],
+      "expected_discriminator": "Distinguish secretion defects from clearance phenotypes.",
+      "rationale": "Case CASE_T1_002: first-level Ag=35.8, Act=25.4, ratio=0.7094972067039106; missing=[]; hypotheses=['type_1_candidate_provisional']. Evidence summary: 1 structured evidence issue(s); 6 missing evidence item(s)..",
+      "requires_human_confirmation": true,
+      "provenance": [
+        "policy:vwd_second_level_actions_v0@2026-08-25"
+      ]
+    },
+    {
+      "action_code": "DDAVP_0_1_4H",
+      "rank": 2,
+      "status": "recommended",
+      "availability": "unknown",
+      "clinical_hypothesis": [
+        "type_1_candidate_provisional"
+      ],
+      "expected_discriminator": "Characterize the diagnostic response at 0, 1, and 4 hours; V0 does not provide treatment advice.",
+      "rationale": "Case CASE_T1_002: first-level Ag=35.8, Act=25.4, ratio=0.7094972067039106; missing=[]; hypotheses=['type_1_candidate_provisional']. Evidence summary: 1 structured evidence issue(s); 6 missing evidence item(s)..",
+      "requires_human_confirmation": true,
+      "provenance": [
+        "policy:vwd_second_level_actions_v0@2026-08-25"
+      ]
+    }
+  ],
+  "subtype_tendencies": [
+    {
+      "subtype_label": "type_1_or_low_vwf",
+      "score": 1.0,
+      "confidence": "low",
+      "rationale": "Concordantly reduced VWF:Ag and VWF:Act",
+      "evidence_refs": []
+    }
+  ],
+  "supporting_evidence": [
+    "CASE_T1_002",
+    "CASE_T1_002:alphagenome-full-profile",
+    "CASE_T1_002:VWF_C1950Y:boltz2-functional-panel"
+  ],
+  "contradicting_evidence": [
+    "No hard conflict, but required evidence is incomplete. Evidence: "
+  ],
+  "missing_information": [
+    "expert_variant_classification",
+    "population_frequency",
+    "pathogenicity_prediction",
+    "variant_specific_literature",
+    "ABO_blood_group_genotype",
+    "VWF_clearance_context"
+  ],
+  "limitations": [
+    "Second-level tests were explicitly unavailable; absence of results is not evidence against type 2 VWD.",
+    "The remaining uncertainty is due to missing evidence rather than contradictory evidence."
+  ],
+  "provenance": [
+    "policy:vwd_first_level_v0@2026-08-25",
+    "policy:vwd_second_level_actions_v0@2026-08-25",
+    "llm:deterministic_policy"
+  ]
+}
