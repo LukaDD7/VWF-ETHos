@@ -509,3 +509,15 @@ SMD 只有满足以下全部条件才进入下一轮：
 ## 10. 一句话总结
 
 **A1/AIM 已经有完整 MD，但完整 VWF 诊断系统还缺其他模块的动态度量。现在不是继续堆静态预测，而是用本地 Boltz 模型补多模块平衡态 MD，按模块建立 AI 参考分布；SMD 只在通过明确 go/no-go 后作为补充验证。**
+
+---
+
+## 11. 全亚型细化入口
+
+本文件是模块级总方案。为覆盖 Type 1 / low VWF、2A、2B、2M、2N、3 型的逐亚型机制轴和当前 16 例执行队列，进一步见：
+
+```text
+docs/VWF_ALL_SUBTYPE_MULTIAXIS_MD_SMD_EXECUTION_PLAN_20260831.md
+outputs/computational_panel_20260829/md/vwd_subtype_mechanism_axis_plan.csv
+outputs/computational_panel_20260829/md/sample_mechanism_axis_plan.csv
+```
