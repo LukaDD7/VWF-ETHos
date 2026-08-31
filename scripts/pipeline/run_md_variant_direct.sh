@@ -3,7 +3,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
 LZY_ROOT="$(cd "$ROOT_DIR/../.." && pwd)"
-GMX="${GMX:-$LZY_ROOT/envs/gromacs/bin.AVX2_256/gmx}"
+GMX="${GMX:-$LZY_ROOT/envs/gromacs-cuda/bin.AVX2_256/gmx}"
 
 variant=""
 gpu=""

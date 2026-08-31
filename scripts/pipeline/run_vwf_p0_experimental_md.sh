@@ -28,7 +28,7 @@ RELAX_NTOMP="8"
 MIN_FREE_MIB="120000"
 
 PY="${PY:-$LZY_ROOT/envs/gromacs/bin/python}"
-GMX="${GMX:-$LZY_ROOT/envs/gromacs/bin.AVX2_256/gmx}"
+GMX="${GMX:-$LZY_ROOT/envs/gromacs-cuda/bin.AVX2_256/gmx}"
 FOLDX="${FOLDX:-$LZY_ROOT/tools/foldx/foldx_20270131}"
 
 OUT_ROOT="$ROOT_DIR/output/p0_md_experimental"
@@ -198,9 +198,14 @@ run_a2() {
 }
 
 run_dp_d3() {
+  "$PY" "$ROOT_DIR/scripts/pipeline/clean_pdb_for_md.py" \
+    --pdb "$ROOT_DIR/structures/6N29.pdb" \
+    --chain A \
+    --out "$ROOT_DIR/structures/6N29_A_clean.pdb"
+
   run_axis \
     "dp_d3" \
-    "structures/6N29.pdb" \
+    "structures/6N29_A_clean.pdb" \
     "A" \
     "0" \
     "dprime_d3" \
