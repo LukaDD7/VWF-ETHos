@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Build a VWF multi-module MD structure inventory from local Boltz-2 outputs.
+"""Build a VWF multi-module MD starting-structure inventory.
 
-The inventory records, for each VWF functional assay, the best local WT model
-that can be used as an MD starting structure after conversion and relaxation.
-It does not download anything and does not launch MD.
+Experimental PDBs are preferred when known. If a preferred experimental PDB is
+not present locally, it is marked for download. Boltz-2 models are used only as
+a fallback for assays without a known experimental structure. The inventory does
+not download anything and does not launch MD.
 """
 
 from __future__ import annotations
@@ -98,6 +99,39 @@ ASSAY_SPECS = [
     },
 ]
 
+PREFERRED_EXPERIMENTAL_STRUCTURES = {
+    "a1_aim_autoinhibition_context": {
+        "pdb_id": "7A6O",
+        "local_path": "structures/7A6O_AIM_A1_clean.pdb",
+        "md_status": "complete",
+    },
+    "a1_gpiba_forced_binding": {
+        "pdb_id": "1SQ0",
+        "local_path": "structures/1SQ0.pdb",
+        "md_status": "complete",
+    },
+    "a2_folded_stability": {
+        "pdb_id": "3GXB",
+        "local_path": "",
+        "md_status": "not_started",
+    },
+    "a3_collagen_binding": {
+        "pdb_id": "4DMU",
+        "local_path": "",
+        "md_status": "not_started",
+    },
+    "dprime_d3_fviii_binding": {
+        "pdb_id": "6N29",
+        "local_path": "",
+        "md_status": "not_started",
+    },
+    "ck_dimerization_context": {
+        "pdb_id": "4NT5",
+        "local_path": "",
+        "md_status": "not_started",
+    },
+}
+
 
 MODEL_RE = re.compile(r"_model_(\d+)\.json$")
 
@@ -114,6 +148,7 @@ def build_inventory(results_dir: Path) -> list[dict]:
         module = spec["module"]
         selection_metric = spec["selection_metric"]
         job_dir = results_dir / f"boltz_results_VWF_WT__{assay}"
+        preferred = PREFERRED_EXPERIMENTAL_STRUCTURES.get(assay)
 
         row = {
             "assay": assay,
@@ -130,6 +165,45 @@ def build_inventory(results_dir: Path) -> list[dict]:
             "md_ready": "no",
             "md_status": "not_started",
         }
+
+        if preferred is not None:
+            local_path = REPO_ROOT / preferred["local_path"] if preferred["local_path"] else None
+            if local_path is not None and local_path.is_file():
+                row.update(
+                    {
+                        "structure_source": "experimental_pdb_local",
+                        "selected_model": preferred["pdb_id"],
+                        "selection_metric": "experimental_coordinates",
+                        "selected_metric_value": "",
+                        "n_models": "",
+                        "avg_metric_value": "",
+                        "confidence_tier": "experimental",
+                        "cif_path": str(local_path.relative_to(REPO_ROOT)),
+                        "status": "available",
+                        "md_ready": "yes_after_standard_cleaning",
+                        "md_status": preferred["md_status"],
+                    }
+                )
+                rows.append(row)
+                continue
+
+            row.update(
+                {
+                    "structure_source": "experimental_pdb_remote",
+                    "selected_model": preferred["pdb_id"],
+                    "selection_metric": "experimental_coordinates",
+                    "selected_metric_value": "",
+                    "n_models": "",
+                    "avg_metric_value": "",
+                    "confidence_tier": "experimental",
+                    "cif_path": "",
+                    "status": "download_required",
+                    "md_ready": "download_clean_and_relax",
+                    "md_status": preferred["md_status"],
+                }
+            )
+            rows.append(row)
+            continue
 
         if not job_dir.is_dir():
             rows.append(row)
@@ -195,7 +269,9 @@ def build_inventory(results_dir: Path) -> list[dict]:
 def write_inventory(rows: list[dict], output_path: Path) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(rows[0].keys()))
+        writer = csv.DictWriter(
+            handle, fieldnames=list(rows[0].keys()), lineterminator="\n"
+        )
         writer.writeheader()
         writer.writerows(rows)
 

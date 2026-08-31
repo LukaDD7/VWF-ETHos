@@ -29,9 +29,9 @@ unmatched generic WT run when comparing this panel.
   and minimum-distance features with matched-WT deltas.
 - `artifact_manifest.csv`: size and SHA-256 inventory for derived summaries,
   XVG/NDX intermediates, and local trajectory files.
-- `module_structure_inventory.csv`: WT Boltz-2 starting-model inventory for all
-  15 functional assay axes, including selected model, confidence tier, and
-  local CIF path.
+- `module_structure_inventory.csv`: preferred starting-structure inventory for
+  all 15 functional assay axes. Experimental PDBs are listed first; Boltz-2 is
+  only a fallback for modules without a downloaded experimental structure.
 - `module_md_readout_plan.csv`: module-specific equilibrium-MD readouts,
   conditional SMD readouts, SMD gates, AI reference-distribution features, and
   execution priority.
@@ -99,8 +99,9 @@ Interpret it together with assay-matched Boltz evidence, clinical labs, and the
 2B/2M discriminators. The contact threshold used by the GROMACS analysis is
 0.45 nm; minimum-distance features provide a complementary threshold-free view.
 
-For modules outside A1/AIM, the current Boltz-2 models are candidate starting
-structures rather than experimental references. High-confidence models are
-suitable for pilot MD after CIF-to-PDB conversion and staged relaxation;
-low-confidence models remain exploratory and require model validation before
-clinical interpretation.
+Do not mix experimental crystal structures with Boltz-predicted models. Where
+an experimental PDB exists, it supersedes Boltz. The inventory currently marks
+7A6O and 1SQ0 as locally available; 3GXB, 4DMU, 6N29, and 4NT5 are priority
+experimental PDBs that still need to be downloaded. Boltz-2 is used only for
+modules without an available experimental structure, and low-confidence Boltz
+models remain exploratory.

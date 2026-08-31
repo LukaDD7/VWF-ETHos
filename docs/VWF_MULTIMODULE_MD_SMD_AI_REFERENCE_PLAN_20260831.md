@@ -18,10 +18,11 @@
    - A1/AIM salt-bridge 和 slow025 SMD 标定也已并入
      `outputs/computational_panel_20260829/md/`。
    - 未完成：D′D3/FVIII、A2、A3、C1/C2/C4、D1/D2、D4、C1-C6、CK 等非 A1 模块均没有 MD/SMD 结果。
-3. **初始结构不是“全都给了”。**
-   - 实验结构只有 **7A6O AIM-A1**，以及 A1-GPIbα 复合物结构 `1M10`、`1SQ0`。
-   - 其他模块没有实验 PDB；但本地已有 15 个 Boltz-2 WT 模型，可作为 **候选 MD 初始结构**。
-   - 这些候选模型的置信度差异很大，不能全部直接当作 MD-ready 结构。
+3. **初始结构必须区分实验晶体与 Boltz 预测。**
+   - 已有本地实验结构：**7A6O AIM-A1**、**1SQ0/1M10 A1-GPIbα**。
+   - 其他模块也有明确优先的实验结构候选：A2 用 `3GXB`，A3-collagen 用 `4DMU`，D′D3 用 `6N29`，CTCK/CK 用 `4NT5`。
+   - 这些实验结构还没有全部下载到本仓库，所以当前 inventory 标记为 `download_required`。
+   - Boltz-2 只作为**没有实验结构或实验结构尚未下载时的 fallback**，不能覆盖已有实验坐标。
 4. **Boltz-2 和 AlphaGenome 本轮不需要额外补充。**
    - Boltz-2 已覆盖 15 个功能轴，`evidence_matrix.csv` 已有 597 个变异。
    - AlphaGenome 当前 16 个请求已完成；如果加入新样本，再按既有规则扩展。
@@ -66,8 +67,9 @@
 本次补了两个文件：
 
 1. `outputs/computational_panel_20260829/md/module_structure_inventory.csv`
-   - 每个 assay 一个 WT Boltz-2 候选初始结构。
-   - 记录最优模型、置信度、模型数、平均分、置信度分层、CIF 路径和 MD 状态。
+   - 每个 assay 一个优先初始结构。
+   - 有实验 PDB 的模块优先记录实验 PDB；本地已有则直接给出路径，尚未下载则标记 `download_required`。
+   - Boltz-2 只作为无实验结构模块的 fallback，并记录最优模型、置信度、模型数、平均分和 CIF 路径。
 2. `outputs/computational_panel_20260829/md/module_md_readout_plan.csv`
    - 每个模块的平衡态 MD 读数、可选 SMD 读数、SMD 门槛、AI 参考分布特征和优先级。
 
@@ -90,25 +92,30 @@ python3 scripts/pipeline/build_vwf_md_structure_inventory.py
 
 ## 3. 多模块结构库存结论
 
-15 个功能轴都有本地 Boltz-2 WT 候选模型，但质量分层明显：
+15 个功能轴都有候选初始结构，但必须先按来源分层：
+
+| 模块 | 优先实验结构 | 本地状态 | 结论 |
+|---|---|---|---|
+| A1/AIM | `7A6O` | 已有 | 实验晶体，优先级最高 |
+| A1-GPIbα | `1SQ0`，备用 `1M10` | 已有 | 实验晶体，优先于 Boltz |
+| A2 folded | `3GXB` | 需下载 | 下载后优先于 Boltz |
+| A3-collagen | `4DMU` | 需下载 | 下载后优先于 Boltz |
+| D′D3 | `6N29` | 需下载 | 下载后优先于 Boltz |
+| CK/CTCK | `4NT5` | 需下载 | 下载后优先于 Boltz |
+
+没有实验结构的模块才使用本地 Boltz-2 WT 模型。当前 Boltz fallback 质量分层如下：
 
 | 置信度分层 | 模块 | 最好模型分数 | 结论 |
 |---|---|---:|---|
-| 高 | A1-AIM | 0.794 | 已有实验结构和完整 MD；可作为其他模块的模板 |
-| 高 | A2 folded | 0.844 | 适合优先做平衡态 MD |
 | 高 | A1-heparan sulfate | 0.856 | 适合做平衡态 MD |
-| 中 | A1-GPIbα | 0.560 | 可做，但要与 7A6O AIM 结果联合解释 |
-| 中 | A3-collagen | 0.520 | 可做，Type 2M-A3 轴优先级高 |
 | 中 | C1-collagen | 0.609 | 可做，但生物学优先级低于 A3 |
 | 中 | C2-collagen | 0.585 | 可做，但生物学优先级低于 A3 |
 | 中 | C4-integrin | 0.687 | 可做，用于 RGD/整合素轴 |
-| 低 | D′D3-FVIII | 0.156 | 需要模型验证或改进，不能直接当临床级 MD 起点 |
 | 低 | A2-ADAMTS13 | 0.248 | 需要更可靠复合物模型 |
 | 低 | VWF73-ADAMTS13 | 0.106 | 只能作为探索性模型 |
 | 低 | D1-D2 propeptide | 0.246 | 只能作为探索性模型 |
 | 低 | D4 assembly | 0.283 | 只能作为探索性模型 |
 | 低 | C1-C6 assembly | 0.358 | 只能作为探索性模型 |
-| 低 | CK dimerization | 0.438 | 当前是单体模型；真二聚化需要专门二聚体模型 |
 
 注意：
 
@@ -159,7 +166,7 @@ outputs/computational_panel_20260829/md/module_md_readout_plan.csv
 
 ### 4.2 A1-GPIbα
 
-- 结构：Boltz-2 WT 模型，iPTM 0.560
+- 结构：实验 `1SQ0`，备用 `1M10`
 - 平衡态读数：
   - 界面接触占有率；
   - 界面 RMSD；
@@ -179,7 +186,7 @@ outputs/computational_panel_20260829/md/module_md_readout_plan.csv
 A2 有两个层次：
 
 1. **A2 folded stability**
-   - 结构：Boltz-2 WT 模型，pTM 0.844
+   - 结构：实验 `3GXB`，当前需下载
    - 平衡态读数：
      - backbone RMSD；
      - 二级结构保留率；
@@ -209,6 +216,7 @@ A2 有两个层次：
 ### 4.4 A3 / C1 / C2 collagen
 
 - A3 是主轴，C1/C2 是辅助轴。
+- A3 优先使用实验 `4DMU` collagen-bound 结构；尚未下载前不要用 Boltz 代替。
 - 平衡态读数：
   - 胶原界面接触占有率；
   - 界面 RMSD；
@@ -238,8 +246,8 @@ A2 有两个层次：
 
 ### 4.6 D′D3-FVIII
 
-- 当前 Boltz 置信度低。
-- 若模型可用，平衡态读数：
+- 优先使用实验 `6N29` D′D3 结构；尚未下载前不要用低置信度 Boltz 复合物代替。
+- 下载并清理后，平衡态读数：
   - FVIII 界面接触占有率；
   - 界面 RMSD；
   - 界面 SASA；
@@ -262,6 +270,7 @@ A2 有两个层次：
   - 局部柔性；
   - 结构域 packing；
   - CK 二聚化表面保留（需二聚体模型）。
+- CK/CTCK 优先使用实验 `4NT5`；尚未下载前不要用 Boltz 单体模型代替。
 - SMD：
   - 不建议默认做。
 - AI 参考分布：

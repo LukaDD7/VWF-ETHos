@@ -58,15 +58,19 @@ The MD layer now separates three things:
    additional A1-GPIbα interface, AIM salt-bridge, and slow025 SMD calibration
    layers indexed by `md/md_result_layers.csv`.
 2. **Starting structures**: `md/module_structure_inventory.csv` records the
-   best local WT Boltz-2 model for each of the 15 functional assay axes.
+   preferred starting structure for each of the 15 functional assay axes.
+   Experimental PDBs take precedence; Boltz-2 is only a fallback when no
+   experimental structure is locally available.
 3. **Execution plan**: `md/module_md_readout_plan.csv` defines module-specific
    equilibrium-MD readouts, conditional SMD gates, and AI reference-distribution
    features. The full rationale is in
    `docs/VWF_MULTIMODULE_MD_SMD_AI_REFERENCE_PLAN_20260831.md`.
 
 Only A1/AIM currently has a complete matched experimental-structure MD panel.
-The other modules have candidate Boltz-2 starting models but no completed MD
-trajectories yet; low-confidence models remain exploratory.
+The other modules have no completed MD trajectories yet. Some have priority
+experimental PDBs that still need to be downloaded, including 3GXB for A2,
+4DMU for A3-collagen, 6N29 for D′D3, and 4NT5 for CK/CTCK. Modules without an
+experimental structure use exploratory Boltz-2 fallbacks.
 
 ## Next-analysis hints from the current documents
 
