@@ -16,6 +16,7 @@ __pycache__/
 *.swp
 *.swo
 *~
+\#*
 
 # 系统文件
 .DS_Store
@@ -58,3 +59,6 @@ archived/
 *_offsets.npz
 *_offsets.lock
 .*.xtc_offsets.*
+
+# 2026-08-29 computational panel large trajectories (local-only; see artifact_manifest.csv)
+outputs/computational_panel_20260829/md/trajectories/

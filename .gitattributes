@@ -1,3 +1,5 @@
 md_data/7a6o_reference_md/**/*.xtc filter=lfs diff=lfs merge=lfs -text
 md_data/7a6o_reference_md/**/*.tpr filter=lfs diff=lfs merge=lfs -text
 md_data/7a6o_reference_md/**/*.gro filter=lfs diff=lfs merge=lfs -text
+outputs/computational_panel_20260829/md/**/*.xvg -diff
+outputs/computational_panel_20260829/md/**/*.ndx -diff
