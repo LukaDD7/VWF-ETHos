@@ -21,7 +21,7 @@
 3. **初始结构必须区分实验晶体与 Boltz 预测。**
    - 已有本地实验结构：**7A6O AIM-A1**、**1SQ0/1M10 A1-GPIbα**。
    - 其他模块也有明确优先的实验结构候选：A2 用 `3GXB`，A3-collagen 用 `4DMU`，D′D3 用 `6N29`，CTCK/CK 用 `4NT5`。
-   - 这些实验结构还没有全部下载到本仓库，所以当前 inventory 标记为 `download_required`。
+   - `3GXB`、`4DMU`、`6N29`、`4NT5` 已下载到本仓库 `structures/`，后续先清理再进入 MD。
    - Boltz-2 只作为**没有实验结构或实验结构尚未下载时的 fallback**，不能覆盖已有实验坐标。
 4. **Boltz-2 和 AlphaGenome 本轮不需要额外补充。**
    - Boltz-2 已覆盖 15 个功能轴，`evidence_matrix.csv` 已有 597 个变异。
@@ -68,7 +68,7 @@
 
 1. `outputs/computational_panel_20260829/md/module_structure_inventory.csv`
    - 每个 assay 一个优先初始结构。
-   - 有实验 PDB 的模块优先记录实验 PDB；本地已有则直接给出路径，尚未下载则标记 `download_required`。
+   - 有实验 PDB 的模块优先记录实验 PDB；本地已有则直接给出路径。
    - Boltz-2 只作为无实验结构模块的 fallback，并记录最优模型、置信度、模型数、平均分和 CIF 路径。
 2. `outputs/computational_panel_20260829/md/module_md_readout_plan.csv`
    - 每个模块的平衡态 MD 读数、可选 SMD 读数、SMD 门槛、AI 参考分布特征和优先级。
@@ -98,10 +98,10 @@ python3 scripts/pipeline/build_vwf_md_structure_inventory.py
 |---|---|---|---|
 | A1/AIM | `7A6O` | 已有 | 实验晶体，优先级最高 |
 | A1-GPIbα | `1SQ0`，备用 `1M10` | 已有 | 实验晶体，优先于 Boltz |
-| A2 folded | `3GXB` | 需下载 | 下载后优先于 Boltz |
-| A3-collagen | `4DMU` | 需下载 | 下载后优先于 Boltz |
-| D′D3 | `6N29` | 需下载 | 下载后优先于 Boltz |
-| CK/CTCK | `4NT5` | 需下载 | 下载后优先于 Boltz |
+| A2 folded | `3GXB` | 已有 | 优先于 Boltz |
+| A3-collagen | `4DMU` | 已有 | 优先于 Boltz |
+| D′D3 | `6N29` | 已有 | 优先于 Boltz |
+| CK/CTCK | `4NT5` | 已有 | 优先于 Boltz |
 
 没有实验结构的模块才使用本地 Boltz-2 WT 模型。当前 Boltz fallback 质量分层如下：
 
@@ -186,7 +186,7 @@ outputs/computational_panel_20260829/md/module_md_readout_plan.csv
 A2 有两个层次：
 
 1. **A2 folded stability**
-   - 结构：实验 `3GXB`，当前需下载
+   - 结构：实验 `3GXB`，本地已有
    - 平衡态读数：
      - backbone RMSD；
      - 二级结构保留率；
@@ -216,7 +216,7 @@ A2 有两个层次：
 ### 4.4 A3 / C1 / C2 collagen
 
 - A3 是主轴，C1/C2 是辅助轴。
-- A3 优先使用实验 `4DMU` collagen-bound 结构；尚未下载前不要用 Boltz 代替。
+- A3 优先使用实验 `4DMU` collagen-bound 结构；本地已有。
 - 平衡态读数：
   - 胶原界面接触占有率；
   - 界面 RMSD；
@@ -246,7 +246,7 @@ A2 有两个层次：
 
 ### 4.6 D′D3-FVIII
 
-- 优先使用实验 `6N29` D′D3 结构；尚未下载前不要用低置信度 Boltz 复合物代替。
+- 优先使用实验 `6N29` D′D3 结构；本地已有。
 - 下载并清理后，平衡态读数：
   - FVIII 界面接触占有率；
   - 界面 RMSD；
@@ -270,7 +270,7 @@ A2 有两个层次：
   - 局部柔性；
   - 结构域 packing；
   - CK 二聚化表面保留（需二聚体模型）。
-- CK/CTCK 优先使用实验 `4NT5`；尚未下载前不要用 Boltz 单体模型代替。
+- CK/CTCK 优先使用实验 `4NT5`；本地已有。
 - SMD：
   - 不建议默认做。
 - AI 参考分布：

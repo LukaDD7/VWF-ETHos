@@ -101,7 +101,6 @@ Interpret it together with assay-matched Boltz evidence, clinical labs, and the
 
 Do not mix experimental crystal structures with Boltz-predicted models. Where
 an experimental PDB exists, it supersedes Boltz. The inventory currently marks
-7A6O and 1SQ0 as locally available; 3GXB, 4DMU, 6N29, and 4NT5 are priority
-experimental PDBs that still need to be downloaded. Boltz-2 is used only for
-modules without an available experimental structure, and low-confidence Boltz
-models remain exploratory.
+7A6O, 1SQ0, 3GXB, 4DMU, 6N29, and 4NT5 as locally available. Boltz-2 is used
+only for modules without an available experimental structure, and
+low-confidence Boltz models remain exploratory.

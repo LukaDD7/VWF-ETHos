@@ -112,22 +112,22 @@ PREFERRED_EXPERIMENTAL_STRUCTURES = {
     },
     "a2_folded_stability": {
         "pdb_id": "3GXB",
-        "local_path": "",
+        "local_path": "structures/3GXB.pdb",
         "md_status": "not_started",
     },
     "a3_collagen_binding": {
         "pdb_id": "4DMU",
-        "local_path": "",
+        "local_path": "structures/4DMU.pdb",
         "md_status": "not_started",
     },
     "dprime_d3_fviii_binding": {
         "pdb_id": "6N29",
-        "local_path": "",
+        "local_path": "structures/6N29.pdb",
         "md_status": "not_started",
     },
     "ck_dimerization_context": {
         "pdb_id": "4NT5",
-        "local_path": "",
+        "local_path": "structures/4NT5.pdb",
         "md_status": "not_started",
     },
 }

@@ -67,10 +67,10 @@ The MD layer now separates three things:
    `docs/VWF_MULTIMODULE_MD_SMD_AI_REFERENCE_PLAN_20260831.md`.
 
 Only A1/AIM currently has a complete matched experimental-structure MD panel.
-The other modules have no completed MD trajectories yet. Some have priority
-experimental PDBs that still need to be downloaded, including 3GXB for A2,
-4DMU for A3-collagen, 6N29 for D′D3, and 4NT5 for CK/CTCK. Modules without an
-experimental structure use exploratory Boltz-2 fallbacks.
+The other modules have no completed MD trajectories yet. The priority
+experimental PDBs are now downloaded: 3GXB for A2, 4DMU for A3-collagen, 6N29
+for D′D3, and 4NT5 for CK/CTCK. Modules without an experimental structure use
+exploratory Boltz-2 fallbacks.
 
 ## Next-analysis hints from the current documents
 
