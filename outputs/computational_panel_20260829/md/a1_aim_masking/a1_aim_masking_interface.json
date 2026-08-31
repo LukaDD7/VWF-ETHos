@@ -1,0 +1,24 @@
+{
+  "construct_native_range": [
+    1262,
+    1466
+  ],
+  "offset_native_minus_local": 1261,
+  "contact_cutoff_A": 4.5,
+  "wt_occupancy_def": 0.5,
+  "a1_binding_face_residues_native": [
+    1305,
+    1306,
+    1307,
+    1308,
+    1313,
+    1376,
+    1378,
+    1380,
+    1410,
+    1434
+  ],
+  "n_mask_pairs": 15,
+  "zscore_ref_mean": 0.7272,
+  "zscore_ref_sd": 0.1121
+}

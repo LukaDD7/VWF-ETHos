@@ -29,6 +29,31 @@ unmatched generic WT run when comparing this panel.
   and minimum-distance features with matched-WT deltas.
 - `artifact_manifest.csv`: size and SHA-256 inventory for derived summaries,
   XVG/NDX intermediates, and local trajectory files.
+- `module_structure_inventory.csv`: WT Boltz-2 starting-model inventory for all
+  15 functional assay axes, including selected model, confidence tier, and
+  local CIF path.
+- `module_md_readout_plan.csv`: module-specific equilibrium-MD readouts,
+  conditional SMD readouts, SMD gates, AI reference-distribution features, and
+  execution priority.
+- `md_result_layers.csv`: consolidated index of the additional completed
+  A1/AIM, A1-GPIbα, and slow025 SMD result layers.
+
+## Additional completed MD/SMD layers
+
+The bundle now also includes lightweight result layers that were previously
+kept only under `output/`:
+
+- `a1_aim_masking/`: AIM-A1 masking-interface features and residue metadata.
+- `a1_aim_saltbridge/`: AIM-A1 salt-bridge occupancy and retained-z features.
+- `a1_gpiba_interface/`: A1-GPIbα equilibrium-MD interface-retention features,
+  sanitized summary, and per-frame time series.
+- `smd/`: the three-control slow025 SMD calibration and per-replicate force/work
+  curves.
+
+These layers are intentionally lightweight. Raw trajectories, TPR/GRO files,
+and machine-specific absolute paths are not copied into the bundle. The SMD
+layer is marked `complete_no_go`: it documents why the current force axis must
+not be used as a classifier feature.
 
 The `contacts/`, `rmsd/`, and `index/` directories contain the lightweight
 GROMACS analysis intermediates used to build the CSV layers. The `trajectories/`
@@ -58,6 +83,14 @@ python scripts/pipeline/summarize_computational_panel_md.py \
   --wt-variant PANEL_WT_MATCHED
 ```
 
+The multi-module inventory and consolidated MD/SMD layers can be regenerated
+with:
+
+```bash
+python scripts/pipeline/build_vwf_md_structure_inventory.py
+python scripts/pipeline/consolidate_vwf_md_result_layers.py
+```
+
 ## Interpretation limits
 
 AIM-A1 contact loss or gain is an exploratory conformational-exposure proxy.
@@ -65,3 +98,9 @@ It does not directly measure shear response, platelet binding, or VWD subtype.
 Interpret it together with assay-matched Boltz evidence, clinical labs, and the
 2B/2M discriminators. The contact threshold used by the GROMACS analysis is
 0.45 nm; minimum-distance features provide a complementary threshold-free view.
+
+For modules outside A1/AIM, the current Boltz-2 models are candidate starting
+structures rather than experimental references. High-confidence models are
+suitable for pilot MD after CIF-to-PDB conversion and staged relaxation;
+low-confidence models remain exploratory and require model validation before
+clinical interpretation.

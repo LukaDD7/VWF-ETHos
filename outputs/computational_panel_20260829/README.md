@@ -10,6 +10,9 @@ the targeted 7A6O AIM-A1 MD subset, and the offline agent runs.
 - `boltz/yamls/`: the 32 Boltz-2 input YAMLs used for this panel.
 - `md/`: targeted AIM-A1 equilibrium-MD QC, time series, feature matrix, and
   lightweight GROMACS intermediates.
+- `md/`: also includes the multi-module MD/SMD starting-structure inventory,
+  module readout/AI reference-distribution plan, and consolidated A1-GPIbα,
+  AIM salt-bridge, and slow025 SMD result layers.
 - `agent_run_type1_*` and `agent_run_type2b_*`: deterministic offline agent run
   records and summaries.
 
@@ -48,6 +51,22 @@ combined MD feature matrix, an artifact manifest, and the lightweight XVG/NDX
 intermediates. See `md/README.md` for details. The large concatenated XTC
 trajectories remain local-only and are recorded by checksum in
 `md/artifact_manifest.csv`.
+
+The MD layer now separates three things:
+
+1. **Completed results**: the original seven-system AIM-A1 panel, plus the
+   additional A1-GPIbα interface, AIM salt-bridge, and slow025 SMD calibration
+   layers indexed by `md/md_result_layers.csv`.
+2. **Starting structures**: `md/module_structure_inventory.csv` records the
+   best local WT Boltz-2 model for each of the 15 functional assay axes.
+3. **Execution plan**: `md/module_md_readout_plan.csv` defines module-specific
+   equilibrium-MD readouts, conditional SMD gates, and AI reference-distribution
+   features. The full rationale is in
+   `docs/VWF_MULTIMODULE_MD_SMD_AI_REFERENCE_PLAN_20260831.md`.
+
+Only A1/AIM currently has a complete matched experimental-structure MD panel.
+The other modules have candidate Boltz-2 starting models but no completed MD
+trajectories yet; low-confidence models remain exploratory.
 
 ## Next-analysis hints from the current documents
 
