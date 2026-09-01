@@ -6,11 +6,11 @@
 #   2. D'D3/FVIII-binding axis   : 6N29   + R1205H
 #   3. A1-GPIb-alpha 2B axis     : 1SQ0   + R1308C, S1310F, A1461D, R1341W
 #
-# Default: 20 ns pilot on GPU 2 and 3.
+# Default: 20 ns pilot on GPU 0, 1, 2, and 3.
 #
 # Usage:
 #   nohup bash scripts/pipeline/run_vwf_p0_experimental_md.sh \
-#     --axis all --gpu-ids 2,3 --ns 20 \
+#     --axis all --gpu-ids 0,1,2,3 --ns 20 \
 #     > output/p0_experimental_md.log 2>&1 &
 
 set -euo pipefail
@@ -20,7 +20,7 @@ ROOT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 LZY_ROOT="$(cd "$ROOT_DIR/../.." && pwd)"
 
 AXIS="all"
-GPU_IDS="2,3"
+GPU_IDS="0,1,2,3"
 NS="20"
 NTOMP="8"
 RELAX_JOBS="2"
@@ -41,7 +41,7 @@ Usage:
 
 Options:
   --axis AXIS         all | a2 | dp_d3 | a1_gpiba      (default: all)
-  --gpu-ids IDS       Comma-separated GPU IDs          (default: 2,3)
+  --gpu-ids IDS       Comma-separated GPU IDs          (default: 0,1,2,3)
   --ns NS             Production length in ns          (default: 20)
   --ntomp N           OpenMP threads per MD job        (default: 8)
   --relax-jobs N      Parallel relaxation jobs          (default: 2)
@@ -50,11 +50,11 @@ Options:
   -h, --help          Show this help
 
 Examples:
-  # Run all three P0 axes, 20 ns, GPU 2 and 3
-  bash scripts/pipeline/run_vwf_p0_experimental_md.sh --axis all --gpu-ids 2,3 --ns 20
+  # Run all three P0 axes, 20 ns, GPU 0, 1, 2, and 3
+  bash scripts/pipeline/run_vwf_p0_experimental_md.sh --axis all --gpu-ids 0,1,2,3 --ns 20
 
   # Run only the A1-GPIb-alpha axis
-  bash scripts/pipeline/run_vwf_p0_experimental_md.sh --axis a1_gpiba --gpu-ids 2,3 --ns 20
+  bash scripts/pipeline/run_vwf_p0_experimental_md.sh --axis a1_gpiba --gpu-ids 0,1,2,3 --ns 20
 EOF
 }
 
