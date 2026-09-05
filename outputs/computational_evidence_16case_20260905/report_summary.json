@@ -1,0 +1,17 @@
+{
+  "patients_total": 16,
+  "variant_rows_total": 17,
+  "alphagenome_requestable_variants": 16,
+  "alphagenome_complete": 16,
+  "boltz_jobs_intended": 32,
+  "boltz_jobs_complete": 32,
+  "md_protocols_complete_with_matched_wt": 4,
+  "fhir_case_bundles_complete": 16,
+  "artifacts_hash_verified": 68,
+  "remaining_blockers": [
+    "T1_004 CNV: blocked_missing_variant_definition (no normalizable HGVS)",
+    "AlphaGenome ATAC/CONTACT_MAPS: not_supported_by_model for VWF biosamples",
+    "slow025 SMD: complete_no_go, excluded from agent evidence",
+    "FHIR bundles: FHIR-shaped/internal validated only (no HL7 official validator run)"
+  ]
+}

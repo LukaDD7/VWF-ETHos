@@ -1,0 +1,145 @@
+{
+ "resourceType": "Bundle",
+ "id": "vwf-evidence-case_t1_004",
+ "type": "collection",
+ "meta": {
+  "profile": [
+   "VWFComputationalEvidence/1.0 (FHIR-shaped, internal validated)"
+  ],
+  "tag": [
+   {
+    "system": "http://terminology.local/validation",
+    "code": "internal-schema-only",
+    "display": "FHIR-shaped/internal validated; not HL7-validator certified"
+   }
+  ]
+ },
+ "timestamp": "2026-09-05T11:41:41.449686+00:00",
+ "entry": [
+  {
+   "fullUrl": "urn:uuid:patient-case_t1_004",
+   "resource": {
+    "resourceType": "Patient",
+    "id": "case_t1_004",
+    "identifier": [
+     {
+      "system": "urn:vwf-panel:patient-id",
+      "value": "CASE_T1_004"
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:oo-case_t1_004-alphagenome-ag_predict_variant_v0.8.0__all_outputs",
+   "resource": {
+    "resourceType": "OperationOutcome",
+    "id": "oo-case_t1_004-alphagenome-all",
+    "issue": [
+     {
+      "severity": "warning",
+      "code": "incomplete",
+      "details": {
+       "text": "alphagenome/ALL: blocked_missing_input (normalization_not_available_cnv)"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:oo-case_t1_004-boltz2-boltz2_vwd_functional_panel",
+   "resource": {
+    "resourceType": "OperationOutcome",
+    "id": "oo-case_t1_004-boltz2-all",
+    "issue": [
+     {
+      "severity": "warning",
+      "code": "incomplete",
+      "details": {
+       "text": "boltz2/ALL: blocked_missing_input (no_normalizable_variant_definition_cnv)"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:oo-case_t1_004-gromacs_md-md_7a6o_aim_a1_50ns_charmm27",
+   "resource": {
+    "resourceType": "OperationOutcome",
+    "id": "oo-case_t1_004-gromacs_md-aim_a1_7a6o",
+    "issue": [
+     {
+      "severity": "information",
+      "code": "incomplete",
+      "details": {
+       "text": "gromacs_md/AIM_A1_7A6O: not_run_out_of_scope (variant_not_in_7a6o_panel)"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:oo-case_t1_004-gromacs_md-md_20ns_p0__a1_gpiba_1sq0",
+   "resource": {
+    "resourceType": "OperationOutcome",
+    "id": "oo-case_t1_004-gromacs_md-a1_gpiba_1sq0",
+    "issue": [
+     {
+      "severity": "information",
+      "code": "incomplete",
+      "details": {
+       "text": "gromacs_md/a1_gpiba_1SQ0: not_run_out_of_scope (variant_not_in_p0_protocol_cohort)"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:oo-case_t1_004-gromacs_md-md_20ns_p0__a2_folded_3gxb",
+   "resource": {
+    "resourceType": "OperationOutcome",
+    "id": "oo-case_t1_004-gromacs_md-a2_folded_3gxb",
+    "issue": [
+     {
+      "severity": "information",
+      "code": "incomplete",
+      "details": {
+       "text": "gromacs_md/a2_folded_3GXB: not_run_out_of_scope (variant_not_in_p0_protocol_cohort)"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:oo-case_t1_004-gromacs_md-md_20ns_p0__dprime_d3_6n29",
+   "resource": {
+    "resourceType": "OperationOutcome",
+    "id": "oo-case_t1_004-gromacs_md-dprime_d3_6n29",
+    "issue": [
+     {
+      "severity": "information",
+      "code": "incomplete",
+      "details": {
+       "text": "gromacs_md/dprime_d3_6N29: not_run_out_of_scope (variant_not_in_p0_protocol_cohort)"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:oo-case_t1_004-gromacs_smd-smd_slow025_aim_a1",
+   "resource": {
+    "resourceType": "OperationOutcome",
+    "id": "oo-case_t1_004-gromacs_smd-aim_a1_7a6o_smd",
+    "issue": [
+     {
+      "severity": "information",
+      "code": "incomplete",
+      "details": {
+       "text": "gromacs_smd/AIM_A1_7A6O_smd: not_run_out_of_scope (complete_no_go_direction_reversed_excluded_from_classifier)"
+      }
+     }
+    ]
+   }
+  }
+ ]
+}

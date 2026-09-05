@@ -1,0 +1,69 @@
+{
+  "created_at": "2026-09-05T11:41:50.329973+00:00",
+  "suite": "requirements doc §10 acceptance tests",
+  "requirements_doc": "docs/SERVER_16CASE_COMPUTATIONAL_DATA_COMPLETION_REQUIREMENTS_20260905.md",
+  "passed": 10,
+  "failed": 0,
+  "tests": [
+    {
+      "test_id": "T1",
+      "name": "coverage",
+      "status": "PASS",
+      "detail": "16 patients / 17 rows; T2B_005 carries 2 variants; T1_004 terminal state blocked (['blocked_missing_input', 'blocked_missing_input', 'not_run_out_of_scope', 'not_run_out_of_scope', 'not_run_out_of_scope', 'not_run_out_of_scope', 'not_run_out_of_scope']); all 17 case rows in matrix"
+    },
+    {
+      "test_id": "T2",
+      "name": "identity",
+      "status": "PASS",
+      "detail": "16 normalizable rows match request CSVs on chr/pos/ref/alt/assembly; V1316M appears in 2 patients (T2B_001/002) as 2 rows; conflicts=0"
+    },
+    {
+      "test_id": "T3",
+      "name": "alpha_pairing",
+      "status": "PASS",
+      "detail": "144 sidecars aligned (track_identity_aligned=true, float32); C1950Y/RNA_SEQ+CAGE+2 more recomputed from raw npz match derived CSV and FHIR to 1e-9; failures=[]"
+    },
+    {
+      "test_id": "T4",
+      "name": "wt_compatibility",
+      "status": "PASS",
+      "detail": "0 WT baseline jobs in panel; a1_gpiba: WT=yes; a2_folded: WT=yes; dprime_d3: WT=yes; 7A6O: PANEL_WT_MATCHED=yes"
+    },
+    {
+      "test_id": "T5",
+      "name": "artifact_integrity",
+      "status": "PASS",
+      "detail": "68 artifacts have sha256+immutable revision URI; SHA256SUMS verified 173 files, mismatches=0"
+    },
+    {
+      "test_id": "T6",
+      "name": "fhir_round_trip",
+      "status": "PASS",
+      "detail": "16 bundles: every Observation has subject=this patient, value/unit; C1950Y bundle: 9 AG obs all carry method + derivedFrom (DocumentReference w/ URI+sha256); failures=[]"
+    },
+    {
+      "test_id": "T7",
+      "name": "isolation",
+      "status": "PASS",
+      "detail": "16 bundles scanned for foreign case ids and rank/label/classification keywords; leaks=[]"
+    },
+    {
+      "test_id": "T8",
+      "name": "no_fabricated_missingness",
+      "status": "PASS",
+      "detail": "107 non-complete matrix rows all carry explicit reasons; 32 not_supported_by_model ATAC/CONTACT_MAPS rows have no npz (never zero-filled); violations=[]"
+    },
+    {
+      "test_id": "T9",
+      "name": "response_preservation",
+      "status": "PASS",
+      "detail": "144/144 success ledger rows have npz (reference+alternate) + sidecar with matching n_tracks; violations=[]"
+    },
+    {
+      "test_id": "T10",
+      "name": "agent_smoke_query",
+      "status": "PASS",
+      "detail": "CASE_T1_002: agent lists models=['alphagenome', 'boltz2']; reads AG RNA_SEQ ALT track (1048576 values, finite=100.0%); MD correctly absent (0 obs); explicit missingness rows=7"
+    }
+  ]
+}

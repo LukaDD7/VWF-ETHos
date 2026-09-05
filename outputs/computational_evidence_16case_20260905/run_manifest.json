@@ -1,0 +1,85 @@
+{
+  "created_at": "2026-09-05T11:41:41.890187+00:00",
+  "run_id": "computational_evidence_16case_20260905",
+  "requirements_doc": "docs/SERVER_16CASE_COMPUTATIONAL_DATA_COMPLETION_REQUIREMENTS_20260905.md",
+  "generator": {
+    "script": "scripts/pipeline/build_16case_evidence_delivery.py",
+    "python": "3.11.15",
+    "pandas": "3.0.3",
+    "numpy": "2.4.6"
+  },
+  "hf_repo": "lucachangretta/VWF",
+  "hf_revision": "e69d65d00d71c666c7e94305977b5ab529fa1f45",
+  "status_vocabulary": [
+    "available_complete",
+    "available_partial",
+    "not_applicable",
+    "blocked_missing_input",
+    "not_supported_by_model",
+    "failed_retry_exhausted",
+    "not_run_out_of_scope"
+  ],
+  "counts": {
+    "patients": 16,
+    "variant_rows": 17,
+    "matrix_rows": 294,
+    "artifacts": 68,
+    "artifact_total_bytes": 4734426452,
+    "fhir_bundles": 16,
+    "missingness_rows": 107
+  },
+  "layers": {
+    "alphagenome": {
+      "source_run": "outputs/computational_evidence_16case_20260905/alphagenome/",
+      "runner": "scripts/pipeline/run_16case_alphagenome_full_persistence.py",
+      "sdk_version": "alphagenome 0.8.0",
+      "request_csvs": [
+        "outputs/type1_panel_agent_20260828/server_bundle/input/alphagenome_requests.csv",
+        "outputs/type2b_panel_agent_20260829/server_bundle/input/alphagenome_requests.csv"
+      ],
+      "official_variant_scorers": [
+        "outputs/type1_panel_agent_20260828/server_bundle/results/alphagenome/alphagenome_scores_long.csv",
+        "outputs/type2b_panel_agent_20260829/server_bundle/results/alphagenome/alphagenome_scores_long.csv"
+      ],
+      "persisted_output_types": [
+        "RNA_SEQ",
+        "CAGE",
+        "DNASE",
+        "CHIP_HISTONE",
+        "CHIP_TF",
+        "SPLICE_SITES",
+        "SPLICE_SITE_USAGE",
+        "SPLICE_JUNCTIONS",
+        "PROCAP"
+      ],
+      "not_supported_by_model": [
+        "ATAC",
+        "CONTACT_MAPS"
+      ]
+    },
+    "boltz2": {
+      "job_manifests": [
+        "outputs/type1_panel_agent_20260828/server_bundle/boltz/job_manifest.csv",
+        "outputs/type2b_panel_agent_20260829/server_bundle/boltz/job_manifest.csv"
+      ],
+      "intended_jobs_total": 35,
+      "unique_jobs_after_wt_dedup": 32,
+      "completed_jobs": 32,
+      "summaries": [
+        "outputs/type1_panel_agent_20260828/server_bundle/results/boltz/boltz_results_summary.csv",
+        "outputs/type2b_panel_agent_20260829/server_bundle/results/boltz/boltz_results_summary.csv"
+      ]
+    },
+    "gromacs_md": {
+      "protocols": {
+        "md_20ns_p0__a1_gpiba_1SQ0": "A1-GPIbalpha experimental complex 1SQ0; WT+5 variants",
+        "md_20ns_p0__a2_folded_3GXB": "A2 folded monomer 3GXB; WT+A1500V",
+        "md_20ns_p0__dprime_d3_6N29": "D'D3 6N29; WT+R1205H",
+        "md_7a6o_aim_a1_50ns": "AIM-A1 experimental 7A6O; PANEL_WT_MATCHED+6 variants"
+      },
+      "md_feature_matrix": "outputs/computational_panel_20260829/md/md_feature_matrix.csv",
+      "smd_slow025": "complete_no_go; eligible_for_agent=false everywhere"
+    }
+  },
+  "secrets": "No API key, token, or Authorization header is stored in any file of this run; credentials were read from environment variables only."
+}

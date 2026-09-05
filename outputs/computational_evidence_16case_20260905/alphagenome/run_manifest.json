@@ -1,0 +1,162 @@
+{
+  "created_at": "2026-09-05T06:45:32.805950+00:00",
+  "case_count": 16,
+  "environment": {
+    "alphagenome_version": "0.8.0",
+    "python_version": "3.11.15",
+    "platform": "Linux-5.15.0-119-generic-x86_64-with-glibc2.39",
+    "requested_outputs": [
+      "ATAC",
+      "CAGE",
+      "DNASE",
+      "RNA_SEQ",
+      "CHIP_HISTONE",
+      "CHIP_TF",
+      "SPLICE_SITES",
+      "SPLICE_SITE_USAGE",
+      "SPLICE_JUNCTIONS",
+      "CONTACT_MAPS",
+      "PROCAP"
+    ],
+    "preferred_ontology_terms": [
+      "CL:0000115"
+    ]
+  },
+  "ontology_plan": {
+    "ATAC": {
+      "strategy": "unavailable",
+      "ontology_terms": [],
+      "track_count": 0,
+      "reason": "no_vwf_relevant_biosample_track"
+    },
+    "CAGE": {
+      "strategy": "vwf_relevant_biosample",
+      "ontology_terms": [
+        "CL:0002138",
+        "CL:0002144",
+        "CL:0002188",
+        "CL:0002543",
+        "CL:0002544",
+        "CL:0002545",
+        "CL:0002588",
+        "CL:0002618",
+        "CL:1000413"
+      ],
+      "track_count": 18,
+      "reason": "preferred_or_endothelial_vascular_megakaryocyte_track"
+    },
+    "DNASE": {
+      "strategy": "vwf_relevant_biosample",
+      "ontology_terms": [
+        "CL:0000115",
+        "CL:0002618",
+        "CL:1000892",
+        "CL:1001568",
+        "CL:2000010",
+        "CL:2000016",
+        "CL:2000041",
+        "CL:2000044"
+      ],
+      "track_count": 8,
+      "reason": "preferred_or_endothelial_vascular_megakaryocyte_track"
+    },
+    "RNA_SEQ": {
+      "strategy": "vwf_relevant_biosample",
+      "ontology_terms": [
+        "CL:0000115",
+        "CL:0002188",
+        "CL:0002543",
+        "CL:0002545",
+        "CL:0002618",
+        "CL:1001568",
+        "CL:2000010",
+        "CL:2000011",
+        "CL:2000016",
+        "CL:2000018",
+        "CL:2000040",
+        "CL:2000041"
+      ],
+      "track_count": 29,
+      "reason": "preferred_or_endothelial_vascular_megakaryocyte_track"
+    },
+    "CHIP_HISTONE": {
+      "strategy": "vwf_relevant_biosample",
+      "ontology_terms": [
+        "CL:0002618",
+        "CL:2000044"
+      ],
+      "track_count": 12,
+      "reason": "preferred_or_endothelial_vascular_megakaryocyte_track"
+    },
+    "CHIP_TF": {
+      "strategy": "vwf_relevant_biosample",
+      "ontology_terms": [
+        "CL:0000115",
+        "CL:0002618",
+        "CL:2000044"
+      ],
+      "track_count": 10,
+      "reason": "preferred_or_endothelial_vascular_megakaryocyte_track"
+    },
+    "SPLICE_SITES": {
+      "strategy": "global_non_biosample",
+      "ontology_terms": [],
+      "track_count": 4,
+      "reason": "output_has_no_biosample_ontology"
+    },
+    "SPLICE_SITE_USAGE": {
+      "strategy": "vwf_relevant_biosample",
+      "ontology_terms": [
+        "CL:0000115",
+        "CL:0002188",
+        "CL:0002543",
+        "CL:0002545",
+        "CL:0002618",
+        "CL:1001568",
+        "CL:2000010",
+        "CL:2000011",
+        "CL:2000016",
+        "CL:2000018",
+        "CL:2000040",
+        "CL:2000041"
+      ],
+      "track_count": 28,
+      "reason": "preferred_or_endothelial_vascular_megakaryocyte_track"
+    },
+    "SPLICE_JUNCTIONS": {
+      "strategy": "vwf_relevant_biosample",
+      "ontology_terms": [
+        "CL:0000115",
+        "CL:0002188",
+        "CL:0002543",
+        "CL:0002545",
+        "CL:0002618",
+        "CL:1001568",
+        "CL:2000010",
+        "CL:2000011",
+        "CL:2000016",
+        "CL:2000018",
+        "CL:2000040",
+        "CL:2000041"
+      ],
+      "track_count": 14,
+      "reason": "preferred_or_endothelial_vascular_megakaryocyte_track"
+    },
+    "CONTACT_MAPS": {
+      "strategy": "unavailable",
+      "ontology_terms": [],
+      "track_count": 0,
+      "reason": "no_vwf_relevant_biosample_track"
+    },
+    "PROCAP": {
+      "strategy": "vwf_relevant_biosample",
+      "ontology_terms": [
+        "CL:0002618"
+      ],
+      "track_count": 2,
+      "reason": "preferred_or_endothelial_vascular_megakaryocyte_track"
+    }
+  },
+  "raw_layer": "raw/<case_id>__<output_type>.npz + .json sidecar",
+  "derived_layer": "derived/paired_track_summaries.csv"
+}

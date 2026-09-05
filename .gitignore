@@ -62,3 +62,8 @@ archived/
 
 # 2026-08-29 computational panel large trajectories (local-only; see artifact_manifest.csv)
 outputs/computational_panel_20260829/md/trajectories/
+
+# 2026-09-05 16-case evidence: large raw arrays stay on HF (lucachangretta/VWF);
+# inventories/matrix/FHIR/manifests/scripts are committed
+outputs/computational_evidence_16case_20260905/alphagenome/raw/
+outputs/computational_evidence_16case_20260905/artifact_manifest.parquet

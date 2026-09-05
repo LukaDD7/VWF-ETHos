@@ -1,0 +1,1977 @@
+{
+ "resourceType": "Bundle",
+ "id": "vwf-evidence-case_t1_007",
+ "type": "collection",
+ "meta": {
+  "profile": [
+   "VWFComputationalEvidence/1.0 (FHIR-shaped, internal validated)"
+  ],
+  "tag": [
+   {
+    "system": "http://terminology.local/validation",
+    "code": "internal-schema-only",
+    "display": "FHIR-shaped/internal validated; not HL7-validator certified"
+   }
+  ]
+ },
+ "timestamp": "2026-09-05T11:41:41.522075+00:00",
+ "entry": [
+  {
+   "fullUrl": "urn:uuid:patient-case_t1_007",
+   "resource": {
+    "resourceType": "Patient",
+    "id": "case_t1_007",
+    "identifier": [
+     {
+      "system": "urn:vwf-panel:patient-id",
+      "value": "CASE_T1_007"
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-variant-case_t1_007",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-variant-case_t1_007",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "http://loinc.org",
+       "code": "69548-6",
+       "display": "Genetic variant assessment"
+      }
+     ]
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "valueCodeableConcept": {
+     "coding": [
+      {
+       "system": "http://varnomen.hgvs.org",
+       "code": "c.3379+1G>A"
+      }
+     ],
+     "text": "剪切 (c.3379+1G>A)"
+    },
+    "note": [
+     {
+      "text": "assembly=GRCh38; chr=chr12; pos=6023630; REF=C; ALT=T; coordinate_qc=SOURCE_HG19_TO_HG38_NORMALIZED"
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ag-case_t1_007-rna_seq",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ag-case_t1_007-rna_seq",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:output-type",
+       "code": "RNA_SEQ"
+      }
+     ],
+     "text": "AlphaGenome paired REF/ALT RNA_SEQ"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "effectiveDateTime": "2026-09-05T11:41:41.525018+00:00",
+    "method": {
+     "text": "AlphaGenome 0.8.0 predict_variant; 1 Mb interval; REF and ALT float32 arrays persisted losslessly (npz+json sidecar)"
+    },
+    "component": [
+     {
+      "code": {
+       "text": "track:CL:0000115 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 2.5,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002188 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 4.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002543 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 3.5,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002545 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 2.5,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 polyA plus RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 8.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 4.5,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:1001568 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 5.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:2000010 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 4.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:2000011 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 4.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:2000016 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 3.5,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:2000018 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 6.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:2000040 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 4.5,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:2000041 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 4.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0000115 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 3.232421875,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002188 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 5.017578125,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002543 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 4.1171875,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002545 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 2.5126953125,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 polyA plus RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 5.330078125,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 3.16015625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:1001568 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 4.587890625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:2000010 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 7.08203125,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:2000011 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 5.39453125,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:2000016 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 4.5107421875,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:2000018 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 4.341796875,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:2000040 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 5.53515625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:2000041 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 5.615234375,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 polyA plus RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 10.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     }
+    ],
+    "derivedFrom": [
+     {
+      "reference": "DocumentReference/doc-ag-case_t1_007"
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ag-case_t1_007-cage",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ag-case_t1_007-cage",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:output-type",
+       "code": "CAGE"
+      }
+     ],
+     "text": "AlphaGenome paired REF/ALT CAGE"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "effectiveDateTime": "2026-09-05T11:41:41.526933+00:00",
+    "method": {
+     "text": "AlphaGenome 0.8.0 predict_variant; 1 Mb interval; REF and ALT float32 arrays persisted losslessly (npz+json sidecar)"
+    },
+    "component": [
+     {
+      "code": {
+       "text": "track:hCAGE CL:0002138"
+      },
+      "valueQuantity": {
+       "value": 96.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:hCAGE CL:0002144"
+      },
+      "valueQuantity": {
+       "value": 64.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:hCAGE CL:0002188"
+      },
+      "valueQuantity": {
+       "value": 64.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:hCAGE CL:0002543"
+      },
+      "valueQuantity": {
+       "value": 96.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:hCAGE CL:0002544"
+      },
+      "valueQuantity": {
+       "value": 32.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:hCAGE CL:0002545"
+      },
+      "valueQuantity": {
+       "value": 320.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:hCAGE CL:0002588"
+      },
+      "valueQuantity": {
+       "value": 256.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:hCAGE CL:0002618"
+      },
+      "valueQuantity": {
+       "value": 192.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:hCAGE CL:1000413"
+      },
+      "valueQuantity": {
+       "value": 56.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:hCAGE CL:0002138"
+      },
+      "valueQuantity": {
+       "value": 16.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:hCAGE CL:0002144"
+      },
+      "valueQuantity": {
+       "value": 12.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:hCAGE CL:0002188"
+      },
+      "valueQuantity": {
+       "value": 12.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:hCAGE CL:0002543"
+      },
+      "valueQuantity": {
+       "value": 12.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:hCAGE CL:0002544"
+      },
+      "valueQuantity": {
+       "value": 11.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:hCAGE CL:0002545"
+      },
+      "valueQuantity": {
+       "value": 13.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:hCAGE CL:0002588"
+      },
+      "valueQuantity": {
+       "value": 8.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:hCAGE CL:0002618"
+      },
+      "valueQuantity": {
+       "value": 32.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:hCAGE CL:1000413"
+      },
+      "valueQuantity": {
+       "value": 16.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     }
+    ],
+    "derivedFrom": [
+     {
+      "reference": "DocumentReference/doc-ag-case_t1_007"
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ag-case_t1_007-dnase",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ag-case_t1_007-dnase",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:output-type",
+       "code": "DNASE"
+      }
+     ],
+     "text": "AlphaGenome paired REF/ALT DNASE"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "effectiveDateTime": "2026-09-05T11:41:41.528853+00:00",
+    "method": {
+     "text": "AlphaGenome 0.8.0 predict_variant; 1 Mb interval; REF and ALT float32 arrays persisted losslessly (npz+json sidecar)"
+    },
+    "component": [
+     {
+      "code": {
+       "text": "track:CL:0000115 DNase-seq"
+      },
+      "valueQuantity": {
+       "value": 0.375,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 DNase-seq"
+      },
+      "valueQuantity": {
+       "value": 0.5,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:1000892 DNase-seq"
+      },
+      "valueQuantity": {
+       "value": 0.0625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:1001568 DNase-seq"
+      },
+      "valueQuantity": {
+       "value": 0.25,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:2000010 DNase-seq"
+      },
+      "valueQuantity": {
+       "value": 1.5,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:2000016 DNase-seq"
+      },
+      "valueQuantity": {
+       "value": 0.75,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:2000041 DNase-seq"
+      },
+      "valueQuantity": {
+       "value": 1.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:2000044 DNase-seq"
+      },
+      "valueQuantity": {
+       "value": 0.5,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     }
+    ],
+    "derivedFrom": [
+     {
+      "reference": "DocumentReference/doc-ag-case_t1_007"
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ag-case_t1_007-chip_histone",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ag-case_t1_007-chip_histone",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:output-type",
+       "code": "CHIP_HISTONE"
+      }
+     ],
+     "text": "AlphaGenome paired REF/ALT CHIP_HISTONE"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "effectiveDateTime": "2026-09-05T11:41:41.530716+00:00",
+    "method": {
+     "text": "AlphaGenome 0.8.0 predict_variant; 1 Mb interval; REF and ALT float32 arrays persisted losslessly (npz+json sidecar)"
+    },
+    "component": [
+     {
+      "code": {
+       "text": "track:CL:0002618 Histone ChIP-seq H2AFZ"
+      },
+      "valueQuantity": {
+       "value": 24.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 Histone ChIP-seq H3K27ac"
+      },
+      "valueQuantity": {
+       "value": 64.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 Histone ChIP-seq H3K27me3"
+      },
+      "valueQuantity": {
+       "value": 4.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 Histone ChIP-seq H3K36me3"
+      },
+      "valueQuantity": {
+       "value": 24.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 Histone ChIP-seq H3K4me1"
+      },
+      "valueQuantity": {
+       "value": 16.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 Histone ChIP-seq H3K4me2"
+      },
+      "valueQuantity": {
+       "value": 32.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 Histone ChIP-seq H3K4me3"
+      },
+      "valueQuantity": {
+       "value": 80.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 Histone ChIP-seq H3K79me2"
+      },
+      "valueQuantity": {
+       "value": 40.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 Histone ChIP-seq H3K9ac"
+      },
+      "valueQuantity": {
+       "value": 64.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:2000044 Histone ChIP-seq H3K27ac"
+      },
+      "valueQuantity": {
+       "value": 32.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:2000044 Histone ChIP-seq H3K36me3"
+      },
+      "valueQuantity": {
+       "value": 4.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:2000044 Histone ChIP-seq H3K4me3"
+      },
+      "valueQuantity": {
+       "value": 256.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     }
+    ],
+    "derivedFrom": [
+     {
+      "reference": "DocumentReference/doc-ag-case_t1_007"
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ag-case_t1_007-chip_tf",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ag-case_t1_007-chip_tf",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:output-type",
+       "code": "CHIP_TF"
+      }
+     ],
+     "text": "AlphaGenome paired REF/ALT CHIP_TF"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "effectiveDateTime": "2026-09-05T11:41:41.532619+00:00",
+    "method": {
+     "text": "AlphaGenome 0.8.0 predict_variant; 1 Mb interval; REF and ALT float32 arrays persisted losslessly (npz+json sidecar)"
+    },
+    "component": [
+     {
+      "code": {
+       "text": "track:CL:0000115 TF ChIP-seq CTCF"
+      },
+      "valueQuantity": {
+       "value": 16.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 TF ChIP-seq CTCF"
+      },
+      "valueQuantity": {
+       "value": 64.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 TF ChIP-seq FOS"
+      },
+      "valueQuantity": {
+       "value": 40.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 TF ChIP-seq GATA2"
+      },
+      "valueQuantity": {
+       "value": 8.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 TF ChIP-seq JUN"
+      },
+      "valueQuantity": {
+       "value": 16.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 TF ChIP-seq MAX"
+      },
+      "valueQuantity": {
+       "value": 10.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 TF ChIP-seq MYC"
+      },
+      "valueQuantity": {
+       "value": 48.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 TF ChIP-seq POLR2A"
+      },
+      "valueQuantity": {
+       "value": 18.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:0002618 TF ChIP-seq POLR2AphosphoS5"
+      },
+      "valueQuantity": {
+       "value": 64.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:CL:2000044 TF ChIP-seq CTCF"
+      },
+      "valueQuantity": {
+       "value": 192.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     }
+    ],
+    "derivedFrom": [
+     {
+      "reference": "DocumentReference/doc-ag-case_t1_007"
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ag-case_t1_007-splice_sites",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ag-case_t1_007-splice_sites",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:output-type",
+       "code": "SPLICE_SITES"
+      }
+     ],
+     "text": "AlphaGenome paired REF/ALT SPLICE_SITES"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "effectiveDateTime": "2026-09-05T11:41:41.534691+00:00",
+    "method": {
+     "text": "AlphaGenome 0.8.0 predict_variant; 1 Mb interval; REF and ALT float32 arrays persisted losslessly (npz+json sidecar)"
+    },
+    "component": [
+     {
+      "code": {
+       "text": "track:donor"
+      },
+      "valueQuantity": {
+       "value": 0.0078125,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:acceptor"
+      },
+      "valueQuantity": {
+       "value": 0.01171875,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:donor"
+      },
+      "valueQuantity": {
+       "value": 0.68121337890625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:acceptor"
+      },
+      "valueQuantity": {
+       "value": 0.02734375,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     }
+    ],
+    "derivedFrom": [
+     {
+      "reference": "DocumentReference/doc-ag-case_t1_007"
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ag-case_t1_007-splice_site_usage",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ag-case_t1_007-splice_site_usage",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:output-type",
+       "code": "SPLICE_SITE_USAGE"
+      }
+     ],
+     "text": "AlphaGenome paired REF/ALT SPLICE_SITE_USAGE"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "effectiveDateTime": "2026-09-05T11:41:41.536543+00:00",
+    "method": {
+     "text": "AlphaGenome 0.8.0 predict_variant; 1 Mb interval; REF and ALT float32 arrays persisted losslessly (npz+json sidecar)"
+    },
+    "component": [
+     {
+      "code": {
+       "text": "track:usage_CL:0000115 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.00390625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:0002188 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.00390625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:0002543 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.00390625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:0002545 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.00390625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:0002618 polyA plus RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.00390625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:0002618 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.00390625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:1001568 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.00390625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:2000010 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.00390625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:2000011 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.00390625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:2000016 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.00390625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:2000018 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.00390625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:2000040 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.00390625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:2000041 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.00390625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:0000115 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.791748046875,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:0002188 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.773193359375,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:0002543 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.77587890625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:0002545 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.75439453125,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:0002618 polyA plus RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.7490234375,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:0002618 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.69580078125,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:1001568 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.786376953125,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:2000010 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.80419921875,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:2000011 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.80712890625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:2000016 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.81005859375,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:2000018 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.797607421875,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:2000040 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.80224609375,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:usage_CL:2000041 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 0.8134765625,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     }
+    ],
+    "derivedFrom": [
+     {
+      "reference": "DocumentReference/doc-ag-case_t1_007"
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ag-case_t1_007-splice_junctions",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ag-case_t1_007-splice_junctions",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:output-type",
+       "code": "SPLICE_JUNCTIONS"
+      }
+     ],
+     "text": "AlphaGenome paired REF/ALT SPLICE_JUNCTIONS"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "effectiveDateTime": "2026-09-05T11:41:41.538500+00:00",
+    "method": {
+     "text": "AlphaGenome 0.8.0 predict_variant; 1 Mb interval; REF and ALT float32 arrays persisted losslessly (npz+json sidecar)"
+    },
+    "component": [
+     {
+      "code": {
+       "text": "track:junction_CL:0000115 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 2.5693376064300537,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:junction_CL:0002188 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 2.951000690460205,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:junction_CL:0002543 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 3.2066774368286133,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:junction_CL:0002545 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 2.8245153427124023,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:junction_CL:0002618 polyA plus RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 2.575901746749878,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:junction_CL:0002618 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 2.597409009933472,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:junction_CL:1001568 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 2.921030044555664,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:junction_CL:2000010 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 4.079093943350017,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:junction_CL:2000011 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 4.172969857230783,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:junction_CL:2000016 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 4.135313392616808,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:junction_CL:2000018 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 2.9417219161987305,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:junction_CL:2000040 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 4.025167760439217,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:junction_CL:2000041 total RNA-seq"
+      },
+      "valueQuantity": {
+       "value": 4.211185283027589,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     }
+    ],
+    "derivedFrom": [
+     {
+      "reference": "DocumentReference/doc-ag-case_t1_007"
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ag-case_t1_007-procap",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ag-case_t1_007-procap",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:output-type",
+       "code": "PROCAP"
+      }
+     ],
+     "text": "AlphaGenome paired REF/ALT PROCAP"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "effectiveDateTime": "2026-09-05T11:41:41.540437+00:00",
+    "method": {
+     "text": "AlphaGenome 0.8.0 predict_variant; 1 Mb interval; REF and ALT float32 arrays persisted losslessly (npz+json sidecar)"
+    },
+    "component": [
+     {
+      "code": {
+       "text": "track:ENCSR801ECP"
+      },
+      "valueQuantity": {
+       "value": 24.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     },
+     {
+      "code": {
+       "text": "track:ENCSR801ECP"
+      },
+      "valueQuantity": {
+       "value": 8.0,
+       "unit": "ALT-REF max |delta| (model output units)"
+      }
+     }
+    ],
+    "derivedFrom": [
+     {
+      "reference": "DocumentReference/doc-ag-case_t1_007"
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:doc-ag-case_t1_007",
+   "resource": {
+    "resourceType": "DocumentReference",
+    "id": "doc-ag-case_t1_007",
+    "status": "current",
+    "content": [
+     {
+      "attachment": {
+       "url": "https://huggingface.co/datasets/lucachangretta/VWF/resolve/main/computational_evidence_16case_20260905/alphagenome/CASE_T1_007.tar.gz@e69d65d00d71c666c7e94305977b5ab529fa1f45",
+       "size": 173810945,
+       "hash": "65a92145a293fb8d927786967e2ef22162b76fe0f091d1159bf3adf4a698afa5",
+       "title": "AlphaGenome raw arrays CASE_T1_007 (9 output types)"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ags-case_t1_007-chip_histone_active",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ags-case_t1_007-chip_histone_active",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:variant-scorer",
+       "code": "CHIP_HISTONE_ACTIVE"
+      }
+     ],
+     "text": "AlphaGenome official variant scorer CHIP_HISTONE_ACTIVE"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "valueQuantity": {
+     "value": 9834.0,
+     "unit": "scorer raw score (signed ALT-REF direction)"
+    },
+    "method": {
+     "text": "track=CL:0002618 Histone ChIP-seq H3K36me3; output_type=CHIP_HISTONE; biosample=endothelial cell of umbilical vein; gene=nan"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ags-case_t1_007-chip_tf_active",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ags-case_t1_007-chip_tf_active",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:variant-scorer",
+       "code": "CHIP_TF_ACTIVE"
+      }
+     ],
+     "text": "AlphaGenome official variant scorer CHIP_TF_ACTIVE"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "valueQuantity": {
+     "value": 1253.0,
+     "unit": "scorer raw score (signed ALT-REF direction)"
+    },
+    "method": {
+     "text": "track=CL:0002618 TF ChIP-seq POLR2AphosphoS5; output_type=CHIP_TF; biosample=endothelial cell of umbilical vein; gene=nan"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ags-case_t1_007-cage_active",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ags-case_t1_007-cage_active",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:variant-scorer",
+       "code": "CAGE_ACTIVE"
+      }
+     ],
+     "text": "AlphaGenome official variant scorer CAGE_ACTIVE"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "valueQuantity": {
+     "value": 159.08694,
+     "unit": "scorer raw score (signed ALT-REF direction)"
+    },
+    "method": {
+     "text": "track=hCAGE CL:0002138; output_type=CAGE; biosample=endothelial cell of lymphatic vessel; gene=nan"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ags-case_t1_007-dnase_active",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ags-case_t1_007-dnase_active",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:variant-scorer",
+       "code": "DNASE_ACTIVE"
+      }
+     ],
+     "text": "AlphaGenome official variant scorer DNASE_ACTIVE"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "valueQuantity": {
+     "value": 32.2153,
+     "unit": "scorer raw score (signed ALT-REF direction)"
+    },
+    "method": {
+     "text": "track=CL:1001568 DNase-seq; output_type=DNASE; biosample=pulmonary artery endothelial cell; gene=nan"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ags-case_t1_007-rna_seq_active",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ags-case_t1_007-rna_seq_active",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:variant-scorer",
+       "code": "RNA_SEQ_ACTIVE"
+      }
+     ],
+     "text": "AlphaGenome official variant scorer RNA_SEQ_ACTIVE"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "valueQuantity": {
+     "value": 16.175499,
+     "unit": "scorer raw score (signed ALT-REF direction)"
+    },
+    "method": {
+     "text": "track=CL:2000010 total RNA-seq; output_type=RNA_SEQ; biosample=dermis blood vessel endothelial cell; gene=VWF"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ags-case_t1_007-procap_active",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ags-case_t1_007-procap_active",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:variant-scorer",
+       "code": "PROCAP_ACTIVE"
+      }
+     ],
+     "text": "AlphaGenome official variant scorer PROCAP_ACTIVE"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "valueQuantity": {
+     "value": 12.046028,
+     "unit": "scorer raw score (signed ALT-REF direction)"
+    },
+    "method": {
+     "text": "track=ENCSR801ECP; output_type=PROCAP; biosample=endothelial cell of umbilical vein; gene=nan"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ags-case_t1_007-splice_junctions",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ags-case_t1_007-splice_junctions",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:variant-scorer",
+       "code": "SPLICE_JUNCTIONS"
+      }
+     ],
+     "text": "AlphaGenome official variant scorer SPLICE_JUNCTIONS"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "valueQuantity": {
+     "value": 6.4765625,
+     "unit": "scorer raw score (signed ALT-REF direction)"
+    },
+    "method": {
+     "text": "track=junction_CL:0002188 total RNA-seq; output_type=SPLICE_JUNCTIONS; biosample=glomerular endothelial cell; gene=VWF"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ags-case_t1_007-splice_site_usage",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ags-case_t1_007-splice_site_usage",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:variant-scorer",
+       "code": "SPLICE_SITE_USAGE"
+      }
+     ],
+     "text": "AlphaGenome official variant scorer SPLICE_SITE_USAGE"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "valueQuantity": {
+     "value": 0.81347656,
+     "unit": "scorer raw score (signed ALT-REF direction)"
+    },
+    "method": {
+     "text": "track=usage_CL:2000041 total RNA-seq; output_type=SPLICE_SITE_USAGE; biosample=dermis microvascular lymphatic vessel endothelial cell; gene=VWF"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ags-case_t1_007-splice_sites",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ags-case_t1_007-splice_sites",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:variant-scorer",
+       "code": "SPLICE_SITES"
+      }
+     ],
+     "text": "AlphaGenome official variant scorer SPLICE_SITES"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "valueQuantity": {
+     "value": 0.6812134,
+     "unit": "scorer raw score (signed ALT-REF direction)"
+    },
+    "method": {
+     "text": "track=donor; output_type=SPLICE_SITES; biosample=nan; gene=VWF"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ags-case_t1_007-cage",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ags-case_t1_007-cage",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:variant-scorer",
+       "code": "CAGE"
+      }
+     ],
+     "text": "AlphaGenome official variant scorer CAGE"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "valueQuantity": {
+     "value": -0.19405651,
+     "unit": "scorer raw score (signed ALT-REF direction)"
+    },
+    "method": {
+     "text": "track=hCAGE CL:0002188; output_type=CAGE; biosample=glomerular endothelial cell; gene=nan"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ags-case_t1_007-chip_histone",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ags-case_t1_007-chip_histone",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:variant-scorer",
+       "code": "CHIP_HISTONE"
+      }
+     ],
+     "text": "AlphaGenome official variant scorer CHIP_HISTONE"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "valueQuantity": {
+     "value": -0.07509136,
+     "unit": "scorer raw score (signed ALT-REF direction)"
+    },
+    "method": {
+     "text": "track=CL:0002618 Histone ChIP-seq H3K4me3; output_type=CHIP_HISTONE; biosample=endothelial cell of umbilical vein; gene=nan"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ags-case_t1_007-chip_tf",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ags-case_t1_007-chip_tf",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:variant-scorer",
+       "code": "CHIP_TF"
+      }
+     ],
+     "text": "AlphaGenome official variant scorer CHIP_TF"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "valueQuantity": {
+     "value": 0.04750061,
+     "unit": "scorer raw score (signed ALT-REF direction)"
+    },
+    "method": {
+     "text": "track=CL:2000044 TF ChIP-seq CTCF; output_type=CHIP_TF; biosample=brain microvascular endothelial cell; gene=nan"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ags-case_t1_007-procap",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ags-case_t1_007-procap",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:variant-scorer",
+       "code": "PROCAP"
+      }
+     ],
+     "text": "AlphaGenome official variant scorer PROCAP"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "valueQuantity": {
+     "value": 0.04635954,
+     "unit": "scorer raw score (signed ALT-REF direction)"
+    },
+    "method": {
+     "text": "track=ENCSR801ECP; output_type=PROCAP; biosample=endothelial cell of umbilical vein; gene=nan"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ags-case_t1_007-dnase",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ags-case_t1_007-dnase",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:variant-scorer",
+       "code": "DNASE"
+      }
+     ],
+     "text": "AlphaGenome official variant scorer DNASE"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "valueQuantity": {
+     "value": -0.02579403,
+     "unit": "scorer raw score (signed ALT-REF direction)"
+    },
+    "method": {
+     "text": "track=CL:0000115 DNase-seq; output_type=DNASE; biosample=endothelial cell; gene=nan"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:obs-ags-case_t1_007-rna_seq",
+   "resource": {
+    "resourceType": "Observation",
+    "id": "obs-ags-case_t1_007-rna_seq",
+    "status": "final",
+    "code": {
+     "coding": [
+      {
+       "system": "urn:alphagenome:variant-scorer",
+       "code": "RNA_SEQ"
+      }
+     ],
+     "text": "AlphaGenome official variant scorer RNA_SEQ"
+    },
+    "subject": {
+     "reference": "Patient/case_t1_007"
+    },
+    "valueQuantity": {
+     "value": -0.018307447,
+     "unit": "scorer raw score (signed ALT-REF direction)"
+    },
+    "method": {
+     "text": "track=CL:1001568 total RNA-seq; output_type=RNA_SEQ; biosample=pulmonary artery endothelial cell; gene=VWF"
+    }
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:oo-case_t1_007-alphagenome-ag_predict_variant_v0.8.0__atac",
+   "resource": {
+    "resourceType": "OperationOutcome",
+    "id": "oo-case_t1_007-alphagenome-atac",
+    "issue": [
+     {
+      "severity": "warning",
+      "code": "incomplete",
+      "details": {
+       "text": "alphagenome/ATAC: not_supported_by_model (no_vwf_relevant_biosample_track)"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:oo-case_t1_007-alphagenome-ag_predict_variant_v0.8.0__contact_maps",
+   "resource": {
+    "resourceType": "OperationOutcome",
+    "id": "oo-case_t1_007-alphagenome-contact_maps",
+    "issue": [
+     {
+      "severity": "warning",
+      "code": "incomplete",
+      "details": {
+       "text": "alphagenome/CONTACT_MAPS: not_supported_by_model (no_vwf_relevant_biosample_track)"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:oo-case_t1_007-boltz2-boltz2_vwd_functional_panel",
+   "resource": {
+    "resourceType": "OperationOutcome",
+    "id": "oo-case_t1_007-boltz2-all",
+    "issue": [
+     {
+      "severity": "information",
+      "code": "incomplete",
+      "details": {
+       "text": "boltz2/ALL: not_applicable (non_missense_variant_剪切)"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:oo-case_t1_007-gromacs_md-md_7a6o_aim_a1_50ns_charmm27",
+   "resource": {
+    "resourceType": "OperationOutcome",
+    "id": "oo-case_t1_007-gromacs_md-aim_a1_7a6o",
+    "issue": [
+     {
+      "severity": "information",
+      "code": "incomplete",
+      "details": {
+       "text": "gromacs_md/AIM_A1_7A6O: not_run_out_of_scope (variant_not_in_7a6o_panel)"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:oo-case_t1_007-gromacs_md-md_20ns_p0__a1_gpiba_1sq0",
+   "resource": {
+    "resourceType": "OperationOutcome",
+    "id": "oo-case_t1_007-gromacs_md-a1_gpiba_1sq0",
+    "issue": [
+     {
+      "severity": "information",
+      "code": "incomplete",
+      "details": {
+       "text": "gromacs_md/a1_gpiba_1SQ0: not_run_out_of_scope (variant_not_in_p0_protocol_cohort)"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:oo-case_t1_007-gromacs_md-md_20ns_p0__a2_folded_3gxb",
+   "resource": {
+    "resourceType": "OperationOutcome",
+    "id": "oo-case_t1_007-gromacs_md-a2_folded_3gxb",
+    "issue": [
+     {
+      "severity": "information",
+      "code": "incomplete",
+      "details": {
+       "text": "gromacs_md/a2_folded_3GXB: not_run_out_of_scope (variant_not_in_p0_protocol_cohort)"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:oo-case_t1_007-gromacs_md-md_20ns_p0__dprime_d3_6n29",
+   "resource": {
+    "resourceType": "OperationOutcome",
+    "id": "oo-case_t1_007-gromacs_md-dprime_d3_6n29",
+    "issue": [
+     {
+      "severity": "information",
+      "code": "incomplete",
+      "details": {
+       "text": "gromacs_md/dprime_d3_6N29: not_run_out_of_scope (variant_not_in_p0_protocol_cohort)"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "fullUrl": "urn:uuid:oo-case_t1_007-gromacs_smd-smd_slow025_aim_a1",
+   "resource": {
+    "resourceType": "OperationOutcome",
+    "id": "oo-case_t1_007-gromacs_smd-aim_a1_7a6o_smd",
+    "issue": [
+     {
+      "severity": "information",
+      "code": "incomplete",
+      "details": {
+       "text": "gromacs_smd/AIM_A1_7A6O_smd: not_run_out_of_scope (complete_no_go_direction_reversed_excluded_from_classifier)"
+      }
+     }
+    ]
+   }
+  }
+ ]
+}

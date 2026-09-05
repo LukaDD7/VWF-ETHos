@@ -87,15 +87,31 @@ def upload_analysis_files(api, repo_id):
 
 
 def find_job_dirs():
-    """查找所有 job 子目录。"""
+    """查找所有 job 子目录。
+
+    实际结构 (Boltz-2 default output):
+        boltz_results/boltz_results_yamls/predictions/<job_name>/<files>
+    老逻辑是找 boltz_results/ 下任何有 predictions/ 子目录的目录,会把整个
+    boltz_results_yamls/ 当成"一个 job"打成 1 个超 archive,撞 HF 单 commit 50GB 限。
+    这里改成定位 predictions/ 这一层,列出 990 个 job。
+    """
     job_dirs = []
     if not VWD_RESULTS_DIR.exists():
         return job_dirs
-    for d in VWD_RESULTS_DIR.iterdir():
-        if d.is_dir():
-            pred_dir = d / "predictions"
-            if pred_dir.exists():
-                job_dirs.append(d)
+    # 标准 Boltz-2 输出位置
+    pred_root = VWD_RESULTS_DIR / "boltz_results_yamls" / "predictions"
+    if not pred_root.exists():
+        # Fallback: rglob 找任何 predictions/ 子目录
+        for pred in VWD_RESULTS_DIR.rglob("predictions"):
+            if not pred.is_dir():
+                continue
+            for job in pred.iterdir():
+                if job.is_dir():
+                    job_dirs.append(job)
+    else:
+        for job in pred_root.iterdir():
+            if job.is_dir():
+                job_dirs.append(job)
     return sorted(job_dirs)
 
 
@@ -145,7 +161,8 @@ def create_result_archives(jobs_per_archive, archive_dir):
         print(f"  Creating {archive_path.name}: {len(batch)} jobs")
         with tarfile.open(archive_path, "w:gz") as tar:
             for job_dir in batch:
-                tar.add(job_dir, arcname=f"boltz_results/{job_dir.name}")
+                # 保留 Boltz-2 真实路径,避免下载后路径混乱
+                tar.add(job_dir, arcname=f"boltz_results/boltz_results_yamls/predictions/{job_dir.name}")
         archive_paths.append(archive_path)
 
     return archive_paths
