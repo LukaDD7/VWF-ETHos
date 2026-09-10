@@ -16,7 +16,9 @@ from datetime import datetime, timezone
 from hashlib import sha256
 import json
 import math
-from pathlib import Path
+from pathlib import Path, PurePosixPath
+import re
+import subprocess
 from typing import Any, Literal
 from uuid import uuid4
 
@@ -24,12 +26,25 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 SCHEMA_VERSION = "1.0.0"
+TASK_ID_PATTERN = re.compile(r"^mtask-[0-9a-f]{32}$")
 DEFAULT_REGISTRY_PATH = (
     Path(__file__).resolve().parents[2]
     / "protocols"
     / "vwd_mechanistic_v1"
     / "registry.json"
 )
+
+
+class MechanismContractError(ValueError):
+    """Base class for machine-contract validation failures."""
+
+
+class GitProvenanceError(MechanismContractError):
+    """Raised when a task does not resolve to its declared Git snapshot."""
+
+
+class ArtifactIntegrityError(MechanismContractError):
+    """Raised when a returned artifact cannot be verified byte-for-byte."""
 
 
 def utc_now() -> str:
@@ -52,6 +67,28 @@ def canonical_json(value: Any) -> str:
 
 def content_digest(value: Any) -> str:
     return "sha256:" + sha256(canonical_json(value).encode("utf-8")).hexdigest()
+
+
+def file_sha256(path: str | Path) -> str:
+    digest = sha256()
+    with Path(path).open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _git(repo_root: str | Path, *args: str) -> str:
+    completed = subprocess.run(
+        ["git", *args],
+        cwd=Path(repo_root),
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if completed.returncode != 0:
+        detail = completed.stderr.strip() or completed.stdout.strip() or f"exit {completed.returncode}"
+        raise GitProvenanceError(f"git {' '.join(args)} failed: {detail}")
+    return completed.stdout.strip()
 
 
 class StrictModel(BaseModel):
@@ -156,9 +193,18 @@ class ProtocolRegistry:
     @classmethod
     def load(cls, path: str | Path = DEFAULT_REGISTRY_PATH) -> "ProtocolRegistry":
         source = Path(path)
+        return cls.from_json(source.read_text(encoding="utf-8"), source_path=source)
+
+    @classmethod
+    def from_json(
+        cls,
+        payload: str | bytes,
+        *,
+        source_path: str | Path | None = None,
+    ) -> "ProtocolRegistry":
         return cls(
-            RegistryDocument.model_validate_json(source.read_text(encoding="utf-8")),
-            source,
+            RegistryDocument.model_validate_json(payload),
+            Path(source_path) if source_path is not None else None,
         )
 
     @property
@@ -401,6 +447,59 @@ class ArtifactResult(StrictModel):
     role: str
 
 
+def verified_artifact_path(artifact: ArtifactResult, artifact_root: str | Path) -> Path:
+    """Resolve and checksum one untrusted, repository-relative artifact path."""
+
+    pure = PurePosixPath(artifact.path)
+    if (
+        not artifact.path
+        or pure.is_absolute()
+        or ".." in pure.parts
+        or "." in pure.parts
+        or "\\" in artifact.path
+        or artifact.path != pure.as_posix()
+    ):
+        raise ArtifactIntegrityError(
+            f"Artifact path must be a normalized relative POSIX path: {artifact.path!r}"
+        )
+    root = Path(artifact_root).resolve(strict=True)
+    candidate = root.joinpath(*pure.parts)
+    cursor = root
+    for part in pure.parts:
+        cursor = cursor / part
+        if cursor.is_symlink():
+            raise ArtifactIntegrityError(f"Artifact path must not traverse symlinks: {artifact.path}")
+    try:
+        resolved = candidate.resolve(strict=True)
+        resolved.relative_to(root)
+    except (FileNotFoundError, ValueError) as exc:
+        raise ArtifactIntegrityError(
+            f"Artifact does not resolve to a file below the approved root: {artifact.path}"
+        ) from exc
+    if not resolved.is_file():
+        raise ArtifactIntegrityError(f"Artifact is not a regular file: {artifact.path}")
+    actual = file_sha256(resolved)
+    if actual != artifact.sha256:
+        raise ArtifactIntegrityError(
+            f"Artifact SHA256 mismatch for {artifact.path}: expected {artifact.sha256}, received {actual}"
+        )
+    return resolved
+
+
+def validate_result_artifacts(
+    result: "MechanismTaskResult",
+    artifact_root: str | Path | None,
+) -> list[Path]:
+    if not result.artifacts:
+        return []
+    if artifact_root is None:
+        raise ArtifactIntegrityError("artifact_root is required when a result declares artifacts")
+    paths = [item.path for item in result.artifacts]
+    if len(paths) != len(set(paths)):
+        raise ArtifactIntegrityError("Result contains duplicate artifact paths")
+    return [verified_artifact_path(item, artifact_root) for item in result.artifacts]
+
+
 class MechanismTaskResult(StrictModel):
     schema_version: Literal[SCHEMA_VERSION] = SCHEMA_VERSION
     task_id: str
@@ -486,6 +585,42 @@ def validate_task_request(request: MechanismTaskRequest, registry: ProtocolRegis
         raise ValueError("Task controls do not match the locked protocol")
 
 
+def registry_from_git_commit(
+    repo_root: str | Path,
+    source_commit: str,
+    registry_path: str | Path = DEFAULT_REGISTRY_PATH,
+) -> ProtocolRegistry:
+    """Load the registry bytes from an existing commit, never from the worktree."""
+
+    top_level = Path(_git(repo_root, "rev-parse", "--show-toplevel")).resolve()
+    _git(top_level, "cat-file", "-e", f"{source_commit}^{{commit}}")
+    registry_file = Path(registry_path).resolve()
+    try:
+        relative_registry = registry_file.relative_to(top_level).as_posix()
+    except ValueError as exc:
+        raise GitProvenanceError(
+            f"Registry must be inside the Git repository: {registry_file}"
+        ) from exc
+    payload = _git(top_level, "show", f"{source_commit}:{relative_registry}")
+    return ProtocolRegistry.from_json(payload, source_path=registry_file)
+
+
+def validate_request_git_provenance(
+    request: MechanismTaskRequest,
+    repo_root: str | Path,
+    registry_path: str | Path = DEFAULT_REGISTRY_PATH,
+) -> ProtocolRegistry:
+    """Validate a request against the registry snapshot in its declared commit."""
+
+    snapshot = registry_from_git_commit(repo_root, request.source_commit, registry_path)
+    if snapshot.digest != request.acquisition.registry_digest:
+        raise GitProvenanceError(
+            "source_commit registry digest does not match the immutable task request"
+        )
+    validate_task_request(request, snapshot)
+    return snapshot
+
+
 def create_task_request(
     proposal: TaskProposal,
     registry: ProtocolRegistry,
@@ -537,6 +672,8 @@ def validate_task_result(
     result: MechanismTaskResult,
     request: MechanismTaskRequest,
     registry: ProtocolRegistry,
+    *,
+    artifact_root: str | Path | None = None,
 ) -> None:
     validate_task_request(request, registry)
     protocol = registry.protocols[request.acquisition.protocol_id]
@@ -629,6 +766,7 @@ def validate_task_result(
     reported = set().union(*buckets.values())
     if reported - known:
         raise ValueError(f"Assessment contains unknown mechanisms: {sorted(reported - known)}")
+    validate_result_artifacts(result, artifact_root)
 
 
 def task_to_fhir(request: MechanismTaskRequest, registry: ProtocolRegistry) -> dict[str, Any]:
@@ -669,8 +807,10 @@ def result_to_fhir_bundle(
     result: MechanismTaskResult,
     request: MechanismTaskRequest,
     registry: ProtocolRegistry,
+    *,
+    artifact_root: str | Path | None = None,
 ) -> dict[str, Any]:
-    validate_task_result(result, request, registry)
+    validate_task_result(result, request, registry, artifact_root=artifact_root)
     base = registry.document.canonical_base
     observation_id = f"mechanism-result-{request.task_id.removeprefix('mtask-')}"
     document_ids = [f"artifact-{request.task_id.removeprefix('mtask-')}-{index}" for index, _ in enumerate(result.artifacts, 1)]
@@ -828,20 +968,37 @@ class MechanismTaskStore:
     def __init__(self, root: str | Path):
         self.root = Path(root)
 
+    @staticmethod
+    def _task_id(task_id: str) -> str:
+        if not TASK_ID_PATTERN.fullmatch(task_id):
+            raise MechanismContractError(f"Invalid mechanism task ID: {task_id!r}")
+        return task_id
+
     def request_dir(self, task_id: str) -> Path:
-        return self.root / "requests" / task_id
+        return self.root / "requests" / self._task_id(task_id)
 
     def result_dir(self, task_id: str) -> Path:
-        return self.root / "results" / task_id
+        return self.root / "results" / self._task_id(task_id)
 
     def ingested_dir(self, task_id: str) -> Path:
-        return self.root / "ingested" / task_id
+        return self.root / "ingested" / self._task_id(task_id)
+
+    def artifact_dir(self, task_id: str) -> Path:
+        return self.root / "artifacts" / self._task_id(task_id)
+
+    def claim_dir(self, task_id: str) -> Path:
+        return self.root / "claims" / self._task_id(task_id)
 
     @staticmethod
     def _write_once(path: Path, payload: Any) -> None:
         serialized = json.dumps(payload, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
         if path.exists():
-            if path.read_text(encoding="utf-8") != serialized:
+            existing = path.read_text(encoding="utf-8")
+            try:
+                semantically_equal = json.loads(existing) == json.loads(serialized)
+            except json.JSONDecodeError:
+                semantically_equal = False
+            if not semantically_equal:
                 raise FileExistsError(f"Refusing to overwrite immutable contract: {path}")
             return
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -855,10 +1012,13 @@ class MechanismTaskStore:
         self._write_once(fhir_path, task_to_fhir(request, registry))
         return [request_path, fhir_path]
 
-    def load_request(self, task_id: str, registry: ProtocolRegistry) -> MechanismTaskRequest:
-        request = MechanismTaskRequest.model_validate_json(
+    def read_request(self, task_id: str) -> MechanismTaskRequest:
+        return MechanismTaskRequest.model_validate_json(
             (self.request_dir(task_id) / "request.json").read_text(encoding="utf-8")
         )
+
+    def load_request(self, task_id: str, registry: ProtocolRegistry) -> MechanismTaskRequest:
+        request = self.read_request(task_id)
         validate_task_request(request, registry)
         return request
 
@@ -867,8 +1027,10 @@ class MechanismTaskStore:
         result: MechanismTaskResult,
         request: MechanismTaskRequest,
         registry: ProtocolRegistry,
+        *,
+        artifact_root: str | Path | None = None,
     ) -> Path:
-        validate_task_result(result, request, registry)
+        validate_task_result(result, request, registry, artifact_root=artifact_root)
         path = self.result_dir(request.task_id) / "result.json"
         self._write_once(path, result.model_dump(mode="json"))
         return path
@@ -878,8 +1040,15 @@ class MechanismTaskStore:
         result: MechanismTaskResult,
         request: MechanismTaskRequest,
         registry: ProtocolRegistry,
+        *,
+        artifact_root: str | Path | None = None,
     ) -> Path:
-        bundle = result_to_fhir_bundle(result, request, registry)
+        bundle = result_to_fhir_bundle(
+            result,
+            request,
+            registry,
+            artifact_root=artifact_root,
+        )
         path = self.ingested_dir(request.task_id) / "bundle.fhir.json"
         self._write_once(path, bundle)
         return path

@@ -2,7 +2,7 @@
   "code": {
     "text": "VWD mechanism-specific computational experiment"
   },
-  "description": "Execute VWF_A1A2_INTERFACE_SEIDIZADEH2024_V1@1.0.0; registry digest sha256:d4a66f3884033c937c9a4673b8a56693b2515aefddc65db2560873e48572c95c; protocol digest sha256:307692a5f08eb5d3dd683dc73f415a418e898a13416ad3fc7bbb07a9bd8d4fcb.",
+  "description": "Execute VWF_A1A2_INTERFACE_SEIDIZADEH2024_V1@1.0.0; registry digest sha256:46deb2d43642db7c25cecd1e34730fb8f89b0a51254bc4a9fb34f12ae5422ee4; protocol digest sha256:307692a5f08eb5d3dd683dc73f415a418e898a13416ad3fc7bbb07a9bd8d4fcb.",
   "experimental": true,
   "extension": [
     {

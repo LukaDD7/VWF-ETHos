@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "registry_id": "vwd-mechanism-guided-acquisition-v1",
-  "version": "2026.09.10",
+  "version": "2026.09.10.1",
   "canonical_base": "https://vwf-ethos.org/fhir",
   "research_only": true,
   "planning_policy": {
@@ -47,7 +47,7 @@
     {
       "mechanism_id": "M4_2A_ASSEMBLY",
       "subtype_targets": ["type_2A"],
-      "applicable_domains": ["D2", "D3", "CK", "A2", "*"],
+      "applicable_domains": ["D2", "D3", "CK", "A2"],
       "applicable_variant_classes": ["missense"],
       "causal_chain": ["folding_or_dimer_multimer_assembly_defect", "intracellular_retention_or_abnormal_multimerization", "HMW_multimer_reduction", "platelet_activity_reduction"],
       "experimental_endpoint": "Recombinant multimerization/secretion assay",

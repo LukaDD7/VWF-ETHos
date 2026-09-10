@@ -2,7 +2,7 @@
 
 日期：2026-09-10
 
-状态：v1 协议/任务交接层已实现；GPU runner 适配与 LangGraph 自动暂停/恢复待接线
+状态：v1.1 控制面已实现并通过本地 bare-remote 闭环；具体 GPU protocol runner 与 calibration 数据仍需在服务器配置
 
 用途：研究型决策支持，不能替代 VWD 专科诊断、功能实验或 ACMG/AMP PS3
 
@@ -100,10 +100,12 @@ Seidizadeh 等 2024 年把争议性 R1315/R1374 变异放入完整表型、A1-A2
 - 至少一个竞争机制，且候选集中必须保留 `M_UNKNOWN`；
 - 当 `P(2M)=0.90`、`P(2B)=0.05` 时拦截 2B task；当 2B/2M 接近时允许提交；
 - protocol version、registry digest、protocol digest、request digest、controls 与 required measurements 全部锁定；
+- `source_commit` 必须是仓库中真实存在的 commit，且该 commit 内 registry 的实际字节必须产生 Task 声明的 digest；
 - server result 必须回显同一 task/request/protocol identity；
 - QC 通过的 completed result 必须覆盖全部 required measurements；
 - scalar `case - matched WT` delta 会被重新计算；
 - `supports/contradicts/indeterminate` 必须互斥，目标机制必须恰好出现一次；
+- artifact 只能使用仓库相对 POSIX 路径；接收端拒绝绝对路径、`..`、symlink、目录和越界路径，并重新计算实际文件 SHA-256；
 - 验证后的结果转换为 `Task + Observation + DocumentReference` FHIR bundle。
 
 ### 3.3 命令行与服务器 Agent 约束
@@ -117,65 +119,87 @@ python scripts/mechanism_task.py validate-request <task_id>
 python scripts/mechanism_task.py result-template <task_id>
 python scripts/mechanism_task.py validate-result <task_id> result.json
 python scripts/mechanism_task.py ingest-result <task_id> result.json
+python scripts/mechanism_task.py status <task_id>
 python scripts/mechanism_task.py export-fhir
+python scripts/validate_mechanism_fhir.py
 ```
+
+所有运行时 contract 错误返回结构化 JSON 和非零 exit code，不再输出 Python traceback。`validate-request`、`result-template`、`status` 等既接受 task ID，也接受 request 文件/目录。
+
+FHIR 检查默认强制 registry/export parity 和必要字段；CI/服务器安装官方 `validator_cli.jar` 后使用 `python scripts/validate_mechanism_fhir.py --require-official --validator-jar /opt/hl7/validator_cli.jar`，未提供 jar 时该模式会明确失败，避免把内部检查标成官方验证。
+
+[`scripts/mechanism_git.py`](../scripts/mechanism_git.py) 实现 request/result 双分支传输和原子 claim；[`src/vwd_clinical_agent/mechanistic_workflow.py`](../src/vwd_clinical_agent/mechanistic_workflow.py) 与 [`scripts/run_mechanism_workflow.py`](../scripts/run_mechanism_workflow.py) 实现 checkpointed `submit → interrupt → resume → ingest` 子流程。
 
 [`mechanism_tasks/AGENTS.md`](../mechanism_tasks/AGENTS.md) 是 offline GPU Agent 的强制 protocol：request/registry 不得修改；不能临场换结构/参数；缺输入或 QC 失败必须返回 failed/inconclusive；原始 trajectory 不进 Git；只允许输出机制支持/反驳/不确定。
 
 示例 proposal：[`examples/mechanism_tasks/a1_v1316m_proposal.json`](../examples/mechanism_tasks/a1_v1316m_proposal.json)。
 
-## 4. 推荐的 Git 任务生命周期
+## 4. 已实现的 Git 任务生命周期
 
 Git 适合做低并发、强审计的 handoff，但不应伪装成作业调度器。采用“一任务一分支”，不要让多个 GPU worker 同时写一个 queue branch。
 
 ### 4.1 本地 Agent：提交任务
 
-在包含 protocol registry 的稳定提交上：
+在包含 protocol registry 的稳定提交上运行：
 
 ```bash
-python scripts/mechanism_task.py submit proposal.json
-# 记下输出的 <task_id>
-
-git switch -c codex/compute/<task_id>
-git add mechanism_tasks/requests/<task_id>
-git commit -m "task: request <task_id>"
-git push -u origin codex/compute/<task_id>
+python scripts/mechanism_git.py publish proposal.json
 ```
 
-`source_commit` 固定代码/协议基线，request/protocol digest 防止静默改动。proposal 和 Task 中只能使用不可逆的研究 ID；不得放姓名、病历号等直接标识符。
+该命令从 `source_commit` 创建临时 worktree，把 request/FHIR Task 作为唯一新增内容提交到 `mechanism-task/<task_id>` 并推送。当前工作区可以有无关改动，它们不会进入任务分支。若 commit 不存在、registry 有未提交改动、registry digest 不匹配或同名任务分支已经存在，发布会失败。proposal 和 Task 中只能使用不可逆的研究 ID；不得放姓名、病历号等直接标识符。
 
 ### 4.2 Offline GPU Agent：执行并返回
 
-服务器只需联网访问 Git；计算节点本身可完全离线。服务器 Agent checkout 对应分支后：
+服务器只需联网访问 Git；计算节点本身可完全离线。服务器先 claim：
 
 ```bash
+python scripts/mechanism_git.py claim <task_id> \
+  --worktree-root /srv/vwf-mechanism-worktrees \
+  --worker-id gpu-01
+
+cd /srv/vwf-mechanism-worktrees/<task_id>
 python scripts/mechanism_task.py validate-request <task_id>
 python scripts/mechanism_task.py result-template <task_id>
 
 # 按 request 指定的 protocol/tier 执行现有 FoldX/GROMACS/analysis runner
 # 写 mechanism_tasks/results/<task_id>/result.json
 
-python scripts/mechanism_task.py validate-result \
-  <task_id> mechanism_tasks/results/<task_id>/result.json
-
-git add mechanism_tasks/results/<task_id>
-git commit -m "result: return <task_id>"
-git push origin codex/compute/<task_id>
+python scripts/mechanism_git.py return <task_id> --worktree "$PWD"
 ```
 
-服务器不应提交 `.xtc/.trr` 等大文件；只提交轻量 JSON/CSV、QC、manifest、必要代表图/结构，并用 artifact SHA-256 指向外部对象存储或服务器归档。
+claim 从 task branch 建立 `mechanism-result/<task_id>` 独立 worktree 并立即推送 claim commit；并发 worker 的第二次 claim 会因 result branch 已存在或 non-fast-forward push 而失败。`return` 会再次校验 request、result、measurement、QC 和每个 artifact 的实际字节，只提交 result、FHIR bundle 和明确声明的 compact artifacts。服务器不应提交 `.xtc/.trr` 等大文件。
+
+若已有固定 wrapper，可以把命令保存在服务器本地 allowlist 中并运行：
+
+```bash
+python scripts/mechanism_git.py run <task_id> \
+  --worktree /srv/vwf-mechanism-worktrees/<task_id> \
+  --runner-config /etc/vwf/worker_config.json
+```
+
+allowlist 以 protocol ID 为键，支持 `{request}`、`{result}`、`{template}`、`{task_id}` 和 `{repo_root}` 占位符。配置必须来自服务器，Task/registry 不能提供任何可执行命令。
 
 ### 4.3 本地 Agent：验收并恢复推理
 
 ```bash
-git fetch origin codex/compute/<task_id>
-# review 后把 result commit 合并或 cherry-pick 到当前研究分支
-
-python scripts/mechanism_task.py ingest-result \
-  <task_id> mechanism_tasks/results/<task_id>/result.json
+python scripts/mechanism_git.py collect <task_id>
 ```
 
-只有生成的 `mechanism_tasks/ingested/<task_id>/bundle.fhir.json` 能进入 Stage 2G/Stage 3。原始曲线、未经 QC 的数值或自然语言“结论”不得直接进入 reasoning prompt。
+`collect` 在临时 detached worktree 校验 result branch，不需要把服务器分支 merge 到当前分支；通过后才按 append-only 规则复制 request/result/compact artifacts 并生成 FHIR bundle。只有 `mechanism_tasks/ingested/<task_id>/bundle.fhir.json` 能进入 Stage 2G/Stage 3。
+
+LangGraph 提交与恢复：
+
+```bash
+python scripts/run_mechanism_workflow.py \
+  --thread-id <case-and-gap-id> --publish-to-git submit proposal.json
+
+python scripts/mechanism_git.py collect <task_id>
+
+python scripts/run_mechanism_workflow.py \
+  --thread-id <case-and-gap-id> resume
+```
+
+第一次命令在 `awaiting_mechanism_compute` interrupt 保存 SQLite checkpoint；第三次从同一 checkpoint 恢复并返回经过验证的 FHIR bundle，而不是整例重跑。
 
 ## 5. 研究设计收益与风险
 
@@ -197,14 +221,14 @@ python scripts/mechanism_task.py ingest-result \
 | 将 AI/MD 当 PS3 或诊断确认 | contract 和 server Agent 同时禁止；报告只写 mechanism consistency |
 | Git 并发/大文件/PHI 风险 | 一任务一分支；raw trajectory 外置；opaque ID；大规模后换真正队列/对象存储 |
 
-## 6. 后续实施顺序
+## 6. 剩余实施顺序
 
-当前提交完成的是最关键、且不依赖 GPU 的协议/交接骨架。下一步按以下顺序接线：
+控制面、Git transport、通用 server-runner 接口及 LangGraph interrupt/resume 已完成。剩余工作是科学执行面和主流程决策接线：
 
-1. **Runner adapter**：把现有 7A6O/3GXB/GROMACS/FoldX 脚本映射到 protocol measurement IDs，先完成 2B，再完成 2A、A1-A2。
+1. **服务器 protocol wrapper**：把现有 7A6O/3GXB/GROMACS/FoldX 输出严格映射到 registry measurement IDs，先完成 2B，再完成 2A、A1-A2。通用 runner 已就绪，但示例 `/opt/vwf/bin/...` 必须替换为服务器真实 wrapper。
 2. **Calibration**：已知 2B vs 2M、2A experimental positives/negatives 做 blind calibration；产出固定 calibration-set ID 和阈值/相似度模型。
-3. **LangGraph interrupt/resume**：Stage 2 输出 Task 后保存 checkpoint 并停止；result branch 合入后读取 FHIR bundle，从 Stage 2G 恢复，而不是整例重跑。
-4. **Result bank emulator**：在 GPU 闭环完成前，用已有 precomputed results 回放相同 Task/Result contract，先测 acquisition policy。
+3. **主 Clinical Agent policy 接线**：当前 checkpointed mechanism 子图接受已验证 `TaskProposal`。待主三阶段 Agent 明确输出 evidence gap/VOI 后，将该子图组合到 Stage 2；不能用 domain 规则偷偷替 Agent 生成 subtype。
+4. **Result bank emulator**：在 GPU 结果积累前，用已有 precomputed results 回放相同 Task/Result contract，先测 acquisition policy。
 5. **三层评估**：
    - Level I tool validity：simulation vs experimental molecular phenotype；
    - Level II acquisition policy：缺证据病例是否选对 mechanism/protocol；
@@ -215,8 +239,11 @@ python scripts/mechanism_task.py ingest-result \
 v1 不能以“能生成 Task”为验收结束，至少需要：
 
 - request 在任意机器上产生相同 registry/protocol digest；
+- 不存在的 commit、commit 内 registry 不匹配、source commit 非任务分支祖先时必须拒绝；
 - server 无法提交缺失 required measurement 或错误 comparator 的 QC-passing result；
 - 改 request/protocol 任一字节会导致 digest 校验失败；
+- artifact 缺失、SHA-256 不符、绝对/越界/symlink 路径必须拒绝；
+- 并发 worker 只能有一个成功创建 result/claim branch；
 - A1 candidate space 始终包含 2B、两类 2M、边界/分泌和 unknown，而非 `A1 = 2B`；
 - Result 转换后的 FHIR Observation 保留 case、matched WT、signed delta、units、QC、benchmark、limitations 与 artifact hash；
 - Stage 3 只消费已验证 FHIR bundle，并能输出 supported/contradicted/inconclusive，而不是 `MD confirms subtype`。

@@ -1,0 +1,25 @@
+{
+  "runners": {
+    "VWF_A1_2B_GOF_LEGAN2023_V1": [
+      "/opt/vwf/bin/run-a1-2b-protocol",
+      "--request",
+      "{request}",
+      "--result",
+      "{result}"
+    ],
+    "VWF_A1A2_INTERFACE_SEIDIZADEH2024_V1": [
+      "/opt/vwf/bin/run-a1a2-interface-protocol",
+      "--request",
+      "{request}",
+      "--result",
+      "{result}"
+    ],
+    "VWF_A2_PROTEOLYSIS_SEIDIZADEH2025_V1": [
+      "/opt/vwf/bin/run-a2-proteolysis-protocol",
+      "--request",
+      "{request}",
+      "--result",
+      "{result}"
+    ]
+  }
+}

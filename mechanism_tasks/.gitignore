@@ -1,0 +1,3 @@
+/checkpoints.sqlite
+/checkpoints.sqlite-*
+/results/*/result.template.json
