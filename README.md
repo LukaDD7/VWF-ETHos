@@ -116,6 +116,7 @@ print(f"临床建议: {result['recommendation']}")
 | **技术实现文档** | 代码详解、API参考、扩展开发 | [TECHNICAL_DOCUMENTATION.md](TECHNICAL_DOCUMENTATION.md) |
 | **AlphaGenome报告** | Type-2 AlphaGenome特征分析 | [AlphaGenome_Type2_Analysis_Report.md](AlphaGenome_Type2_Analysis_Report.md) |
 | **VWF参考表说明** | Type-2变异参考表使用指南 | [VWF_Type2_AF3_Reference_Table_README.md](VWF_Type2_AF3_Reference_Table_README.md) |
+| **异步机制任务协议** | 机制假设、FHIR Task/Result、offline GPU Git handoff | [docs/MECHANISM_GUIDED_ASYNC_GIT_WORKFLOW_20260910.md](docs/MECHANISM_GUIDED_ASYNC_GIT_WORKFLOW_20260910.md) |
 
 ### 代码结构
 

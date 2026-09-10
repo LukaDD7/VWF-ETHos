@@ -1,0 +1,430 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "vwd-mechanism-guided-acquisition-v1",
+  "version": "2026.09.10",
+  "canonical_base": "https://vwf-ethos.org/fhir",
+  "research_only": true,
+  "planning_policy": {
+    "minimum_expected_information_gain": 0.1,
+    "dominant_posterior_threshold": 0.85,
+    "minimum_competing_hypotheses": 1,
+    "require_unknown_hypothesis": true
+  },
+  "mechanisms": [
+    {
+      "mechanism_id": "M1_SECRETION",
+      "subtype_targets": ["type_1", "type_2A", "type_3"],
+      "applicable_domains": ["*"],
+      "applicable_variant_classes": ["missense"],
+      "causal_chain": ["folding_or_assembly_defect", "ER_retention_or_abnormal_storage", "reduced_secretion", "VWF_Ag_reduction"],
+      "experimental_endpoint": "Recombinant expression/secretion, intracellular retention, or Weibel-Palade-body phenotype",
+      "computational_observability": "low",
+      "allowed_protocols": [],
+      "limitations": ["Short single-domain MD does not directly measure secretion or intracellular trafficking"]
+    },
+    {
+      "mechanism_id": "M2_CLEARANCE",
+      "subtype_targets": ["type_1C"],
+      "applicable_domains": ["*"],
+      "applicable_variant_classes": ["*"],
+      "causal_chain": ["variant_or_glycan_effect", "increased_plasma_clearance", "shortened_VWF_survival", "VWF_Ag_reduction"],
+      "experimental_endpoint": "VWFpp/VWF:Ag or DDAVP decay kinetics",
+      "computational_observability": "none",
+      "allowed_protocols": [],
+      "limitations": ["No v1 structural protocol is sufficiently discriminative for plasma clearance"]
+    },
+    {
+      "mechanism_id": "M3_SEVERE_LOF",
+      "subtype_targets": ["type_3"],
+      "applicable_domains": ["*"],
+      "applicable_variant_classes": ["nonsense", "frameshift", "splice", "CNV", "missense"],
+      "causal_chain": ["biallelic_severe_loss_of_function", "near_absent_VWF", "secondary_FVIII_reduction", "type_3_phenotype"],
+      "experimental_endpoint": "Biallelic/phase-aware genetics plus near-absent VWF expression",
+      "computational_observability": "low",
+      "allowed_protocols": [],
+      "limitations": ["A single heterozygous SNV cannot establish type 3", "Null, splice, and CNV mechanisms are not MD-first"]
+    },
+    {
+      "mechanism_id": "M4_2A_ASSEMBLY",
+      "subtype_targets": ["type_2A"],
+      "applicable_domains": ["D2", "D3", "CK", "A2", "*"],
+      "applicable_variant_classes": ["missense"],
+      "causal_chain": ["folding_or_dimer_multimer_assembly_defect", "intracellular_retention_or_abnormal_multimerization", "HMW_multimer_reduction", "platelet_activity_reduction"],
+      "experimental_endpoint": "Recombinant multimerization/secretion assay",
+      "computational_observability": "low",
+      "allowed_protocols": [],
+      "limitations": ["Monomer MD cannot directly establish abnormal multimerization"]
+    },
+    {
+      "mechanism_id": "M5_2A_ADAMTS13",
+      "subtype_targets": ["type_2A"],
+      "applicable_domains": ["A2"],
+      "applicable_variant_classes": ["missense"],
+      "causal_chain": ["A2_structural_perturbation", "altered_shear_unfolding_or_cleavage_site_exposure", "increased_ADAMTS13_susceptibility", "HMW_multimer_reduction"],
+      "experimental_endpoint": "Recombinant ADAMTS13 susceptibility with multimer phenotype",
+      "computational_observability": "high",
+      "allowed_protocols": ["VWF_A2_PROTEOLYSIS_SEIDIZADEH2025_V1"],
+      "limitations": ["Scaled MD is an enhanced-sampling surrogate and not literal blood-flow shear"]
+    },
+    {
+      "mechanism_id": "M6_2B_A1_GOF",
+      "subtype_targets": ["type_2B"],
+      "applicable_domains": ["AIM", "A1", "AIM-A1"],
+      "applicable_variant_classes": ["missense"],
+      "causal_chain": ["AIM_A1_autoinhibition_reduction", "activated_A1_population_increase", "GPIb_alpha_binding_gain", "platelet_capture_and_possible_HMW_depletion"],
+      "experimental_endpoint": "Enhanced GPIb/platelet binding, HDX accessibility, and AIM mechanical release",
+      "computational_observability": "high",
+      "allowed_protocols": ["VWF_A1_2B_GOF_LEGAN2023_V1"],
+      "limitations": ["Equilibrium MD cannot directly measure platelet binding under flow or mechanical release force"]
+    },
+    {
+      "mechanism_id": "M7_2M_A1_DISORDER",
+      "subtype_targets": ["type_2M"],
+      "applicable_domains": ["A1", "AIM-A1"],
+      "applicable_variant_classes": ["missense"],
+      "causal_chain": ["local_A1_secondary_structure_disorder", "GPIb_interface_or_scaffold_disruption", "GPIb_binding_loss", "platelet_adhesion_reduction"],
+      "experimental_endpoint": "A1 folding/HDX plus reduced GPIb binding and shear-flow platelet adhesion",
+      "computational_observability": "medium",
+      "allowed_protocols": ["VWF_A1_2B_GOF_LEGAN2023_V1"],
+      "limitations": ["A 2B-oriented protocol can contradict a GOF pattern but cannot alone confirm preserved multimers"]
+    },
+    {
+      "mechanism_id": "M8_2M_A1_HYPERSTABLE",
+      "subtype_targets": ["type_2M"],
+      "applicable_domains": ["A1", "AIM-A1"],
+      "applicable_variant_classes": ["missense"],
+      "causal_chain": ["A1_hyperstabilization_or_excess_rigidity", "required_shear_dependent_transition_reduction", "GPIb_attachment_loss", "platelet_adhesion_reduction"],
+      "experimental_endpoint": "Thermodynamic stability plus reduced GPIb binding/shear-flow adhesion",
+      "computational_observability": "medium",
+      "allowed_protocols": ["VWF_A1_2B_GOF_LEGAN2023_V1"],
+      "limitations": ["Equilibrium trajectory rigidity is not a calibrated melting-temperature or flow assay"]
+    },
+    {
+      "mechanism_id": "M9_2M_COLLAGEN",
+      "subtype_targets": ["type_2M"],
+      "applicable_domains": ["A1", "A3"],
+      "applicable_variant_classes": ["missense"],
+      "causal_chain": ["collagen_binding_interface_defect", "collagen_adhesion_reduction", "qualitative_VWF_dysfunction", "preserved_HMW_multimers"],
+      "experimental_endpoint": "Recombinant collagen binding with preserved multimers",
+      "computational_observability": "medium",
+      "allowed_protocols": [],
+      "limitations": ["A collagen-specific production protocol is not enabled in v1"]
+    },
+    {
+      "mechanism_id": "M10_2M2A_INTERFACE",
+      "subtype_targets": ["type_2M", "type_2A", "type_2M_2A"],
+      "applicable_domains": ["A1", "A2", "A1-A2"],
+      "applicable_variant_classes": ["missense"],
+      "causal_chain": ["A1_A2_interface_perturbation", "GPIb_loss_of_function_plus_mild_multimer_or_proteolysis_change", "mixed_functional_phenotype", "type_2M_2A_like_state"],
+      "experimental_endpoint": "Full VWD phenotyping including GPIb activity, collagen binding, and multimer profile",
+      "computational_observability": "high",
+      "allowed_protocols": ["VWF_A1A2_INTERFACE_SEIDIZADEH2024_V1"],
+      "limitations": ["The A1-A2 starting assembly is modeled rather than a single experimental complex"]
+    },
+    {
+      "mechanism_id": "M11_2N_FVIII",
+      "subtype_targets": ["type_2N"],
+      "applicable_domains": ["D-prime", "D'D3", "D3"],
+      "applicable_variant_classes": ["missense"],
+      "causal_chain": ["VWF_FVIII_interface_disruption", "FVIII_binding_reduction", "FVIII_half_life_reduction", "disproportionately_low_FVIII_C"],
+      "experimental_endpoint": "VWF:FVIIIB or recombinant FVIII-binding assay",
+      "computational_observability": "high",
+      "allowed_protocols": [],
+      "limitations": ["The 2N production protocol is reserved for v2 pending calibrated mutant-effect benchmarking"]
+    },
+    {
+      "mechanism_id": "M_UNKNOWN",
+      "subtype_targets": ["unresolved"],
+      "applicable_domains": ["*"],
+      "applicable_variant_classes": ["*"],
+      "causal_chain": ["none_of_the_predefined_mechanisms_is_sufficiently_supported"],
+      "experimental_endpoint": "Expert review and orthogonal experimental phenotyping",
+      "computational_observability": "none",
+      "allowed_protocols": [],
+      "limitations": ["This open-set hypothesis must remain available at every planning step"]
+    }
+  ],
+  "measurements": [
+    {
+      "definition_id": "RMSD_GLOBAL",
+      "layer": "generic",
+      "source": "trajectory",
+      "semantic": "global_structural_deviation_after_alignment",
+      "value_shape": "scalar",
+      "default_unit": "nm",
+      "limitations": ["Global RMSD is not a mechanism or pathogenicity score"]
+    },
+    {
+      "definition_id": "RMSF_REGION",
+      "layer": "mechanism",
+      "source": "trajectory",
+      "semantic": "residue_or_region_local_flexibility",
+      "value_shape": "scalar",
+      "default_unit": "nm",
+      "limitations": ["Requires identical numbering, alignment, atom selection, and sampling"]
+    },
+    {
+      "definition_id": "RADIUS_OF_GYRATION",
+      "layer": "generic",
+      "source": "trajectory",
+      "semantic": "global_or_multidomain_compactness",
+      "value_shape": "scalar",
+      "default_unit": "nm",
+      "limitations": ["Compactness alone has no subtype direction"]
+    },
+    {
+      "definition_id": "SASA_TOTAL",
+      "layer": "generic",
+      "source": "trajectory",
+      "semantic": "whole_construct_solvent_accessibility",
+      "value_shape": "scalar",
+      "default_unit": "nm2",
+      "limitations": ["Whole-protein SASA can obscure local mechanistic exposure"]
+    },
+    {
+      "definition_id": "SASA_REGION",
+      "layer": "mechanism",
+      "source": "trajectory",
+      "semantic": "mechanism_grounded_region_solvent_accessibility",
+      "value_shape": "scalar",
+      "default_unit": "nm2",
+      "limitations": ["SASA is geometric exposure and is not equivalent to HDX"]
+    },
+    {
+      "definition_id": "CONTACT_OCCUPANCY",
+      "layer": "mechanism",
+      "source": "trajectory",
+      "semantic": "fraction_of_frames_retaining_a_defined_structural_contact",
+      "value_shape": "scalar",
+      "default_unit": "proportion",
+      "limitations": ["Depends on predeclared atom groups and distance cutoff"]
+    },
+    {
+      "definition_id": "HBOND_OCCUPANCY",
+      "layer": "mechanism",
+      "source": "trajectory",
+      "semantic": "hydrogen_bond_network_stability",
+      "value_shape": "scalar",
+      "default_unit": "proportion",
+      "limitations": ["Depends on predeclared geometry and donor/acceptor selections"]
+    },
+    {
+      "definition_id": "SALT_BRIDGE_OCCUPANCY",
+      "layer": "mechanism",
+      "source": "trajectory",
+      "semantic": "electrostatic_network_stability",
+      "value_shape": "scalar",
+      "default_unit": "proportion",
+      "limitations": ["Contact retention is not equivalent to binding affinity"]
+    },
+    {
+      "definition_id": "SECONDARY_STRUCTURE_OCCUPANCY",
+      "layer": "mechanism",
+      "source": "trajectory_DSSP",
+      "semantic": "fraction_of_frames_with_predeclared_secondary_structure",
+      "value_shape": "scalar",
+      "default_unit": "proportion",
+      "limitations": ["DSSP occupancy is a computational surrogate for local fold integrity"]
+    },
+    {
+      "definition_id": "PCA_CONFORMATIONAL_STATES",
+      "layer": "mechanism",
+      "source": "trajectory",
+      "semantic": "population_and_separation_of_major_conformational_basins",
+      "value_shape": "mapping",
+      "default_unit": null,
+      "limitations": ["PCA basis and clustering must be fitted jointly to matched trajectories"]
+    },
+    {
+      "definition_id": "RMSD_SASA_JOINT_STATES",
+      "layer": "mechanism",
+      "source": "trajectory",
+      "semantic": "joint_population_of_structural_deviation_and_solvent_exposure",
+      "value_shape": "mapping",
+      "default_unit": null,
+      "limitations": ["State boundaries must be declared before case interpretation"]
+    },
+    {
+      "definition_id": "MM_PBSA",
+      "layer": "comparison",
+      "source": "docked_or_MD_complex",
+      "semantic": "relative_interaction_energetic_proxy",
+      "value_shape": "scalar",
+      "default_unit": "kcal/mol",
+      "limitations": ["MM-PBSA is not an experimental Kd or an exact binding free energy"]
+    }
+  ],
+  "protocols": [
+    {
+      "protocol_id": "VWF_A2_PROTEOLYSIS_SEIDIZADEH2025_V1",
+      "version": "1.0.0",
+      "title": "VWF A2 proteolysis and ADAMTS13-surrogate protocol",
+      "status": "active",
+      "submission_enabled": true,
+      "research_only": true,
+      "mechanisms": ["M5_2A_ADAMTS13"],
+      "eligible_domains": ["A2"],
+      "eligible_variant_classes": ["missense"],
+      "tool_family": ["FOLDX_BUILD_MODEL", "PLAIN_MD", "SCALED_MD", "HADDOCK", "MM_PBSA"],
+      "starting_model": {
+        "pdb_id": "3GXB",
+        "construct": "VWF A2 residues 1495-1671",
+        "source_priority": "experimental_structure",
+        "residue_numbering": "canonical_VWF"
+      },
+      "variant_construction": {
+        "tool": "FoldX",
+        "steps": ["validate_residue_identity", "RepairPDB", "BuildModel", "local_structure_QC"],
+        "forbid": ["manual_PDB_residue_name_replacement", "unvalidated_numbering_offset"]
+      },
+      "execution_tiers": {
+        "pilot": {"replicates": 1, "plain_md_ns": 20, "scaled_md_ns": 20, "docking": false},
+        "production": {"replicates": 3, "plain_md_ns": 100, "scaled_md_ns": 100, "docking": true}
+      },
+      "fixed_parameters": {
+        "force_field": "AMBER99SB-ILDN",
+        "water_model": "TIP3P",
+        "neutralization": "Na+",
+        "minimization": "steepest_descent_to_100_kJ_mol-1_nm-1",
+        "equilibration": ["500_ps_NPT_1_atm_300_K_heavy_atom_restraint_1000_kJ_mol-1_nm-2", "500_ps_NVT_300_K"],
+        "time_step_fs": 2,
+        "constraints": "LINCS",
+        "scaled_md_lambda": 0.8,
+        "docking": "HADDOCK_with_literature_defined_A2_ADAMTS13_spacer_restraints",
+        "post_docking": "gmx_MMPBSA"
+      },
+      "controls": [
+        {"control_id": "A2_3GXB_MATCHED_WT", "role": "matched_wt", "description": "WT built and run with identical preparation, tier, and analysis"},
+        {"control_id": "A2_KNOWN_2A_POSITIVE_SET", "role": "positive_reference", "description": "Known A2 type-2A variants with experimental ADAMTS13/multimer evidence"},
+        {"control_id": "A2_BENIGN_OR_NON_2A_SET", "role": "negative_reference", "description": "Same-domain benign or experimentally non-2A references"}
+      ],
+      "measurements": [
+        {"measurement_id": "A2_BACKBONE_RMSD", "definition_id": "RMSD_GLOBAL", "required": true, "roi": {"residues": "1495-1671", "atoms": "backbone"}, "comparison": "case_vs_matched_wt", "expected_pattern": "context_only_unless_linked_to_local_exposure"},
+        {"measurement_id": "A2_TOTAL_SASA", "definition_id": "SASA_TOTAL", "required": true, "roi": {"residues": "1495-1671"}, "comparison": "case_vs_matched_wt", "expected_pattern": "interpret_jointly_with_RMSD"},
+        {"measurement_id": "A2_CLEAVAGE_1603_1606_SASA", "definition_id": "SASA_REGION", "required": true, "roi": {"residues": "1603-1606", "biological_site": "Tyr1605-Met1606_ADAMTS13_cleavage"}, "comparison": "case_vs_matched_wt", "expected_pattern": "increased_exposure_is_consistent_with_proteolysis_susceptibility"},
+        {"measurement_id": "A2_ALPHA6_INTERNAL_CONTACT_OCCUPANCY", "definition_id": "CONTACT_OCCUPANCY", "required": true, "roi": {"region_a": "A2_alpha6", "region_b": "A2_alpha6", "cutoff_nm": 0.45}, "comparison": "case_vs_matched_wt", "expected_pattern": "changed_internal_coupling_requires_joint_interpretation"},
+        {"measurement_id": "A2_ALPHA6_REST_CONTACT_OCCUPANCY", "definition_id": "CONTACT_OCCUPANCY", "required": true, "roi": {"region_a": "A2_alpha6", "region_b": "rest_of_A2", "cutoff_nm": 0.45}, "comparison": "case_vs_matched_wt", "expected_pattern": "changed_domain_coupling_requires_joint_interpretation"},
+        {"measurement_id": "A2_RMSD_SASA_STATE_POPULATION", "definition_id": "RMSD_SASA_JOINT_STATES", "required": true, "roi": {"fit": "joint_WT_mutant", "predeclare_state_boundaries": true}, "comparison": "case_vs_matched_wt", "expected_pattern": "shift_toward_high_exposure_states_supports_partial_opening"},
+        {"measurement_id": "A2_PCA_STATE_POPULATION", "definition_id": "PCA_CONFORMATIONAL_STATES", "required": false, "roi": {"atoms": "backbone", "fit": "joint_WT_mutant"}, "comparison": "case_vs_matched_wt", "expected_pattern": "state_shift_or_heterogeneity_is_contextual"},
+        {"measurement_id": "A2_ADAMTS13_MM_PBSA", "definition_id": "MM_PBSA", "required": false, "roi": {"complex": "A2_ADAMTS13_spacer"}, "comparison": "case_vs_matched_wt", "expected_pattern": "relative_energy_change_is_a_binding_proxy_not_a_Kd"}
+      ],
+      "qc_gates": ["residue_identity_and_numbering_valid", "same_starting_scaffold_for_WT_and_mutant", "energy_minimization_pass", "equilibration_pass", "no_catastrophic_structure_failure", "analysis_selection_and_units_recorded", "replicate_consistency_reported_for_production"],
+      "provenance": [
+        {"citation": "Seidizadeh et al., RPTH 2025", "doi": "10.1016/j.rpth.2025.103233", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12657285/"}
+      ],
+      "interpretation_boundary": ["Do not convert an MD metric directly to pathogenicity or PS3", "Do not claim literal shear from scaled MD", "A 2A mechanism remains unconfirmed without orthogonal functional/multimer evidence"]
+    },
+    {
+      "protocol_id": "VWF_A1A2_INTERFACE_SEIDIZADEH2024_V1",
+      "version": "1.0.0",
+      "title": "VWF A1-A2 interface mixed 2M/2A protocol",
+      "status": "active",
+      "submission_enabled": true,
+      "research_only": true,
+      "mechanisms": ["M10_2M2A_INTERFACE"],
+      "eligible_domains": ["A1", "A2", "A1-A2"],
+      "eligible_variant_classes": ["missense"],
+      "tool_family": ["ALPHAFOLD2_ASSEMBLY", "FOLDX_BUILD_MODEL", "PLAIN_MD"],
+      "starting_model": {
+        "pdb_components": ["7EOW_A1", "7GBX_A2"],
+        "construct": "A1-linker-A2",
+        "assembly": "AlphaFold2_then_200_ns_Langevin_relaxation",
+        "source_priority": "experimental_domains_plus_modeled_relative_arrangement",
+        "residue_numbering": "canonical_VWF"
+      },
+      "variant_construction": {
+        "tool": "FoldX",
+        "steps": ["validate_residue_identity", "RepairPDB", "BuildModel", "local_structure_QC"],
+        "forbid": ["independently_repredicting_WT_and_mutant_without_matched_scaffold"]
+      },
+      "execution_tiers": {
+        "pilot": {"replicates": 1, "plain_md_ns": 20},
+        "production": {"replicates": 3, "plain_md_ns": 200}
+      },
+      "fixed_parameters": {
+        "matched_starting_complex_required": true,
+        "explicit_solvent": true,
+        "analysis_alignment": "joint_WT_mutant_backbone",
+        "contact_definition_nm": 0.45
+      },
+      "controls": [
+        {"control_id": "A1A2_MATCHED_WT", "role": "matched_wt", "description": "WT A1-linker-A2 assembly from the same model and preparation"},
+        {"control_id": "A1A2_R1315_R1374_REFERENCE_SET", "role": "positive_reference", "description": "Experimentally phenotyped interface variants from Seidizadeh 2024"},
+        {"control_id": "A1A2_NON_INTERFACE_CONTROL_SET", "role": "negative_reference", "description": "Same-construct non-interface references"}
+      ],
+      "measurements": [
+        {"measurement_id": "A1A2_RADIUS_OF_GYRATION", "definition_id": "RADIUS_OF_GYRATION", "required": true, "roi": {"construct": "A1-linker-A2"}, "comparison": "case_vs_matched_wt", "expected_pattern": "compact_or_extended_geometry_is_variant_specific_not_subtype_universal"},
+        {"measurement_id": "A1A2_BACKBONE_RMSD", "definition_id": "RMSD_GLOBAL", "required": true, "roi": {"construct": "A1-linker-A2", "atoms": "backbone"}, "comparison": "case_vs_matched_wt", "expected_pattern": "global_context_only"},
+        {"measurement_id": "A1A2_INTERFACE_RMSF", "definition_id": "RMSF_REGION", "required": true, "roi": {"region": "predeclared_A1_A2_interface_and_literature_remote_ROIs"}, "comparison": "case_vs_matched_wt", "expected_pattern": "local_or_long_range_dynamic_redistribution"},
+        {"measurement_id": "A1A2_INTERFACE_CONTACT_OCCUPANCY", "definition_id": "CONTACT_OCCUPANCY", "required": true, "roi": {"region_a": "A1_interface", "region_b": "A2_interface", "cutoff_nm": 0.45}, "comparison": "case_vs_matched_wt", "expected_pattern": "loss_or_reorganization_of_domain_coupling"},
+        {"measurement_id": "A1A2_PCA_STATE_POPULATION", "definition_id": "PCA_CONFORMATIONAL_STATES", "required": true, "roi": {"atoms": "backbone", "fit": "joint_WT_mutant"}, "comparison": "case_vs_matched_wt", "expected_pattern": "altered_basin_population_or_heterogeneity"}
+      ],
+      "qc_gates": ["component_PDB_identity_valid", "linker_and_relative_domain_arrangement_QC", "same_starting_assembly_for_WT_and_mutant", "equilibration_pass", "interface_remains_physically_valid", "replicate_consistency_reported_for_production"],
+      "provenance": [
+        {"citation": "Seidizadeh et al., Blood Advances 2024", "doi": "10.1182/bloodadvances.2024012626", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10997909/"}
+      ],
+      "interpretation_boundary": ["A1 or A2 location alone must not encode a 2M/2A answer", "Modeled domain arrangement increases structural uncertainty", "Simulation consistency does not replace multimer or GPIb/collagen phenotyping"]
+    },
+    {
+      "protocol_id": "VWF_A1_2B_GOF_LEGAN2023_V1",
+      "version": "1.0.0",
+      "title": "VWF AIM-A1 type-2B activated-state surrogate protocol",
+      "status": "active",
+      "submission_enabled": true,
+      "research_only": true,
+      "mechanisms": ["M6_2B_A1_GOF", "M7_2M_A1_DISORDER", "M8_2M_A1_HYPERSTABLE"],
+      "eligible_domains": ["AIM", "A1", "AIM-A1"],
+      "eligible_variant_classes": ["missense"],
+      "tool_family": ["FOLDX_BUILD_MODEL", "PLAIN_MD", "DSSP", "TRAJECTORY_ANALYSIS"],
+      "starting_model": {
+        "pdb_id": "7A6O",
+        "construct": "AIM-A1 experimental structure",
+        "interface_reference_pdb": "1SQ0",
+        "source_priority": "experimental_structure",
+        "residue_numbering": "canonical_VWF"
+      },
+      "variant_construction": {
+        "tool": "FoldX",
+        "steps": ["validate_residue_identity", "RepairPDB", "BuildModel", "disulfide_and_clash_QC"],
+        "forbid": ["independently_predicted_mutant_backbone_as_primary_comparator", "unvalidated_numbering_offset"]
+      },
+      "execution_tiers": {
+        "pilot": {"replicates": 1, "plain_md_ns": 20},
+        "production": {"replicates": 3, "plain_md_ns": 100}
+      },
+      "fixed_parameters": {
+        "matched_WT_same_protocol": true,
+        "alpha3_beta4_roi": "1366-1384",
+        "beta3_alpha2_roi": "1320-1340",
+        "contact_definition_nm": 0.45,
+        "pca_fit": "joint_WT_mutant_and_calibration_controls",
+        "force_simulation": "reserved_not_enabled_in_v1"
+      },
+      "controls": [
+        {"control_id": "AIM_A1_7A6O_MATCHED_WT", "role": "matched_wt", "description": "7A6O WT prepared and simulated identically"},
+        {"control_id": "AIM_A1_KNOWN_2B_SET", "role": "positive_reference", "description": "Known 2B variants including V1316M and R1341Q with experimental mechanism evidence"},
+        {"control_id": "AIM_A1_KNOWN_2M_SET", "role": "negative_reference", "description": "Known A1 type-2M variants including disorder and hyperstable mechanisms"},
+        {"control_id": "AIM_A1_BOUNDARY_SET", "role": "boundary_reference", "description": "Mild/heterogeneous 2B and A1-A2 interface variants"}
+      ],
+      "measurements": [
+        {"measurement_id": "AIM_A1_BACKBONE_RMSD", "definition_id": "RMSD_GLOBAL", "required": true, "roi": {"construct": "AIM-A1", "atoms": "backbone"}, "comparison": "case_vs_matched_wt", "expected_pattern": "QC_and_global_context_only"},
+        {"measurement_id": "A1_ALPHA3BETA4_SASA", "definition_id": "SASA_REGION", "required": true, "roi": {"residues": "1366-1384", "label": "alpha3_beta4_loop"}, "comparison": "case_vs_matched_wt", "expected_pattern": "increased_exposure_is_part_of_the_2B_HDX_derived_signature"},
+        {"measurement_id": "A1_ALPHA3BETA4_RMSF", "definition_id": "RMSF_REGION", "required": true, "roi": {"residues": "1366-1384", "label": "alpha3_beta4_loop"}, "comparison": "case_vs_matched_wt", "expected_pattern": "increased_flexibility_strengthens_but_does_not_duplicate_SASA"},
+        {"measurement_id": "A1_BETA3ALPHA2_SASA", "definition_id": "SASA_REGION", "required": true, "roi": {"residues": "1320-1340", "label": "beta3_alpha2_loop"}, "comparison": "case_vs_matched_wt", "expected_pattern": "additional_exposure_may_track_high_affinity_or_severity_state"},
+        {"measurement_id": "A1_BETA3ALPHA2_RMSF", "definition_id": "RMSF_REGION", "required": true, "roi": {"residues": "1320-1340", "label": "beta3_alpha2_loop"}, "comparison": "case_vs_matched_wt", "expected_pattern": "interpret_with_SASA_and_contacts"},
+        {"measurement_id": "AIM_A1_CONTACT_OCCUPANCY", "definition_id": "CONTACT_OCCUPANCY", "required": true, "roi": {"region_a": "AIM", "region_b": "A1", "cutoff_nm": 0.45}, "comparison": "case_vs_matched_wt", "expected_pattern": "reduced_occupancy_is_consistent_with_weakened_autoinhibition"},
+        {"measurement_id": "AIM_A1_HBOND_OCCUPANCY", "definition_id": "HBOND_OCCUPANCY", "required": true, "roi": {"region_a": "AIM", "region_b": "A1"}, "comparison": "case_vs_matched_wt", "expected_pattern": "network_loss_is_supportive_only_in_a_composite_pattern"},
+        {"measurement_id": "AIM_A1_SALT_BRIDGE_OCCUPANCY", "definition_id": "SALT_BRIDGE_OCCUPANCY", "required": true, "roi": {"region_a": "AIM", "region_b": "A1"}, "comparison": "case_vs_matched_wt", "expected_pattern": "network_loss_is_supportive_only_in_a_composite_pattern"},
+        {"measurement_id": "A1_HELICAL_STRUCTURE_OCCUPANCY", "definition_id": "SECONDARY_STRUCTURE_OCCUPANCY", "required": true, "roi": {"method": "DSSP", "region": "A1_helices_predeclared"}, "comparison": "case_vs_matched_wt", "expected_pattern": "loss_supports_disorder_whereas_excess_retention_with_low_dynamics_can_support_hyperstability"},
+        {"measurement_id": "AIM_A1_PCA_STATE_POPULATION", "definition_id": "PCA_CONFORMATIONAL_STATES", "required": true, "roi": {"atoms": "backbone", "fit": "joint_WT_case_positive_negative_controls"}, "comparison": "calibration_set", "expected_pattern": "population_shift_toward_calibrated_activated_state"},
+        {"measurement_id": "AIM_A1_RADIUS_OF_GYRATION", "definition_id": "RADIUS_OF_GYRATION", "required": false, "roi": {"construct": "AIM-A1"}, "comparison": "case_vs_matched_wt", "expected_pattern": "global_context_only"}
+      ],
+      "qc_gates": ["7A6O_residue_identity_and_numbering_valid", "disulfide_state_recorded", "same_scaffold_for_WT_and_mutant", "energy_minimization_pass", "equilibration_pass", "AIM_A1_structure_integrity_pass", "joint_PCA_fit_recorded", "replicate_consistency_reported_for_production"],
+      "provenance": [
+        {"citation": "Legan et al., Blood 2023", "doi": "10.1182/blood.2022017239", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10023833/"},
+        {"citation": "Tischer et al., JTH 2025", "doi": "10.1016/j.jtha.2024.12.026", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11972889/"}
+      ],
+      "interpretation_boundary": ["Report mechanism supported, contradicted, or inconclusive; never MD confirms type 2B", "SASA plus RMSF plus contact/secondary-structure evidence is a surrogate for but not equal to HDX", "No v1 force metric may be claimed because force simulation is reserved", "A1 destabilization can occur in both 2B and 2M; direction requires composite calibrated controls"]
+    }
+  ]
+}

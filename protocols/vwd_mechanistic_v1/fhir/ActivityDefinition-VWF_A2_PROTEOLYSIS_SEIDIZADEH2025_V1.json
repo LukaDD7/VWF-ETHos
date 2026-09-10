@@ -1,0 +1,25 @@
+{
+  "code": {
+    "text": "VWD mechanism-specific computational experiment"
+  },
+  "description": "Execute VWF_A2_PROTEOLYSIS_SEIDIZADEH2025_V1@1.0.0; registry digest sha256:d4a66f3884033c937c9a4673b8a56693b2515aefddc65db2560873e48572c95c; protocol digest sha256:655d39044722d8cf8bbdfa5625ed8f0dcdda6da67c7d09698f7b1d47b8c17d82.",
+  "experimental": true,
+  "extension": [
+    {
+      "url": "https://vwf-ethos.org/fhir/StructureDefinition/protocol-digest",
+      "valueString": "sha256:655d39044722d8cf8bbdfa5625ed8f0dcdda6da67c7d09698f7b1d47b8c17d82"
+    },
+    {
+      "url": "https://vwf-ethos.org/fhir/StructureDefinition/research-only",
+      "valueBoolean": true
+    }
+  ],
+  "id": "VWF_A2_PROTEOLYSIS_SEIDIZADEH2025_V1",
+  "kind": "Task",
+  "name": "VWFA2PROTEOLYSISSEIDIZADEH2025V1",
+  "resourceType": "ActivityDefinition",
+  "status": "active",
+  "title": "VWF A2 proteolysis and ADAMTS13-surrogate protocol",
+  "url": "https://vwf-ethos.org/fhir/ActivityDefinition/VWF_A2_PROTEOLYSIS_SEIDIZADEH2025_V1",
+  "version": "1.0.0"
+}

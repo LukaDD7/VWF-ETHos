@@ -1,0 +1,25 @@
+{
+  "code": {
+    "text": "VWD mechanism-specific computational experiment"
+  },
+  "description": "Execute VWF_A1A2_INTERFACE_SEIDIZADEH2024_V1@1.0.0; registry digest sha256:d4a66f3884033c937c9a4673b8a56693b2515aefddc65db2560873e48572c95c; protocol digest sha256:307692a5f08eb5d3dd683dc73f415a418e898a13416ad3fc7bbb07a9bd8d4fcb.",
+  "experimental": true,
+  "extension": [
+    {
+      "url": "https://vwf-ethos.org/fhir/StructureDefinition/protocol-digest",
+      "valueString": "sha256:307692a5f08eb5d3dd683dc73f415a418e898a13416ad3fc7bbb07a9bd8d4fcb"
+    },
+    {
+      "url": "https://vwf-ethos.org/fhir/StructureDefinition/research-only",
+      "valueBoolean": true
+    }
+  ],
+  "id": "VWF_A1A2_INTERFACE_SEIDIZADEH2024_V1",
+  "kind": "Task",
+  "name": "VWFA1A2INTERFACESEIDIZADEH2024V1",
+  "resourceType": "ActivityDefinition",
+  "status": "active",
+  "title": "VWF A1-A2 interface mixed 2M/2A protocol",
+  "url": "https://vwf-ethos.org/fhir/ActivityDefinition/VWF_A1A2_INTERFACE_SEIDIZADEH2024_V1",
+  "version": "1.0.0"
+}

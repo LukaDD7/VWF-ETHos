@@ -1,0 +1,59 @@
+{
+  "patient_id": "EVAL-DEMO-V1316M",
+  "variant": {
+    "gene": "VWF",
+    "hgvs_c": "c.3946G>A",
+    "hgvs_p": "p.Val1316Met",
+    "zygosity": "heterozygous",
+    "domain": "A1",
+    "variant_class": "missense"
+  },
+  "mechanism_id": "M6_2B_A1_GOF",
+  "protocol_id": "VWF_A1_2B_GOF_LEGAN2023_V1",
+  "hypothesis_rationale": "The available phenotype leaves type 2B versus type 2M unresolved, and the A1 variant can plausibly alter AIM-A1 autoinhibition.",
+  "competing_hypotheses": [
+    "M7_2M_A1_DISORDER",
+    "M8_2M_A1_HYPERSTABLE",
+    "M10_2M2A_INTERFACE",
+    "M_UNKNOWN"
+  ],
+  "decision_context": {
+    "evidence_retrieval_complete": true,
+    "evidence_sufficiency": "ambiguous",
+    "candidate_hypotheses": [
+      "M1_SECRETION",
+      "M6_2B_A1_GOF",
+      "M7_2M_A1_DISORDER",
+      "M8_2M_A1_HYPERSTABLE",
+      "M10_2M2A_INTERFACE",
+      "M_UNKNOWN"
+    ],
+    "current_subtype_probabilities": {
+      "type_1": 0.02,
+      "type_2A": 0.04,
+      "type_2B": 0.46,
+      "type_2M": 0.43,
+      "type_2N": 0.02,
+      "type_3": 0.01,
+      "unresolved": 0.02
+    },
+    "current_evidence": [
+      "FHIR evidence retrieval complete",
+      "A1-domain missense variant",
+      "VWF activity/antigen disproportion"
+    ],
+    "missing_evidence": [
+      "low-dose RIPA",
+      "multimer analysis",
+      "variant-matched mechanism measurement"
+    ],
+    "why_this_task_changes_decision": "A calibrated activated-A1 pattern would favor the 2B GOF hypothesis, whereas its absence plus disorder or excessive rigidity would redirect the posterior toward competing 2M mechanisms.",
+    "expected_information_gain": 0.42
+  },
+  "execution_tier": "pilot",
+  "priority": "routine",
+  "resource_budget": {
+    "max_gpu_hours": 8,
+    "max_storage_gb": 20
+  }
+}

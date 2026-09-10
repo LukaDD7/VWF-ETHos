@@ -1,0 +1,25 @@
+{
+  "code": {
+    "text": "VWD mechanism-specific computational experiment"
+  },
+  "description": "Execute VWF_A1_2B_GOF_LEGAN2023_V1@1.0.0; registry digest sha256:d4a66f3884033c937c9a4673b8a56693b2515aefddc65db2560873e48572c95c; protocol digest sha256:f2f0aebb03f9899d480194d2b819093378898b4828354c0a687db9c0d85de0e6.",
+  "experimental": true,
+  "extension": [
+    {
+      "url": "https://vwf-ethos.org/fhir/StructureDefinition/protocol-digest",
+      "valueString": "sha256:f2f0aebb03f9899d480194d2b819093378898b4828354c0a687db9c0d85de0e6"
+    },
+    {
+      "url": "https://vwf-ethos.org/fhir/StructureDefinition/research-only",
+      "valueBoolean": true
+    }
+  ],
+  "id": "VWF_A1_2B_GOF_LEGAN2023_V1",
+  "kind": "Task",
+  "name": "VWFA12BGOFLEGAN2023V1",
+  "resourceType": "ActivityDefinition",
+  "status": "active",
+  "title": "VWF AIM-A1 type-2B activated-state surrogate protocol",
+  "url": "https://vwf-ethos.org/fhir/ActivityDefinition/VWF_A1_2B_GOF_LEGAN2023_V1",
+  "version": "1.0.0"
+}

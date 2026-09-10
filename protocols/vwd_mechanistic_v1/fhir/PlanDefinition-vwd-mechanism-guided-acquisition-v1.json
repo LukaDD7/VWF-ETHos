@@ -1,0 +1,43 @@
+{
+  "action": [
+    {
+      "code": {
+        "text": "M5_2A_ADAMTS13"
+      },
+      "definitionCanonical": "https://vwf-ethos.org/fhir/ActivityDefinition/VWF_A2_PROTEOLYSIS_SEIDIZADEH2025_V1|1.0.0",
+      "description": "Mechanism-specific computational acquisition; research use only.",
+      "id": "VWF_A2_PROTEOLYSIS_SEIDIZADEH2025_V1",
+      "title": "VWF A2 proteolysis and ADAMTS13-surrogate protocol"
+    },
+    {
+      "code": {
+        "text": "M10_2M2A_INTERFACE"
+      },
+      "definitionCanonical": "https://vwf-ethos.org/fhir/ActivityDefinition/VWF_A1A2_INTERFACE_SEIDIZADEH2024_V1|1.0.0",
+      "description": "Mechanism-specific computational acquisition; research use only.",
+      "id": "VWF_A1A2_INTERFACE_SEIDIZADEH2024_V1",
+      "title": "VWF A1-A2 interface mixed 2M/2A protocol"
+    },
+    {
+      "code": {
+        "text": "M6_2B_A1_GOF, M7_2M_A1_DISORDER, M8_2M_A1_HYPERSTABLE"
+      },
+      "definitionCanonical": "https://vwf-ethos.org/fhir/ActivityDefinition/VWF_A1_2B_GOF_LEGAN2023_V1|1.0.0",
+      "description": "Mechanism-specific computational acquisition; research use only.",
+      "id": "VWF_A1_2B_GOF_LEGAN2023_V1",
+      "title": "VWF AIM-A1 type-2B activated-state surrogate protocol"
+    }
+  ],
+  "description": "Bounded action space for selecting a versioned computational experiment after clinical and low-cost genetic/literature evidence retrieval.",
+  "experimental": true,
+  "id": "vwd-mechanism-guided-acquisition-v1",
+  "name": "VWDMechanismGuidedAcquisition",
+  "resourceType": "PlanDefinition",
+  "status": "active",
+  "title": "VWD mechanism-guided computational evidence acquisition",
+  "type": {
+    "text": "clinical-protocol"
+  },
+  "url": "https://vwf-ethos.org/fhir/PlanDefinition/vwd-mechanism-guided-acquisition-v1",
+  "version": "2026.09.10"
+}
